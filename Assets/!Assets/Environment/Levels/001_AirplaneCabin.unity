@@ -80137,5 +80137,32 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114595049545686992, guid: cfd0d11af8fbe06479beda324aedda2a, type: 2}
+    - {fileID: 114666202166641408, guid: cfd0d11af8fbe06479beda324aedda2a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: cfd0d11af8fbe06479beda324aedda2a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2144532143 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1922097163884250, guid: cfd0d11af8fbe06479beda324aedda2a,
+    type: 2}
+  m_PrefabInternal: {fileID: 2144532142}
+--- !u!114 &2144532144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2144532143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4155bbd193d7485b9af79ff76fd90542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 0}
+  m_UpdateType: 0
+  m_MoveSpeed: 3
+  m_TurnSpeed: 5
+  m_TurnSmoothing: 0
+  m_TiltMax: 60
+  m_TiltMin: 30
+  m_defaultTilt: 50
+  m_minDollyDistance: 4
+  m_maxDollyDistance: 13
