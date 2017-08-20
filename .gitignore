@@ -12,6 +12,7 @@
 /Assets/TransformPro
 /Assets/TextMesh Pro
 /Assets/Devdog
+Assets/Inventory Pro Files/
 
 # Visual Studio cache directory
 /.vs/
@@ -40,4 +41,3 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-Assets/Inventory Pro Stuff/
