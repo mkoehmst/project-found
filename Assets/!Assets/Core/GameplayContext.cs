@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using ProjectFound.Master;
+using ProjectFound.Environment.Items;
+
+namespace ProjectFound.Core {
+
 public abstract class GameplayContext : GameContext
 {
 	public GameplayContext( PlayerMaster playerMaster )
@@ -170,4 +175,6 @@ public abstract class GameplayContext : GameContext
 			}
 		}
 	}
+}
+
 }

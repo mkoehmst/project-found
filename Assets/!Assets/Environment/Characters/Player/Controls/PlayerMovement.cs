@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityStandardAssets.Characters.ThirdPerson;
+
+namespace ProjectFound.Environment.Characters {
 
 [RequireComponent( typeof( NavMeshAgent ) )]
 [RequireComponent( typeof( ThirdPersonCharacter ) )]
@@ -69,4 +70,6 @@ public class PlayerMovement : MonoBehaviour
 			Gizmos.DrawSphere( m_walkTarget.transform.position, 0.08f );
 		}
 	}
+}
+
 }

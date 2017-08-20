@@ -1,8 +1,11 @@
 using System;
 using UnityEngine;
 
+namespace ProjectFound.CameraUI {
+
 public abstract class AbstractTargetFollower : MonoBehaviour
 {
+
 	public enum UpdateType // The available methods of updating are:
 	{
 		FixedUpdate, // Update in FixedUpdate (for tracking rigidbodies).
@@ -61,4 +64,6 @@ public abstract class AbstractTargetFollower : MonoBehaviour
 	{
 		m_Target = newTransform;
 	}
+}
+
 }

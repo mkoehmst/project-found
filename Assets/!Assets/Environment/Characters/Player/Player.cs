@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+using ProjectFound.Environment.Items;
+
+namespace ProjectFound.Environment.Characters {
+
 public class Player : Combatant
 {
 	PlayerMovement m_movement = null;
@@ -111,3 +115,4 @@ public class Player : Combatant
 	}
 }
 
+}

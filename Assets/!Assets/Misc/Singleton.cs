@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Assertions;
 
-public class Singleton< _T > : MonoBehaviour 
+namespace ProjectFound.Misc {
+
+public class Singleton< _T > : MonoBehaviour
     where _T : Component
 {
     private static _T m_instance = null;
@@ -21,4 +23,6 @@ public class Singleton< _T > : MonoBehaviour
         set
 		{ }
     }
+}
+
 }

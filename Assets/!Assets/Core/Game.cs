@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Game : Singleton<Game>
+using ProjectFound.Master;
+
+namespace ProjectFound.Core {
+
+public class Game : Misc.Singleton<Game>
 {
 	public PlayerMaster PlayerMaster { get; private set; }
 
@@ -24,4 +28,6 @@ public class Game : Singleton<Game>
 	{
 		CurrentContext.Loop( );
 	}
+}
+
 }

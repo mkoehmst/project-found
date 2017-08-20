@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace ProjectFound.Environment.Characters {
+
 // This script governs each individual combat encounter
 // Make it a singleton because we know only one combat encounter at a time max
 
-public class CombatEncounter : Singleton< CombatEncounter >
+public class CombatEncounter : Misc.Singleton< CombatEncounter >
 {
 	// Prevent code from creating additonal CombatEncounter instances
 	protected CombatEncounter( ) { }
@@ -123,5 +125,7 @@ public class CombatEncounter : Singleton< CombatEncounter >
 		// Flipped the x & y order to get descending sort
 		m_combatants.Sort( ( x, y ) => y.initiative.CompareTo( x.initiative ) );
 	}
+
+}
 
 }

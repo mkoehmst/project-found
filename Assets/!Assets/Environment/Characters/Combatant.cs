@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace ProjectFound.Environment.Characters {
+
 public abstract class Combatant : Character, IDamageable
 {
 	protected System.Random m_rng = new System.Random( );
@@ -45,4 +47,6 @@ public abstract class Combatant : Character, IDamageable
 		}
 	}
 	// ********************************************************************************************
+}
+
 }

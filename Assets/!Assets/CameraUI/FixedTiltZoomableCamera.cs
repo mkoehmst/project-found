@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
+namespace ProjectFound.CameraUI {
+
 public class FixedTiltZoomableCamera : PivotBasedCameraRig
 {
 
@@ -71,7 +73,8 @@ public class FixedTiltZoomableCamera : PivotBasedCameraRig
 	    m_PivotTargetRot = m_Pivot.transform.localRotation;
 		m_TransformTargetRot = transform.localRotation;
 
-		m_playerTransform = GameObject.FindObjectOfType< Player >( ).transform;
+		m_playerTransform =
+			GameObject.FindObjectOfType<ProjectFound.Environment.Characters.Player>( ).transform;
 		m_Target = m_playerTransform;
 		m_TiltAngle = m_defaultTilt;
     }
@@ -234,4 +237,6 @@ public class FixedTiltZoomableCamera : PivotBasedCameraRig
 			m_Pivot.localRotation = m_PivotTargetRot;
 		}
 	}
+}
+
 }

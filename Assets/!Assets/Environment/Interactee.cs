@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace ProjectFound.Environment {
+
 public abstract class Interactee : MonoBehaviour
 {
 	protected ActionType m_currentActionType = ActionType.None;
@@ -28,4 +30,6 @@ public abstract class Interactee : MonoBehaviour
 
 	public abstract bool ValidateAction( ActionType actionType );
 	public abstract void Reaction( );
+}
+
 }

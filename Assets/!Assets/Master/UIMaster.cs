@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using ProjectFound.CameraUI;
+using ProjectFound.Environment.Items;
+
+namespace ProjectFound.Master {
+
 public class UIMaster
 {
 	public InventoryUI InventoryUI { get; set; }
@@ -27,5 +32,6 @@ public class UIMaster
 	{
 		InventoryUI.RemoveItem( item );
 	}
+}
 
 }

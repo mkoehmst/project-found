@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using ProjectFound.Environment;
+using ProjectFound.Environment.Characters;
+using ProjectFound.Environment.Items;
+
+namespace ProjectFound.Master {
+
 public class PlayerMaster
 {
 	public Player Player { get; private set; }
@@ -29,4 +35,6 @@ public class PlayerMaster
 	{
 		Player.Action( ActionType.UseItem, item );
 	}
+}
+
 }

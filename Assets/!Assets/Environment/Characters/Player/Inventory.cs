@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using ProjectFound.Environment.Items;
+
+namespace ProjectFound.Environment.Characters {
+
 public class Inventory
 {
 	public struct Item
@@ -45,4 +49,6 @@ public class Inventory
 			}
 		}
 	}
+}
+
 }

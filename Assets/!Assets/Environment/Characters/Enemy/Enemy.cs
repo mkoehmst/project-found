@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.Characters.ThirdPerson;
+
+namespace ProjectFound.Environment.Characters {
 
 public class Enemy : Combatant
 {
@@ -80,4 +81,6 @@ public class Enemy : Combatant
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere( transform.position, m_aggroRadius );
 	}
+}
+
 }

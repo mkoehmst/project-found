@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+namespace ProjectFound.Master {
+
 public class RaycastMaster
 {
 	public List<int> Priority { get; private set; }
@@ -63,4 +65,6 @@ public class RaycastMaster
 
 		PriorityHitCheck = null;
 	}
+}
+
 }

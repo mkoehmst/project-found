@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace ProjectFound.Environment.Items {
+
 public abstract class Item : Interactee
 {
 	public override bool ValidateAction( ActionType actionType )
@@ -17,4 +19,6 @@ public abstract class Item : Interactee
 				return false;
 		}
 	}
+}
+
 }

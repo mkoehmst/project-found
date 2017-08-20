@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace ProjectFound.Master {
+
 public class AxiiEqualityComparer : IEqualityComparer<string[]>
 {
 	public bool Equals( string[] x, string[] y )
@@ -353,4 +355,6 @@ public class InputMaster
 	{
 		return AxiiMaps[axii];
 	}
+}
+
 }

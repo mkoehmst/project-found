@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using ProjectFound.Master;
+
+namespace ProjectFound.Core {
+
 public abstract class GameContext
 {
 	public enum Desc
@@ -51,4 +55,6 @@ public abstract class GameContext
 	protected abstract void SetRaycastPriority( );
 	protected abstract void LoadMouseAndKeyboardMappings( );
 	protected abstract void LoadGamepadMappings( );
+}
+
 }

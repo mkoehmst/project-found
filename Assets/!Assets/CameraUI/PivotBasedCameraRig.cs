@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 
+namespace ProjectFound.CameraUI {
+
 public abstract class PivotBasedCameraRig : AbstractTargetFollower
 {
 	protected Transform m_Cam; // the transform of the camera
@@ -13,5 +15,7 @@ public abstract class PivotBasedCameraRig : AbstractTargetFollower
 		m_Cam = GetComponentInChildren<Camera>( ).transform;
 		m_Pivot = m_Cam.parent;
 	}
+}
+
 }
 

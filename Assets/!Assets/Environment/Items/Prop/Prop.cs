@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace ProjectFound.Environment.Items {
+
 public class Prop : Item
 {
 	public override bool ValidateAction( ActionType actionType )
@@ -33,4 +35,6 @@ public class Prop : Item
 			this.gameObject.SetActive( true );
 		}
 	}
+}
+
 }

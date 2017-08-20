@@ -1,6 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+namespace ProjectFound.Environment.Items {
 
 [CreateAssetMenu(menuName = ("RPG/Weapon"))]
 public class Weapon : ScriptableObject
@@ -14,4 +16,6 @@ public class Weapon : ScriptableObject
 	{
 		get { return m_weaponPrefab; }
 	}
+}
+
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
 
+using ProjectFound.Environment.Items;
+
+namespace ProjectFound.CameraUI {
+
 public class InventoryUI : MonoBehaviour
 {
 	[SerializeField] GameObject _InventoryButtonPrefab = null;
@@ -33,4 +37,6 @@ public class InventoryUI : MonoBehaviour
 
 		Buttons.Remove( item );
 	}
+}
+
 }
