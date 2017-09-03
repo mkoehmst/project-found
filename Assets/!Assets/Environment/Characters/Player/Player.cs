@@ -10,7 +10,7 @@ namespace ProjectFound.Environment.Characters {
 
 public class Player : Combatant
 {
-	PlayerMovement m_movement = null;
+	CharacterMovement m_movement = null;
 	public List<Item> InventoryItems { get; private set; }
 
 	new void Start( )
@@ -23,7 +23,7 @@ public class Player : Combatant
 
 		m_initiative = 10;
 
-		m_movement = GetComponent<PlayerMovement>( );
+		m_movement = GetComponent<CharacterMovement>( );
 		InventoryItems = new List<Item>( );
 	}
 
@@ -34,7 +34,7 @@ public class Player : Combatant
 
 		if ( distance > 1f )
 		{
-			m_movement.MoveToTarget( target );
+			m_movement.SetMoveTarget( target );
 		}
 
 		// TODO Figure out some kind of guaranteed end to this loop

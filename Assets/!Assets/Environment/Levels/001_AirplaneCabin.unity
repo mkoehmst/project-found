@@ -56066,11 +56066,6 @@ Prefab:
       propertyPath: m_Name
       value: Kumar (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114256449178241888, guid: e14d9bd2322e11e41ad4ab50d5ad1d95,
-        type: 2}
-      propertyPath: m_maxHealthPoints
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e14d9bd2322e11e41ad4ab50d5ad1d95, type: 2}
   m_IsPrefabParent: 0
@@ -62999,11 +62994,6 @@ Prefab:
       propertyPath: m_Name
       value: Kumar
       objectReference: {fileID: 0}
-    - target: {fileID: 114256449178241888, guid: e14d9bd2322e11e41ad4ab50d5ad1d95,
-        type: 2}
-      propertyPath: m_maxHealthPoints
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e14d9bd2322e11e41ad4ab50d5ad1d95, type: 2}
   m_IsPrefabParent: 0
@@ -67706,11 +67696,6 @@ Prefab:
     - target: {fileID: 1583812473800284, guid: e14d9bd2322e11e41ad4ab50d5ad1d95, type: 2}
       propertyPath: m_Name
       value: Harold (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114256449178241888, guid: e14d9bd2322e11e41ad4ab50d5ad1d95,
-        type: 2}
-      propertyPath: m_maxHealthPoints
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e14d9bd2322e11e41ad4ab50d5ad1d95, type: 2}
@@ -73118,10 +73103,9 @@ Prefab:
       propertyPath: m_Name
       value: Harold
       objectReference: {fileID: 0}
-    - target: {fileID: 114256449178241888, guid: e14d9bd2322e11e41ad4ab50d5ad1d95,
-        type: 2}
-      propertyPath: m_maxHealthPoints
-      value: 30
+    - target: {fileID: 1583812473800284, guid: e14d9bd2322e11e41ad4ab50d5ad1d95, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e14d9bd2322e11e41ad4ab50d5ad1d95, type: 2}

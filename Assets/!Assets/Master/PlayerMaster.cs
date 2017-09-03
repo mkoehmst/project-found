@@ -11,12 +11,12 @@ namespace ProjectFound.Master {
 public class PlayerMaster
 {
 	public Player Player { get; private set; }
-	public PlayerMovement PlayerMovement { get; private set; }
+	public CharacterMovement CharacterMovement { get; private set; }
 
 	public PlayerMaster( )
 	{
 		Player = GameObject.FindObjectOfType<Player>( );
-		PlayerMovement = GameObject.FindObjectOfType<PlayerMovement>( );
+		CharacterMovement = GameObject.FindObjectOfType<CharacterMovement>( );
 	}
 
 	public void Loop( )

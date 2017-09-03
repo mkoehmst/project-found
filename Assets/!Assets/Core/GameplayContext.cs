@@ -64,7 +64,7 @@ namespace ProjectFound.Core {
 				if ( layer == 8 )
 				{
 					map.OpenHoldingWindow( 0.35f );
-					PlayerMaster.PlayerMovement.MoveToTarget( hit.point );
+					PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 				}
 				else if ( layer == 10 )
 				{
@@ -89,12 +89,12 @@ namespace ProjectFound.Core {
 
 				if ( layer == 8 )
 				{
-					PlayerMaster.PlayerMovement.MoveToTarget( hit.point );
+					PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 				}
 			}
 			else if ( map.Mode == InputMaster.KeyMode.HoldingRelease )
 			{
-				PlayerMaster.PlayerMovement.StopMovement( );
+				PlayerMaster.CharacterMovement.ResetMoveTarget( );
 			}
 		}
 
@@ -123,7 +123,7 @@ namespace ProjectFound.Core {
 			if ( movements.Length != 2 )
 				return ;
 
-			PlayerMaster.PlayerMovement.HandleDirectMovement( movements[0], movements[1] );
+			PlayerMaster.CharacterMovement.TranslateMoveTarget( movements[0], movements[1] );
 		}
 
 		public virtual void OnCameraAttachToggle( InputMaster.KeyMap map )

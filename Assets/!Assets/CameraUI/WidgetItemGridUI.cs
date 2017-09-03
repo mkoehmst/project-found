@@ -46,10 +46,10 @@ namespace ProjectFound.CameraUI {
 		void LateUpdate( )
 		{
 			float parentX = m_parentPanelRect.sizeDelta.x;
-			float parentY = m_parentPanelRect.sizeDelta.y;
+			//float parentY = m_parentPanelRect.sizeDelta.y;
 
 			float cellX = m_grid.cellSize.x + m_grid.spacing.x;
-			float cellY = m_grid.cellSize.y + m_grid.spacing.y;
+			//float cellY = m_grid.cellSize.y + m_grid.spacing.y;
 
 			int numColumns = Mathf.FloorToInt( parentX / cellX );
 

@@ -9,12 +9,10 @@ public class Enemy : Combatant
 {
 	[SerializeField] float m_aggroRadius = 6f;
 
-	AICharacterControl m_ai = null;
 	Transform m_player = null;
 
 	void Awake( )
 	{
-		m_ai = GetComponent<AICharacterControl>( );
 		m_player = FindObjectOfType<Player>( ).transform;
 	}
 
@@ -22,7 +20,6 @@ public class Enemy : Combatant
 	{
 		base.Start( );
 
-		Debug.Assert( m_ai != null, "No AICharacterControl component" );
 		Debug.Assert( m_player != null, "No GameObject with Player component found" );
 
 		CombatEncounter.singleton.DelegateEncounterBegin += OnCombatEncounterBegin;
