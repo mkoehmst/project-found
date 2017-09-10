@@ -1,17 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+using UnityEngine.Assertions;
+//using TMPro;
 
 namespace ProjectFound.Environment.Items {
 
 
 	public abstract class Item : Interactee
 	{
+		[SerializeField] GameObject m_promptPrefab;
 		[SerializeField] GameObject m_iconPrefab;
 		[SerializeField] Sprite m_icon;
 
 		public Sprite Icon { get { return m_icon; } }
+
+		void Awake( )
+		{
+			Assert.IsNotNull( m_promptPrefab );
+			Assert.IsNotNull( m_iconPrefab );
+			Assert.IsNotNull( m_icon );
+		}
 
 		new void Start( )
 		{
