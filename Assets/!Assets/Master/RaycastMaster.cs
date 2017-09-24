@@ -8,32 +8,23 @@ using mattmc3.dotmore.Collections.Generic;
 
 namespace ProjectFound.Master {
 
+
 	public class RaycastMaster
 	{
-		public class RaycastLayer
+		public class LayerDetails
 		{
-			public int Layer { get; private set; }
-
 			public delegate void CursorFocus( GameObject obj );
 			public CursorFocus DelegateCursorFocusGained;
 			public CursorFocus DelegateCursorFocusLost;
-
-			public RaycastLayer( int layer )
-			{
-				Layer = layer;
-			}
 		}
 
-		public OrderedDictionary<int,RaycastLayer> Priority { get; private set; }
-
+		public OrderedDictionary<Core.LayerID,LayerDetails> Priority { get; private set; }
 		public RaycastHit? PriorityHitCheck { get; set; }
-
 		public EventSystem EventSystem { get; private set; }
 
 		public RaycastMaster( )
 		{
-			Priority = new OrderedDictionary<int,RaycastLayer>( );
-
+			Priority = new OrderedDictionary<Core.LayerID,LayerDetails>( );
 			EventSystem = GameObject.FindObjectOfType<EventSystem>( );
 		}
 
@@ -46,32 +37,25 @@ namespace ProjectFound.Master {
 			Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
 			RaycastHit[] raycastHits = Physics.RaycastAll( ray, 100f );
 
-			if ( raycastHits.Length != 0 )
-			{
-				FindTopPriorityCursorHit( raycastHits );
-			}
-			else
-			{
-				PriorityHitCheck = null;
-			}
+			FindTopPriorityCursorHit( raycastHits );
 		}
 
-		public void AddPriority( int layer )
+		public void AddPriority( Core.LayerID layer )
 		{
-			RaycastLayer raycastLayer = new RaycastLayer( layer );
+			LayerDetails layerDetails = new LayerDetails( );
 
-			Priority.Add( layer, raycastLayer );
+			Priority.Add( layer, layerDetails );
 		}
 
 		public void SetLayerDelegates(
-			int layer, RaycastLayer.CursorFocus gained, RaycastLayer.CursorFocus lost )
+			Core.LayerID layer, LayerDetails.CursorFocus gained, LayerDetails.CursorFocus lost )
 		{
-			RaycastLayer raycastLayer = Priority.GetValue( layer );
+			LayerDetails layerDetails = Priority.GetValue( layer );
 
-			if ( raycastLayer != null )
+			if ( layerDetails != null )
 			{
-				raycastLayer.DelegateCursorFocusGained = gained;
-				raycastLayer.DelegateCursorFocusLost = lost;
+				layerDetails.DelegateCursorFocusGained = gained;
+				layerDetails.DelegateCursorFocusLost = lost;
 			}
 		}
 
@@ -87,23 +71,30 @@ namespace ProjectFound.Master {
 
 		private void FindTopPriorityCursorHit( RaycastHit[] hits )
 		{
-			foreach ( int layer in Priority.Keys )
+			if ( hits.Length == 0 || Priority.Count == 0 )
+			{
+				PriorityHitCheck = null;
+				return ;
+			}
+
+			// TODO More elegant way to check top priority hit
+			foreach ( Core.LayerID layer in Priority.Keys )
 			{
 				foreach ( RaycastHit hit in hits )
 				{
 					GameObject hitObj = hit.collider.gameObject;
 
-					if ( hitObj.layer == layer )
+					if ( hitObj.layer == (int)layer )
 					{
 						if ( PriorityHitCheck.HasValue == false ||
 							PriorityHitCheck.Value.collider != hit.collider )
 						{
-							RaycastLayer raycastLayer = Priority.GetValue( layer );
+							LayerDetails layerDetails = Priority.GetValue( layer );
 
-							if ( raycastLayer != null &&
-								raycastLayer.DelegateCursorFocusGained != null )
+							if ( layerDetails != null &&
+								layerDetails.DelegateCursorFocusGained != null )
 							{
-								raycastLayer.DelegateCursorFocusGained( hitObj );
+								layerDetails.DelegateCursorFocusGained( hitObj );
 							}
 						}
 
@@ -112,17 +103,17 @@ namespace ProjectFound.Master {
 						{
 							GameObject prevObj = PriorityHitCheck.Value.collider.gameObject;
 
-							RaycastLayer prevRaycastLayer = Priority.GetValue( prevObj.layer );
+							LayerDetails prevLayerDetails =
+								Priority.GetValue( (Core.LayerID)prevObj.layer );
 
-							if ( prevRaycastLayer != null &&
-								prevRaycastLayer.DelegateCursorFocusLost != null )
+							if ( prevLayerDetails != null &&
+								prevLayerDetails.DelegateCursorFocusLost != null )
 							{
-								prevRaycastLayer.DelegateCursorFocusLost( prevObj );
+								prevLayerDetails.DelegateCursorFocusLost( prevObj );
 							}
 						}
 
 						PriorityHitCheck = hit;
-
 						return ;
 					}
 				}
@@ -131,5 +122,6 @@ namespace ProjectFound.Master {
 			PriorityHitCheck = null;
 		}
 	}
+
 
 }

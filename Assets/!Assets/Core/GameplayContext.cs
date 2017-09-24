@@ -16,12 +16,13 @@ namespace ProjectFound.Core {
 
 		protected override void SetRaycastPriority( )
 		{
-			RaycastMaster.AddPriority( 5 ); // UI
-			RaycastMaster.AddPriority( 9 ); // Enemy
-			RaycastMaster.AddPriority( 10 ); // Item
-			RaycastMaster.AddPriority( 8 ); // Walkable
+			RaycastMaster.AddPriority( LayerID.UI ); // UI
+			RaycastMaster.AddPriority( LayerID.Enemy ); // Enemy
+			RaycastMaster.AddPriority( LayerID.Item ); // Item
+			RaycastMaster.AddPriority( LayerID.Walkable ); // Walkable
 
-			RaycastMaster.SetLayerDelegates( 10, OnCursorFocusGained, OnCursorFocusLost );
+			RaycastMaster.SetLayerDelegates(
+				LayerID.Item, OnCursorFocusGained, OnCursorFocusLost );
 		}
 
 		protected override void LoadMouseAndKeyboardMappings( )
@@ -59,16 +60,16 @@ namespace ProjectFound.Core {
 
 			RaycastHit hit = RaycastMaster.PriorityHitCheck.Value;
 			GameObject obj = hit.collider.gameObject;
-			int layer = obj.layer;
+			LayerID layer = (LayerID)obj.layer;
 
 			if ( map.Mode == InputMaster.KeyMode.OneShot )
 			{
-				if ( layer == 8 )
+				if ( layer == LayerID.Walkable )
 				{
 					map.OpenHoldingWindow( 0.35f );
 					PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 				}
-				else if ( layer == 10 )
+				else if ( layer == LayerID.Item )
 				{
 					Item item = obj.GetComponent<Item>( );
 
@@ -77,7 +78,7 @@ namespace ProjectFound.Core {
 						// Lambda expression delegates...love this
 						UIMaster.AddInventoryButton( item ).onClick.AddListener( () =>
 						{
-							// Automatically caches prop reference until called! Very powerful.
+							// Automatically caches item reference until called! Very powerful.
 							PlayerMaster.UseInventoryItem( item );
 							UIMaster.RemoveInventoryButton( item );
 						} );
@@ -86,10 +87,7 @@ namespace ProjectFound.Core {
 			}
 			else if ( map.Mode == InputMaster.KeyMode.Holding )
 			{
-				if ( RaycastMaster.IsOverUIElement( ) )
-					return;
-
-				if ( layer == 8 )
+				if ( layer == LayerID.Walkable )
 				{
 					PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 				}
@@ -102,7 +100,7 @@ namespace ProjectFound.Core {
 
 		public void OnCursorFocusGained( GameObject obj )
 		{
-			if ( obj.layer == 10 )
+			if ( (LayerID)obj.layer == LayerID.Item )
 			{
 				Item item = obj.GetComponent<Item>( );
 				KeyCode key = InputMaster.ActionToKey[OnCursorSelect];
@@ -112,7 +110,7 @@ namespace ProjectFound.Core {
 
 		public void OnCursorFocusLost( GameObject obj )
 		{
-			if ( obj.layer == 10 )
+			if ( (LayerID)obj.layer == LayerID.Item )
 			{
 				Item item = obj.GetComponent<Item>( );
 				UIMaster.RemovePrompt( item );
