@@ -16,10 +16,12 @@ namespace ProjectFound.Core {
 
 		protected override void SetRaycastPriority( )
 		{
-			RaycastMaster.Priority.Add( 5 ); // UI
-			RaycastMaster.Priority.Add( 9 ); // Enemy
-			RaycastMaster.Priority.Add( 10 ); // Prop
-			RaycastMaster.Priority.Add( 8 ); // Walkable
+			RaycastMaster.AddPriority( 5 ); // UI
+			RaycastMaster.AddPriority( 9 ); // Enemy
+			RaycastMaster.AddPriority( 10 ); // Item
+			RaycastMaster.AddPriority( 8 ); // Walkable
+
+			RaycastMaster.SetLayerDelegates( 10, OnCursorFocusGained, OnCursorFocusLost );
 		}
 
 		protected override void LoadMouseAndKeyboardMappings( )
@@ -68,16 +70,16 @@ namespace ProjectFound.Core {
 				}
 				else if ( layer == 10 )
 				{
-					Prop prop = obj.GetComponent<Prop>( );
+					Item item = obj.GetComponent<Item>( );
 
-					if ( PlayerMaster.AttemptPropPickup( prop ) )
+					if ( PlayerMaster.AttemptItemPickup( item ) )
 					{
 						// Lambda expression delegates...love this
-						UIMaster.AddInventoryButton( prop as Item ).onClick.AddListener( () =>
+						UIMaster.AddInventoryButton( item ).onClick.AddListener( () =>
 						{
 							// Automatically caches prop reference until called! Very powerful.
-							PlayerMaster.UseInventoryItem( prop as Item );
-							UIMaster.RemoveInventoryButton( prop as Item );
+							PlayerMaster.UseInventoryItem( item );
+							UIMaster.RemoveInventoryButton( item );
 						} );
 					}
 				}
@@ -95,6 +97,25 @@ namespace ProjectFound.Core {
 			else if ( map.Mode == InputMaster.KeyMode.HoldingRelease )
 			{
 				PlayerMaster.CharacterMovement.ResetMoveTarget( );
+			}
+		}
+
+		public void OnCursorFocusGained( GameObject obj )
+		{
+			if ( obj.layer == 10 )
+			{
+				Item item = obj.GetComponent<Item>( );
+				KeyCode key = InputMaster.ActionToKey[OnCursorSelect];
+				UIMaster.DisplayPrompt( item, key );
+			}
+		}
+
+		public void OnCursorFocusLost( GameObject obj )
+		{
+			if ( obj.layer == 10 )
+			{
+				Item item = obj.GetComponent<Item>( );
+				UIMaster.RemovePrompt( item );
 			}
 		}
 

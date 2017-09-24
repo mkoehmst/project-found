@@ -24,16 +24,16 @@ public class PlayerMaster
 
 	}
 
-	public bool AttemptPropPickup( Prop prop )
+	public bool AttemptItemPickup( Item item )
 	{
-		Debug.Log( "InteractWithProp: " + prop );
+		Debug.Log( "AttemptItemPickup: " + item );
 
-		return Player.Action( ActionType.PickUp, prop as Interactee );
+		return Player.Action( ActionType.PickUp, item as Interactee );
 	}
 
 	public void UseInventoryItem( Interactee item )
 	{
-		Player.Action( ActionType.UseItem, item );
+		Player.Action( ActionType.Use, item );
 	}
 }
 

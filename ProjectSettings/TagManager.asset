@@ -16,7 +16,7 @@ TagManager:
   - 
   - Walkable
   - Enemy
-  - Prop
+  - Item
   - 
   - 
   - 
@@ -30,9 +30,9 @@ TagManager:
   - 
   - 
   - 
-  - InvProLocalPlayer
-  - InvProEquipment
-  - InvProWorldItems
+  - 
+  - 
+  - 
   - 
   - 
   - 

@@ -4,9 +4,11 @@ using UnityEngine;
 
 namespace ProjectFound.Environment.Characters {
 
-public abstract class Character : Interactor
-{
 
-}
+	public abstract class Character : Interactor
+	{
+
+	}
+
 
 }

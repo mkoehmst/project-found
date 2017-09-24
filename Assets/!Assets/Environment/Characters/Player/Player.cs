@@ -58,7 +58,7 @@ public class Player : Combatant
 			{
 				InventoryItems.Add( interactee as Item );
 			}
-			else if ( actionType == ActionType.UseItem )
+			else if ( actionType == ActionType.Use )
 			{
 				InventoryItems.Remove( interactee as Item );
 			}

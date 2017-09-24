@@ -1,10 +1,12 @@
 namespace ProjectFound.Environment {
 
-public enum ActionType
-{
-	None,
-	PickUp,
-	UseItem
-}
+
+	public enum ActionType
+	{
+		None,
+		PickUp,
+		Use
+	}
+
 
 }

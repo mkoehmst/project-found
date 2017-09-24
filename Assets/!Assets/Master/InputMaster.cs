@@ -163,15 +163,23 @@ public class InputMaster
 	public delegate void AxisAction( float movement );
 	public delegate void AxiiAction( float[] movements );
 
-	public Dictionary<KeyCode,KeyMap> KeyMaps { get; set; }
-	public Dictionary<string,AxisMap> AxisMaps { get; set; }
-	public Dictionary<string[], AxiiMap> AxiiMaps { get; set; }
+	public Dictionary<KeyCode,KeyMap> KeyMaps { get; private set; }
+	public Dictionary<KeyAction,KeyCode> ActionToKey { get; private set; }
+
+	public Dictionary<string,AxisMap> AxisMaps { get; private set; }
+	public Dictionary<AxisAction,string> ActionToAxis { get; private set; }
+
+	public Dictionary<string[],AxiiMap> AxiiMaps { get; private set; }
+	public Dictionary<AxiiAction,string[]> ActionToAxii { get; private set; }
 
 	public InputMaster( )
 	{
 		KeyMaps = new Dictionary<KeyCode,KeyMap>( );
+		ActionToKey = new Dictionary<KeyAction,KeyCode>( );
 		AxisMaps = new Dictionary<string,AxisMap>( );
+		ActionToAxis = new Dictionary<AxisAction,string>( );
 		AxiiMaps = new Dictionary<string[],AxiiMap>( new AxiiEqualityComparer( ) );
+		ActionToAxii = new Dictionary<AxiiAction,string[]>( );
 	}
 
 	public void Loop( )
@@ -221,16 +229,22 @@ public class InputMaster
 
 	public KeyMap MapKey( bool isEnabled, KeyAction action, KeyCode key )
 	{
+		ActionToKey[action] = key;
+
 		return KeyMaps[key] = new KeyMap( isEnabled, action, key );
 	}
 
 	public AxisMap MapAxis( bool isEnabled, AxisAction action, string axis )
 	{
+		ActionToAxis[action] = axis;
+
 		return AxisMaps[axis] = new AxisMap( isEnabled, action, axis );
 	}
 
 	public void MapAxii( bool isEnabled, AxiiAction action, params string[] axii )
 	{
+		ActionToAxii[action] = axii;
+
 		// TODO: String concatenation and parsing instead of string arrays?
 		AxiiMaps[axii] = new AxiiMap( isEnabled, action, axii );
 	}

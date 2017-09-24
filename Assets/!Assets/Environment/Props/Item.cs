@@ -7,18 +7,15 @@ using UnityEngine.Assertions;
 namespace ProjectFound.Environment.Items {
 
 
-	public abstract class Item : Interactee
+	public class Item : Prop
 	{
-		[SerializeField] GameObject m_promptPrefab;
-		[SerializeField] GameObject m_iconPrefab;
 		[SerializeField] Sprite m_icon;
 
 		public Sprite Icon { get { return m_icon; } }
+		public GameObject Prompt { get; set; }
 
 		void Awake( )
 		{
-			Assert.IsNotNull( m_promptPrefab );
-			Assert.IsNotNull( m_iconPrefab );
 			Assert.IsNotNull( m_icon );
 		}
 
@@ -34,12 +31,26 @@ namespace ProjectFound.Environment.Items {
 			switch ( actionType )
 			{
 				case ActionType.PickUp:
-				case ActionType.UseItem:
 					m_currentActionType = actionType;
 					return true;
 				default:
-					m_currentActionType = ActionType.None;
-					return false;
+					return base.ValidateAction( actionType );
+			}
+		}
+
+		public override void Reaction( )
+		{
+			switch ( m_currentActionType )
+			{
+				case ActionType.PickUp:
+					this.gameObject.SetActive( false );
+					break;
+				case ActionType.Use:
+					this.gameObject.SetActive( true );
+					break;
+				default:
+					base.Reaction( );
+					break;
 			}
 		}
 		/*
