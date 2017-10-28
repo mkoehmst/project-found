@@ -75,7 +75,7 @@ namespace ProjectFound.Core {
 
 					if ( PlayerMaster.AttemptItemPickup( item ) )
 					{
-						// Lambda expression delegates...love this
+						// Lambda statement delegates...love this
 						UIMaster.AddInventoryButton( item ).onClick.AddListener( () =>
 						{
 							// Automatically caches item reference until called! Very powerful.
@@ -102,9 +102,12 @@ namespace ProjectFound.Core {
 		{
 			if ( (LayerID)obj.layer == LayerID.Item )
 			{
+				Debug.Log( "Cursor Gained" );
+
 				Item item = obj.GetComponent<Item>( );
 				KeyCode key = InputMaster.ActionToKey[OnCursorSelect];
 				UIMaster.DisplayPrompt( item, key );
+				ShaderMaster.ToggleSelectionOutline( obj );
 			}
 		}
 
@@ -112,8 +115,11 @@ namespace ProjectFound.Core {
 		{
 			if ( (LayerID)obj.layer == LayerID.Item )
 			{
+				Debug.Log( "Cursor Lost" );
+
 				Item item = obj.GetComponent<Item>( );
 				UIMaster.RemovePrompt( item );
+				ShaderMaster.ToggleSelectionOutline( obj );
 			}
 		}
 

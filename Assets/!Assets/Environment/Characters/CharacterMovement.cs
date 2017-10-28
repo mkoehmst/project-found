@@ -26,6 +26,7 @@ namespace ProjectFound.Environment.Characters {
 			Agent = GetComponent<UnityEngine.AI.NavMeshAgent>( );
 			Agent.updateRotation = false;
 			Agent.updatePosition = true;
+			Agent.SetDestination( transform.position );
 
 			m_animator = GetComponent<Animator>( );
 			m_rigidBody = GetComponent<Rigidbody>( );

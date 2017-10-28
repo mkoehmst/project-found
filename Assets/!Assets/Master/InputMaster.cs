@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using ProjectFound.Misc;
+
 namespace ProjectFound.Master {
 
 
@@ -207,7 +209,7 @@ namespace ProjectFound.Master {
 			{
 				float axisMovement = CheckAxis( axisToCheck );
 
-				if ( axisMovement != 0f )
+				if ( !Floater.Equal( axisMovement, 0f ) )
 				{
 					AxisHasMoved( axisToCheck, axisMovement );
 				}
@@ -219,7 +221,8 @@ namespace ProjectFound.Master {
 
 				foreach ( float axisMovement in axiiMovements )
 				{
-					if ( axisMovement != 0f )
+
+					if ( !Floater.Equal( axisMovement, 0f ) )
 					{
 						AxiiHaveMoved( axiiToCheck, axiiMovements );
 						break;

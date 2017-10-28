@@ -19,18 +19,24 @@ namespace ProjectFound.Master {
 		}
 
 		public OrderedDictionary<Core.LayerID,LayerDetails> Priority { get; private set; }
-		public RaycastHit? PriorityHitCheck { get; set; }
+		public RaycastHit? PriorityHitCheck { get; private set; }
+		public RaycastHit? PreviousPriorityHitCheck { get; private set; }
 		public EventSystem EventSystem { get; private set; }
+		public Rect ScreenRect { get; private set; }
 
 		public RaycastMaster( )
 		{
 			Priority = new OrderedDictionary<Core.LayerID,LayerDetails>( );
 			EventSystem = GameObject.FindObjectOfType<EventSystem>( );
+			ScreenRect = new Rect( 0, 0, Screen.width, Screen.height );
 		}
 
 		public void Loop( )
 		{
 			if ( IsOverUIElement( ) )
+				return ;
+
+			if ( ScreenRect.Contains( Input.mousePosition ) == false )
 				return ;
 
 			// Raycast to max depth, every frame as things can move under mouse
@@ -80,46 +86,93 @@ namespace ProjectFound.Master {
 			// TODO More elegant way to check top priority hit
 			foreach ( Core.LayerID layer in Priority.Keys )
 			{
+				var matchedHits = new List<RaycastHit>( );
+
 				foreach ( RaycastHit hit in hits )
 				{
 					GameObject hitObj = hit.collider.gameObject;
 
 					if ( hitObj.layer == (int)layer )
 					{
-						if ( PriorityHitCheck.HasValue == false ||
-							PriorityHitCheck.Value.collider != hit.collider )
-						{
-							LayerDetails layerDetails = Priority.GetValue( layer );
-
-							if ( layerDetails != null &&
-								layerDetails.DelegateCursorFocusGained != null )
-							{
-								layerDetails.DelegateCursorFocusGained( hitObj );
-							}
-						}
-
-						if ( PriorityHitCheck.HasValue == true &&
-							PriorityHitCheck.Value.collider.gameObject != hit.collider.gameObject )
-						{
-							GameObject prevObj = PriorityHitCheck.Value.collider.gameObject;
-
-							LayerDetails prevLayerDetails =
-								Priority.GetValue( (Core.LayerID)prevObj.layer );
-
-							if ( prevLayerDetails != null &&
-								prevLayerDetails.DelegateCursorFocusLost != null )
-							{
-								prevLayerDetails.DelegateCursorFocusLost( prevObj );
-							}
-						}
-
-						PriorityHitCheck = hit;
-						return ;
+						matchedHits.Add( hit );
 					}
+				}
+
+				int matchCount = matchedHits.Count;
+
+				if ( matchCount > 0 )
+				{
+					Vector3 cameraPos = Camera.main.transform.position;
+					float closestDistance = 100000000.0f;
+					int closestIndex = default( int );
+
+					for ( int i = 0; i < matchCount; ++i )
+					{
+						float distance = (cameraPos - matchedHits[i].transform.position).magnitude;
+
+						if ( distance < closestDistance )
+						{
+							closestDistance = distance;
+							closestIndex = i;
+						}
+					}
+
+					UpdateHitCheck( matchedHits[closestIndex] );
+
+					return ;
 				}
 			}
 
-			PriorityHitCheck = null;
+			UpdateHitCheck( null );
+		}
+
+		private void UpdateHitCheck( RaycastHit? hit )
+		{
+			PreviousPriorityHitCheck = PriorityHitCheck;
+			PriorityHitCheck = hit;
+
+			CheckForFocusChange( );
+		}
+
+		private void CheckForFocusChange( )
+		{
+			if ( PreviousPriorityHitCheck.HasValue == true && PriorityHitCheck.HasValue == true )
+			{
+				GameObject prevObj = PreviousPriorityHitCheck.Value.collider.gameObject;
+				GameObject curObj = PriorityHitCheck.Value.collider.gameObject;
+
+				if ( prevObj != curObj )
+				{
+					ObjectFocusLost( prevObj );
+					ObjectFocusGained( curObj );
+				}
+			}
+			else if (
+				PreviousPriorityHitCheck.HasValue == false && PriorityHitCheck.HasValue == true )
+			{
+				ObjectFocusGained( PriorityHitCheck.Value.collider.gameObject );
+			}
+			else if (
+				PreviousPriorityHitCheck.HasValue == true && PriorityHitCheck.HasValue == false )
+			{
+				ObjectFocusLost( PreviousPriorityHitCheck.Value.collider.gameObject );
+			}
+		}
+
+		private void ObjectFocusGained( GameObject obj )
+		{
+			LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)obj.layer );
+
+			if ( layerDetails.DelegateCursorFocusGained != null )
+				layerDetails.DelegateCursorFocusGained( obj );
+		}
+
+		private void ObjectFocusLost( GameObject obj )
+		{
+			LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)obj.layer );
+
+			if ( layerDetails.DelegateCursorFocusLost != null )
+				layerDetails.DelegateCursorFocusLost( obj );
 		}
 	}
 
