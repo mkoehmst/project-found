@@ -1,27 +1,22 @@
 fileFormatVersion: 2
-guid: 17e5bfaeed795e746a0c24c3e573a598
-timeCreated: 1508608180
+guid: b4cba793e5c2d88499af5b97e54fe2a0
+timeCreated: 1509821112
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: airplaneFrame1
-    100004: airplaneWalls
+    100002: toilet 1
+    100004: toiletSeat
     400000: //RootNode
-    400002: airplaneFrame1
-    400004: airplaneWalls
-    2300000: //RootNode
-    2300002: airplaneFrame1
-    2300004: airplaneWalls
-    3300000: //RootNode
-    3300002: airplaneFrame1
-    3300004: airplaneWalls
-    4300000: airplaneFrame1
-    4300002: airplaneWalls
-    6400000: //RootNode
-    6400002: airplaneFrame1
-    6400004: airplaneWalls
+    400002: toilet 1
+    400004: toiletSeat
+    2300000: toilet 1
+    2300002: toiletSeat
+    3300000: toilet 1
+    3300002: toiletSeat
+    4300000: toiletSeat
+    4300002: toilet
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -51,7 +46,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 1

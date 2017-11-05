@@ -16,6 +16,8 @@ ModelImporter:
     100016: airplaneSeat_right 1
     100018: airplaneSeat_separator_left
     100020: airplaneSeat_separator_right
+    100022: airplaneSeat_separator_left 1
+    100024: transform1
     400000: airplaneSeat
     400002: //RootNode
     400004: loftedSurface1
@@ -27,6 +29,8 @@ ModelImporter:
     400016: airplaneSeat_right 1
     400018: airplaneSeat_separator_left
     400020: airplaneSeat_separator_right
+    400022: airplaneSeat_separator_left 1
+    400024: transform1
     2300000: airplaneSeat
     2300002: loftedSurface1
     2300004: airplaneSeat_separator
@@ -35,6 +39,7 @@ ModelImporter:
     2300010: airplaneSeat_right 1
     2300012: airplaneSeat_separator_left
     2300014: airplaneSeat_separator_right
+    2300016: airplaneSeat_separator_left 1
     3300000: airplaneSeat
     3300002: loftedSurface1
     3300004: airplaneSeat_separator
@@ -43,6 +48,7 @@ ModelImporter:
     3300010: airplaneSeat_right 1
     3300012: airplaneSeat_separator_left
     3300014: airplaneSeat_separator_right
+    3300016: airplaneSeat_separator_left 1
     4300000: airplaneSeat
     4300002: loftedSurface1
     4300004: airplaneSeat_separator
@@ -96,7 +102,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 3
+    tangentImportMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
