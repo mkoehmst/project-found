@@ -15,6 +15,8 @@
 /Assets/Inventory Pro Files/
 /Assets/OutlineEffect
 /Assets/Rewired
+/Assets/UBER
+/Assets/Standard Assets/
 /RewiredBackup
 
 
@@ -45,3 +47,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
