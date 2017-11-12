@@ -7,7 +7,6 @@ using ProjectFound.Misc;
 
 namespace ProjectFound.Master {
 
-
 	public class InputMaster
 	{
 		public enum KeyMode
@@ -20,17 +19,26 @@ namespace ProjectFound.Master {
 			HoldingWindow
 		}
 
+		public enum InputDevice
+		{
+			Undefined,
+			MouseAndKeyboard,
+			Gamepad
+		}
+
 		public class KeyMap
 		{
 			public bool IsEnabled		{ get; private set; }
+			public InputDevice Device	{ get; private set; }
 			public KeyMode Mode			{ get; private set; }
 			public KeyCode Key			{ get; private set; }
 			public KeyAction Action		{ get; private set; }
 			public float? HoldingWindow { get; set; }
 
-			public KeyMap( bool isEnabled, KeyAction action, KeyCode key )
+			public KeyMap( bool isEnabled, InputDevice device, KeyAction action, KeyCode key )
 			{
 				IsEnabled = isEnabled;
+				Device = device;
 				Mode = KeyMode.Undefined;
 				Action = action;
 				Key = key;
@@ -75,12 +83,14 @@ namespace ProjectFound.Master {
 		public class AxisMap
 		{
 			public bool IsEnabled { get; private set; }
+			public InputDevice Device { get; private set; }
 			public string Axis { get; set; }
 			public AxisAction Action { get; set; }
 
-			public AxisMap( bool isEnabled, AxisAction action, string axis )
+			public AxisMap( bool isEnabled, InputDevice device, AxisAction action, string axis )
 			{
 				IsEnabled = isEnabled;
+				Device = device;
 				Action = action;
 				Axis = axis;
 			}
@@ -97,7 +107,7 @@ namespace ProjectFound.Master {
 
 			public void Fire( float movement )
 			{
-				Action( movement );
+				Action( this, movement );
 			}
 		}
 
@@ -136,12 +146,14 @@ namespace ProjectFound.Master {
 			}
 
 			public bool IsEnabled { get; private set; }
+			public InputDevice Device { get; private set; }
 			public string[] Axii { get; set; }
 			public AxiiAction Action { get; set; }
 
-			public AxiiMap( bool isEnabled, AxiiAction action, string[] axii )
+			public AxiiMap( bool isEnabled, InputDevice device, AxiiAction action, string[] axii  )
 			{
 				IsEnabled = isEnabled;
+				Device = device;
 				Action = action;
 				Axii = axii;
 			}
@@ -158,13 +170,13 @@ namespace ProjectFound.Master {
 
 			public void Fire( float[] movements )
 			{
-				Action( movements );
+				Action( this, movements );
 			}
 		}
 
 		public delegate void KeyAction( KeyMap map );
-		public delegate void AxisAction( float movement );
-		public delegate void AxiiAction( float[] movements );
+		public delegate void AxisAction( AxisMap map, float movement );
+		public delegate void AxiiAction( AxiiMap map, float[] movements );
 
 		public Dictionary<KeyCode,KeyMap> KeyMaps { get; private set; }
 		public Dictionary<KeyAction,KeyCode> ActionToKey { get; private set; }
@@ -175,6 +187,8 @@ namespace ProjectFound.Master {
 		public Dictionary<string[],AxiiMap> AxiiMaps { get; private set; }
 		public Dictionary<AxiiAction,string[]> ActionToAxii { get; private set; }
 
+		public InputDevice CurrentDeviceMapped { get; set; }
+
 		public InputMaster( )
 		{
 			KeyMaps = new Dictionary<KeyCode,KeyMap>( );
@@ -183,6 +197,7 @@ namespace ProjectFound.Master {
 			ActionToAxis = new Dictionary<AxisAction,string>( );
 			AxiiMaps = new Dictionary<string[],AxiiMap>( new AxiiMap.AxiiEqualityComparer( ) );
 			ActionToAxii = new Dictionary<AxiiAction,string[]>( );
+			CurrentDeviceMapped = InputDevice.Undefined;
 		}
 
 		public void Loop( )
@@ -235,22 +250,24 @@ namespace ProjectFound.Master {
 		{
 			ActionToKey[action] = key;
 
-			return KeyMaps[key] = new KeyMap( isEnabled, action, key );
+			return KeyMaps[key] = new KeyMap( isEnabled, CurrentDeviceMapped, action, key );
 		}
 
-		public AxisMap MapAxis( bool isEnabled, AxisAction action, string axis )
+		public AxisMap MapAxis
+			( bool isEnabled, AxisAction action, string axis )
 		{
 			ActionToAxis[action] = axis;
 
-			return AxisMaps[axis] = new AxisMap( isEnabled, action, axis );
+			return AxisMaps[axis] = new AxisMap( isEnabled, CurrentDeviceMapped, action, axis );
 		}
 
-		public void MapAxii( bool isEnabled, AxiiAction action, params string[] axii )
+		public void MapAxii
+			( bool isEnabled, AxiiAction action, params string[] axii )
 		{
 			ActionToAxii[action] = axii;
 
 			// TODO: String concatenation and parsing instead of string arrays?
-			AxiiMaps[axii] = new AxiiMap( isEnabled, action, axii );
+			AxiiMaps[axii] = new AxiiMap( isEnabled, CurrentDeviceMapped, action, axii );
 		}
 
 		public bool CheckKeyDown( KeyCode keyToCheck )
@@ -287,7 +304,9 @@ namespace ProjectFound.Master {
 
 		private void KeyIsDown( KeyCode key )
 		{
-			KeyMap map = FindKeyMap( key );
+			KeyMap map = KeyMaps[key];
+
+			CurrentDeviceMapped = map.Device;
 
 			if ( !map.IsEnabled )
 				return ;
@@ -297,7 +316,9 @@ namespace ProjectFound.Master {
 
 		private void KeyIsUp( KeyCode key )
 		{
-			KeyMap map = FindKeyMap( key );
+			KeyMap map = KeyMaps[key];
+
+			CurrentDeviceMapped = map.Device;
 
 			if ( !map.IsEnabled )
 				return ;
@@ -323,7 +344,9 @@ namespace ProjectFound.Master {
 
 		private void KeyIsHolding( KeyCode key )
 		{
-			KeyMap map = FindKeyMap( key );
+			KeyMap map = KeyMaps[key];
+
+			CurrentDeviceMapped = map.Device;
 
 			if ( !map.IsEnabled )
 				return ;
@@ -339,9 +362,11 @@ namespace ProjectFound.Master {
 			}
 		}
 
-		private void AxisHasMoved( string axis, float movement )
+		public void AxisHasMoved( string axis, float movement )
 		{
-			AxisMap map = FindAxisMap( axis );
+			AxisMap map = AxisMaps[axis];
+
+			CurrentDeviceMapped = map.Device;
 
 			if ( !map.IsEnabled )
 				return ;
@@ -351,7 +376,9 @@ namespace ProjectFound.Master {
 
 		private void AxiiHaveMoved( string[] axii, float[] movements )
 		{
-			AxiiMap map = FindAxiiMap( axii );
+			AxiiMap map = AxiiMaps[axii];
+
+			CurrentDeviceMapped = map.Device;
 
 			if ( !map.IsEnabled )
 				return ;
@@ -359,7 +386,7 @@ namespace ProjectFound.Master {
 			map.Fire( movements );
 		}
 
-		private KeyMap FindKeyMap( KeyCode key )
+		/*private KeyMap FindKeyMap( KeyCode key )
 		{
 			return KeyMaps[key];
 		}
@@ -372,7 +399,7 @@ namespace ProjectFound.Master {
 		private AxiiMap FindAxiiMap( string[] axii )
 		{
 			return AxiiMaps[axii];
-		}
+		}*/
 	}
 
 

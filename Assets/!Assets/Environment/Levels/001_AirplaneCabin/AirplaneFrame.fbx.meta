@@ -8,20 +8,115 @@ ModelImporter:
     100000: //RootNode
     100002: airplaneFrame1
     100004: airplaneWalls
+    100006: airplaneWall_restroom_left
+    100008: airplaneWall_restroom_left1
+    100010: airplaneWall_restroom_right
+    100012: airplaneWall_restroom_right1
+    100014: airplaneWalls_restroom_left
+    100016: airplaneWalls_restroom_right
+    100018: airplaneRestroom_door_left
+    100020: airplaneRestroom_door_right
+    100022: airplaneRestroom_doorFrame_left
+    100024: airplaneRestroom_doorFrame_right
+    100026: airplaneWall_backWall
+    100028: polySurface1
+    100030: polySurface2
+    100032: polySurface3
+    100034: polySurface4
+    100036: polySurface5
+    100038: polySurface6
     400000: //RootNode
     400002: airplaneFrame1
     400004: airplaneWalls
+    400006: airplaneWall_restroom_left
+    400008: airplaneWall_restroom_left1
+    400010: airplaneWall_restroom_right
+    400012: airplaneWall_restroom_right1
+    400014: airplaneWalls_restroom_left
+    400016: airplaneWalls_restroom_right
+    400018: airplaneRestroom_door_left
+    400020: airplaneRestroom_door_right
+    400022: airplaneRestroom_doorFrame_left
+    400024: airplaneRestroom_doorFrame_right
+    400026: airplaneWall_backWall
+    400028: polySurface1
+    400030: polySurface2
+    400032: polySurface3
+    400034: polySurface4
+    400036: polySurface5
+    400038: polySurface6
     2300000: //RootNode
     2300002: airplaneFrame1
     2300004: airplaneWalls
+    2300006: airplaneWall_restroom_left
+    2300008: airplaneWall_restroom_left1
+    2300010: airplaneWall_restroom_right
+    2300012: airplaneWall_restroom_right1
+    2300014: airplaneRestroom_door_left
+    2300016: airplaneRestroom_door_right
+    2300018: airplaneRestroom_doorFrame_left
+    2300020: airplaneRestroom_doorFrame_right
+    2300022: airplaneWall_backWall
+    2300024: polySurface1
+    2300026: polySurface2
+    2300028: polySurface3
+    2300030: polySurface4
+    2300032: polySurface5
+    2300034: polySurface6
     3300000: //RootNode
     3300002: airplaneFrame1
     3300004: airplaneWalls
+    3300006: airplaneWall_restroom_left
+    3300008: airplaneWall_restroom_left1
+    3300010: airplaneWall_restroom_right
+    3300012: airplaneWall_restroom_right1
+    3300014: airplaneRestroom_door_left
+    3300016: airplaneRestroom_door_right
+    3300018: airplaneRestroom_doorFrame_left
+    3300020: airplaneRestroom_doorFrame_right
+    3300022: airplaneWall_backWall
+    3300024: polySurface1
+    3300026: polySurface2
+    3300028: polySurface3
+    3300030: polySurface4
+    3300032: polySurface5
+    3300034: polySurface6
     4300000: airplaneFrame1
     4300002: airplaneWalls
+    4300004: airplaneWall_restroom_right1
+    4300006: airplaneWall_restroom_right
+    4300008: airplaneWall_restroom_left1
+    4300010: airplaneWall_restroom_left
+    4300012: airplaneRestroom_door_right
+    4300014: airplaneRestroom_doorFrame_right
+    4300016: airplaneRestroom_door_left
+    4300018: airplaneRestroom_doorFrame_left
+    4300020: polySurface1
+    4300022: polySurface2
+    4300024: polySurface3
+    4300026: polySurface4
+    4300028: polySurface5
+    4300030: polySurface6
+    4300032: airplaneWall_backWall
     6400000: //RootNode
     6400002: airplaneFrame1
     6400004: airplaneWalls
+    6400006: airplaneWall_restroom_left
+    6400008: airplaneWall_restroom_left1
+    6400010: airplaneWall_restroom_right
+    6400012: airplaneWall_restroom_right1
+    6400014: airplaneRestroom_door_left
+    6400016: airplaneRestroom_door_right
+    6400018: airplaneRestroom_doorFrame_left
+    6400020: airplaneRestroom_doorFrame_right
+    6400022: airplaneWall_backWall
+    6400024: polySurface1
+    6400026: polySurface2
+    6400028: polySurface3
+    6400030: polySurface4
+    6400032: polySurface5
+    6400034: polySurface6
+    7400000: Take 001
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -46,7 +141,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -54,7 +149,7 @@ ModelImporter:
     addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0

@@ -18,31 +18,43 @@ namespace ProjectFound.Master {
 			public CursorFocus DelegateCursorFocusLost;
 		}
 
+		private Ray m_ray;
+
 		public OrderedDictionary<Core.LayerID,LayerDetails> Priority { get; private set; }
 		public RaycastHit? PriorityHitCheck { get; private set; }
 		public RaycastHit? PreviousPriorityHitCheck { get; private set; }
 		public EventSystem EventSystem { get; private set; }
 		public Rect ScreenRect { get; private set; }
+		public Vector3 ScreenCenter { get; private set; }
+		public InputMaster.InputDevice CursorDevice { get; set; }
 
 		public RaycastMaster( )
 		{
 			Priority = new OrderedDictionary<Core.LayerID,LayerDetails>( );
 			EventSystem = GameObject.FindObjectOfType<EventSystem>( );
 			ScreenRect = new Rect( 0, 0, Screen.width, Screen.height );
+			ScreenCenter = new Vector3( Screen.width / 2, Screen.height / 2, 0f );
 		}
 
 		public void Loop( )
 		{
-			if ( IsOverUIElement( ) )
-				return ;
+			if ( CursorDevice == InputMaster.InputDevice.MouseAndKeyboard )
+			{
+				if ( IsOverUIElement( ) )
+					return ;
 
-			if ( ScreenRect.Contains( Input.mousePosition ) == false )
-				return ;
+				if ( ScreenRect.Contains( Input.mousePosition ) == false )
+					return ;
 
-			// Raycast to max depth, every frame as things can move under mouse
-			Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
-			RaycastHit[] raycastHits = Physics.RaycastAll( ray, 100f );
+				// Raycast to max depth, every frame as things can move under mouse
+				m_ray = Camera.main.ScreenPointToRay( Input.mousePosition );
+			}
+			else if ( CursorDevice == InputMaster.InputDevice.Gamepad )
+			{
+				m_ray = Camera.main.ScreenPointToRay( ScreenCenter );
+			}
 
+			RaycastHit[] raycastHits = Physics.RaycastAll( m_ray, 100f );
 			FindTopPriorityCursorHit( raycastHits );
 		}
 

@@ -57,6 +57,11 @@ ModelImporter:
     4300010: airplaneSeat_left
     4300012: airplaneSeat_right
     4300014: airplaneSeat_separator_right
+    6400000: airplaneSeat_column
+    6400002: airplaneSeat_left 1
+    6400004: airplaneSeat_right 1
+    6400006: airplaneSeat_separator_left 1
+    6400008: airplaneSeat_separator_right
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -81,15 +86,15 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0

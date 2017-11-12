@@ -27,6 +27,8 @@ namespace ProjectFound.Core {
 
 		protected override void LoadMouseAndKeyboardMappings( )
 		{
+			InputMaster.CurrentDeviceMapped = InputMaster.InputDevice.MouseAndKeyboard;
+
 			InputMaster.MapKey( true, OnCursorSelect, KeyCode.Mouse0 );
 			InputMaster.MapAxis( true, OnCameraMoveHorizontal, "KeyboardCameraHorizontal" );
 			InputMaster.MapAxis( true, OnCameraMoveVertical, "KeyboardCameraVertical" );
@@ -39,6 +41,8 @@ namespace ProjectFound.Core {
 
 		protected override void LoadGamepadMappings( )
 		{
+			InputMaster.CurrentDeviceMapped = InputMaster.InputDevice.Gamepad;
+
 			InputMaster.MapAxis( false, OnCameraMoveHorizontal, "ControllerCameraHorizontal" );
 			InputMaster.MapAxis( false, OnCameraMoveVertical, "ControllerCameraVertical" );
 			InputMaster.MapAxis( true, OnCameraRotation, "ControllerCameraRotation" );
@@ -46,11 +50,15 @@ namespace ProjectFound.Core {
 			InputMaster.MapAxii( true, OnPlayerMovement,
 				"ControllerMovementHorizontal", "ControllerMovementVertical" );
 			InputMaster.MapKey( true, OnCameraAttachToggle, KeyCode.Joystick1Button9 );
+			InputMaster.MapKey( true, OnCursorSelect, KeyCode.Joystick1Button0 );
+			InputMaster.MapKey( true, OnInventoryToggle, KeyCode.Joystick1Button7 );
 		}
 
 		public virtual void OnCursorSelect( InputMaster.KeyMap map )
 		{
 			Debug.Log( "OnCursorSelect: " + map.Mode );
+
+			Device = map.Device;
 
 			if ( RaycastMaster.IsOverUIElement( ) )
 				return ;
@@ -123,28 +131,38 @@ namespace ProjectFound.Core {
 			}
 		}
 
-		public virtual void OnCameraMoveHorizontal( float movement )
+		public virtual void OnCameraMoveHorizontal( InputMaster.AxisMap map, float movement )
 		{
+			Device = map.Device;
+
 			CameraMaster.FixedTiltZoomableCamera.HandleMovement( 0f, movement );
 		}
 
-		public virtual void OnCameraMoveVertical( float movement )
+		public virtual void OnCameraMoveVertical( InputMaster.AxisMap map, float movement )
 		{
+			Device = map.Device;
+
 			CameraMaster.FixedTiltZoomableCamera.HandleMovement( movement, 0f );
 		}
 
-		public virtual void OnCameraRotation( float movement )
+		public virtual void OnCameraRotation( InputMaster.AxisMap map, float movement )
 		{
+			Device = map.Device;
+
 			CameraMaster.FixedTiltZoomableCamera.HandleRotation( movement );
 		}
 
-		public virtual void OnCameraZoom( float movement )
+		public virtual void OnCameraZoom( InputMaster.AxisMap map, float movement )
 		{
+			Device = map.Device;
+
 			CameraMaster.FixedTiltZoomableCamera.HandleZoom( movement );
 		}
 
-		public virtual void OnPlayerMovement( float[] movements )
+		public virtual void OnPlayerMovement( InputMaster.AxiiMap map, float[] movements )
 		{
+			Device = map.Device;
+
 			if ( movements.Length != 2 )
 				return ;
 
@@ -198,7 +216,8 @@ namespace ProjectFound.Core {
 
 				if ( movement != 0f )
 				{
-					OnCameraRotation( movement );
+					InputMaster.AxisHasMoved( "KeyboardCameraRotation", movement );
+					//OnCameraRotation( movement );
 				}
 			}
 		}

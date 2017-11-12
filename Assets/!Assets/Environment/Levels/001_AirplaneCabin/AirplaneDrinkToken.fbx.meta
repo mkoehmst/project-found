@@ -11,6 +11,7 @@ ModelImporter:
     3300000: //RootNode
     4300000: pCylinder1
     4300002: drinkToken
+    6400000: //RootNode
     9500000: //RootNode
   materials:
     importMaterials: 0
@@ -35,15 +36,15 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0

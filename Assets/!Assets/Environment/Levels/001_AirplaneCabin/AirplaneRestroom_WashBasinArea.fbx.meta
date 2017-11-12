@@ -56,6 +56,15 @@ ModelImporter:
     4300012: faucet
     4300014: faucetKnob_right
     4300016: faucetKnob_left
+    6400000: faucet
+    6400002: faucetKnob_left
+    6400004: faucetKnob_right
+    6400006: handRail
+    6400008: handRailConnector_center
+    6400010: handRailConnector_left
+    6400012: handRailConnector_right
+    6400014: seat
+    6400016: washBasin
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -80,12 +89,12 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
