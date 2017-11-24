@@ -30,9 +30,9 @@ namespace ProjectFound.CameraUI {
 			}
 		}
 
-		new void Start( )
+		void Awake( )
 		{
-			base.Start( );
+			//base.Awake( );
 
 			m_grid = GetComponent<GridLayoutGroup>( );
 			m_slots = new List<GameObject>( );
@@ -41,6 +41,16 @@ namespace ProjectFound.CameraUI {
 			{
 				m_slots.Add( Instantiate( m_slotPrefab, this.transform ) );
 			}
+		}
+
+		new void Start( )
+		{
+			base.Start( );
+
+
+			//m_slots = new List<GameObject>( );
+
+
 		}
 
 		void LateUpdate( )

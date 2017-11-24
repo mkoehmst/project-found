@@ -9,15 +9,6 @@ namespace ProjectFound.Environment.Items {
 
 	public class Item : Prop
 	{
-		[SerializeField] Sprite m_icon;
-
-		public Sprite Icon { get { return m_icon; } }
-		public GameObject Prompt { get; set; }
-
-		void Awake( )
-		{
-			Assert.IsNotNull( m_icon );
-		}
 
 		new void Start( )
 		{

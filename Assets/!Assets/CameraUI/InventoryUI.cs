@@ -16,17 +16,17 @@ namespace ProjectFound.CameraUI {
 		public Dictionary<Item,Button> Buttons { get; private set; }
 		public WidgetItemGridUI ItemGrid { get; private set; }
 
-		void Start( )
+		void Awake( )
 		{
-			Assert.IsNotNull( m_inventoryButtonPrefab );
-
 			ItemGrid = GetComponentInChildren<WidgetItemGridUI>( );
 			Assert.IsNotNull( ItemGrid );
 
 			Buttons = new Dictionary<Item,Button>( );
+		}
 
-			gameObject.SetActive( false );
-
+		void Start( )
+		{
+			Assert.IsNotNull( m_inventoryButtonPrefab );
 		}
 
 		public Button AddItem( Item item )

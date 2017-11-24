@@ -26,7 +26,7 @@ namespace ProjectFound.CameraUI {
 
 		}
 
-		public GameObject CreatePrompt( KeyCode key, string action )
+		public GameObject CreatePrompt( KeyCode key, string action, string interactee )
 		{
 			GameObject obj = GameObject.Instantiate( m_itemPromptPrefab, transform );
 
@@ -35,7 +35,8 @@ namespace ProjectFound.CameraUI {
 
 			string fullText = textUI.text.Replace(
 				"{key}", key.ToString( ) ).Replace(
-				"{action}", action );
+				"{action}", action ).Replace(
+				"{interactee}", interactee );
 
 			textUI.text = fullText;
 

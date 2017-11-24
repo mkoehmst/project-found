@@ -4,6 +4,7 @@ using UnityEngine;
 
 using ProjectFound.CameraUI;
 using ProjectFound.Environment.Items;
+using System;
 
 namespace ProjectFound.Master {
 
@@ -11,14 +12,24 @@ namespace ProjectFound.Master {
 	public class UIMaster
 	{
 		public InventoryUI InventoryUI { get; set; }
-		public OnScreenUI OnScreenUI {  get; set; }
+		public OnScreenUI OnScreenUI { get; set; }
+		public PropCollectionUI PropCollectionUI { get; set; }
+		public DetectionRadius DetectionRadius { get; set; }
 		//public ActionBarUI ActionBarUI { get; set; }
 		//public PauseMenuUI PauseMenuUI { get; set; }
 
 		public UIMaster( )
 		{
 			InventoryUI = GameObject.FindObjectOfType<InventoryUI>( );
+			InventoryUI.gameObject.SetActive( false );
+
 			OnScreenUI = GameObject.FindObjectOfType<OnScreenUI>( );
+
+			PropCollectionUI = GameObject.FindObjectOfType<PropCollectionUI>( );
+			PropCollectionUI.gameObject.SetActive( false );
+
+			DetectionRadius = GameObject.FindObjectOfType<DetectionRadius>( );
+			DetectionRadius.gameObject.SetActive( false );
 		}
 
 		public void Loop( )
@@ -26,16 +37,16 @@ namespace ProjectFound.Master {
 
 		}
 
-		public void DisplayPrompt( Item item, KeyCode key )
+		public void DisplayPrompt( Prop prop, KeyCode key )
 		{
-			item.Prompt = OnScreenUI.CreatePrompt( key, item.PromptText );
+			prop.Prompt = OnScreenUI.CreatePrompt( key, prop.PromptText, prop.IngameName );
 		}
 
-		public void RemovePrompt( Item item )
+		public void RemovePrompt( Prop prop )
 		{
-			GameObject.Destroy( item.Prompt );
+			GameObject.Destroy( prop.Prompt );
 
-			item.Prompt = null;
+			prop.Prompt = null;
 		}
 
 		public void ToggleInventoryWindow( )
@@ -51,6 +62,47 @@ namespace ProjectFound.Master {
 		public void RemoveInventoryButton( Item item )
 		{
 			InventoryUI.RemoveItem( item );
+		}
+
+		public void TogglePropCollectionWindow( )
+		{
+			bool isEnabled = PropCollectionUI.gameObject.activeInHierarchy;
+
+			if ( isEnabled )
+			{
+				PropCollectionUI.ClearCollection( );
+				PropCollectionUI.gameObject.SetActive( false );
+			}
+			else
+			{
+				PropCollectionUI.gameObject.SetActive( true );
+			}
+		}
+
+		public UnityEngine.UI.Button AddPropCollectionButton( Prop prop )
+		{
+			return PropCollectionUI.AddProp( prop );
+		}
+
+		public void DisplayDetectionRadius( )
+		{
+			if ( DetectionRadius.gameObject.activeInHierarchy == false )
+			{
+				DetectionRadius.gameObject.SetActive( true );
+			}
+		}
+
+		public void ClearDetectionRadius( )
+		{
+			if ( DetectionRadius.gameObject.activeInHierarchy == true )
+			{
+				DetectionRadius.gameObject.SetActive( false );
+			}
+		}
+
+		public void RemovePropCollectionProp( Prop prop )
+		{
+			PropCollectionUI.RemoveProp( prop );
 		}
 	}
 

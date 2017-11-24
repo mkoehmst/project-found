@@ -40,11 +40,12 @@ namespace ProjectFound.Master {
 		{
 			if ( CursorDevice == InputMaster.InputDevice.MouseAndKeyboard )
 			{
-				if ( IsOverUIElement( ) )
+				if ( !ScreenRect.Contains( Input.mousePosition ) || IsOverUIElement( ) )
+				{
+					Debug.Log( "Outside game window or over UI element" );
+					UpdateHitCheck( null );
 					return ;
-
-				if ( ScreenRect.Contains( Input.mousePosition ) == false )
-					return ;
+				}
 
 				// Raycast to max depth, every frame as things can move under mouse
 				m_ray = Camera.main.ScreenPointToRay( Input.mousePosition );
@@ -75,11 +76,6 @@ namespace ProjectFound.Master {
 				layerDetails.DelegateCursorFocusGained = gained;
 				layerDetails.DelegateCursorFocusLost = lost;
 			}
-		}
-
-		public bool DidFindPriorityHit( )
-		{
-			return PriorityHitCheck.HasValue;
 		}
 
 		public bool IsOverUIElement( )
@@ -115,7 +111,7 @@ namespace ProjectFound.Master {
 				if ( matchCount > 0 )
 				{
 					Vector3 cameraPos = Camera.main.transform.position;
-					float closestDistance = 100000000.0f;
+					float closestDistance = float.MaxValue;
 					int closestIndex = default( int );
 
 					for ( int i = 0; i < matchCount; ++i )

@@ -13,6 +13,7 @@ namespace ProjectFound.Environment {
 		// can have health too, the amount of damage before they are destroyed
 		[SerializeField] protected float m_maxHealthPoints = 100f;
 		[SerializeField] protected string m_promptText = "Pickup";
+		[SerializeField] protected string m_ingameName = "Unknown";
 
 		protected ActionType m_currentActionType = ActionType.None;
 		protected float m_curHealthPoints = 1f;
@@ -20,6 +21,11 @@ namespace ProjectFound.Environment {
 		public string PromptText
 		{
 			get { return m_promptText; }
+		}
+
+		public string IngameName
+		{
+			get { return m_ingameName; }
 		}
 
 		public float HealthAsPercentage
