@@ -1,0 +1,236 @@
+fileFormatVersion: 2
+guid: d622555ab72c4824c9fb4d8786edfa5a
+timeCreated: 1511737588
+licenseType: Free
+SubstanceImporter:
+  externalObjects: {}
+  serializedVersion: 5
+  materialInstances:
+  - serializedVersion: 16
+    name: Airplane_OverheadBin
+    prototypeName: Airplane_OverheadBin
+    shaderName: 
+    shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+    shaderKeywords: 
+    renderQueue: -1
+    lightmapFlags: 4
+    inputs: []
+    materialInformation:
+      serializedVersion: 5
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      generateMipmaps: 1
+      generateAllOutputs: 0
+      animationUpdateRate: 0
+    materialProperties:
+      serializedVersion: 3
+      texEnvs: []
+      floats: []
+      colors: []
+    textureParameters:
+    - name: Airplane_OverheadBin_basecolor
+      alphaSource: 6
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Airplane_OverheadBin_normal
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Airplane_OverheadBin_metallic
+      alphaSource: 7
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Airplane_OverheadBin_height
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    textureAssignments:
+    - shaderProp: _MainTex
+      material: {instanceID: 0}
+      baseUID: 1976025798
+    - shaderProp: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 1976025796
+    - shaderProp: _ParallaxMap
+      material: {instanceID: 0}
+      baseUID: 1906894897
+    - shaderProp: _MetallicGlossMap
+      material: {instanceID: 0}
+      baseUID: 1976025792
+    buildTargetSettings:
+    - serializedVersion: 2
+      buildTarget: 
+      textureWidth: 512
+      textureHeight: 512
+      textureFormat: 0
+      loadingBehavior: 1
+  - serializedVersion: 16
+    name: Airplane_OverheadBin_Door_Handle
+    prototypeName: Airplane_OverheadBin_Door_Handle
+    shaderName: 
+    shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+    shaderKeywords: 
+    renderQueue: -1
+    lightmapFlags: 4
+    inputs: []
+    materialInformation:
+      serializedVersion: 5
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      generateMipmaps: 1
+      generateAllOutputs: 0
+      animationUpdateRate: 0
+    materialProperties:
+      serializedVersion: 3
+      texEnvs: []
+      floats: []
+      colors: []
+    textureParameters:
+    - name: Airplane_OverheadBin_Door_Handle_basecolor
+      alphaSource: 6
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Airplane_OverheadBin_Door_Handle_normal
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Airplane_OverheadBin_Door_Handle_metallic
+      alphaSource: 7
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    textureAssignments:
+    - shaderProp: _MainTex
+      material: {instanceID: 0}
+      baseUID: 239250012
+    - shaderProp: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 239250014
+    - shaderProp: _MetallicGlossMap
+      material: {instanceID: 0}
+      baseUID: 239250010
+    buildTargetSettings:
+    - serializedVersion: 2
+      buildTarget: 
+      textureWidth: 512
+      textureHeight: 512
+      textureFormat: 0
+      loadingBehavior: 1
+  - serializedVersion: 16
+    name: Airplane_OverheadBin_Liner
+    prototypeName: Airplane_OverheadBin_Liner
+    shaderName: 
+    shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+    shaderKeywords: 
+    renderQueue: -1
+    lightmapFlags: 4
+    inputs: []
+    materialInformation:
+      serializedVersion: 5
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      generateMipmaps: 1
+      generateAllOutputs: 0
+      animationUpdateRate: 0
+    materialProperties:
+      serializedVersion: 3
+      texEnvs: []
+      floats: []
+      colors: []
+    textureParameters:
+    - name: Airplane_OverheadBin_Liner_basecolor
+      alphaSource: 6
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Airplane_OverheadBin_Liner_normal
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Airplane_OverheadBin_Liner_metallic
+      alphaSource: 7
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    textureAssignments:
+    - shaderProp: _MainTex
+      material: {instanceID: 0}
+      baseUID: 3987863695
+    - shaderProp: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 3987863693
+    - shaderProp: _MetallicGlossMap
+      material: {instanceID: 0}
+      baseUID: 3987863689
+    buildTargetSettings:
+    - serializedVersion: 2
+      buildTarget: 
+      textureWidth: 512
+      textureHeight: 512
+      textureFormat: 0
+      loadingBehavior: 1
+  - serializedVersion: 16
+    name: Airplane_OverheadBin_MainPlastic
+    prototypeName: Airplane_OverheadBin_MainPlastic
+    shaderName: 
+    shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+    shaderKeywords: 
+    renderQueue: -1
+    lightmapFlags: 4
+    inputs: []
+    materialInformation:
+      serializedVersion: 5
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      generateMipmaps: 1
+      generateAllOutputs: 0
+      animationUpdateRate: 0
+    materialProperties:
+      serializedVersion: 3
+      texEnvs: []
+      floats: []
+      colors: []
+    textureParameters:
+    - name: Airplane_OverheadBin_MainPlastic_basecolor
+      alphaSource: 6
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Airplane_OverheadBin_MainPlastic_normal
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Airplane_OverheadBin_MainPlastic_metallic
+      alphaSource: 7
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    textureAssignments:
+    - shaderProp: _MainTex
+      material: {instanceID: 0}
+      baseUID: 1945940751
+    - shaderProp: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 1945940749
+    - shaderProp: _MetallicGlossMap
+      material: {instanceID: 0}
+      baseUID: 1945940745
+    buildTargetSettings:
+    - serializedVersion: 2
+      buildTarget: 
+      textureWidth: 512
+      textureHeight: 512
+      textureFormat: 0
+      loadingBehavior: 1
+  deletedPrototypes: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
