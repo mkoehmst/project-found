@@ -11,14 +11,17 @@ namespace ProjectFound.Master
 	{
 		public void ToggleSelectionOutline( GameObject obj )
 		{
-			var outline = obj.GetComponent<cakeslice.Outline>( );
+			var outlines = obj.GetComponentsInChildren<cakeslice.Outline>( );
 
-			Assert.IsNotNull(
-				outline, "ShaderMaster: GO(" + obj +") does not have Outline component." );
+			Assert.IsTrue(
+				outlines.Length > 0,
+				"ShaderMaster: GO(" + obj +") or its children does not have Outline component." );
 
-			outline.enabled = !outline.enabled;
+			foreach ( var outline in outlines )
+			{
+				outline.enabled = !outline.enabled;
+			}
 		}
-
 	}
 
 

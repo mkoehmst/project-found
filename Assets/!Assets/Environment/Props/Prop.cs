@@ -11,19 +11,32 @@ namespace ProjectFound.Environment.Items {
 	{
 		[SerializeField] Sprite m_icon;
 
+		private int m_activateTrigger;
+
+		public Animator Animator { get; private set; }
+
 		public Sprite Icon { get { return m_icon; } }
 		public GameObject Prompt { get; set; }
 
 		void Awake( )
 		{
 			Assert.IsNotNull( m_icon );
+
+			Animator = GetComponent<Animator>( );
+		}
+
+		new void Start( )
+		{
+			base.Start( );
+
+			m_activateTrigger = Animator.StringToHash( "Prop_Activate" );
 		}
 
 		public override bool ValidateAction( ActionType actionType )
 		{
 			switch ( actionType )
 			{
-				case ActionType.Use:
+				case ActionType.Activate:
 					m_currentActionType = actionType;
 					return true;
 				default:
@@ -36,8 +49,11 @@ namespace ProjectFound.Environment.Items {
 		{
 			switch ( m_currentActionType )
 			{
-				case ActionType.Use:
-					Debug.Log( "Prop has been used!" );
+				case ActionType.Activate:
+					Debug.Log( "Prop has been activated!" );
+					if ( Animator != null )
+						Animator.SetTrigger( m_activateTrigger );
+					m_isReceptive = false;
 					break;
 			}
 		}

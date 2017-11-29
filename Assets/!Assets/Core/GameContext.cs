@@ -29,13 +29,11 @@ namespace ProjectFound.Core {
 			set
 			{
 				RaycastMaster.CursorDevice = value;
-
 				m_inputDevice = value;
 			}
 		}
 
 		public Desc Description { get; set; }
-		//public InputMaster.InputDevice Device
 
 		public RaycastMaster RaycastMaster { get; private set; }
 		public InputMaster InputMaster { get; private set; }
@@ -54,6 +52,7 @@ namespace ProjectFound.Core {
 			PlayerMaster = playerMaster;
 
 			SetRaycastPriority( );
+			SetInputTracker( );
 			LoadInputMappings( );
 		}
 
@@ -72,6 +71,7 @@ namespace ProjectFound.Core {
 		}
 
 		protected abstract void SetRaycastPriority( );
+		protected abstract void SetInputTracker( );
 		protected abstract void LoadMouseAndKeyboardMappings( );
 		protected abstract void LoadGamepadMappings( );
 	}

@@ -14,9 +14,12 @@ namespace ProjectFound.Environment {
 		[SerializeField] protected float m_maxHealthPoints = 100f;
 		[SerializeField] protected string m_promptText = "Pickup";
 		[SerializeField] protected string m_ingameName = "Unknown";
+		[SerializeField] protected bool m_isReceptive = true;
 
 		protected ActionType m_currentActionType = ActionType.None;
 		protected float m_curHealthPoints = 1f;
+
+		public bool IsFocused { get; set; }
 
 		public string PromptText
 		{
@@ -26,6 +29,11 @@ namespace ProjectFound.Environment {
 		public string IngameName
 		{
 			get { return m_ingameName; }
+		}
+
+		public bool IsReceptive
+		{
+			get { return m_isReceptive; }
 		}
 
 		public float HealthAsPercentage
@@ -38,6 +46,7 @@ namespace ProjectFound.Environment {
 			Debug.Assert( m_curHealthPoints > 0f, "Must start with positive health" );
 
 			m_curHealthPoints = m_maxHealthPoints;
+			IsFocused = false;
 		}
 
 		public abstract bool ValidateAction( ActionType actionType );

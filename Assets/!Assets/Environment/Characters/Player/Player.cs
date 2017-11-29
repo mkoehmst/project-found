@@ -6,113 +6,103 @@ using UnityEngine.Assertions;
 
 using ProjectFound.Environment.Items;
 
-namespace ProjectFound.Environment.Characters {
-
-public class Player : Combatant
+namespace ProjectFound.Environment.Characters
 {
-	CharacterMovement m_movement = null;
-	public List<Item> InventoryItems { get; private set; }
 
-	new void Start( )
+
+	public class Player : Combatant
 	{
-		base.Start( );
+		CharacterMovement m_movement = null;
+		public List<Item> InventoryItems { get; private set; }
 
-		CombatEncounter.singleton.DelegateEncounterBegin += OnCombatEncounterBegin;
-		CombatEncounter.singleton.DelegateRoundBegin += OnCombatRoundBegin;
-		CombatEncounter.singleton.DelegateDeath += OnCombatDeath;
-
-		m_initiative = 10;
-
-		m_movement = GetComponent<CharacterMovement>( );
-		InventoryItems = new List<Item>( );
-	}
-
-	public override IEnumerator ExecuteRoundActions( )
-	{
-		Vector3 target = m_target.transform.position;
-		float distance = (target - transform.position).magnitude;
-
-		if ( distance > 1f )
+		new void Start( )
 		{
-			m_movement.SetMoveTarget( target );
+			base.Start( );
+
+			CombatEncounter.singleton.DelegateEncounterBegin += OnCombatEncounterBegin;
+			CombatEncounter.singleton.DelegateRoundBegin += OnCombatRoundBegin;
+			CombatEncounter.singleton.DelegateDeath += OnCombatDeath;
+
+			m_initiative = 10;
+
+			m_movement = GetComponent<CharacterMovement>( );
+			InventoryItems = new List<Item>( );
 		}
 
-		// TODO Figure out some kind of guaranteed end to this loop
-		while ( (target - transform.position).magnitude > 1f )
+		public override IEnumerator ExecuteRoundActions( )
 		{
-			yield return new WaitForSeconds( 0.1f );
+			Vector3 target = m_target.transform.position;
+			float distance = (target - transform.position).magnitude;
+
+			if ( distance > 1f )
+			{
+				m_movement.SetMoveTarget( target );
+			}
+
+			// TODO Figure out some kind of guaranteed end to this loop
+			while ( (target - transform.position).magnitude > 1f )
+			{
+				yield return new WaitForSeconds( 0.1f );
+			}
+
+			float damageCaused = m_rng.Next( 15, 20 );
+			m_target.TakeDamage( this, damageCaused );
+
+			yield break;
 		}
 
-		float damageCaused = m_rng.Next( 15, 20 );
-		m_target.TakeDamage( this, damageCaused );
-
-		yield break;
-	}
-
-	public override bool Action( ActionType actionType, Interactee interactee )
-	{
-		// First ask the item being acted upon whether it allows this type of action
-		if ( interactee.ValidateAction( actionType ) == true )
+		public override bool Action( ActionType actionType, Interactee interactee,
+			System.Action action )
 		{
-			if ( actionType == ActionType.PickUp )
+			if ( interactee.ValidateAction( actionType ) == true )
 			{
-				InventoryItems.Add( interactee as Item );
-			}
-			else if ( actionType == ActionType.Use )
-			{
-				InventoryItems.Remove( interactee as Item );
+				action( );
+
+				interactee.Reaction( );
+
+				return true;
 			}
 
-			// Allow the item to react
-			interactee.Reaction( );
+			return false;
+		}
 
+		public override bool ValidateAction( ActionType actionType )
+		{
 			return true;
 		}
 
-		return false;
-	}
-
-	public override bool ValidateAction( ActionType actionType )
-	{
-		return true;
-	}
-
-	public override void Reaction( )
-	{
-
-	}
-
-	private void OnCombatEncounterBegin( List<Combatant> combatants )
-	{
-		m_target = combatants[1];
-	}
-
-	private void OnCombatRoundBegin( List<Combatant> combatants )
-	{
-		// Placeholder
-	}
-
-	private void OnCombatDeath( Combatant deceased, List<Combatant> remainders )
-	{
-		if ( deceased != m_target )
-			return ;
-
-		foreach ( Combatant combatant in remainders )
+		public override void Reaction( )
 		{
-			if ( combatant != this )
-			{
-				m_target = combatant;
-				return ;
-			}
+
 		}
 
-		m_target = null;
+		private void OnCombatEncounterBegin( List<Combatant> combatants )
+		{
+			m_target = combatants[1];
+		}
+
+		private void OnCombatRoundBegin( List<Combatant> combatants )
+		{
+			// Placeholder
+		}
+
+		private void OnCombatDeath( Combatant deceased, List<Combatant> remainders )
+		{
+			if ( deceased != m_target )
+				return ;
+
+			foreach ( Combatant combatant in remainders )
+			{
+				if ( combatant != this )
+				{
+					m_target = combatant;
+					return ;
+				}
+			}
+
+			m_target = null;
+		}
 	}
 
-	public void TestButton( )
-	{
-		Debug.Log( "BUTTON TEST!!" );
-	}
-}
 
 }

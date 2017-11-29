@@ -63,21 +63,6 @@ namespace ProjectFound.Master {
 
 				Mode = KeyMode.Undefined;
 			}
-
-			public void OpenHoldingWindow( float delay )
-			{
-				HoldingWindow = delay;
-			}
-
-			public void CloseHoldingWindow( )
-			{
-				HoldingWindow = null;
-			}
-
-			public bool IsHoldingWindowOpen( )
-			{
-				return HoldingWindow.HasValue;
-			}
 		}
 
 		public class AxisMap
@@ -187,6 +172,8 @@ namespace ProjectFound.Master {
 		public Dictionary<string[],AxiiMap> AxiiMaps { get; private set; }
 		public Dictionary<AxiiAction,string[]> ActionToAxii { get; private set; }
 
+		public delegate void InputTracker( InputDevice device );
+		public InputTracker DelegateInputTracker { get; set; }
 		public InputDevice CurrentDeviceMapped { get; set; }
 
 		public InputMaster( )
@@ -236,7 +223,6 @@ namespace ProjectFound.Master {
 
 				foreach ( float axisMovement in axiiMovements )
 				{
-
 					if ( !Floater.Equal( axisMovement, 0f ) )
 					{
 						AxiiHaveMoved( axiiToCheck, axiiMovements );
@@ -306,7 +292,7 @@ namespace ProjectFound.Master {
 		{
 			KeyMap map = KeyMaps[key];
 
-			CurrentDeviceMapped = map.Device;
+			DelegateInputTracker( map.Device );
 
 			if ( !map.IsEnabled )
 				return ;
@@ -318,12 +304,12 @@ namespace ProjectFound.Master {
 		{
 			KeyMap map = KeyMaps[key];
 
-			CurrentDeviceMapped = map.Device;
+			DelegateInputTracker( map.Device );
 
 			if ( !map.IsEnabled )
 				return ;
 
-			if ( map.IsHoldingWindowOpen( ) )
+			if ( map.HoldingWindow != null )
 			{
 				if ( map.HoldingWindow <= 0f )
 				{
@@ -334,7 +320,7 @@ namespace ProjectFound.Master {
 					map.Fire( KeyMode.OneShotRelease );
 				}
 
-				map.CloseHoldingWindow( );
+				map.HoldingWindow = null;
 			}
 			else
 			{
@@ -346,12 +332,12 @@ namespace ProjectFound.Master {
 		{
 			KeyMap map = KeyMaps[key];
 
-			CurrentDeviceMapped = map.Device;
+			DelegateInputTracker( map.Device );
 
 			if ( !map.IsEnabled )
 				return ;
 
-			if ( map.IsHoldingWindowOpen( ) )
+			if ( map.HoldingWindow != null )
 			{
 				map.HoldingWindow -= Time.deltaTime;
 
@@ -366,7 +352,7 @@ namespace ProjectFound.Master {
 		{
 			AxisMap map = AxisMaps[axis];
 
-			CurrentDeviceMapped = map.Device;
+			DelegateInputTracker( map.Device );
 
 			if ( !map.IsEnabled )
 				return ;
@@ -378,28 +364,13 @@ namespace ProjectFound.Master {
 		{
 			AxiiMap map = AxiiMaps[axii];
 
-			CurrentDeviceMapped = map.Device;
+			DelegateInputTracker( map.Device );
 
 			if ( !map.IsEnabled )
 				return ;
 
 			map.Fire( movements );
 		}
-
-		/*private KeyMap FindKeyMap( KeyCode key )
-		{
-			return KeyMaps[key];
-		}
-
-		private AxisMap FindAxisMap( string axis )
-		{
-			return AxisMaps[axis];
-		}
-
-		private AxiiMap FindAxiiMap( string[] axii )
-		{
-			return AxiiMaps[axii];
-		}*/
 	}
 
 

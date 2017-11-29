@@ -48,7 +48,8 @@ public class Enemy : Combatant
 		return true;
 	}
 
-	public override bool Action( ActionType actionType, Interactee interactee )
+	public override bool Action( ActionType actionType, Interactee interactee,
+		System.Action action )
 	{
 		return true;
 	}

@@ -5,7 +5,8 @@ namespace ProjectFound.Environment {
 	{
 		None,
 		PickUp,
-		Use
+		Use,
+		Activate
 	}
 
 

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-//using TMPro;
 
 namespace ProjectFound.Environment.Items {
 
@@ -22,10 +21,12 @@ namespace ProjectFound.Environment.Items {
 			switch ( actionType )
 			{
 				case ActionType.PickUp:
+				case ActionType.Use:
 					m_currentActionType = actionType;
 					return true;
 				default:
-					return base.ValidateAction( actionType );
+					m_currentActionType = ActionType.None;
+					return false;
 			}
 		}
 

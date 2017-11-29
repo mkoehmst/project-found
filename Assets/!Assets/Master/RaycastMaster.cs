@@ -21,7 +21,7 @@ namespace ProjectFound.Master {
 		private Ray m_ray;
 
 		public OrderedDictionary<Core.LayerID,LayerDetails> Priority { get; private set; }
-		public RaycastHit? PriorityHitCheck { get; private set; }
+		public RaycastHit? PriorityHitCheck { get; set; }
 		public RaycastHit? PreviousPriorityHitCheck { get; private set; }
 		public EventSystem EventSystem { get; private set; }
 		public Rect ScreenRect { get; private set; }

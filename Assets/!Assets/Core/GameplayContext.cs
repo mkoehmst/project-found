@@ -31,6 +31,11 @@ namespace ProjectFound.Core {
 				LayerID.Prop, OnCursorFocusGained, OnCursorFocusLost );
 		}
 
+		protected override void SetInputTracker( )
+		{
+			InputMaster.DelegateInputTracker = OnInputTracking;
+		}
+
 		protected override void LoadMouseAndKeyboardMappings( )
 		{
 			InputMaster.CurrentDeviceMapped = InputMaster.InputDevice.MouseAndKeyboard;
@@ -63,11 +68,14 @@ namespace ProjectFound.Core {
 			InputMaster.MapKey( true, OnPropCollectionToggle, KeyCode.Joystick1Button1 );
 		}
 
+		public void OnInputTracking( InputMaster.InputDevice device )
+		{
+			Device = device;
+		}
+
 		public virtual void OnCursorSelect( InputMaster.KeyMap map )
 		{
 			Debug.Log( "OnCursorSelect: " + map.Mode );
-
-			Device = map.Device;
 
 			if ( RaycastMaster.PriorityHitCheck == null )
 				return ;
@@ -78,25 +86,29 @@ namespace ProjectFound.Core {
 
 			if ( map.Mode == InputMaster.KeyMode.OneShot )
 			{
-				if ( layer == LayerID.Walkable )
+				switch ( layer )
 				{
-					map.OpenHoldingWindow( 0.35f );
-					PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
-				}
-				else if ( layer == LayerID.Item )
-				{
-					Item item = obj.GetComponent<Item>( );
+					case LayerID.Walkable:
+						map.HoldingWindow = 0.35f;
+						PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
+						break;
 
-					if ( PlayerMaster.PickUp( item ) == true )
-					{
-						AddToInventory( item );
-					}
-				}
-				else if ( layer == LayerID.Prop )
-				{
-					Prop prop = obj.GetComponent<Prop>( );
+					case LayerID.Item:
+						Item item = obj.GetComponent<Item>( );
+						PlayerMaster.PickUp( item, () =>
+						{
+							RemoveFocusDirectly( item as Prop );
+							AddToInventory( item );
+						} );
+						break;
 
-					PlayerMaster.Use( prop as Interactee );
+					case LayerID.Prop:
+						Prop prop = obj.GetComponent<Prop>( );
+						PlayerMaster.Activate( prop, () =>
+						{
+							RemoveFocusDirectly( prop );
+						} );
+						break;
 				}
 			}
 			else if ( map.Mode == InputMaster.KeyMode.Holding )
@@ -116,53 +128,40 @@ namespace ProjectFound.Core {
 		{
 			Debug.Log( "Cursor Gained" );
 
-			Prop prop = obj.GetComponent<Prop>( );
-			KeyCode key = InputMaster.ActionToKey[OnCursorSelect];
-			UIMaster.DisplayPrompt( prop, key );
-			ShaderMaster.ToggleSelectionOutline( obj );
+			Prop prop = obj.GetComponentInParent<Prop>( );
+			AddFocus( prop );
 		}
 
 		public void OnCursorFocusLost( GameObject obj )
 		{
 			Debug.Log( "Cursor Lost" );
 
-			Prop prop = obj.GetComponent<Prop>( );
-			UIMaster.RemovePrompt( prop );
-			ShaderMaster.ToggleSelectionOutline( obj );
+			Prop prop = obj.GetComponentInParent<Prop>( );
+			RemoveFocus( prop );
 		}
 
 		public virtual void OnCameraMoveHorizontal( InputMaster.AxisMap map, float movement )
 		{
-			Device = map.Device;
-
 			CameraMaster.FixedTiltZoomableCamera.HandleMovement( 0f, movement );
 		}
 
 		public virtual void OnCameraMoveVertical( InputMaster.AxisMap map, float movement )
 		{
-			Device = map.Device;
-
 			CameraMaster.FixedTiltZoomableCamera.HandleMovement( movement, 0f );
 		}
 
 		public virtual void OnCameraRotation( InputMaster.AxisMap map, float movement )
 		{
-			Device = map.Device;
-
 			CameraMaster.FixedTiltZoomableCamera.HandleRotation( movement );
 		}
 
 		public virtual void OnCameraZoom( InputMaster.AxisMap map, float movement )
 		{
-			Device = map.Device;
-
 			CameraMaster.FixedTiltZoomableCamera.HandleZoom( movement );
 		}
 
 		public virtual void OnPlayerMovement( InputMaster.AxiiMap map, float[] movements )
 		{
-			Device = map.Device;
-
 			if ( movements.Length != 2 )
 				return ;
 
@@ -208,7 +207,7 @@ namespace ProjectFound.Core {
 		{
 			if ( map.Mode == InputMaster.KeyMode.OneShot )
 			{
-				map.OpenHoldingWindow( 0f );
+				map.HoldingWindow = 0f;
 			}
 			else if ( map.Mode == InputMaster.KeyMode.Holding )
 			{
@@ -242,7 +241,7 @@ namespace ProjectFound.Core {
 		{
 			if ( map.Mode == InputMaster.KeyMode.OneShot )
 			{
-				map.OpenHoldingWindow( 0.35f );
+				map.HoldingWindow = 0.35f;
 			}
 			else if ( map.Mode == InputMaster.KeyMode.Holding )
 			{
@@ -287,8 +286,11 @@ namespace ProjectFound.Core {
 			UIMaster.AddInventoryButton( item ).onClick.AddListener( () =>
 			{
 				// Automatically caches item reference until called! Very powerful.
-				PlayerMaster.Use( item as Interactee );
-				UIMaster.RemoveInventoryButton( item );
+				PlayerMaster.Use( item, () =>
+				{
+					// Layering of lamba expressions even more powerful!
+					UIMaster.RemoveInventoryButton( item );
+				} );
 			} );
 		}
 
@@ -296,11 +298,11 @@ namespace ProjectFound.Core {
 		{
 			UIMaster.AddPropCollectionButton( item as Prop ).onClick.AddListener( () =>
 			{
-				if ( PlayerMaster.PickUp( item ) == true )
+				PlayerMaster.PickUp( item, () =>
 				{
 					AddToInventory( item );
 					UIMaster.RemovePropCollectionProp( item as Prop );
-				}
+				} );
 			} );
 		}
 
@@ -308,9 +310,41 @@ namespace ProjectFound.Core {
 		{
 			UIMaster.AddPropCollectionButton( prop ).onClick.AddListener( () =>
 			{
-				PlayerMaster.Use( prop as Interactee );
-				UIMaster.RemovePropCollectionProp( prop );
+				PlayerMaster.Activate( prop, () =>
+				{
+					UIMaster.RemovePropCollectionProp( prop );
+				} );
 			} );
+		}
+
+		protected void AddFocus( Prop prop )
+		{
+			if ( prop.IsReceptive == true && prop.IsFocused == false )
+			{
+				prop.IsFocused = true;
+
+				KeyCode key = InputMaster.ActionToKey[OnCursorSelect];
+				UIMaster.DisplayPrompt( prop, key );
+				ShaderMaster.ToggleSelectionOutline( prop.gameObject );
+			}
+		}
+
+		protected void RemoveFocus( Prop prop )
+		{
+			if ( prop.IsFocused == true )
+			{
+				prop.IsFocused = false;
+
+				UIMaster.RemovePrompt( prop );
+				ShaderMaster.ToggleSelectionOutline( prop.gameObject );
+			}
+		}
+
+		protected void RemoveFocusDirectly( Prop prop )
+		{
+			// Nullify Raycast Hit Check so RemoveFocus isn't called twice
+			RaycastMaster.PriorityHitCheck = null;
+			RemoveFocus( prop );
 		}
 	}
 
