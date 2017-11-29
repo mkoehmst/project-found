@@ -19,6 +19,7 @@ ModelImporter:
     400008: overheadBin_liner
     400010: overheadBin
     400012: overheadBin_
+    2100000: phong1
     2300000: overheadBin 1
     2300002: overheadBin_door
     2300004: overheadBin_door_handle
@@ -43,17 +44,12 @@ ModelImporter:
     6400008: overheadBin_
     7400000: Airplane_OverheadBin_ANIM_Door_Open
     9500000: //RootNode
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: phong1
-    second: {fileID: 2100000, guid: 988f9dd3af8e1e647949366546e1cd9f, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
