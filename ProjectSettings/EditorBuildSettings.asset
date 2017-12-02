@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/!Assets/Environment/Levels/001_AirplaneCabin.unity
+    guid: c43dca5f5d2a6c04aacf3b7644e7f977

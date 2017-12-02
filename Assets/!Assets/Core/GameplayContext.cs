@@ -61,11 +61,11 @@ namespace ProjectFound.Core {
 			InputMaster.MapAxis( true, OnCameraZoom, "ControllerCameraZoom" );
 			InputMaster.MapAxii( true, OnPlayerMovement,
 				"ControllerMovementHorizontal", "ControllerMovementVertical" );
-			InputMaster.MapKey( true, OnCameraAttachToggle, KeyCode.Joystick1Button9 );
-			InputMaster.MapKey( true, OnCursorSelect, KeyCode.Joystick1Button0 );
-			InputMaster.MapKey( true, OnInventoryToggle, KeyCode.Joystick1Button7 );
-			InputMaster.MapKey( true, OnDetectionRadiusToggle, KeyCode.Joystick1Button2 );
-			InputMaster.MapKey( true, OnPropCollectionToggle, KeyCode.Joystick1Button1 );
+			InputMaster.MapKey( true, OnCameraAttachToggle, KeyCode.Joystick1Button11 );
+			InputMaster.MapKey( true, OnCursorSelect, KeyCode.Joystick1Button1 );
+			InputMaster.MapKey( true, OnInventoryToggle, KeyCode.Joystick1Button9 );
+			InputMaster.MapKey( true, OnDetectionRadiusToggle, KeyCode.Joystick1Button0 );
+			InputMaster.MapKey( true, OnPropCollectionToggle, KeyCode.Joystick1Button2 );
 		}
 
 		public void OnInputTracking( InputMaster.InputDevice device )
