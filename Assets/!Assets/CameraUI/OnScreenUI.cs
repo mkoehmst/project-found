@@ -9,11 +9,11 @@ namespace ProjectFound.CameraUI {
 
 	public class OnScreenUI : MonoBehaviour
 	{
-		[SerializeField] GameObject m_itemPromptPrefab;
+		[SerializeField] GameObject m_promptPrefab;
 
 		void Awake( )
 		{
-			Assert.IsNotNull( m_itemPromptPrefab );
+			Assert.IsNotNull( m_promptPrefab );
 		}
 
 		// Use this for initialization
@@ -28,7 +28,7 @@ namespace ProjectFound.CameraUI {
 
 		public GameObject CreatePrompt( KeyCode key, string action, string interactee )
 		{
-			GameObject obj = GameObject.Instantiate( m_itemPromptPrefab, transform );
+			GameObject obj = GameObject.Instantiate( m_promptPrefab, transform );
 
 			TextMeshProUGUI textUI = obj.GetComponent<TextMeshProUGUI>( );
 			Assert.IsNotNull( textUI );

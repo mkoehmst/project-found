@@ -323,8 +323,10 @@ namespace ProjectFound.Core {
 			{
 				prop.IsFocused = true;
 
+				RaycastHit hit = RaycastMaster.PriorityHitCheck.Value;
+				//Vector3 screenPos = Camera.main.WorldToViewportPoint( hit.point );
 				KeyCode key = InputMaster.ActionToKey[OnCursorSelect];
-				UIMaster.DisplayPrompt( prop, key );
+				UIMaster.DisplayPrompt( prop, key, hit.point );
 				ShaderMaster.ToggleSelectionOutline( prop.gameObject );
 			}
 		}

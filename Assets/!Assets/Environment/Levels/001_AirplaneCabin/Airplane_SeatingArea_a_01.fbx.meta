@@ -12,6 +12,10 @@ ModelImporter:
     100008: AirplaneSeat_Separator2
     100010: AirplaneSeat_Separator_Left
     100012: AirplaneSeat_Separator_Right
+    100014: LegRest
+    100016: Seat
+    100018: AirplaneLegRest
+    100020: AirplaneSeat 1
     400000: //RootNode
     400002: AirplaneSeat
     400004: AirplaneSeat_CenterColumn
@@ -19,6 +23,10 @@ ModelImporter:
     400008: AirplaneSeat_Separator2
     400010: AirplaneSeat_Separator_Left
     400012: AirplaneSeat_Separator_Right
+    400014: LegRest
+    400016: Seat
+    400018: AirplaneLegRest
+    400020: AirplaneSeat 1
     2100000: AirplaneSeat_phong
     2100002: airplaneSeat_Separator_whitePlastic
     2100004: airplaneSeat_Separator_bluePlastic
@@ -28,20 +36,37 @@ ModelImporter:
     2300006: AirplaneSeat_Separator2
     2300008: AirplaneSeat_Separator_Right
     2300010: AirplaneSeat_Separator_Left
+    2300012: LegRest
+    2300014: Seat
+    2300016: AirplaneLegRest
+    2300018: AirplaneSeat 1
     3300000: AirplaneSeat
     3300002: AirplaneSeat_CenterColumn
     3300004: AirplaneSeat_Separator
     3300006: AirplaneSeat_Separator2
     3300008: AirplaneSeat_Separator_Right
     3300010: AirplaneSeat_Separator_Left
+    3300012: LegRest
+    3300014: Seat
+    3300016: AirplaneLegRest
+    3300018: AirplaneSeat 1
     4300000: AirplaneSeat
     4300002: AirplaneSeat_Separator
     4300004: AirplaneSeat_CenterColumn
     4300006: AirplaneSeat_Separator2
     4300008: AirplaneSeat_Separator_Right
     4300010: AirplaneSeat_Separator_Left
+    4300012: Seat
+    4300014: LegRest
+    4300016: AirplaneLegRest
+    7400000: Take 001
     9500000: //RootNode
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AirplaneSeat_phong
+    second: {fileID: -2103019441, guid: e3a6eb42d82ceff4084871ec0748d42e, type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

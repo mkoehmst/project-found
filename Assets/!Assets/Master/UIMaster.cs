@@ -18,6 +18,8 @@ namespace ProjectFound.Master {
 		//public ActionBarUI ActionBarUI { get; set; }
 		//public PauseMenuUI PauseMenuUI { get; set; }
 
+		public Rect ScreenRect { get; private set; }
+
 		public UIMaster( )
 		{
 			InventoryUI = GameObject.FindObjectOfType<InventoryUI>( );
@@ -30,16 +32,29 @@ namespace ProjectFound.Master {
 
 			DetectionRadius = GameObject.FindObjectOfType<DetectionRadius>( );
 			DetectionRadius.gameObject.SetActive( false );
+
+			ScreenRect = new Rect( 0, 0, Screen.width, Screen.height );
 		}
 
 		public void Loop( )
 		{
-
+			if ( (Screen.width != ScreenRect.width) || (Screen.height != ScreenRect.height) )
+			{
+				ScreenRect = new Rect( 0, 0, Screen.width, Screen.height );
+			}
 		}
 
-		public void DisplayPrompt( Prop prop, KeyCode key )
+		public void DisplayPrompt( Prop prop, KeyCode key, Vector3 worldPos )
 		{
 			prop.Prompt = OnScreenUI.CreatePrompt( key, prop.PromptText, prop.IngameName );
+
+			float offsX = Screen.width / 12f;
+			float offsY = Screen.width / -12f;
+
+			Vector3 screenPos =
+				Camera.main.WorldToScreenPoint( worldPos ) + new Vector3( offsX, offsY, 0f );
+
+			prop.Prompt.transform.position = screenPos;
 		}
 
 		public void RemovePrompt( Prop prop )
