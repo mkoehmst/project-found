@@ -10,7 +10,7 @@ SubstanceImporter:
     name: Airplane_Seat
     prototypeName: Airplane_Seat
     shaderName: 
-    shader: {fileID: 4800000, guid: fdd7245bae528c542838f1a9926c619d, type: 3}
+    shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
     shaderKeywords: _METALLICGLOSSMAP _NORMALMAP
     renderQueue: -1
     lightmapFlags: 4
@@ -126,7 +126,7 @@ SubstanceImporter:
     name: Airplane_SeatingArea
     prototypeName: Airplane_SeatingArea
     shaderName: 
-    shader: {fileID: 4800000, guid: fdd7245bae528c542838f1a9926c619d, type: 3}
+    shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
     shaderKeywords: 
     renderQueue: -1
     lightmapFlags: 4
