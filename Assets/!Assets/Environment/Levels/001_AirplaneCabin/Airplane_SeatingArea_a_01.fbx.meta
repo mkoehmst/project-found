@@ -65,11 +65,6 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: AirplaneSeat_phong
-    second: {fileID: -2103019441, guid: e3a6eb42d82ceff4084871ec0748d42e, type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: phong4
     second: {fileID: 2100000, guid: a4f144a7e22914c43a8ae2fa691e1924, type: 2}
   materials:
