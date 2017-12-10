@@ -11,17 +11,12 @@ namespace ProjectFound.Master {
 
 	public class PlayerMaster
 	{
-		private GameObject m_propBeingPlaced;
-		public GameObject PropBeingPlaced
-		{
-			get { return m_propBeingPlaced; }
-			set
-			{
-				value.AddComponent<ClearanceCapsule>( );
-				m_propBeingPlaced = value;
-			}
-		}
+		private const float m_placementElevation = .002f;
 
+		private PlacementClearance PlacementClearance { get; set; }
+		private PlacementCursorOffset PlacementCursorOffset { get; set; }
+
+		public GameObject PropBeingPlaced { get; private set; }
 		public Player Player { get; private set; }
 		public CharacterMovement CharacterMovement { get; private set; }
 
@@ -57,10 +52,33 @@ namespace ProjectFound.Master {
 			return Player.Action( ActionType.Activate, prop as Interactee, action );
 		}
 
-		public void EndPropPlacement( )
+		public void StartPropPlacement( Prop prop, GameObject obj, Vector3 hitPoint )
 		{
-			ClearanceCapsule clearance = PropBeingPlaced.GetComponent<ClearanceCapsule>( );
-			clearance.Cleanup( );
+			PropBeingPlaced = obj;
+			PlacementClearance = obj.AddComponent<PlacementClearance>( );
+			PlacementCursorOffset = obj.AddComponent<PlacementCursorOffset>( );
+			PlacementCursorOffset.InitialCursorHit( hitPoint );
+			obj.transform.Translate( 0f, m_placementElevation, 0f );
+		}
+
+		public void PropPlacement( Vector3 hitPoint )
+		{
+			Vector3 offsetPoint = hitPoint - PlacementCursorOffset.Offset;
+
+			PropBeingPlaced.transform.position =
+				new Vector3( offsetPoint.x, offsetPoint.y + m_placementElevation, offsetPoint.z );
+		}
+
+		public void EndPropPlacement( Vector3 hitPoint )
+		{
+			PropPlacement( hitPoint );
+
+			PlacementClearance.Cleanup( );
+
+			//Misc.SmartDestroy.Destroy( PropBeingPlaced.GetComponent<PlacementAngleDetection>( ) );
+			Misc.SmartDestroy.Destroy( PlacementCursorOffset );
+
+			PropBeingPlaced = null;
 		}
 	}
 

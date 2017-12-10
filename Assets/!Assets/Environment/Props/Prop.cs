@@ -10,12 +10,14 @@ namespace ProjectFound.Environment.Props {
 	public class Prop : Interactee
 	{
 		[SerializeField] Sprite m_icon;
+		[SerializeField] Mesh m_clearanceMesh;
 
 		private int m_activateTrigger;
 
 		public Animator Animator { get; private set; }
 
 		public Sprite Icon { get { return m_icon; } }
+		public Mesh ClearanceMesh { get { return m_clearanceMesh; } }
 		public GameObject Prompt { get; set; }
 
 		void Awake( )

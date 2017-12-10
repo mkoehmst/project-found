@@ -25,6 +25,7 @@ namespace ProjectFound.Core {
 			cursorSelection.AddPriority( LayerID.Item );
 			cursorSelection.AddPriority( LayerID.Prop );
 			cursorSelection.AddPriority( LayerID.Walkable );
+			cursorSelection.AddPriority( LayerID.Default ); // Temporary debug
 
 			cursorSelection.SetLayerDelegates(
 				LayerID.Item, OnCursorFocusGained, OnCursorFocusLost );
@@ -163,15 +164,14 @@ namespace ProjectFound.Core {
 							break;
 						case LayerID.Item:
 						case LayerID.Prop:
-							PlayerMaster.PropBeingPlaced = obj;
-							RemoveFocus( obj.GetComponent<Prop>( ) );
-							obj.transform.position =
-								new Vector3( hit.point.x, hit.point.y + .05f, hit.point.z );
+							Prop prop = obj.GetComponent<Prop>( );
+							RemoveFocus( prop );
 							raycaster.IsEnabled = false;
 							RaycastMaster.CurrentRaycaster =
 								RaycastMaster.Raycasters[RaycastMaster.RaycastMode.PropPlacement];
 							RaycastMaster.CurrentRaycaster.IsEnabled = true;
 							RaycastMaster.CurrentRaycaster.AddBlacklistee( obj );
+							PlayerMaster.StartPropPlacement( prop, obj, hit.point );
 							break;
 					}
 				}
@@ -183,8 +183,7 @@ namespace ProjectFound.Core {
 							PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 							break;
 						case RaycastMaster.RaycastMode.PropPlacement:
-							PlayerMaster.PropBeingPlaced.transform.position =
-								new Vector3( hit.point.x, hit.point.y + .05f, hit.point.z );
+							PlayerMaster.PropPlacement( hit.point );
 							break;
 					}
 				}
@@ -199,9 +198,9 @@ namespace ProjectFound.Core {
 						PlayerMaster.CharacterMovement.ResetMoveTarget( );
 						break;
 					case RaycastMaster.RaycastMode.PropPlacement:
-						PlayerMaster.EndPropPlacement( );
 						RaycastMaster.CurrentRaycaster.RemoveBlacklistee(
 							PlayerMaster.PropBeingPlaced.gameObject );
+						PlayerMaster.EndPropPlacement( hit.point );
 						break;
 				}
 

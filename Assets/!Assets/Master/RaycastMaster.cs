@@ -127,6 +127,13 @@ namespace ProjectFound.Master {
 						if ( success == true )
 						{
 							UpdateHitCheck( firstHit );
+							if ( !Misc.Floater.Equal( firstHit.normal.y, 1.0f ) )
+							{
+								string x = firstHit.normal.x.ToString( "0.000" );
+								string y = firstHit.normal.y.ToString( "0.000" );
+								string z = firstHit.normal.z.ToString( "0.000" );
+								Debug.Log( "(" + x + ", " + y + ", " + z + ")" );
+							}
 							return;
 						}
 						UpdateHitCheck( null );

@@ -1,82 +1,36 @@
 fileFormatVersion: 2
-guid: c7321beae5a10e543bcb9817b400a224
-timeCreated: 1511989313
+guid: 3987b865a1ede5b448638aac88aa10f1
+timeCreated: 1512920625
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: AirplaneSeat
-    100004: AirplaneSeat_CenterColumn
-    100006: AirplaneSeat_Separator
-    100008: AirplaneSeat_Separator2
-    100010: AirplaneSeat_Separator_Left
-    100012: AirplaneSeat_Separator_Right
-    100014: LegRest
-    100016: Seat
-    100018: AirplaneLegRest
-    100020: AirplaneSeat 1
+    100002: Airplane_Book
+    100004: Airplane_Book_Collision
     400000: //RootNode
-    400002: AirplaneSeat
-    400004: AirplaneSeat_CenterColumn
-    400006: AirplaneSeat_Separator
-    400008: AirplaneSeat_Separator2
-    400010: AirplaneSeat_Separator_Left
-    400012: AirplaneSeat_Separator_Right
-    400014: LegRest
-    400016: Seat
-    400018: AirplaneLegRest
-    400020: AirplaneSeat 1
-    2100000: AirplaneSeat_phong
-    2100002: airplaneSeat_Separator_whitePlastic
-    2100004: airplaneSeat_Separator_bluePlastic
-    2300000: AirplaneSeat
-    2300002: AirplaneSeat_CenterColumn
-    2300004: AirplaneSeat_Separator
-    2300006: AirplaneSeat_Separator2
-    2300008: AirplaneSeat_Separator_Right
-    2300010: AirplaneSeat_Separator_Left
-    2300012: LegRest
-    2300014: Seat
-    2300016: AirplaneLegRest
-    2300018: AirplaneSeat 1
-    3300000: AirplaneSeat
-    3300002: AirplaneSeat_CenterColumn
-    3300004: AirplaneSeat_Separator
-    3300006: AirplaneSeat_Separator2
-    3300008: AirplaneSeat_Separator_Right
-    3300010: AirplaneSeat_Separator_Left
-    3300012: LegRest
-    3300014: Seat
-    3300016: AirplaneLegRest
-    3300018: AirplaneSeat 1
-    4300000: AirplaneSeat
-    4300002: AirplaneSeat_Separator
-    4300004: AirplaneSeat_CenterColumn
-    4300006: AirplaneSeat_Separator2
-    4300008: AirplaneSeat_Separator_Right
-    4300010: AirplaneSeat_Separator_Left
-    4300012: Seat
-    4300014: LegRest
-    4300016: AirplaneLegRest
-    6400000: AirplaneLegRest
-    6400002: AirplaneSeat 1
-    6400004: AirplaneSeat_CenterColumn
-    6400006: AirplaneSeat_Separator_Left
-    6400008: AirplaneSeat_Separator_Right
-    7400000: Take 001
+    400002: Airplane_Book
+    400004: Airplane_Book_Collision
+    2300000: //RootNode
+    2300002: Airplane_Book
+    2300004: Airplane_Book_Collision
+    3300000: //RootNode
+    3300002: Airplane_Book
+    3300004: Airplane_Book_Collision
+    4300000: Airplane_Book
+    4300002: Airplane_Book_Collision
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: phong4
-    second: {fileID: 2100000, guid: a4f144a7e22914c43a8ae2fa691e1924, type: 2}
+      name: phong1
+    second: {fileID: 2100000, guid: 988f9dd3af8e1e647949366546e1cd9f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -103,7 +57,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
