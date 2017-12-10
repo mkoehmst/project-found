@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-using ProjectFound.Environment.Items;
+using ProjectFound.Environment.Props;
 
 namespace ProjectFound.Environment.Characters
 {

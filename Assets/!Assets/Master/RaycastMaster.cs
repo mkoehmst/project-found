@@ -18,11 +18,220 @@ namespace ProjectFound.Master {
 			public CursorFocus DelegateCursorFocusLost;
 		}
 
-		private Ray m_ray;
+		public enum RaycastMode
+		{
+			Undefined,
+			CursorSelection,
+			HoldToMove,
+			PropPlacement
+		}
 
-		public OrderedDictionary<Core.LayerID,LayerDetails> Priority { get; private set; }
-		public RaycastHit? PriorityHitCheck { get; set; }
-		public RaycastHit? PreviousPriorityHitCheck { get; private set; }
+		public class Raycaster
+		{
+			public struct Blacklistee
+			{
+				public GameObject Object { get; private set; }
+				public int Layer { get; private set; }
+
+				public Blacklistee( GameObject obj )
+				{
+					Object = obj;
+					Layer = obj.layer;
+				}
+			}
+
+			private bool m_isEnabled;
+			public bool IsEnabled
+			{
+				get { return m_isEnabled; }
+				set
+				{
+					if ( value == true )
+					{
+						PriorityHitCheck = null;
+						PreviousPriorityHitCheck = null;
+					}
+					m_isEnabled = value;
+				}
+			}
+			public RaycastMode Mode { get; private set; }
+			public float MaxDistance { get; set; }
+			public int LayerMask { get; private set; }
+			public OrderedDictionary<Core.LayerID, LayerDetails> Priority { get; private set; }
+			public RaycastHit? PriorityHitCheck { get; set; }
+			public RaycastHit? PreviousPriorityHitCheck { get; private set; }
+			public Ray Caster { get; set; }
+
+			public Dictionary<GameObject,Blacklistee> Blacklist { get; private set; }
+
+			public Raycaster( RaycastMode mode, float maxDistance, bool isEnabled )
+			{
+				IsEnabled	= isEnabled;
+				Mode		= mode;
+				MaxDistance	= maxDistance;
+				Priority	= new OrderedDictionary<Core.LayerID, LayerDetails>( );
+				Blacklist	= new Dictionary<GameObject,Blacklistee>( );
+			}
+
+			public void AddPriority( Core.LayerID layer )
+			{
+				Priority.Add( layer, new LayerDetails( ) );
+				LayerMask |= (1 << (int)layer);
+			}
+
+			public void AddBlacklistee( GameObject obj )
+			{
+				Blacklist[obj] = new Blacklistee( obj );
+				obj.layer = (int)Core.LayerID.IgnoreRaycast;
+			}
+
+			public void RemoveBlacklistee( GameObject obj )
+			{
+				obj.layer = Blacklist[obj].Layer;
+				Blacklist.Remove( obj );
+			}
+
+			public void ClearBlacklist( )
+			{
+				foreach ( Blacklistee blacklistee in Blacklist.Values )
+				{
+					blacklistee.Object.layer = blacklistee.Layer;
+				}
+
+				Blacklist.Clear( );
+			}
+
+			public void SetLayerDelegates( Core.LayerID layer,
+				LayerDetails.CursorFocus gained, LayerDetails.CursorFocus lost )
+			{
+				LayerDetails layerDetails = Priority.GetValue( layer );
+
+				if ( layerDetails != null )
+				{
+					layerDetails.DelegateCursorFocusGained = gained;
+					layerDetails.DelegateCursorFocusLost = lost;
+				}
+			}
+
+			public void Cast( )
+			{
+				switch ( Mode )
+				{
+					case RaycastMode.CursorSelection:
+					case RaycastMode.PropPlacement:
+					case RaycastMode.HoldToMove:
+						// Select first hit that matches any Priority layer
+						RaycastHit firstHit;
+						bool success =
+							Physics.Raycast( Caster, out firstHit, MaxDistance, LayerMask );
+						if ( success == true )
+						{
+							UpdateHitCheck( firstHit );
+							return;
+						}
+						UpdateHitCheck( null );
+						return;
+
+					/*case RaycastMode.HoldToMove:
+						// Select the closest hit of the highest Priority layer hit
+						RaycastHit[] hits = Physics.RaycastAll( Caster, MaxDistance, LayerMask );
+						if ( hits.Length == 0 || Priority.Count == 0 )
+						{
+							//PriorityHitCheck = null;
+							UpdateHitCheck( null );
+							return;
+						}
+						// TODO More elegant way to check top priority hit
+						foreach ( Core.LayerID layer in Priority.Keys )
+						{
+							var matchedHits = new List<RaycastHit>( );
+							foreach ( RaycastHit hit in hits )
+							{
+								GameObject hitObj = hit.collider.gameObject;
+								if ( hitObj.layer == (int)layer )
+								{
+									matchedHits.Add( hit );
+								}
+							}
+							int matchCount = matchedHits.Count;
+							if ( matchCount > 0 )
+							{
+								Vector3 casterPos = Caster.origin;
+								float closestDistance = float.MaxValue;
+								int closestIndex = default( int );
+								for ( int i = 0; i < matchCount; ++i )
+								{
+									float distance =
+										(casterPos - matchedHits[i].transform.position).magnitude;
+									if ( distance < closestDistance )
+									{
+										closestDistance = distance;
+										closestIndex = i;
+									}
+								}
+								UpdateHitCheck( matchedHits[closestIndex] );
+								return;
+							}
+						}
+						UpdateHitCheck( null );
+						return;*/
+				}
+			}
+
+			public void UpdateHitCheck( RaycastHit? hit )
+			{
+				PreviousPriorityHitCheck = PriorityHitCheck;
+				PriorityHitCheck = hit;
+
+				CheckForFocusChange( );
+			}
+
+			private void CheckForFocusChange( )
+			{
+				if ( PreviousPriorityHitCheck.HasValue == true && PriorityHitCheck.HasValue == true )
+				{
+					GameObject prevObj = PreviousPriorityHitCheck.Value.collider.gameObject;
+					GameObject curObj = PriorityHitCheck.Value.collider.gameObject;
+
+					if ( prevObj != curObj )
+					{
+						ObjectFocusLost( prevObj );
+						ObjectFocusGained( curObj );
+					}
+				}
+				else if (
+					PreviousPriorityHitCheck.HasValue == false && PriorityHitCheck.HasValue == true )
+				{
+					ObjectFocusGained( PriorityHitCheck.Value.collider.gameObject );
+				}
+				else if (
+					PreviousPriorityHitCheck.HasValue == true && PriorityHitCheck.HasValue == false )
+				{
+					ObjectFocusLost( PreviousPriorityHitCheck.Value.collider.gameObject );
+				}
+			}
+
+			private void ObjectFocusGained( GameObject obj )
+			{
+				LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)obj.layer );
+
+				if ( layerDetails.DelegateCursorFocusGained != null )
+					layerDetails.DelegateCursorFocusGained( obj );
+			}
+
+			private void ObjectFocusLost( GameObject obj )
+			{
+				LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)obj.layer );
+
+				if ( layerDetails.DelegateCursorFocusLost != null )
+					layerDetails.DelegateCursorFocusLost( obj );
+			}
+		}
+
+		private Camera Cam { get; set; }
+
+		public Dictionary<RaycastMode, Raycaster> Raycasters { get; private set; }
+		public Raycaster CurrentRaycaster { get; set; }
 		public EventSystem EventSystem { get; private set; }
 		public Rect ScreenRect { get; private set; }
 		public Vector3 ScreenCenter { get; private set; }
@@ -30,7 +239,7 @@ namespace ProjectFound.Master {
 
 		public RaycastMaster( )
 		{
-			Priority = new OrderedDictionary<Core.LayerID,LayerDetails>( );
+			Raycasters = new Dictionary<RaycastMode, Raycaster>( );
 			EventSystem = GameObject.FindObjectOfType<EventSystem>( );
 			ScreenRect = new Rect( 0, 0, Screen.width, Screen.height );
 			ScreenCenter = new Vector3( Screen.width / 2, Screen.height / 2, 0f );
@@ -38,149 +247,62 @@ namespace ProjectFound.Master {
 
 		public void Loop( )
 		{
+			if ( Cam == null )
+				Cam = Camera.main;
+
+			foreach ( Raycaster raycaster in Raycasters.Values )
+			{
+				if ( raycaster.IsEnabled == false )
+					continue;
+
+				CastCheck( raycaster );
+			}
+		}
+
+		public void CastCheck( Raycaster raycaster )
+		{
 			if ( CursorDevice == InputMaster.InputDevice.MouseAndKeyboard )
 			{
-				if ( !ScreenRect.Contains( Input.mousePosition ) || IsOverUIElement( ) )
+				if ( !ScreenRect.Contains( Input.mousePosition ) )
 				{
-					Debug.Log( "Outside game window or over UI element" );
-					UpdateHitCheck( null );
+					Debug.Log( "Cursor outside game window" );
+					raycaster.ClearBlacklist( );
+					raycaster.IsEnabled = false;
+					CurrentRaycaster = Raycasters[RaycastMode.CursorSelection];
+					CurrentRaycaster.IsEnabled = true;
 					return ;
 				}
 
-				// Raycast to max depth, every frame as things can move under mouse
-				m_ray = Camera.main.ScreenPointToRay( Input.mousePosition );
+				if ( IsOverUIElement( ) )
+				{
+					raycaster.ClearBlacklist( );
+					raycaster.IsEnabled = false;
+					CurrentRaycaster = Raycasters[RaycastMode.CursorSelection];
+					CurrentRaycaster.IsEnabled = true;
+					return ;
+				}
+
+				raycaster.Caster = Cam.ScreenPointToRay( Input.mousePosition );
 			}
 			else if ( CursorDevice == InputMaster.InputDevice.Gamepad )
 			{
-				m_ray = Camera.main.ScreenPointToRay( ScreenCenter );
+				raycaster.Caster = Cam.ScreenPointToRay( ScreenCenter );
 			}
 
-			RaycastHit[] raycastHits = Physics.RaycastAll( m_ray, 100f );
-			FindTopPriorityCursorHit( raycastHits );
+			raycaster.Cast( );
 		}
 
-		public void AddPriority( Core.LayerID layer )
+		public Raycaster AddRaycaster( RaycastMode mode, float maxDistance, bool isEnabled = true )
 		{
-			LayerDetails layerDetails = new LayerDetails( );
+			Raycaster raycaster = new Raycaster( mode, maxDistance, isEnabled );
+			Raycasters[mode] = raycaster;
 
-			Priority.Add( layer, layerDetails );
+			return raycaster;
 		}
 
-		public void SetLayerDelegates(
-			Core.LayerID layer, LayerDetails.CursorFocus gained, LayerDetails.CursorFocus lost )
-		{
-			LayerDetails layerDetails = Priority.GetValue( layer );
-
-			if ( layerDetails != null )
-			{
-				layerDetails.DelegateCursorFocusGained = gained;
-				layerDetails.DelegateCursorFocusLost = lost;
-			}
-		}
-
-		public bool IsOverUIElement( )
+		private bool IsOverUIElement( )
 		{
 			return EventSystem.current.IsPointerOverGameObject( );
-		}
-
-		private void FindTopPriorityCursorHit( RaycastHit[] hits )
-		{
-			if ( hits.Length == 0 || Priority.Count == 0 )
-			{
-				PriorityHitCheck = null;
-				return ;
-			}
-
-			// TODO More elegant way to check top priority hit
-			foreach ( Core.LayerID layer in Priority.Keys )
-			{
-				var matchedHits = new List<RaycastHit>( );
-
-				foreach ( RaycastHit hit in hits )
-				{
-					GameObject hitObj = hit.collider.gameObject;
-
-					if ( hitObj.layer == (int)layer )
-					{
-						matchedHits.Add( hit );
-					}
-				}
-
-				int matchCount = matchedHits.Count;
-
-				if ( matchCount > 0 )
-				{
-					Vector3 cameraPos = Camera.main.transform.position;
-					float closestDistance = float.MaxValue;
-					int closestIndex = default( int );
-
-					for ( int i = 0; i < matchCount; ++i )
-					{
-						float distance = (cameraPos - matchedHits[i].transform.position).magnitude;
-
-						if ( distance < closestDistance )
-						{
-							closestDistance = distance;
-							closestIndex = i;
-						}
-					}
-
-					UpdateHitCheck( matchedHits[closestIndex] );
-
-					return ;
-				}
-			}
-
-			UpdateHitCheck( null );
-		}
-
-		private void UpdateHitCheck( RaycastHit? hit )
-		{
-			PreviousPriorityHitCheck = PriorityHitCheck;
-			PriorityHitCheck = hit;
-
-			CheckForFocusChange( );
-		}
-
-		private void CheckForFocusChange( )
-		{
-			if ( PreviousPriorityHitCheck.HasValue == true && PriorityHitCheck.HasValue == true )
-			{
-				GameObject prevObj = PreviousPriorityHitCheck.Value.collider.gameObject;
-				GameObject curObj = PriorityHitCheck.Value.collider.gameObject;
-
-				if ( prevObj != curObj )
-				{
-					ObjectFocusLost( prevObj );
-					ObjectFocusGained( curObj );
-				}
-			}
-			else if (
-				PreviousPriorityHitCheck.HasValue == false && PriorityHitCheck.HasValue == true )
-			{
-				ObjectFocusGained( PriorityHitCheck.Value.collider.gameObject );
-			}
-			else if (
-				PreviousPriorityHitCheck.HasValue == true && PriorityHitCheck.HasValue == false )
-			{
-				ObjectFocusLost( PreviousPriorityHitCheck.Value.collider.gameObject );
-			}
-		}
-
-		private void ObjectFocusGained( GameObject obj )
-		{
-			LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)obj.layer );
-
-			if ( layerDetails.DelegateCursorFocusGained != null )
-				layerDetails.DelegateCursorFocusGained( obj );
-		}
-
-		private void ObjectFocusLost( GameObject obj )
-		{
-			LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)obj.layer );
-
-			if ( layerDetails.DelegateCursorFocusLost != null )
-				layerDetails.DelegateCursorFocusLost( obj );
 		}
 	}
 

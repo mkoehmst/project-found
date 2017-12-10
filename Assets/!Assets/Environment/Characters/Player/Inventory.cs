@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-using ProjectFound.Environment.Items;
+using ProjectFound.Environment.Props;
 
 namespace ProjectFound.Environment.Characters {
 

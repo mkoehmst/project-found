@@ -34,6 +34,7 @@ namespace ProjectFound.Master {
 			public KeyCode Key			{ get; private set; }
 			public KeyAction Action		{ get; private set; }
 			public float? HoldingWindow { get; set; }
+			public uint HoldingCount	{ get; set; }
 
 			public KeyMap( bool isEnabled, InputDevice device, KeyAction action, KeyCode key )
 			{
@@ -43,6 +44,7 @@ namespace ProjectFound.Master {
 				Action = action;
 				Key = key;
 				HoldingWindow = null;
+				HoldingCount = 0;
 			}
 
 			public void Enable( )
@@ -60,8 +62,6 @@ namespace ProjectFound.Master {
 				Mode = mode;
 
 				Action( this );
-
-				Mode = KeyMode.Undefined;
 			}
 		}
 
@@ -195,9 +195,9 @@ namespace ProjectFound.Master {
 				{
 					KeyIsDown( keyToCheck );
 				}
+				// Use an else-if because holding check should start the frame after
 				else if ( CheckKeyHolding( keyToCheck ) )
 				{
-					// Use an else-if because holding check should start the frame after
 					KeyIsHolding( keyToCheck );
 				}
 
@@ -309,6 +309,10 @@ namespace ProjectFound.Master {
 			if ( !map.IsEnabled )
 				return ;
 
+			// Can't have a key up without a key down first
+			if ( !(map.Mode == KeyMode.OneShot || map.Mode == KeyMode.Holding) )
+				return ;
+
 			if ( map.HoldingWindow != null )
 			{
 				if ( map.HoldingWindow <= 0f )
@@ -321,6 +325,7 @@ namespace ProjectFound.Master {
 				}
 
 				map.HoldingWindow = null;
+				map.HoldingCount = 0;
 			}
 			else
 			{
@@ -343,6 +348,7 @@ namespace ProjectFound.Master {
 
 				if ( map.HoldingWindow <= 0f )
 				{
+					++map.HoldingCount;
 					map.Fire( KeyMode.Holding );
 				}
 			}

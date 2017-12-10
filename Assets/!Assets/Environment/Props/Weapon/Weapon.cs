@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ProjectFound.Environment.Items {
+namespace ProjectFound.Environment.Props {
 
 [CreateAssetMenu(menuName = ("RPG/Weapon"))]
 public class Weapon : ScriptableObject

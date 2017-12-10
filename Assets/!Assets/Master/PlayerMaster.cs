@@ -4,13 +4,24 @@ using UnityEngine;
 
 using ProjectFound.Environment;
 using ProjectFound.Environment.Characters;
-using ProjectFound.Environment.Items;
+using ProjectFound.Environment.Props;
 
 namespace ProjectFound.Master {
 
 
 	public class PlayerMaster
 	{
+		private GameObject m_propBeingPlaced;
+		public GameObject PropBeingPlaced
+		{
+			get { return m_propBeingPlaced; }
+			set
+			{
+				value.AddComponent<ClearanceCapsule>( );
+				m_propBeingPlaced = value;
+			}
+		}
+
 		public Player Player { get; private set; }
 		public CharacterMovement CharacterMovement { get; private set; }
 
@@ -44,6 +55,12 @@ namespace ProjectFound.Master {
 			Debug.Log( "Player Activate: " + prop );
 
 			return Player.Action( ActionType.Activate, prop as Interactee, action );
+		}
+
+		public void EndPropPlacement( )
+		{
+			ClearanceCapsule clearance = PropBeingPlaced.GetComponent<ClearanceCapsule>( );
+			clearance.Cleanup( );
 		}
 	}
 

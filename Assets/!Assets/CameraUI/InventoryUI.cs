@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
 
-using ProjectFound.Environment.Items;
+using ProjectFound.Environment.Props;
 
 namespace ProjectFound.CameraUI {
 

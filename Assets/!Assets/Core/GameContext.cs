@@ -51,15 +51,15 @@ namespace ProjectFound.Core {
 			ShaderMaster = new ShaderMaster( );
 			PlayerMaster = playerMaster;
 
-			SetRaycastPriority( );
+			SetupRaycasters( );
 			SetInputTracker( );
 			LoadInputMappings( );
 		}
 
 		public virtual void Loop( )
 		{
-			RaycastMaster.Loop( );
 			InputMaster.Loop( );
+			RaycastMaster.Loop( );
 			PlayerMaster.Loop( );
 			CameraMaster.Loop( );
 		}
@@ -67,10 +67,10 @@ namespace ProjectFound.Core {
 		protected void LoadInputMappings( )
 		{
 			LoadMouseAndKeyboardMappings( );
-			LoadGamepadMappings( );
+			//LoadGamepadMappings( );
 		}
 
-		protected abstract void SetRaycastPriority( );
+		protected abstract void SetupRaycasters( );
 		protected abstract void SetInputTracker( );
 		protected abstract void LoadMouseAndKeyboardMappings( );
 		protected abstract void LoadGamepadMappings( );

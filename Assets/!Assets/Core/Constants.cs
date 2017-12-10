@@ -7,7 +7,8 @@ namespace ProjectFound.Core {
 
 	public enum LayerID
 	{
-		Undefined,
+		Default = 0,
+		IgnoreRaycast = 2,
 		UI = 5,
 		Walkable = 8,
 		Enemy = 9,

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using ProjectFound.CameraUI;
-using ProjectFound.Environment.Items;
+using ProjectFound.Environment.Props;
 using System;
 
 namespace ProjectFound.Master {

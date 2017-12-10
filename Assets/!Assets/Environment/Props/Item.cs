@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace ProjectFound.Environment.Items {
+namespace ProjectFound.Environment.Props {
 
 
 	public class Item : Prop

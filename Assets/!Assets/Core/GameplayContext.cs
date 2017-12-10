@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using ProjectFound.Master;
-using ProjectFound.Environment;
-using ProjectFound.Environment.Items;
+using ProjectFound.Environment.Props;
 
 namespace ProjectFound.Core {
 
@@ -16,19 +15,39 @@ namespace ProjectFound.Core {
 			: base( playerMaster )
 		{}
 
-		protected override void SetRaycastPriority( )
+		protected override void SetupRaycasters( )
 		{
-			RaycastMaster.AddPriority( LayerID.UI ); // UI
-			RaycastMaster.AddPriority( LayerID.Enemy ); // Enemy
-			RaycastMaster.AddPriority( LayerID.Item ); // Item
-			RaycastMaster.AddPriority( LayerID.Prop ); // Prop
-			RaycastMaster.AddPriority( LayerID.Walkable ); // Walkable
+			var cursorSelection =
+				RaycastMaster.AddRaycaster( RaycastMaster.RaycastMode.CursorSelection, 30f );
 
-			RaycastMaster.SetLayerDelegates(
+			cursorSelection.AddPriority( LayerID.UI );
+			cursorSelection.AddPriority( LayerID.Enemy );
+			cursorSelection.AddPriority( LayerID.Item );
+			cursorSelection.AddPriority( LayerID.Prop );
+			cursorSelection.AddPriority( LayerID.Walkable );
+
+			cursorSelection.SetLayerDelegates(
 				LayerID.Item, OnCursorFocusGained, OnCursorFocusLost );
 
-			RaycastMaster.SetLayerDelegates(
+			cursorSelection.SetLayerDelegates(
 				LayerID.Prop, OnCursorFocusGained, OnCursorFocusLost );
+
+
+			var holdToMove =
+				RaycastMaster.AddRaycaster( RaycastMaster.RaycastMode.HoldToMove, 30f, false );
+
+			holdToMove.AddPriority( LayerID.Walkable );
+
+
+			var propPlacement =
+				RaycastMaster.AddRaycaster( RaycastMaster.RaycastMode.PropPlacement, 30f, false );
+
+			propPlacement.AddPriority( LayerID.Item );
+			propPlacement.AddPriority( LayerID.Prop );
+			propPlacement.AddPriority( LayerID.Walkable );
+			propPlacement.AddPriority( LayerID.Default );
+
+			RaycastMaster.CurrentRaycaster = cursorSelection;
 		}
 
 		protected override void SetInputTracker( )
@@ -75,24 +94,41 @@ namespace ProjectFound.Core {
 
 		public virtual void OnCursorSelect( InputMaster.KeyMap map )
 		{
-			Debug.Log( "OnCursorSelect: " + map.Mode );
+			RaycastMaster.Raycaster raycaster = RaycastMaster.CurrentRaycaster;
 
-			if ( RaycastMaster.PriorityHitCheck == null )
-				return ;
+			if ( raycaster.PriorityHitCheck == null )
+			{
+				RaycastMaster.CastCheck( raycaster );
+				if ( raycaster.PriorityHitCheck == null )
+					return ;
+			}
 
-			RaycastHit hit = RaycastMaster.PriorityHitCheck.Value;
+			RaycastHit hit = raycaster.PriorityHitCheck.Value;
 			GameObject obj = hit.collider.gameObject;
 			LayerID layer = (LayerID)obj.layer;
 
 			if ( map.Mode == InputMaster.KeyMode.OneShot )
 			{
+				Debug.Log( "Cursor OneShot: " + map.Key );
+
 				switch ( layer )
 				{
 					case LayerID.Walkable:
 						map.HoldingWindow = 0.35f;
 						PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 						break;
+					case LayerID.Item:
+					case LayerID.Prop:
+						map.HoldingWindow = 0.25f;
+						break;
+				}
+			}
+			else if ( map.Mode == InputMaster.KeyMode.OneShotRelease )
+			{
+				Debug.Log( "Cursor OneShotRelease: " + map.Key );
 
+				switch ( layer )
+				{
 					case LayerID.Item:
 						Item item = obj.GetComponent<Item>( );
 						PlayerMaster.PickUp( item, () =>
@@ -101,7 +137,6 @@ namespace ProjectFound.Core {
 							AddToInventory( item );
 						} );
 						break;
-
 					case LayerID.Prop:
 						Prop prop = obj.GetComponent<Prop>( );
 						PlayerMaster.Activate( prop, () =>
@@ -113,14 +148,69 @@ namespace ProjectFound.Core {
 			}
 			else if ( map.Mode == InputMaster.KeyMode.Holding )
 			{
-				if ( layer == LayerID.Walkable )
+				Debug.Log( "Holding: " + map.Key );
+
+				if ( map.HoldingCount == 1 )
 				{
-					PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
+					switch ( layer )
+					{
+						case LayerID.Walkable:
+							PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
+							raycaster.IsEnabled = false;
+							RaycastMaster.CurrentRaycaster =
+								RaycastMaster.Raycasters[RaycastMaster.RaycastMode.HoldToMove];
+							RaycastMaster.CurrentRaycaster.IsEnabled = true;
+							break;
+						case LayerID.Item:
+						case LayerID.Prop:
+							PlayerMaster.PropBeingPlaced = obj;
+							RemoveFocus( obj.GetComponent<Prop>( ) );
+							obj.transform.position =
+								new Vector3( hit.point.x, hit.point.y + .05f, hit.point.z );
+							raycaster.IsEnabled = false;
+							RaycastMaster.CurrentRaycaster =
+								RaycastMaster.Raycasters[RaycastMaster.RaycastMode.PropPlacement];
+							RaycastMaster.CurrentRaycaster.IsEnabled = true;
+							RaycastMaster.CurrentRaycaster.AddBlacklistee( obj );
+							break;
+					}
+				}
+				else
+				{
+					switch ( RaycastMaster.CurrentRaycaster.Mode )
+					{
+						case RaycastMaster.RaycastMode.HoldToMove:
+							PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
+							break;
+						case RaycastMaster.RaycastMode.PropPlacement:
+							PlayerMaster.PropBeingPlaced.transform.position =
+								new Vector3( hit.point.x, hit.point.y + .05f, hit.point.z );
+							break;
+					}
 				}
 			}
 			else if ( map.Mode == InputMaster.KeyMode.HoldingRelease )
 			{
-				PlayerMaster.CharacterMovement.ResetMoveTarget( );
+				Debug.Log( "HoldingRelease: " + map.Key );
+
+				switch ( RaycastMaster.CurrentRaycaster.Mode )
+				{
+					case RaycastMaster.RaycastMode.HoldToMove:
+						PlayerMaster.CharacterMovement.ResetMoveTarget( );
+						break;
+					case RaycastMaster.RaycastMode.PropPlacement:
+						PlayerMaster.EndPropPlacement( );
+						RaycastMaster.CurrentRaycaster.RemoveBlacklistee(
+							PlayerMaster.PropBeingPlaced.gameObject );
+						break;
+				}
+
+				RaycastMaster.CurrentRaycaster.IsEnabled = false;
+
+				RaycastMaster.CurrentRaycaster =
+					RaycastMaster.Raycasters[RaycastMaster.RaycastMode.CursorSelection];
+
+				RaycastMaster.CurrentRaycaster.IsEnabled = true;
 			}
 		}
 
@@ -323,7 +413,7 @@ namespace ProjectFound.Core {
 			{
 				prop.IsFocused = true;
 
-				RaycastHit hit = RaycastMaster.PriorityHitCheck.Value;
+				RaycastHit hit = RaycastMaster.CurrentRaycaster.PriorityHitCheck.Value;
 				//Vector3 screenPos = Camera.main.WorldToViewportPoint( hit.point );
 				KeyCode key = InputMaster.ActionToKey[OnCursorSelect];
 				UIMaster.DisplayPrompt( prop, key, hit.point );
@@ -345,7 +435,7 @@ namespace ProjectFound.Core {
 		protected void RemoveFocusDirectly( Prop prop )
 		{
 			// Nullify Raycast Hit Check so RemoveFocus isn't called twice
-			RaycastMaster.PriorityHitCheck = null;
+			RaycastMaster.CurrentRaycaster.PriorityHitCheck = null;
 			RemoveFocus( prop );
 		}
 	}
