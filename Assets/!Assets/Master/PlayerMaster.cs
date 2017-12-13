@@ -72,12 +72,14 @@ namespace ProjectFound.Master {
 		public void EndPropPlacement( Vector3 hitPoint )
 		{
 			PropPlacement( hitPoint );
+			EndPropPlacement( );
+		}
 
+		public void EndPropPlacement( )
+		{
 			PlacementClearance.Cleanup( );
-
 			//Misc.SmartDestroy.Destroy( PropBeingPlaced.GetComponent<PlacementAngleDetection>( ) );
 			Misc.SmartDestroy.Destroy( PlacementCursorOffset );
-
 			PropBeingPlaced = null;
 		}
 

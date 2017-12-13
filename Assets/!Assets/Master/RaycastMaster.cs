@@ -270,16 +270,6 @@ namespace ProjectFound.Master {
 		{
 			if ( CursorDevice == InputMaster.InputDevice.MouseAndKeyboard )
 			{
-				if ( !ScreenRect.Contains( Input.mousePosition ) )
-				{
-					Debug.Log( "Cursor outside game window" );
-					raycaster.ClearBlacklist( );
-					raycaster.IsEnabled = false;
-					CurrentRaycaster = Raycasters[RaycastMode.CursorSelection];
-					CurrentRaycaster.IsEnabled = true;
-					return ;
-				}
-
 				if ( IsOverUIElement( ) )
 				{
 					raycaster.ClearBlacklist( );

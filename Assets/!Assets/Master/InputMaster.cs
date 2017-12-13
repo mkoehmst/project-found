@@ -172,9 +172,11 @@ namespace ProjectFound.Master {
 		public Dictionary<string[],AxiiMap> AxiiMaps { get; private set; }
 		public Dictionary<AxiiAction,string[]> ActionToAxii { get; private set; }
 
-		public delegate void InputTracker( InputDevice device );
-		public InputTracker DelegateInputTracker { get; set; }
+		public System.Action<InputDevice> DelegateInputTracker { get; set; }
+		public System.Action DelegateCursorLost { get; set; }
 		public InputDevice CurrentDeviceMapped { get; set; }
+
+		private Rect m_screenRect;
 
 		public InputMaster( )
 		{
@@ -185,10 +187,24 @@ namespace ProjectFound.Master {
 			AxiiMaps = new Dictionary<string[],AxiiMap>( new AxiiMap.AxiiEqualityComparer( ) );
 			ActionToAxii = new Dictionary<AxiiAction,string[]>( );
 			CurrentDeviceMapped = InputDevice.Undefined;
+
+			m_screenRect = new Rect( );
 		}
 
 		public void Loop( )
 		{
+			m_screenRect.width = Screen.width;
+			m_screenRect.height = Screen.height;
+			if ( !m_screenRect.Contains( Input.mousePosition ) )
+			{
+				Debug.Log( "Cursor outside game window" );
+				DelegateCursorLost( );
+				//raycaster.ClearBlacklist( );
+				//raycaster.IsEnabled = false;
+				//CurrentRaycaster = Raycasters[RaycastMode.CursorSelection];
+				//CurrentRaycaster.IsEnabled = true;
+			}
+
 			foreach ( KeyCode keyToCheck in KeyMaps.Keys )
 			{
 				if ( CheckKeyDown( keyToCheck ) )
