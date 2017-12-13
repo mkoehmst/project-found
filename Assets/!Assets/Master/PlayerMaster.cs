@@ -80,6 +80,11 @@ namespace ProjectFound.Master {
 
 			PropBeingPlaced = null;
 		}
+
+		public void DropItem( Item item )
+		{
+			item.transform.position = Player.transform.position + Player.transform.forward * 0.75f;
+		}
 	}
 
 

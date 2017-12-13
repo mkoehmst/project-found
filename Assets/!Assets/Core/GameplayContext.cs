@@ -158,26 +158,26 @@ namespace ProjectFound.Core {
 						case LayerID.Walkable:
 							PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 							raycaster.IsEnabled = false;
-							RaycastMaster.CurrentRaycaster =
+							raycaster = RaycastMaster.CurrentRaycaster =
 								RaycastMaster.Raycasters[RaycastMaster.RaycastMode.HoldToMove];
-							RaycastMaster.CurrentRaycaster.IsEnabled = true;
+							raycaster.IsEnabled = true;
 							break;
 						case LayerID.Item:
 						case LayerID.Prop:
 							Prop prop = obj.GetComponent<Prop>( );
 							RemoveFocus( prop );
 							raycaster.IsEnabled = false;
-							RaycastMaster.CurrentRaycaster =
+							raycaster = RaycastMaster.CurrentRaycaster =
 								RaycastMaster.Raycasters[RaycastMaster.RaycastMode.PropPlacement];
-							RaycastMaster.CurrentRaycaster.IsEnabled = true;
-							RaycastMaster.CurrentRaycaster.AddBlacklistee( obj );
+							raycaster.IsEnabled = true;
+							raycaster.AddBlacklistee( obj );
 							PlayerMaster.StartPropPlacement( prop, obj, hit.point );
 							break;
 					}
 				}
 				else
 				{
-					switch ( RaycastMaster.CurrentRaycaster.Mode )
+					switch ( raycaster.Mode )
 					{
 						case RaycastMaster.RaycastMode.HoldToMove:
 							PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
@@ -192,24 +192,23 @@ namespace ProjectFound.Core {
 			{
 				Debug.Log( "HoldingRelease: " + map.Key );
 
-				switch ( RaycastMaster.CurrentRaycaster.Mode )
+				switch ( raycaster.Mode )
 				{
 					case RaycastMaster.RaycastMode.HoldToMove:
 						PlayerMaster.CharacterMovement.ResetMoveTarget( );
 						break;
 					case RaycastMaster.RaycastMode.PropPlacement:
-						RaycastMaster.CurrentRaycaster.RemoveBlacklistee(
-							PlayerMaster.PropBeingPlaced.gameObject );
+						raycaster.RemoveBlacklistee( PlayerMaster.PropBeingPlaced.gameObject );
 						PlayerMaster.EndPropPlacement( hit.point );
 						break;
 				}
 
-				RaycastMaster.CurrentRaycaster.IsEnabled = false;
+				raycaster.IsEnabled = false;
 
-				RaycastMaster.CurrentRaycaster =
+				raycaster = RaycastMaster.CurrentRaycaster =
 					RaycastMaster.Raycasters[RaycastMaster.RaycastMode.CursorSelection];
 
-				RaycastMaster.CurrentRaycaster.IsEnabled = true;
+				raycaster.IsEnabled = true;
 			}
 		}
 
@@ -379,6 +378,7 @@ namespace ProjectFound.Core {
 				{
 					// Layering of lamba expressions even more powerful!
 					UIMaster.RemoveInventoryButton( item );
+					PlayerMaster.DropItem( item );
 				} );
 			} );
 		}
@@ -413,7 +413,6 @@ namespace ProjectFound.Core {
 				prop.IsFocused = true;
 
 				RaycastHit hit = RaycastMaster.CurrentRaycaster.PriorityHitCheck.Value;
-				//Vector3 screenPos = Camera.main.WorldToViewportPoint( hit.point );
 				KeyCode key = InputMaster.ActionToKey[OnCursorSelect];
 				UIMaster.DisplayPrompt( prop, key, hit.point );
 				ShaderMaster.ToggleSelectionOutline( prop.gameObject );

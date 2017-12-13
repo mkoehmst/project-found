@@ -13,17 +13,18 @@ namespace ProjectFound.CameraUI {
 		[SerializeField] float m_growthTime = 3f;
 		[SerializeField] float m_thetaScale = 0.01f;
 
-		public Collider[] ObjectsWithin { get; private set; }
-
 		private int size;
-		private LineRenderer LineDrawer;
 		private float theta = 0f;
 		private float m_radius;
 		private float m_growthRate;
 
-		void Start( )
+		private LineRenderer LineDrawer { get; set; }
+
+		public Collider[] ObjectsWithin { get; private set; }
+
+		void Awake( )
 		{
-			LineDrawer = gameObject.GetComponent<LineRenderer>( );
+			LineDrawer = GetComponent<LineRenderer>( );
 		}
 
 		void Update( )
@@ -41,8 +42,8 @@ namespace ProjectFound.CameraUI {
 			for( int i = 0; i < size; i++ )
 			{
 				theta += (2.0f * Mathf.PI * m_thetaScale);
-				float x = m_radius * Mathf.Sin(theta);
-				float y = m_radius * Mathf.Cos(theta);
+				float x = m_radius * Mathf.Sin( theta );
+				float y = m_radius * Mathf.Cos( theta );
 				LineDrawer.SetPosition( i, new Vector3( x, y, 0f ) );
 			}
 		}
@@ -51,11 +52,7 @@ namespace ProjectFound.CameraUI {
 		{
 			m_radius = 0f;
 			m_growthRate = m_fullRadius / m_growthTime;
-
-			if ( LineDrawer != null )
-			{
-				LineDrawer.positionCount = 0;
-			}
+			LineDrawer.positionCount = 0;
 		}
 
 		public void GatherDetections( )
