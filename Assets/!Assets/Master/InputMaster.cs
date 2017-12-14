@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using ProjectFound.Misc;
-
 namespace ProjectFound.Master {
 
 	public class InputMaster
 	{
+		public delegate void KeyAction( KeyMap map );
+		public delegate void AxisAction( AxisMap map, float movement );
+		public delegate void AxiiAction( AxiiMap map, float[] movements );
+
 		public enum KeyMode
 		{
 			Undefined,
@@ -28,7 +30,7 @@ namespace ProjectFound.Master {
 
 		public class KeyMap
 		{
-			public bool IsEnabled		{ get; private set; }
+			public bool IsEnabled		{ get; set; }
 			public InputDevice Device	{ get; private set; }
 			public KeyMode Mode			{ get; private set; }
 			public KeyCode Key			{ get; private set; }
@@ -67,7 +69,7 @@ namespace ProjectFound.Master {
 
 		public class AxisMap
 		{
-			public bool IsEnabled { get; private set; }
+			public bool IsEnabled { get; set; }
 			public InputDevice Device { get; private set; }
 			public string Axis { get; set; }
 			public AxisAction Action { get; set; }
@@ -130,7 +132,7 @@ namespace ProjectFound.Master {
 				}
 			}
 
-			public bool IsEnabled { get; private set; }
+			public bool IsEnabled { get; set; }
 			public InputDevice Device { get; private set; }
 			public string[] Axii { get; set; }
 			public AxiiAction Action { get; set; }
@@ -159,36 +161,49 @@ namespace ProjectFound.Master {
 			}
 		}
 
-		public delegate void KeyAction( KeyMap map );
-		public delegate void AxisAction( AxisMap map, float movement );
-		public delegate void AxiiAction( AxiiMap map, float[] movements );
+		public class DeviceMapping
+		{
+			public InputDevice Device { get; private set; }
 
-		public Dictionary<KeyCode,KeyMap> KeyMaps { get; private set; }
-		public Dictionary<KeyAction,KeyCode> ActionToKey { get; private set; }
+			public Dictionary<KeyAction,KeyCode> ActionToKey { get; private set; }
+			public Dictionary<AxisAction,string> ActionToAxis { get; private set; }
+			public Dictionary<AxiiAction,string[]> ActionToAxii { get; private set; }
 
-		public Dictionary<string,AxisMap> AxisMaps { get; private set; }
-		public Dictionary<AxisAction,string> ActionToAxis { get; private set; }
+			public DeviceMapping( InputDevice device )
+			{
+				Device = device;
 
-		public Dictionary<string[],AxiiMap> AxiiMaps { get; private set; }
-		public Dictionary<AxiiAction,string[]> ActionToAxii { get; private set; }
-
-		public System.Action<InputDevice> DelegateInputTracker { get; set; }
-		public System.Action DelegateCursorLost { get; set; }
-		public InputDevice CurrentDeviceMapped { get; set; }
+				ActionToKey = new Dictionary<KeyAction,KeyCode>( );
+				ActionToAxis = new Dictionary<AxisAction,string>( );
+				ActionToAxii = new Dictionary<AxiiAction,string[]>( );
+			}
+		}
 
 		private Rect m_screenRect;
 
+		public System.Action<InputDevice> DelegateInputTracker { get; set; }
+		public System.Action DelegateCursorLost { get; set; }
+
+		public Dictionary<KeyCode,KeyMap> KeyMaps { get; private set; }
+		public Dictionary<string,AxisMap> AxisMaps { get; private set; }
+		public Dictionary<string[],AxiiMap> AxiiMaps { get; private set; }
+
+		public Dictionary<InputDevice,DeviceMapping> DeviceMappings { get; private set; }
+
+		public InputDevice CurrentDeviceMapped { get; set; }
+		public InputDevice CurrentDeviceUsed { get; private set; }
+
 		public InputMaster( )
 		{
-			KeyMaps = new Dictionary<KeyCode,KeyMap>( );
-			ActionToKey = new Dictionary<KeyAction,KeyCode>( );
-			AxisMaps = new Dictionary<string,AxisMap>( );
-			ActionToAxis = new Dictionary<AxisAction,string>( );
-			AxiiMaps = new Dictionary<string[],AxiiMap>( new AxiiMap.AxiiEqualityComparer( ) );
-			ActionToAxii = new Dictionary<AxiiAction,string[]>( );
-			CurrentDeviceMapped = InputDevice.Undefined;
-
 			m_screenRect = new Rect( );
+
+			DeviceMappings = new Dictionary<InputDevice,DeviceMapping>( );
+
+			KeyMaps = new Dictionary<KeyCode,KeyMap>( );
+			AxisMaps = new Dictionary<string,AxisMap>( );
+			AxiiMaps = new Dictionary<string[],AxiiMap>( new AxiiMap.AxiiEqualityComparer( ) );
+
+			CurrentDeviceMapped = CurrentDeviceUsed = InputDevice.Undefined;
 		}
 
 		public void Loop( )
@@ -199,11 +214,13 @@ namespace ProjectFound.Master {
 			{
 				Debug.Log( "Cursor outside game window" );
 				DelegateCursorLost( );
-				//raycaster.ClearBlacklist( );
-				//raycaster.IsEnabled = false;
-				//CurrentRaycaster = Raycasters[RaycastMode.CursorSelection];
-				//CurrentRaycaster.IsEnabled = true;
 			}
+			/*
+			if ( CheckKeyDown( KeyCode.Comma ) )
+			{
+				KeyIsDown( KeyCode.Joystick1Button11 );
+			}
+			*/
 
 			foreach ( KeyCode keyToCheck in KeyMaps.Keys )
 			{
@@ -227,7 +244,7 @@ namespace ProjectFound.Master {
 			{
 				float axisMovement = CheckAxis( axisToCheck );
 
-				if ( !Floater.Equal( axisMovement, 0f ) )
+				if ( !Misc.Floater.Equal( axisMovement, 0f ) )
 				{
 					AxisHasMoved( axisToCheck, axisMovement );
 				}
@@ -239,7 +256,7 @@ namespace ProjectFound.Master {
 
 				foreach ( float axisMovement in axiiMovements )
 				{
-					if ( !Floater.Equal( axisMovement, 0f ) )
+					if ( !Misc.Floater.Equal( axisMovement, 0f ) )
 					{
 						AxiiHaveMoved( axiiToCheck, axiiMovements );
 						break;
@@ -248,49 +265,73 @@ namespace ProjectFound.Master {
 			}
 		}
 
-		public KeyMap MapKey( bool isEnabled, KeyAction action, KeyCode key )
+		public void AddNewDevice( InputDevice device )
 		{
-			ActionToKey[action] = key;
+			CurrentDeviceMapped = device;
 
-			return KeyMaps[key] = new KeyMap( isEnabled, CurrentDeviceMapped, action, key );
+			DeviceMappings[device] = new DeviceMapping( device );
 		}
 
-		public AxisMap MapAxis
-			( bool isEnabled, AxisAction action, string axis )
+		public void MapKey( bool isEnabled, KeyAction action, KeyCode key )
 		{
-			ActionToAxis[action] = axis;
-
-			return AxisMaps[axis] = new AxisMap( isEnabled, CurrentDeviceMapped, action, axis );
+			DeviceMapping mapping = DeviceMappings[CurrentDeviceMapped];
+			mapping.ActionToKey[action] = key;
+			KeyMaps[key] = new KeyMap( isEnabled, CurrentDeviceMapped, action, key );
 		}
 
-		public void MapAxii
-			( bool isEnabled, AxiiAction action, params string[] axii )
+		public void MapAxis( bool isEnabled, AxisAction action, string axis )
 		{
-			ActionToAxii[action] = axii;
+			DeviceMapping mapping = DeviceMappings[CurrentDeviceMapped];
+			mapping.ActionToAxis[action] = axis;
+			AxisMaps[axis] = new AxisMap( isEnabled, CurrentDeviceMapped, action, axis );
+		}
 
+		public void MapAxii( bool isEnabled, AxiiAction action, params string[] axii )
+		{
+			DeviceMapping mapping = DeviceMappings[CurrentDeviceMapped];
+			mapping.ActionToAxii[action] = axii;
 			// TODO: String concatenation and parsing instead of string arrays?
 			AxiiMaps[axii] = new AxiiMap( isEnabled, CurrentDeviceMapped, action, axii );
 		}
 
+		public void EnableMap( KeyCode key )
+		{ KeyMaps[key].IsEnabled = true; }
+
+		public void EnableMap( string axis )
+		{ AxisMaps[axis].IsEnabled = true; }
+
+		public void EnableMap( string[] axii )
+		{ AxiiMaps[axii].IsEnabled = true; }
+
+		public void DisableMap( KeyCode key )
+		{ KeyMaps[key].IsEnabled = false; }
+
+		public void DisableMap( string axis )
+		{ AxisMaps[axis].IsEnabled = false; }
+
+		public void DisableMap( string[] axii )
+		{ AxiiMaps[axii].IsEnabled = false; }
+
+		public KeyCode GetKeyFromAction( KeyAction action )
+		{ return DeviceMappings[CurrentDeviceUsed].ActionToKey[action]; }
+
+		public string GetAxisFromAction( AxisAction action )
+		{ return DeviceMappings[CurrentDeviceUsed].ActionToAxis[action]; }
+
+		public string[] GetAxiiFromAction( AxiiAction action )
+		{ return DeviceMappings[CurrentDeviceUsed].ActionToAxii[action]; }
+
 		public bool CheckKeyDown( KeyCode keyToCheck )
-		{
-			return Input.GetKeyDown( keyToCheck );
-		}
+		{ return Input.GetKeyDown( keyToCheck ); }
 
 		public bool CheckKeyUp( KeyCode keyToCheck )
-		{
-			return Input.GetKeyUp( keyToCheck );
-		}
+		{ return Input.GetKeyUp( keyToCheck ); }
 
 		public bool CheckKeyHolding( KeyCode keyToCheck )
-		{
-			return Input.GetKey( keyToCheck );
-		}
+		{ return Input.GetKey( keyToCheck ); }
 
 		public float CheckAxis( string axisToCheck )
-		{
-			return Input.GetAxis( axisToCheck );
-		}
+		{ return Input.GetAxis( axisToCheck ); }
 
 		public float[] CheckAxii( string[] axiiToCheck )
 		{
@@ -306,9 +347,9 @@ namespace ProjectFound.Master {
 
 		private void KeyIsDown( KeyCode key )
 		{
-			KeyMap map = KeyMaps[key];
+			SetCurrentDevice( key );
 
-			DelegateInputTracker( map.Device );
+			KeyMap map = KeyMaps[key];
 
 			if ( !map.IsEnabled )
 				return ;
@@ -318,14 +359,14 @@ namespace ProjectFound.Master {
 
 		private void KeyIsUp( KeyCode key )
 		{
-			KeyMap map = KeyMaps[key];
+			SetCurrentDevice( key );
 
-			DelegateInputTracker( map.Device );
+			KeyMap map = KeyMaps[key];
 
 			if ( !map.IsEnabled )
 				return ;
 
-			// Can't have a key up without a key down first
+			// Can't have a key up without a key down first, so check previous Mode
 			if ( !(map.Mode == KeyMode.OneShot || map.Mode == KeyMode.Holding) )
 				return ;
 
@@ -351,9 +392,9 @@ namespace ProjectFound.Master {
 
 		private void KeyIsHolding( KeyCode key )
 		{
-			KeyMap map = KeyMaps[key];
+			SetCurrentDevice( key );
 
-			DelegateInputTracker( map.Device );
+			KeyMap map = KeyMaps[key];
 
 			if ( !map.IsEnabled )
 				return ;
@@ -368,13 +409,14 @@ namespace ProjectFound.Master {
 					map.Fire( KeyMode.Holding );
 				}
 			}
+			// Else fire OneShot?
 		}
 
 		public void AxisHasMoved( string axis, float movement )
 		{
-			AxisMap map = AxisMaps[axis];
+			SetCurrentDevice( axis );
 
-			DelegateInputTracker( map.Device );
+			AxisMap map = AxisMaps[axis];
 
 			if ( !map.IsEnabled )
 				return ;
@@ -384,14 +426,32 @@ namespace ProjectFound.Master {
 
 		private void AxiiHaveMoved( string[] axii, float[] movements )
 		{
-			AxiiMap map = AxiiMaps[axii];
+			SetCurrentDevice( axii );
 
-			DelegateInputTracker( map.Device );
+			AxiiMap map = AxiiMaps[axii];
 
 			if ( !map.IsEnabled )
 				return ;
 
 			map.Fire( movements );
+		}
+
+		private void SetCurrentDevice( KeyCode key )
+		{
+			CurrentDeviceUsed = KeyMaps[key].Device;
+			DelegateInputTracker( CurrentDeviceUsed );
+		}
+
+		private void SetCurrentDevice( string axis )
+		{
+			CurrentDeviceUsed = AxisMaps[axis].Device;
+			DelegateInputTracker( CurrentDeviceUsed );
+		}
+
+		private void SetCurrentDevice( string[] axii )
+		{
+			CurrentDeviceUsed = AxiiMaps[axii].Device;
+			DelegateInputTracker( CurrentDeviceUsed );
 		}
 	}
 

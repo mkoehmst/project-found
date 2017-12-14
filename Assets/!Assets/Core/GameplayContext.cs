@@ -59,7 +59,7 @@ namespace ProjectFound.Core {
 
 		protected override void LoadMouseAndKeyboardMappings( )
 		{
-			InputMaster.CurrentDeviceMapped = InputMaster.InputDevice.MouseAndKeyboard;
+			InputMaster.AddNewDevice( InputMaster.InputDevice.MouseAndKeyboard );
 
 			InputMaster.MapKey( true, OnCursorSelect, KeyCode.Mouse0 );
 			InputMaster.MapAxis( true, OnCameraMoveHorizontal, "KeyboardCameraHorizontal" );
@@ -74,7 +74,7 @@ namespace ProjectFound.Core {
 
 		protected override void LoadGamepadMappings( )
 		{
-			InputMaster.CurrentDeviceMapped = InputMaster.InputDevice.Gamepad;
+			InputMaster.AddNewDevice( InputMaster.InputDevice.Gamepad );
 
 			InputMaster.MapAxis( false, OnCameraMoveHorizontal, "ControllerCameraHorizontal" );
 			InputMaster.MapAxis( false, OnCameraMoveVertical, "ControllerCameraVertical" );
@@ -291,17 +291,17 @@ namespace ProjectFound.Core {
 				{
 					CameraMaster.FixedTiltZoomableCamera.HandleDetachment( );
 
-					InputMaster.AxiiMaps[moveAxii].Disable( );
-					InputMaster.AxisMaps[cameraH].Enable( );
-					InputMaster.AxisMaps[cameraV].Enable( );
+					InputMaster.DisableMap( moveAxii );
+					InputMaster.EnableMap( cameraH );
+					InputMaster.EnableMap( cameraV );
 				}
 				else
 				{
 					CameraMaster.FixedTiltZoomableCamera.HandleAttachment( );
 
-					InputMaster.AxiiMaps[moveAxii].Enable( );
-					InputMaster.AxisMaps[cameraH].Disable( );
-					InputMaster.AxisMaps[cameraV].Disable( );
+					InputMaster.EnableMap( moveAxii );
+					InputMaster.DisableMap( cameraH );
+					InputMaster.DisableMap( cameraV );
 				}
 			}
 		}
@@ -436,7 +436,7 @@ namespace ProjectFound.Core {
 				prop.IsFocused = true;
 
 				RaycastHit hit = RaycastMaster.CurrentRaycaster.PriorityHitCheck.Value;
-				KeyCode key = InputMaster.ActionToKey[OnCursorSelect];
+				KeyCode key = InputMaster.GetKeyFromAction( OnCursorSelect );
 				UIMaster.DisplayPrompt( prop, key, hit.point );
 				ShaderMaster.ToggleSelectionOutline( prop.gameObject );
 			}
