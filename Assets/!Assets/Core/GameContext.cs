@@ -18,21 +18,6 @@ namespace ProjectFound.Core {
 				  //Unknown
 		}
 
-		private InputMaster.InputDevice m_inputDevice;
-		public InputMaster.InputDevice Device
-		{
-			get
-			{
-				return m_inputDevice;
-			}
-
-			set
-			{
-				RaycastMaster.CursorDevice = value;
-				m_inputDevice = value;
-			}
-		}
-
 		public Desc Description { get; set; }
 
 		public RaycastMaster RaycastMaster { get; private set; }
@@ -67,7 +52,7 @@ namespace ProjectFound.Core {
 		protected void LoadInputMappings( )
 		{
 			LoadMouseAndKeyboardMappings( );
-			//LoadGamepadMappings( );
+			LoadGamepadMappings( );
 		}
 
 		protected abstract void SetupRaycasters( );

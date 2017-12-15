@@ -55,6 +55,7 @@ namespace ProjectFound.Core {
 		{
 			InputMaster.DelegateInputTracker = OnInputTracking;
 			InputMaster.DelegateCursorLost = OnCursorLost;
+			InputMaster.DelegateCursorGained = OnCursorGained;
 		}
 
 		protected override void LoadMouseAndKeyboardMappings( )
@@ -91,7 +92,7 @@ namespace ProjectFound.Core {
 
 		public void OnInputTracking( InputMaster.InputDevice device )
 		{
-			Device = device;
+			RaycastMaster.CursorDevice = device;
 		}
 
 		public void OnCursorLost( )
@@ -113,6 +114,11 @@ namespace ProjectFound.Core {
 			RaycastMaster.CurrentRaycaster =
 				RaycastMaster.Raycasters[RaycastMaster.RaycastMode.CursorSelection];
 
+			RaycastMaster.CurrentRaycaster.IsEnabled = false;
+		}
+
+		public void OnCursorGained( )
+		{
 			RaycastMaster.CurrentRaycaster.IsEnabled = true;
 		}
 

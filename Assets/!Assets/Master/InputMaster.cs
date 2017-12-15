@@ -180,22 +180,37 @@ namespace ProjectFound.Master {
 		}
 
 		private Rect m_screenRect;
+		private bool m_isCursorInWindow;
+
+		private InputDevice m_currentDeviceUsed;
+		public InputDevice CurrentDeviceUsed
+		{
+			get { return m_currentDeviceUsed; }
+			private set
+			{
+				if ( m_currentDeviceUsed != value )
+				{
+					m_currentDeviceUsed = value;
+					DelegateInputTracker( value );
+				}
+			}
+		}
 
 		public System.Action<InputDevice> DelegateInputTracker { get; set; }
 		public System.Action DelegateCursorLost { get; set; }
+		public System.Action DelegateCursorGained { get; set; }
 
 		public Dictionary<KeyCode,KeyMap> KeyMaps { get; private set; }
 		public Dictionary<string,AxisMap> AxisMaps { get; private set; }
 		public Dictionary<string[],AxiiMap> AxiiMaps { get; private set; }
 
 		public Dictionary<InputDevice,DeviceMapping> DeviceMappings { get; private set; }
-
 		public InputDevice CurrentDeviceMapped { get; set; }
-		public InputDevice CurrentDeviceUsed { get; private set; }
 
 		public InputMaster( )
 		{
 			m_screenRect = new Rect( );
+			m_isCursorInWindow = true;
 
 			DeviceMappings = new Dictionary<InputDevice,DeviceMapping>( );
 
@@ -210,10 +225,30 @@ namespace ProjectFound.Master {
 		{
 			m_screenRect.width = Screen.width;
 			m_screenRect.height = Screen.height;
-			if ( !m_screenRect.Contains( Input.mousePosition ) )
+			if ( m_isCursorInWindow == true )
 			{
-				Debug.Log( "Cursor outside game window" );
-				DelegateCursorLost( );
+				if ( !m_screenRect.Contains( Input.mousePosition ) )
+				{
+					Debug.Log( "Cursor has gone outside game window" );
+					m_isCursorInWindow = false;
+					DelegateCursorLost( );
+				}
+			}
+			else
+			{
+				if ( m_screenRect.Contains( Input.mousePosition ) )
+				{
+					Debug.Log( "Cursor has come back within game window" );
+					m_isCursorInWindow = true;
+					DelegateCursorGained( );
+				}
+			}
+
+			float mouseX = Input.GetAxis( "Mouse X" );
+			float mouseY = Input.GetAxis( "Mouse Y" );
+			if ( !Misc.Floater.Equal( mouseX, 0f ) || !Misc.Floater.Equal( mouseY, 0f ) )
+			{
+				CurrentDeviceUsed = InputDevice.MouseAndKeyboard;
 			}
 			/*
 			if ( CheckKeyDown( KeyCode.Comma ) )
@@ -347,9 +382,9 @@ namespace ProjectFound.Master {
 
 		private void KeyIsDown( KeyCode key )
 		{
-			SetCurrentDevice( key );
-
 			KeyMap map = KeyMaps[key];
+
+			CurrentDeviceUsed = map.Device;
 
 			if ( !map.IsEnabled )
 				return ;
@@ -359,9 +394,9 @@ namespace ProjectFound.Master {
 
 		private void KeyIsUp( KeyCode key )
 		{
-			SetCurrentDevice( key );
-
 			KeyMap map = KeyMaps[key];
+
+			CurrentDeviceUsed = map.Device;
 
 			if ( !map.IsEnabled )
 				return ;
@@ -392,9 +427,9 @@ namespace ProjectFound.Master {
 
 		private void KeyIsHolding( KeyCode key )
 		{
-			SetCurrentDevice( key );
-
 			KeyMap map = KeyMaps[key];
+
+			CurrentDeviceUsed = map.Device;
 
 			if ( !map.IsEnabled )
 				return ;
@@ -414,9 +449,9 @@ namespace ProjectFound.Master {
 
 		public void AxisHasMoved( string axis, float movement )
 		{
-			SetCurrentDevice( axis );
-
 			AxisMap map = AxisMaps[axis];
+
+			CurrentDeviceUsed = map.Device;
 
 			if ( !map.IsEnabled )
 				return ;
@@ -426,32 +461,14 @@ namespace ProjectFound.Master {
 
 		private void AxiiHaveMoved( string[] axii, float[] movements )
 		{
-			SetCurrentDevice( axii );
-
 			AxiiMap map = AxiiMaps[axii];
+
+			CurrentDeviceUsed = map.Device;
 
 			if ( !map.IsEnabled )
 				return ;
 
 			map.Fire( movements );
-		}
-
-		private void SetCurrentDevice( KeyCode key )
-		{
-			CurrentDeviceUsed = KeyMaps[key].Device;
-			DelegateInputTracker( CurrentDeviceUsed );
-		}
-
-		private void SetCurrentDevice( string axis )
-		{
-			CurrentDeviceUsed = AxisMaps[axis].Device;
-			DelegateInputTracker( CurrentDeviceUsed );
-		}
-
-		private void SetCurrentDevice( string[] axii )
-		{
-			CurrentDeviceUsed = AxiiMaps[axii].Device;
-			DelegateInputTracker( CurrentDeviceUsed );
 		}
 	}
 
