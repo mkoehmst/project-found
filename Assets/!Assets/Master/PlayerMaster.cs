@@ -20,10 +20,13 @@ namespace ProjectFound.Master {
 		public Player Player { get; private set; }
 		public CharacterMovement CharacterMovement { get; private set; }
 
+		public bool OccludedFromCamera { get; set; }
+
 		public PlayerMaster( )
 		{
 			Player = GameObject.FindObjectOfType<Player>( );
 			CharacterMovement = Player.gameObject.GetComponent<CharacterMovement>( );
+			OccludedFromCamera = false;
 		}
 
 		public void Loop( )

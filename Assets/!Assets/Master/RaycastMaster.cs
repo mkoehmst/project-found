@@ -23,7 +23,60 @@ namespace ProjectFound.Master {
 			Undefined,
 			CursorSelection,
 			HoldToMove,
-			PropPlacement
+			PropPlacement,
+			CameraOcclusion
+		}
+
+		public class OcclusionRaycaster : Raycaster
+		{
+			public delegate void HitsFound( ref RaycastHit[] hits );
+
+			private bool m_isOccluded;
+			private RaycastHit[] m_raycastHits;
+
+			public HitsFound DelegateHitsFound { get; set; }
+			public HitsFound DelegateHitsNotFound { get; set; }
+			public Transform Target { get; set; }
+
+			public OcclusionRaycaster( RaycastMode mode, float maxDistance, bool isEnabled = true )
+				:	base( mode, maxDistance, isEnabled )
+			{
+				m_isOccluded = false;
+			}
+
+			public override void Cast( )
+			{
+				switch ( Mode )
+				{
+					case RaycastMode.CameraOcclusion:
+						RaycastHit[] hits = Physics.RaycastAll( Caster, MaxDistance, LayerMask );
+						if ( hits.Length > 0 )
+						{
+							Debug.Log( "Camera Occlusion Cast: TRUE!" );
+
+							if ( m_isOccluded == false )
+							{
+								m_isOccluded = true;
+								m_raycastHits = hits;
+
+								DelegateHitsFound( ref hits );
+							}
+
+							return;
+						}
+						else
+						{
+							if ( m_isOccluded == true )
+							{
+								m_isOccluded = false;
+
+								DelegateHitsNotFound( ref m_raycastHits );
+							}
+
+							return;
+						}
+				}
+			}
 		}
 
 		public class Raycaster
@@ -54,10 +107,11 @@ namespace ProjectFound.Master {
 					m_isEnabled = value;
 				}
 			}
+
 			public RaycastMode Mode { get; private set; }
 			public float MaxDistance { get; set; }
 			public int LayerMask { get; private set; }
-			public OrderedDictionary<Core.LayerID, LayerDetails> Priority { get; private set; }
+			public OrderedDictionary<Core.LayerID,LayerDetails> Priority { get; private set; }
 			public RaycastHit? PriorityHitCheck { get; set; }
 			public RaycastHit? PreviousPriorityHitCheck { get; private set; }
 			public Ray Caster { get; set; }
@@ -69,7 +123,7 @@ namespace ProjectFound.Master {
 				IsEnabled	= isEnabled;
 				Mode		= mode;
 				MaxDistance	= maxDistance;
-				Priority	= new OrderedDictionary<Core.LayerID, LayerDetails>( );
+				Priority	= new OrderedDictionary<Core.LayerID,LayerDetails>( );
 				Blacklist	= new Dictionary<GameObject,Blacklistee>( );
 			}
 
@@ -77,6 +131,12 @@ namespace ProjectFound.Master {
 			{
 				Priority.Add( layer, new LayerDetails( ) );
 				LayerMask |= (1 << (int)layer);
+			}
+
+			public void RemovePriority( Core.LayerID layer )
+			{
+				Priority.Remove( layer );
+				LayerMask &= ~(1 << (int)layer);
 			}
 
 			public void AddBlacklistee( GameObject obj )
@@ -113,16 +173,18 @@ namespace ProjectFound.Master {
 				}
 			}
 
-			public void Cast( )
+			public virtual void Cast( )
 			{
+				RaycastHit firstHit;
+				bool success;
+
 				switch ( Mode )
 				{
 					case RaycastMode.CursorSelection:
 					case RaycastMode.PropPlacement:
 					case RaycastMode.HoldToMove:
 						// Select first hit that matches any Priority layer
-						RaycastHit firstHit;
-						bool success =
+						success =
 							Physics.Raycast( Caster, out firstHit, MaxDistance, LayerMask );
 						if ( success == true )
 						{
@@ -259,16 +321,28 @@ namespace ProjectFound.Master {
 
 			foreach ( Raycaster raycaster in Raycasters.Values )
 			{
-				if ( raycaster.IsEnabled == false )
-					continue;
-
-				CastCheck( raycaster );
+				if ( raycaster.IsEnabled == true )
+				{
+					CastCheck( raycaster );
+				}
 			}
 		}
 
-		public void CastCheck( Raycaster raycaster )
+		public virtual void CastCheck( Raycaster raycaster )
 		{
-			if ( CursorDevice == InputMaster.InputDevice.MouseAndKeyboard )
+			if ( raycaster.Mode == RaycastMode.CameraOcclusion )
+			{
+				OcclusionRaycaster occlusionRaycaster = raycaster as OcclusionRaycaster;
+
+				Ray ray = new Ray( );
+
+				ray.origin = Cam.transform.position;
+				ray.direction = (occlusionRaycaster.Target.position - ray.origin).normalized;
+
+				occlusionRaycaster.Caster = ray;
+
+			}
+			else if ( CursorDevice == InputMaster.InputDevice.MouseAndKeyboard )
 			{
 				if ( IsOverUIElement( ) )
 				{
@@ -287,6 +361,17 @@ namespace ProjectFound.Master {
 			}
 
 			raycaster.Cast( );
+		}
+
+		public OcclusionRaycaster AddOcclusionRaycaster
+			( RaycastMode mode, float maxDistance, Transform target, bool isEnabled = true)
+		{
+			OcclusionRaycaster raycaster = new OcclusionRaycaster( mode, maxDistance, isEnabled );
+			raycaster.Target = target;
+
+			Raycasters[mode] = raycaster;
+
+			return raycaster;
 		}
 
 		public Raycaster AddRaycaster( RaycastMode mode, float maxDistance, bool isEnabled = true )

@@ -34,8 +34,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Roof
+  - RoofHidden
   - GIOnly
   - Light
   m_SortingLayers:

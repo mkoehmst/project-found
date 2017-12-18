@@ -13,7 +13,9 @@ namespace ProjectFound.Core {
 		Walkable = 8,
 		Enemy = 9,
 		Item = 10,
-		Prop = 11
+		Prop = 11,
+		Roof = 28,
+		RoofHidden = 29
 	}
 
 

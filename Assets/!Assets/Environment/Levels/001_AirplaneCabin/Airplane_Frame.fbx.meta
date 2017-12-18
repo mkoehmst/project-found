@@ -1,0 +1,266 @@
+fileFormatVersion: 2
+guid: f1530baf3ee0b6444842c4718fb9605b
+timeCreated: 1513540236
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Airplane_BackWall_01
+    100002: Airplane_BackWall_02
+    100004: Airplane_BackWall_03
+    100006: Airplane_BackWalls
+    100008: //RootNode
+    100010: Airplane_Frame
+    100012: Airplane_FrontWall_01
+    100014: Airplane_FrontWall_02
+    100016: Airplane_FrontWall_03
+    100018: Airplane_FrontWalls
+    100020: Airplane_Restroom_Back
+    100022: Airplane_Restroom_Back_Frame
+    100024: Airplane_Restroom_FrontLeft
+    100026: Airplane_Restroom_FrontLeft_Door
+    100028: Airplane_Restroom_FrontLeft_Frame
+    100030: Airplane_Restroom_FrontLeft_Toilet
+    100032: Airplane_Restroom_FrontRight
+    100034: Airplane_Restroom_FrontRight_Door
+    100036: Airplane_Restroom_FrontRight_Frame
+    100038: Airplane_Restroom_FrontRight_Toilet
+    100040: Airplane_SectionWall
+    100042: airplaneWalls
+    100044: Airplane_Floor
+    100046: Airplane_Frame_NoRoof
+    100048: Airplane_Frame_Roof
+    100050: Airplane_Frame_RoofInside
+    100052: Airplane_Frame_RoofOutside
+    100054: Airplane_Frame_Ceiling
+    100056: Airplane_Frame_CabinRoof
+    100058: Airplane_Frame_FuselageRoof
+    100060: Airplane_Frame_CabinCeiling
+    400000: Airplane_BackWall_01
+    400002: Airplane_BackWall_02
+    400004: Airplane_BackWall_03
+    400006: Airplane_BackWalls
+    400008: //RootNode
+    400010: Airplane_Frame
+    400012: Airplane_FrontWall_01
+    400014: Airplane_FrontWall_02
+    400016: Airplane_FrontWall_03
+    400018: Airplane_FrontWalls
+    400020: Airplane_Restroom_Back
+    400022: Airplane_Restroom_Back_Frame
+    400024: Airplane_Restroom_FrontLeft
+    400026: Airplane_Restroom_FrontLeft_Door
+    400028: Airplane_Restroom_FrontLeft_Frame
+    400030: Airplane_Restroom_FrontLeft_Toilet
+    400032: Airplane_Restroom_FrontRight
+    400034: Airplane_Restroom_FrontRight_Door
+    400036: Airplane_Restroom_FrontRight_Frame
+    400038: Airplane_Restroom_FrontRight_Toilet
+    400040: Airplane_SectionWall
+    400042: airplaneWalls
+    400044: Airplane_Floor
+    400046: Airplane_Frame_NoRoof
+    400048: Airplane_Frame_Roof
+    400050: Airplane_Frame_RoofInside
+    400052: Airplane_Frame_RoofOutside
+    400054: Airplane_Frame_Ceiling
+    400056: Airplane_Frame_CabinRoof
+    400058: Airplane_Frame_FuselageRoof
+    400060: Airplane_Frame_CabinCeiling
+    2100000: phong1
+    2100002: phong4
+    2100004: Airplane_Walls_MAT
+    2100006: Airplane_Floor_MAT
+    2100008: Airplane_Frame_MAT
+    2100010: Airplane_Roof_MAT
+    2300000: Airplane_BackWall_01
+    2300002: Airplane_BackWall_02
+    2300004: Airplane_BackWall_03
+    2300006: Airplane_Frame
+    2300008: Airplane_FrontWall_01
+    2300010: Airplane_FrontWall_02
+    2300012: Airplane_FrontWall_03
+    2300014: Airplane_Restroom_Back_Frame
+    2300016: Airplane_Restroom_FrontLeft_Door
+    2300018: Airplane_Restroom_FrontLeft_Frame
+    2300020: Airplane_Restroom_FrontLeft_Toilet
+    2300022: Airplane_Restroom_FrontRight_Door
+    2300024: Airplane_Restroom_FrontRight_Frame
+    2300026: Airplane_Restroom_FrontRight_Toilet
+    2300028: Airplane_SectionWall
+    2300030: Airplane_Floor
+    2300032: Airplane_Frame_NoRoof
+    2300034: Airplane_Frame_RoofInside
+    2300036: Airplane_Frame_RoofOutside
+    2300038: Airplane_Frame_Roof
+    2300040: Airplane_Frame_Ceiling
+    2300042: Airplane_Frame_CabinRoof
+    2300044: Airplane_Frame_FuselageRoof
+    2300046: Airplane_Frame_CabinCeiling
+    3300000: Airplane_BackWall_01
+    3300002: Airplane_BackWall_02
+    3300004: Airplane_BackWall_03
+    3300006: Airplane_Frame
+    3300008: Airplane_FrontWall_01
+    3300010: Airplane_FrontWall_02
+    3300012: Airplane_FrontWall_03
+    3300014: Airplane_Restroom_Back_Frame
+    3300016: Airplane_Restroom_FrontLeft_Door
+    3300018: Airplane_Restroom_FrontLeft_Frame
+    3300020: Airplane_Restroom_FrontLeft_Toilet
+    3300022: Airplane_Restroom_FrontRight_Door
+    3300024: Airplane_Restroom_FrontRight_Frame
+    3300026: Airplane_Restroom_FrontRight_Toilet
+    3300028: Airplane_SectionWall
+    3300030: Airplane_Floor
+    3300032: Airplane_Frame_NoRoof
+    3300034: Airplane_Frame_RoofInside
+    3300036: Airplane_Frame_RoofOutside
+    3300038: Airplane_Frame_Roof
+    3300040: Airplane_Frame_Ceiling
+    3300042: Airplane_Frame_CabinRoof
+    3300044: Airplane_Frame_FuselageRoof
+    3300046: Airplane_Frame_CabinCeiling
+    4300000: Airplane_Frame
+    4300002: Airplane_SectionWall
+    4300004: Airplane_FrontWall_01
+    4300006: Airplane_FrontWall_02
+    4300008: Airplane_FrontWall_03
+    4300010: Airplane_BackWall_01
+    4300012: Airplane_BackWall_02
+    4300014: Airplane_BackWall_03
+    4300016: Airplane_Restroom_FrontRight_Door
+    4300018: Airplane_Restroom_FrontRight_Frame
+    4300020: Airplane_Restroom_FrontRight_Toilet
+    4300022: Airplane_Restroom_FrontLeft_Door
+    4300024: Airplane_Restroom_FrontLeft_Frame
+    4300026: Airplane_Restroom_FrontLeft_Toilet
+    4300028: Airplane_Restroom_Back_Frame
+    4300030: Airplane_Floor
+    4300032: Airplane_Frame_NoRoof
+    4300034: Airplane_Frame_RoofInside
+    4300036: Airplane_Frame_RoofOutside
+    4300038: Airplane_Frame_Roof
+    4300040: Airplane_Frame_Ceiling
+    4300042: Airplane_Frame_FuselageRoof
+    4300044: Airplane_Frame_CabinRoof
+    4300046: Airplane_Frame_CabinCeiling
+    6400000: Airplane_BackWall_01
+    6400002: Airplane_BackWall_02
+    6400004: Airplane_BackWall_03
+    6400006: Airplane_Frame
+    6400008: Airplane_FrontWall_01
+    6400010: Airplane_FrontWall_02
+    6400012: Airplane_FrontWall_03
+    6400014: Airplane_Restroom_Back_Frame
+    6400016: Airplane_Restroom_FrontLeft_Door
+    6400018: Airplane_Restroom_FrontLeft_Frame
+    6400020: Airplane_Restroom_FrontLeft_Toilet
+    6400022: Airplane_Restroom_FrontRight_Door
+    6400024: Airplane_Restroom_FrontRight_Frame
+    6400026: Airplane_Restroom_FrontRight_Toilet
+    6400028: Airplane_SectionWall
+    6400030: Airplane_Floor
+    6400032: Airplane_Frame_NoRoof
+    6400034: Airplane_Frame_RoofInside
+    6400036: Airplane_Frame_RoofOutside
+    6400038: Airplane_Frame_Roof
+    6400040: Airplane_Frame_Ceiling
+    6400042: Airplane_Frame_CabinRoof
+    6400044: Airplane_Frame_FuselageRoof
+    6400046: Airplane_Frame_CabinCeiling
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Airplane_Floor_MAT
+    second: {fileID: 2100000, guid: 1f712ca14db801e43a2e7a536bf83792, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Airplane_Roof_MAT
+    second: {fileID: 2100000, guid: ec6371b90ca2fef4ea2fc9d8aae5bd41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Airplane_Walls_MAT
+    second: {fileID: 2100000, guid: f4d6871cb4ffead4da9cbf599a2564c9, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

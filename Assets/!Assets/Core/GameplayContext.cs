@@ -49,6 +49,16 @@ namespace ProjectFound.Core {
 			propPlacement.AddPriority( LayerID.Default );
 
 			RaycastMaster.CurrentRaycaster = cursorSelection;
+
+
+			var cameraOcclusion =
+				RaycastMaster.AddOcclusionRaycaster( RaycastMaster.RaycastMode.CameraOcclusion, 70f,
+					PlayerMaster.Player.transform );
+
+			cameraOcclusion.AddPriority( LayerID.Roof );
+
+			cameraOcclusion.DelegateHitsFound = OnRaycastHits;
+			cameraOcclusion.DelegateHitsNotFound = OnRaycastNoHits;
 		}
 
 		protected override void SetInputTracker( )
@@ -93,6 +103,38 @@ namespace ProjectFound.Core {
 		public void OnInputTracking( InputMaster.InputDevice device )
 		{
 			RaycastMaster.CursorDevice = device;
+		}
+
+		public void OnRaycastHits( ref RaycastHit[] hits )
+		{
+			PlayerMaster.OccludedFromCamera = true;
+
+			for ( int i = 0; i < hits.Length; ++i )
+			{
+				hits[i].collider.gameObject.layer = (int)LayerID.RoofHidden;
+			}
+
+			RaycastMaster.Raycaster raycaster =
+				RaycastMaster.Raycasters[RaycastMaster.RaycastMode.CameraOcclusion];
+
+			raycaster.RemovePriority( LayerID.Roof );
+			raycaster.AddPriority( LayerID.RoofHidden );
+		}
+
+		public void OnRaycastNoHits( ref RaycastHit[] hits )
+		{
+			PlayerMaster.OccludedFromCamera = false;
+
+			for ( int i = 0; i < hits.Length; ++i )
+			{
+				hits[i].collider.gameObject.layer = (int)LayerID.Roof;
+			}
+
+			RaycastMaster.Raycaster raycaster =
+				RaycastMaster.Raycasters[RaycastMaster.RaycastMode.CameraOcclusion];
+
+			raycaster.RemovePriority( LayerID.RoofHidden );
+			raycaster.AddPriority( LayerID.Roof );
 		}
 
 		public void OnCursorLost( )
