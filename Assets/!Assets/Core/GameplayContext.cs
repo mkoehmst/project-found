@@ -242,7 +242,7 @@ namespace ProjectFound.Core {
 								RaycastMaster.Raycasters[RaycastMaster.RaycastMode.PropPlacement];
 							raycaster.IsEnabled = true;
 							raycaster.AddBlacklistee( obj );
-							PlayerMaster.StartPropPlacement( prop, obj, hit.point );
+							PlayerMaster.StartPropPlacement( prop, obj, ref hit );
 							break;
 					}
 				}
@@ -254,7 +254,7 @@ namespace ProjectFound.Core {
 							PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 							break;
 						case RaycastMaster.RaycastMode.PropPlacement:
-							PlayerMaster.PropPlacement( hit.point );
+							PlayerMaster.PropPlacement( ref hit );
 							break;
 					}
 				}
@@ -270,7 +270,7 @@ namespace ProjectFound.Core {
 						break;
 					case RaycastMaster.RaycastMode.PropPlacement:
 						raycaster.RemoveBlacklistee( PlayerMaster.PropBeingPlaced.gameObject );
-						PlayerMaster.EndPropPlacement( hit.point );
+						PlayerMaster.EndPropPlacement( ref hit );
 						break;
 				}
 
