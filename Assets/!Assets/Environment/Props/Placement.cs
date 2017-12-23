@@ -11,6 +11,10 @@ namespace ProjectFound.Environment.Props
 		private const float m_placementElevation = .005f;
 		private const float m_maxPlacementAngle = 0.4f;
 
+		private Vector3 StartingPosition { get; set; }
+		private Quaternion StartingRotation { get; set; }
+		private bool DoRejectPlacement { get; set; }
+
 		private cakeslice.Outline Outline { get; set; }
 		private Collider ExistingCollider { get; set; }
 		private MeshCollider PlacementCollider { get; set; }
@@ -34,6 +38,9 @@ namespace ProjectFound.Environment.Props
 			PlacementCollider.convex = true;
 			PlacementCollider.inflateMesh = false;
 			PlacementCollider.isTrigger = true;
+
+			StartingPosition = transform.position;
+			StartingRotation = transform.rotation;
 		}
 
 		public void Place( ref RaycastHit hit )
@@ -50,11 +57,15 @@ namespace ProjectFound.Environment.Props
 		{
 			if ( !Misc.Floater.GreaterThan( hit.normal.y, m_maxPlacementAngle ) )
 			{
+				// Bad state: Angle too steep
+				DoRejectPlacement = true;
+
 				Outline.color = 0;
 				Outline.enabled = true;
 			}
 			else
 			{
+				DoRejectPlacement = false;
 				Outline.enabled = false;
 			}
 
@@ -71,7 +82,15 @@ namespace ProjectFound.Environment.Props
 
 		public void Cleanup( )
 		{
-			transform.localPosition -= new Vector3( 0f, m_placementElevation, 0f );
+			if ( DoRejectPlacement == true )
+			{
+				transform.position = StartingPosition;
+				transform.rotation = StartingRotation;
+			}
+			else
+			{
+				transform.localPosition -= new Vector3( 0f, m_placementElevation, 0f );
+			}
 
 			Misc.SmartDestroy.Destroy( this );
 			Misc.SmartDestroy.Destroy( PlacementCollider );
@@ -84,12 +103,17 @@ namespace ProjectFound.Environment.Props
 
 		private void OnTriggerEnter( Collider other )
 		{
+			// Bad state: Clearance radius collision
+			DoRejectPlacement = true;
+
 			Outline.enabled = true;
 			Outline.color = 0;
 		}
 
 		private void OnTriggerExit( Collider other )
 		{
+			DoRejectPlacement = false;
+
 			Outline.enabled = false;
 			Outline.color = 1;
 		}
