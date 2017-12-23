@@ -9,7 +9,7 @@ namespace ProjectFound.Environment.Props
 	public class Placement : MonoBehaviour
 	{
 		private const float m_placementElevation = .005f;
-		private const float m_maxPlacementAngle = 0.4f;
+		private const float m_minYNormal = 0.8f;
 
 		private Vector3 StartingPosition { get; set; }
 		private Quaternion StartingRotation { get; set; }
@@ -55,7 +55,7 @@ namespace ProjectFound.Environment.Props
 
 		public void CheckAngle( ref RaycastHit hit )
 		{
-			if ( !Misc.Floater.GreaterThan( hit.normal.y, m_maxPlacementAngle ) )
+			if ( !Misc.Floater.GreaterThan( hit.normal.y, m_minYNormal ) )
 			{
 				// Bad state: Angle too steep
 				DoRejectPlacement = true;

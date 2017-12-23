@@ -25,7 +25,7 @@ namespace ProjectFound.Core {
 			cursorSelection.AddPriority( LayerID.Item );
 			cursorSelection.AddPriority( LayerID.Prop );
 			cursorSelection.AddPriority( LayerID.Walkable );
-			cursorSelection.AddPriority( LayerID.Default ); // Temporary debug
+			//cursorSelection.AddPriority( LayerID.Default ); // Temporary debug
 
 			cursorSelection.SetLayerDelegates(
 				LayerID.Item, OnCursorFocusGained, OnCursorFocusLost );
