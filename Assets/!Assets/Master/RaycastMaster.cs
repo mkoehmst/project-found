@@ -99,7 +99,7 @@ namespace ProjectFound.Master {
 				get { return m_isEnabled; }
 				set
 				{
-					if ( value == true )
+					if ( value == false )
 					{
 						PriorityHitCheck = null;
 						PreviousPriorityHitCheck = null;
@@ -255,8 +255,23 @@ namespace ProjectFound.Master {
 				CheckForFocusChange( );
 			}
 
+			public GameObject GetPreviousHitObject( )
+			{
+				return PreviousPriorityHitCheck?.collider.gameObject;
+			}
+
 			private void CheckForFocusChange( )
 			{
+				GameObject prevObj = PreviousPriorityHitCheck?.collider.gameObject;
+				GameObject curObj = PriorityHitCheck?.collider.gameObject;
+
+				if ( prevObj != curObj )
+				{
+					ObjectFocusLost( prevObj );
+					ObjectFocusGained( curObj );
+				}
+
+				/*
 				if ( PreviousPriorityHitCheck.HasValue == true && PriorityHitCheck.HasValue == true )
 				{
 					GameObject prevObj = PreviousPriorityHitCheck.Value.collider.gameObject;
@@ -278,22 +293,29 @@ namespace ProjectFound.Master {
 				{
 					ObjectFocusLost( PreviousPriorityHitCheck.Value.collider.gameObject );
 				}
+				*/
 			}
 
 			private void ObjectFocusGained( GameObject obj )
 			{
-				LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)obj.layer );
+				if ( obj != null )
+				{
+					LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)obj.layer );
 
-				if ( layerDetails.DelegateCursorFocusGained != null )
-					layerDetails.DelegateCursorFocusGained( obj );
+					if ( layerDetails.DelegateCursorFocusGained != null )
+						layerDetails.DelegateCursorFocusGained( obj );
+				}
 			}
 
 			private void ObjectFocusLost( GameObject obj )
 			{
-				LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)obj.layer );
+				if ( obj != null )
+				{
+					LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)obj.layer );
 
-				if ( layerDetails.DelegateCursorFocusLost != null )
-					layerDetails.DelegateCursorFocusLost( obj );
+					if ( layerDetails.DelegateCursorFocusLost != null )
+						layerDetails.DelegateCursorFocusLost( obj );
+				}
 			}
 		}
 
@@ -344,14 +366,14 @@ namespace ProjectFound.Master {
 			}
 			else if ( CursorDevice == InputMaster.InputDevice.MouseAndKeyboard )
 			{
-				if ( IsOverUIElement( ) )
+				/*if ( IsOverUIElement( ) )
 				{
 					raycaster.ClearBlacklist( );
 					raycaster.IsEnabled = false;
 					CurrentRaycaster = Raycasters[RaycastMode.CursorSelection];
 					CurrentRaycaster.IsEnabled = true;
 					return ;
-				}
+				}*/
 
 				raycaster.Caster = Cam.ScreenPointToRay( Input.mousePosition );
 			}

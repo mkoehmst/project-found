@@ -143,6 +143,10 @@ namespace ProjectFound.Core {
 
 			switch ( raycaster.Mode )
 			{
+				case RaycastMaster.RaycastMode.CursorSelection:
+					GameObject obj = RaycastMaster.CurrentRaycaster.GetPreviousHitObject( );
+					RemoveFocusDirectly( obj?.GetComponent<Prop>( ) );
+					break;
 				case RaycastMaster.RaycastMode.HoldToMove:
 					break;
 				case RaycastMaster.RaycastMode.PropPlacement:
@@ -503,9 +507,12 @@ namespace ProjectFound.Core {
 
 		protected void RemoveFocusDirectly( Prop prop )
 		{
-			// Nullify Raycast Hit Check so RemoveFocus isn't called twice
-			RaycastMaster.CurrentRaycaster.PriorityHitCheck = null;
-			RemoveFocus( prop );
+			if ( prop != null )
+			{
+				// Nullify Raycast Hit Check so RemoveFocus isn't called twice
+				RaycastMaster.CurrentRaycaster.PriorityHitCheck = null;
+				RemoveFocus( prop );
+			}
 		}
 	}
 

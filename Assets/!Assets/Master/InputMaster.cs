@@ -223,78 +223,60 @@ namespace ProjectFound.Master {
 
 		public void Loop( )
 		{
-			m_screenRect.width = Screen.width;
-			m_screenRect.height = Screen.height;
-			if ( m_isCursorInWindow == true )
+			if ( CheckMouseCursorLocation( ) == true )
 			{
-				if ( !m_screenRect.Contains( Input.mousePosition ) )
+				float mouseX = Input.GetAxis( "Mouse X" );
+				float mouseY = Input.GetAxis( "Mouse Y" );
+				if ( !Misc.Floater.Equal( mouseX, 0f ) || !Misc.Floater.Equal( mouseY, 0f ) )
 				{
-					Debug.Log( "Cursor has gone outside game window" );
-					m_isCursorInWindow = false;
-					DelegateCursorLost( );
+					CurrentDeviceUsed = InputDevice.MouseAndKeyboard;
 				}
-			}
-			else
-			{
-				if ( m_screenRect.Contains( Input.mousePosition ) )
+				/* For Troubleshooting without joystick present
+				if ( CheckKeyDown( KeyCode.Comma ) )
 				{
-					Debug.Log( "Cursor has come back within game window" );
-					m_isCursorInWindow = true;
-					DelegateCursorGained( );
+					KeyIsDown( KeyCode.Joystick1Button11 );
 				}
-			}
+				*/
 
-			float mouseX = Input.GetAxis( "Mouse X" );
-			float mouseY = Input.GetAxis( "Mouse Y" );
-			if ( !Misc.Floater.Equal( mouseX, 0f ) || !Misc.Floater.Equal( mouseY, 0f ) )
-			{
-				CurrentDeviceUsed = InputDevice.MouseAndKeyboard;
-			}
-			/*
-			if ( CheckKeyDown( KeyCode.Comma ) )
-			{
-				KeyIsDown( KeyCode.Joystick1Button11 );
-			}
-			*/
+				foreach ( KeyCode keyToCheck in KeyMaps.Keys )
+				{
+					if ( CheckKeyDown( keyToCheck ) )
+					{
+						KeyIsDown( keyToCheck );
+					}
+					// Use an else-if because holding check should start the frame after
+					else if ( CheckKeyHolding( keyToCheck ) )
+					{
+						KeyIsHolding( keyToCheck );
+					}
 
-			foreach ( KeyCode keyToCheck in KeyMaps.Keys )
-			{
-				if ( CheckKeyDown( keyToCheck ) )
-				{
-					KeyIsDown( keyToCheck );
-				}
-				// Use an else-if because holding check should start the frame after
-				else if ( CheckKeyHolding( keyToCheck ) )
-				{
-					KeyIsHolding( keyToCheck );
+					if ( CheckKeyUp( keyToCheck ) )
+					{
+						KeyIsUp( keyToCheck );
+					}
 				}
 
-				if ( CheckKeyUp( keyToCheck ) )
+				foreach ( string axisToCheck in AxisMaps.Keys )
 				{
-					KeyIsUp( keyToCheck );
-				}
-			}
+					float axisMovement = CheckAxis( axisToCheck );
 
-			foreach ( string axisToCheck in AxisMaps.Keys )
-			{
-				float axisMovement = CheckAxis( axisToCheck );
-
-				if ( !Misc.Floater.Equal( axisMovement, 0f ) )
-				{
-					AxisHasMoved( axisToCheck, axisMovement );
-				}
-			}
-
-			foreach ( string[] axiiToCheck in AxiiMaps.Keys )
-			{
-				float[] axiiMovements = CheckAxii( axiiToCheck );
-
-				foreach ( float axisMovement in axiiMovements )
-				{
 					if ( !Misc.Floater.Equal( axisMovement, 0f ) )
 					{
-						AxiiHaveMoved( axiiToCheck, axiiMovements );
-						break;
+						AxisHasMoved( axisToCheck, axisMovement );
+					}
+				}
+
+				foreach ( string[] axiiToCheck in AxiiMaps.Keys )
+				{
+					float[] axiiMovements = CheckAxii( axiiToCheck );
+
+					foreach ( float axisMovement in axiiMovements )
+					{
+						if ( !Misc.Floater.Equal( axisMovement, 0f ) )
+						{
+							AxiiHaveMoved( axiiToCheck, axiiMovements );
+							break;
+						}
 					}
 				}
 			}
@@ -469,6 +451,33 @@ namespace ProjectFound.Master {
 				return ;
 
 			map.Fire( movements );
+		}
+
+		private bool CheckMouseCursorLocation( )
+		{
+			m_screenRect.width = Screen.width;
+			m_screenRect.height = Screen.height;
+
+			if ( m_isCursorInWindow == true )
+			{
+				if ( !m_screenRect.Contains( Input.mousePosition ) )
+				{
+					Debug.Log( "Cursor has gone outside game window" );
+					DelegateCursorLost( );
+					m_isCursorInWindow = false;
+				}
+			}
+			else
+			{
+				if ( m_screenRect.Contains( Input.mousePosition ) )
+				{
+					Debug.Log( "Cursor has come back within game window" );
+					DelegateCursorGained( );
+					m_isCursorInWindow = true;
+				}
+			}
+
+			return m_isCursorInWindow;
 		}
 	}
 
