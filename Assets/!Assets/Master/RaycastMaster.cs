@@ -13,9 +13,13 @@ namespace ProjectFound.Master {
 	{
 		public class LayerDetails
 		{
-			public delegate void CursorFocus( GameObject obj );
-			public CursorFocus DelegateCursorFocusGained;
-			public CursorFocus DelegateCursorFocusLost;
+			public delegate void CursorFocusGainedDelegate(
+				KeyValuePair<GameObject,RaycastHit> pair );
+
+			public delegate void CursorFocusLostDelegate( GameObject obj );
+
+			public CursorFocusGainedDelegate DelegateCursorFocusGained;
+			public CursorFocusLostDelegate DelegateCursorFocusLost;
 		}
 
 		public enum RaycastMode
@@ -27,12 +31,104 @@ namespace ProjectFound.Master {
 			CameraOcclusion
 		}
 
-		public class OcclusionRaycaster : Raycaster
+		public class LineRaycaster : Raycaster
 		{
-			public delegate void HitsFound( ref RaycastHit[] hits );
+			private const int m_maxPoints = 24;
+
+			public delegate void LineTrackingDelegate( ref Vector3 start, ref Vector3 end );
+			public delegate void CasterAssignmentsDelegate( ref Ray ray, ref Vector3 screenPos );
+
+			private int m_pixelResolution;
+			private Vector3 m_lineStart;
+			private Vector3 m_lineEnd;
+
+			private Ray[] m_raycasters = new Ray[m_maxPoints];
+
+			public LineTrackingDelegate DelegateLineTracking { get; set; }
+			public CasterAssignmentsDelegate DelegateCasterAssignments { get; set; }
+
+			public LineRaycaster(
+				RaycastMode mode, float maxDistance, int resolution, bool isEnabled = true )
+					:	base( mode, maxDistance, isEnabled )
+			{
+				m_pixelResolution = 48 / Mathf.Clamp( resolution, 1, 4 );
+			}
+
+			public override void Cast( )
+			{
+				DelegateLineTracking( ref m_lineStart, ref m_lineEnd );
+
+				Vector3 lineVector = m_lineEnd - m_lineStart;
+				Vector3 lineDirection = lineVector.normalized;
+
+				float lineLength = lineVector.magnitude;
+				float lineGap = lineLength / m_pixelResolution;
+
+				int numPoints = Mathf.RoundToInt( lineGap ) + 1; // Add one to ensure at least one
+				numPoints = (numPoints > m_maxPoints) ? m_maxPoints : numPoints;
+
+				Debug.Log( numPoints );
+
+				for ( int i = 0; i < numPoints; ++i )
+				{
+					Vector3 linePos = m_lineStart + (lineDirection * lineGap * i);
+
+					DelegateCasterAssignments( ref m_raycasters[i], ref linePos );
+
+					PerformRaycast( ref m_raycasters[i] );
+				}
+
+				ProcessRaycastResults( );
+				CycleHitCheck( );
+			}
+
+			protected void PerformRaycast( ref Ray ray )
+			{
+				RaycastHit firstHit;
+
+				bool success =
+					Physics.Raycast( ray, out firstHit, MaxDistance, LayerMask );
+
+				if ( success == true )
+				{
+					GameObject obj = firstHit.collider.gameObject;
+
+					if ( PriorityHitCheck.ContainsKey( obj ) == false )
+					{
+						PriorityHitCheck.Add( obj, firstHit );
+					}
+				}
+			}
+
+			protected void ProcessRaycastResults( )
+			{
+				for ( int i = 0; i < PriorityHitCheck.Count; ++i )
+				{
+					var pair = PriorityHitCheck.GetItem( i );
+
+					if ( PreviousPriorityHitCheck.ContainsKey( pair.Key ) == false )
+					{
+						ObjectFocusGained( pair );
+					}
+				}
+
+				for ( int i = 0; i < PreviousPriorityHitCheck.Count; ++i )
+				{
+					var pair = PreviousPriorityHitCheck.GetItem( i );
+
+					if( PriorityHitCheck.ContainsKey( pair.Key ) == false )
+					{
+						ObjectFocusLost( pair );
+					}
+				}
+			}
+		}
+
+		public class OcclusionRaycaster : PointRaycaster
+		{
+			public delegate void HitsFound( ICollection<GameObject> hits );
 
 			private bool m_isOccluded;
-			private RaycastHit[] m_raycastHits;
 
 			public HitsFound DelegateHitsFound { get; set; }
 			public HitsFound DelegateHitsNotFound { get; set; }
@@ -46,40 +142,114 @@ namespace ProjectFound.Master {
 
 			public override void Cast( )
 			{
-				switch ( Mode )
+				DelegateCasterAssignment( ref m_caster );
+
+				RaycastHit[] hits = Physics.RaycastAll( m_caster, MaxDistance, LayerMask );
+				if ( hits.Length > 0 )
 				{
-					case RaycastMode.CameraOcclusion:
-						RaycastHit[] hits = Physics.RaycastAll( Caster, MaxDistance, LayerMask );
-						if ( hits.Length > 0 )
+					Debug.Log( "Camera Occlusion Cast: TRUE!" );
+
+					if ( m_isOccluded == false )
+					{
+						m_isOccluded = true;
+
+						for ( int i = 0; i < hits.Length; ++i )
 						{
-							Debug.Log( "Camera Occlusion Cast: TRUE!" );
-
-							if ( m_isOccluded == false )
-							{
-								m_isOccluded = true;
-								m_raycastHits = hits;
-
-								DelegateHitsFound( ref hits );
-							}
-
-							return;
+							PriorityHitCheck.Add( hits[i].collider.gameObject, hits[i] );
 						}
-						else
-						{
-							if ( m_isOccluded == true )
-							{
-								m_isOccluded = false;
 
-								DelegateHitsNotFound( ref m_raycastHits );
-							}
+						DelegateHitsFound( PriorityHitCheck.Keys );
+					}
+				}
+				else
+				{
+					if ( m_isOccluded == true )
+					{
+						m_isOccluded = false;
 
-							return;
-						}
+						DelegateHitsNotFound( PriorityHitCheck.Keys );
+
+						PriorityHitCheck.Clear( );
+					}
 				}
 			}
 		}
 
-		public class Raycaster
+		public class PointRaycaster : Raycaster
+		{
+			public delegate void CasterAssignmentDelegate( ref Ray caster );
+
+			protected Ray m_caster;
+
+			public CasterAssignmentDelegate DelegateCasterAssignment { get; set; }
+
+			public PointRaycaster( RaycastMode mode, float maxDistance, bool isEnabled = true )
+				: base( mode, maxDistance, isEnabled )
+			{}
+
+			public override void Cast( )
+			{
+				DelegateCasterAssignment( ref m_caster );
+
+				PerformRaycast( );
+				ProcessRaycastResults( );
+				CycleHitCheck( );
+			}
+
+			private void PerformRaycast( )
+			{
+				RaycastHit firstHit;
+				bool success;
+
+				switch ( Mode )
+				{
+					case RaycastMode.CursorSelection:
+					case RaycastMode.PropPlacement:
+					case RaycastMode.HoldToMove:
+						// Select first hit that matches any Priority layer
+						success =
+							Physics.Raycast( m_caster, out firstHit, MaxDistance, LayerMask );
+						if ( success == true )
+						{
+							PriorityHitCheck.Add( firstHit.collider.gameObject, firstHit );
+							/*if ( !Misc.Floater.Equal( firstHit.normal.y, 1.0f ) )
+							{
+								string x = firstHit.normal.x.ToString( "0.000" );
+								string y = firstHit.normal.y.ToString( "0.000" );
+								string z = firstHit.normal.z.ToString( "0.000" );
+								Debug.Log( "(" + x + ", " + y + ", " + z + ")" );
+							}*/
+							return;
+						}
+						return;
+				}
+			}
+
+			private void ProcessRaycastResults( )
+			{
+				for ( int i = 0; i < PriorityHitCheck.Count; ++i )
+				{
+					var pair = PriorityHitCheck.GetItem( i );
+
+					if ( PreviousPriorityHitCheck.ContainsKey( pair.Key ) == false )
+					{
+						ObjectFocusGained( pair );
+					}
+				}
+
+				for ( int i = 0; i < PreviousPriorityHitCheck.Count; ++i )
+				{
+					var pair = PreviousPriorityHitCheck.GetItem( i );
+
+					if ( PriorityHitCheck.ContainsKey( pair.Key ) == false )
+					{
+						ObjectFocusLost( pair );
+					}
+				}
+			}
+		}
+
+		public abstract class Raycaster
 		{
 			public struct Blacklistee
 			{
@@ -101,8 +271,8 @@ namespace ProjectFound.Master {
 				{
 					if ( value == false )
 					{
-						PriorityHitCheck = null;
-						PreviousPriorityHitCheck = null;
+						PriorityHitCheck.Clear( );
+						PreviousPriorityHitCheck.Clear( );
 					}
 					m_isEnabled = value;
 				}
@@ -112,19 +282,22 @@ namespace ProjectFound.Master {
 			public float MaxDistance { get; set; }
 			public int LayerMask { get; private set; }
 			public OrderedDictionary<Core.LayerID,LayerDetails> Priority { get; private set; }
-			public RaycastHit? PriorityHitCheck { get; set; }
-			public RaycastHit? PreviousPriorityHitCheck { get; private set; }
-			public Ray Caster { get; set; }
+			public OrderedDictionary<GameObject,RaycastHit> PriorityHitCheck { get; protected set; }
+			public OrderedDictionary<GameObject,RaycastHit> PreviousPriorityHitCheck { get; protected set; }
 
 			public Dictionary<GameObject,Blacklistee> Blacklist { get; private set; }
 
 			public Raycaster( RaycastMode mode, float maxDistance, bool isEnabled )
 			{
-				IsEnabled	= isEnabled;
-				Mode		= mode;
-				MaxDistance	= maxDistance;
-				Priority	= new OrderedDictionary<Core.LayerID,LayerDetails>( );
-				Blacklist	= new Dictionary<GameObject,Blacklistee>( );
+				Mode						= mode;
+				MaxDistance					= maxDistance;
+				Priority					= new OrderedDictionary<Core.LayerID,LayerDetails>( );
+				PriorityHitCheck			= new OrderedDictionary<GameObject,RaycastHit>( );
+				PreviousPriorityHitCheck	= new OrderedDictionary<GameObject,RaycastHit>( );
+				Blacklist					= new Dictionary<GameObject,Blacklistee>( );
+
+				// This should be last because it can access the hit check dictionaries
+				IsEnabled = isEnabled;
 			}
 
 			public void AddPriority( Core.LayerID layer )
@@ -162,7 +335,8 @@ namespace ProjectFound.Master {
 			}
 
 			public void SetLayerDelegates( Core.LayerID layer,
-				LayerDetails.CursorFocus gained, LayerDetails.CursorFocus lost )
+				LayerDetails.CursorFocusGainedDelegate gained,
+				LayerDetails.CursorFocusLostDelegate lost )
 			{
 				LayerDetails layerDetails = Priority.GetValue( layer );
 
@@ -173,22 +347,22 @@ namespace ProjectFound.Master {
 				}
 			}
 
-			public virtual void Cast( )
-			{
-				RaycastHit firstHit;
-				bool success;
+			public abstract void Cast( );
+			//{
+				//RaycastHit firstHit;
+				//bool success;
 
-				switch ( Mode )
-				{
-					case RaycastMode.CursorSelection:
-					case RaycastMode.PropPlacement:
-					case RaycastMode.HoldToMove:
+				//switch ( Mode )
+				//{
+					//case RaycastMode.CursorSelection:
+					//case RaycastMode.PropPlacement:
+					//case RaycastMode.HoldToMove:
 						// Select first hit that matches any Priority layer
-						success =
-							Physics.Raycast( Caster, out firstHit, MaxDistance, LayerMask );
-						if ( success == true )
-						{
-							UpdateHitCheck( firstHit );
+						//success =
+							//Physics.Raycast( Caster, out firstHit, MaxDistance, LayerMask );
+						//if ( success == true )
+						//{
+							//UpdateHitCheck( firstHit );
 							/*if ( !Misc.Floater.Equal( firstHit.normal.y, 1.0f ) )
 							{
 								string x = firstHit.normal.x.ToString( "0.000" );
@@ -196,10 +370,10 @@ namespace ProjectFound.Master {
 								string z = firstHit.normal.z.ToString( "0.000" );
 								Debug.Log( "(" + x + ", " + y + ", " + z + ")" );
 							}*/
-							return;
-						}
-						UpdateHitCheck( null );
-						return;
+							//return;
+						//}
+						//UpdateHitCheck( null );
+						//return;
 
 					/*case RaycastMode.HoldToMove:
 						// Select the closest hit of the highest Priority layer hit
@@ -244,145 +418,81 @@ namespace ProjectFound.Master {
 						}
 						UpdateHitCheck( null );
 						return;*/
-				}
+				//}
+			//}
+
+			public ICollection<GameObject> GetPreviousHitObjects( )
+			{
+				return PreviousPriorityHitCheck.Keys;
 			}
 
-			public void UpdateHitCheck( RaycastHit? hit )
+			public KeyValuePair<GameObject,RaycastHit> GetLastHit( )
 			{
-				PreviousPriorityHitCheck = PriorityHitCheck;
-				PriorityHitCheck = hit;
+				int i = PreviousPriorityHitCheck.Keys.Count - 1;
 
-				CheckForFocusChange( );
+				return PreviousPriorityHitCheck.GetItem( i );
 			}
 
-			public GameObject GetPreviousHitObject( )
+			public GameObject GetFirstHitObject( )
 			{
-				return PreviousPriorityHitCheck?.collider.gameObject;
+				return PriorityHitCheck.GetItem( 0 ).Key;
 			}
 
-			private void CheckForFocusChange( )
+			protected void ObjectFocusGained( KeyValuePair<GameObject,RaycastHit> pair )
 			{
-				GameObject prevObj = PreviousPriorityHitCheck?.collider.gameObject;
-				GameObject curObj = PriorityHitCheck?.collider.gameObject;
+				LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)pair.Key.layer );
 
-				if ( prevObj != curObj )
-				{
-					ObjectFocusLost( prevObj );
-					ObjectFocusGained( curObj );
-				}
-
-				/*
-				if ( PreviousPriorityHitCheck.HasValue == true && PriorityHitCheck.HasValue == true )
-				{
-					GameObject prevObj = PreviousPriorityHitCheck.Value.collider.gameObject;
-					GameObject curObj = PriorityHitCheck.Value.collider.gameObject;
-
-					if ( prevObj != curObj )
-					{
-						ObjectFocusLost( prevObj );
-						ObjectFocusGained( curObj );
-					}
-				}
-				else if (
-					PreviousPriorityHitCheck.HasValue == false && PriorityHitCheck.HasValue == true )
-				{
-					ObjectFocusGained( PriorityHitCheck.Value.collider.gameObject );
-				}
-				else if (
-					PreviousPriorityHitCheck.HasValue == true && PriorityHitCheck.HasValue == false )
-				{
-					ObjectFocusLost( PreviousPriorityHitCheck.Value.collider.gameObject );
-				}
-				*/
+				if ( layerDetails.DelegateCursorFocusGained != null )
+					layerDetails.DelegateCursorFocusGained( pair );
 			}
 
-			private void ObjectFocusGained( GameObject obj )
+			protected void ObjectFocusLost( KeyValuePair<GameObject,RaycastHit> pair )
 			{
-				if ( obj != null )
-				{
-					LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)obj.layer );
+				GameObject obj = pair.Key;
 
-					if ( layerDetails.DelegateCursorFocusGained != null )
-						layerDetails.DelegateCursorFocusGained( obj );
-				}
+				LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)obj.layer );
+
+				if ( layerDetails.DelegateCursorFocusLost != null )
+					layerDetails.DelegateCursorFocusLost( obj );
 			}
 
-			private void ObjectFocusLost( GameObject obj )
+			protected void CycleHitCheck( )
 			{
-				if ( obj != null )
-				{
-					LayerDetails layerDetails = Priority.GetValue( (Core.LayerID)obj.layer );
-
-					if ( layerDetails.DelegateCursorFocusLost != null )
-						layerDetails.DelegateCursorFocusLost( obj );
-				}
+				PreviousPriorityHitCheck.Duplicate( PriorityHitCheck );
+				PriorityHitCheck.Clear( );
 			}
 		}
 
-		private Camera Cam { get; set; }
-
 		public Dictionary<RaycastMode, Raycaster> Raycasters { get; private set; }
 		public Raycaster CurrentRaycaster { get; set; }
-		public EventSystem EventSystem { get; private set; }
-		public Rect ScreenRect { get; private set; }
-		public Vector3 ScreenCenter { get; private set; }
+		//public EventSystem EventSystem { get; private set; }
 		public InputMaster.InputDevice CursorDevice { get; set; }
 
 		public RaycastMaster( )
 		{
 			Raycasters = new Dictionary<RaycastMode, Raycaster>( );
-			EventSystem = GameObject.FindObjectOfType<EventSystem>( );
-			ScreenRect = new Rect( 0, 0, Screen.width, Screen.height );
-			ScreenCenter = new Vector3( Screen.width / 2, Screen.height / 2, 0f );
+			//EventSystem = GameObject.FindObjectOfType<EventSystem>( );
 		}
 
 		public void Loop( )
 		{
-			if ( Cam == null )
-				Cam = Camera.main;
-
 			foreach ( Raycaster raycaster in Raycasters.Values )
 			{
 				if ( raycaster.IsEnabled == true )
 				{
-					CastCheck( raycaster );
+					raycaster.Cast( );
 				}
 			}
 		}
 
-		public virtual void CastCheck( Raycaster raycaster )
+		public LineRaycaster AddLineRaycaster
+			( RaycastMode mode, float maxDistance, int resolution, bool isEnabled = true )
 		{
-			if ( raycaster.Mode == RaycastMode.CameraOcclusion )
-			{
-				OcclusionRaycaster occlusionRaycaster = raycaster as OcclusionRaycaster;
+			LineRaycaster raycaster = new LineRaycaster( mode, maxDistance, resolution, isEnabled );
 
-				Ray ray = new Ray( );
+			Raycasters[mode] = raycaster;
 
-				ray.origin = Cam.transform.position;
-				ray.direction = (occlusionRaycaster.Target.position - ray.origin).normalized;
-
-				occlusionRaycaster.Caster = ray;
-
-			}
-			else if ( CursorDevice == InputMaster.InputDevice.MouseAndKeyboard )
-			{
-				/*if ( IsOverUIElement( ) )
-				{
-					raycaster.ClearBlacklist( );
-					raycaster.IsEnabled = false;
-					CurrentRaycaster = Raycasters[RaycastMode.CursorSelection];
-					CurrentRaycaster.IsEnabled = true;
-					return ;
-				}*/
-
-				raycaster.Caster = Cam.ScreenPointToRay( Input.mousePosition );
-			}
-			else if ( CursorDevice == InputMaster.InputDevice.Gamepad )
-			{
-				raycaster.Caster = Cam.ScreenPointToRay( ScreenCenter );
-			}
-
-			raycaster.Cast( );
+			return raycaster;
 		}
 
 		public OcclusionRaycaster AddOcclusionRaycaster
@@ -396,18 +506,19 @@ namespace ProjectFound.Master {
 			return raycaster;
 		}
 
-		public Raycaster AddRaycaster( RaycastMode mode, float maxDistance, bool isEnabled = true )
+		public PointRaycaster AddPointRaycaster
+			( RaycastMode mode, float maxDistance, bool isEnabled = true )
 		{
-			Raycaster raycaster = new Raycaster( mode, maxDistance, isEnabled );
+			PointRaycaster raycaster = new PointRaycaster( mode, maxDistance, isEnabled );
 			Raycasters[mode] = raycaster;
 
 			return raycaster;
 		}
 
-		private bool IsOverUIElement( )
-		{
-			return EventSystem.current.IsPointerOverGameObject( );
-		}
+		//private bool IsOverUIElement( )
+		//{
+		//	return EventSystem.current.IsPointerOverGameObject( );
+		//}
 	}
 
 

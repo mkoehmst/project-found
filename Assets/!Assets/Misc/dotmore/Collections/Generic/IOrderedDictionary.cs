@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 
 namespace mattmc3.dotmore.Collections.Generic {
@@ -10,6 +10,8 @@ namespace mattmc3.dotmore.Collections.Generic {
 		new ICollection<TKey> Keys { get; }
 		new ICollection<TValue> Values { get; }
 		new void Add(TKey key, TValue value);
+		new void Add(KeyValuePair<TKey,TValue> pair);
+		void Duplicate(IOrderedDictionary<TKey,TValue> otherDictionary);
 		new void Clear();
 		void Insert(int index, TKey key, TValue value);
 		int IndexOf(TKey key);

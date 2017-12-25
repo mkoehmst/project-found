@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Collections;
 using System.Collections.Specialized;
@@ -53,7 +53,7 @@ namespace mattmc3.dotmore.Collections.Generic {
 			}
 		}
 
-		
+
 		/// <summary>
 		/// Gets the number of items in the dictionary
 		/// </summary>
@@ -88,7 +88,7 @@ namespace mattmc3.dotmore.Collections.Generic {
 		}
 
 		#endregion
-		
+
 		#region Constructors
 
 		public OrderedDictionary() {
@@ -128,7 +128,7 @@ namespace mattmc3.dotmore.Collections.Generic {
 		}
 
 		#endregion
-		
+
 		#region Methods
 
 		private void Initialize(IEqualityComparer<TKey> comparer = null) {
@@ -148,6 +148,23 @@ namespace mattmc3.dotmore.Collections.Generic {
 		/// <param name="value">The value of the element to add.  The value can be null for reference types.</param>
 		public void Add(TKey key, TValue value) {
 			_keyedCollection.Add(new KeyValuePair<TKey, TValue>(key, value));
+		}
+
+		public void Add( KeyValuePair<TKey,TValue> pair )
+		{
+			_keyedCollection.Add( pair );
+		}
+
+		public void Duplicate( IOrderedDictionary<TKey,TValue> otherDictionary )
+		{
+			Clear( );
+
+			for ( int i = 0; i < otherDictionary.Count; ++i )
+			{
+				KeyValuePair<TKey,TValue> pair = otherDictionary.GetItem( i );
+
+				Add( pair );
+			}
 		}
 
 		/// <summary>

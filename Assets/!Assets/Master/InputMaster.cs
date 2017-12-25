@@ -42,9 +42,15 @@ namespace ProjectFound.Master {
 			{
 				IsEnabled = isEnabled;
 				Device = device;
-				Mode = KeyMode.Undefined;
 				Action = action;
 				Key = key;
+
+				Initialize( );
+			}
+
+			public void Initialize( )
+			{
+				Mode = KeyMode.Undefined;
 				HoldingWindow = null;
 				HoldingCount = 0;
 			}
@@ -57,6 +63,8 @@ namespace ProjectFound.Master {
 			public void Disable( )
 			{
 				IsEnabled = false;
+
+				Initialize( );
 			}
 
 			public void Fire( KeyMode mode )
@@ -116,15 +124,15 @@ namespace ProjectFound.Master {
 					return true;
 				}
 
-				public int GetHashCode( string[] obj )
+				public int GetHashCode( string[] str )
 				{
 					int hashCode = 1;
 
-					for ( int i = 0; i < obj.Length; ++i )
+					for ( int i = 0; i < str.Length; ++i )
 					{
 						unchecked
 						{
-							hashCode *= obj[i].GetHashCode( );
+							hashCode *= str[i].GetHashCode( );
 						}
 					}
 
@@ -207,6 +215,10 @@ namespace ProjectFound.Master {
 		public Dictionary<InputDevice,DeviceMapping> DeviceMappings { get; private set; }
 		public InputDevice CurrentDeviceMapped { get; set; }
 
+		public Vector3 MousePosition { get; private set; }
+		public Vector3 PreviousMousePosition { get; private set; }
+		public Vector3 MouseMovementVector { get; private set; }
+
 		public InputMaster( )
 		{
 			m_screenRect = new Rect( );
@@ -287,6 +299,14 @@ namespace ProjectFound.Master {
 			CurrentDeviceMapped = device;
 
 			DeviceMappings[device] = new DeviceMapping( device );
+		}
+
+		public void ResetKeyMap( KeyAction action )
+		{
+			KeyCode key = DeviceMappings[CurrentDeviceUsed].ActionToKey[action];
+			KeyMap map = KeyMaps[key];
+
+			map.Initialize( );
 		}
 
 		public void MapKey( bool isEnabled, KeyAction action, KeyCode key )
@@ -458,20 +478,24 @@ namespace ProjectFound.Master {
 			m_screenRect.width = Screen.width;
 			m_screenRect.height = Screen.height;
 
+			PreviousMousePosition = MousePosition;
+			MousePosition = Input.mousePosition;
+			MouseMovementVector = MousePosition - PreviousMousePosition;
+
 			if ( m_isCursorInWindow == true )
 			{
-				if ( !m_screenRect.Contains( Input.mousePosition ) )
+				if ( !m_screenRect.Contains( MousePosition ) )
 				{
-					Debug.Log( "Cursor has gone outside game window" );
+					//Debug.Log( "Cursor has gone outside game window" );
 					DelegateCursorLost( );
 					m_isCursorInWindow = false;
 				}
 			}
 			else
 			{
-				if ( m_screenRect.Contains( Input.mousePosition ) )
+				if ( m_screenRect.Contains( MousePosition ) )
 				{
-					Debug.Log( "Cursor has come back within game window" );
+					//Debug.Log( "Cursor has come back within game window" );
 					DelegateCursorGained( );
 					m_isCursorInWindow = true;
 				}
