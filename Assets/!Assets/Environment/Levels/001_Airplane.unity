@@ -1288,6 +1288,26 @@ Prefab:
       propertyPath: m_Name
       value: Airplane_SeatingArea_Right_a_01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1662591778588578, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529215852363962, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990992243124448, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1562521450517400, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1601853190159106, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
   m_IsPrefabParent: 0
@@ -1341,7 +1361,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &34655454
 Transform:
@@ -1994,37 +2014,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: db147e252013b2c4790326bd40c56ca6, type: 3}
   m_PrefabInternal: {fileID: 127014225}
---- !u!84 &146127081
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 626
-  m_Height: 391
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &149602749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,6 +2506,38 @@ Prefab:
       propertyPath: m_Name
       value: Airplane_OverheadBin (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
   m_IsPrefabParent: 0
@@ -2998,6 +3019,46 @@ Prefab:
     - target: {fileID: 1761270669825748, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
       propertyPath: m_Name
       value: Airplane_SeatingArea_Center_a_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761270669825748, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679481493959974, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481871009783174, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500089791211148, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1474642072159110, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524419076094864, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692742352722796, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606803795976446, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772746787341644, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523130442537272, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
@@ -7161,6 +7222,26 @@ Prefab:
       propertyPath: m_Name
       value: Airplane_SeatingArea_Left_a_01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1366440146785734, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243134130659692, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096315941158216, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092883319398494, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058791734012626, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a263b97ee02673345a88970d3df648a7, type: 2}
   m_IsPrefabParent: 0
@@ -7965,7 +8046,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &424596197
 Transform:
@@ -8161,6 +8242,38 @@ Prefab:
       propertyPath: m_Name
       value: Airplane_OverheadBin (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
   m_IsPrefabParent: 0
@@ -8219,6 +8332,38 @@ Prefab:
     - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
       propertyPath: m_Name
       value: Airplane_OverheadBin (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
@@ -8599,6 +8744,38 @@ Prefab:
       propertyPath: m_Name
       value: Airplane_OverheadBin (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
   m_IsPrefabParent: 0
@@ -8781,6 +8958,38 @@ Prefab:
     - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
       propertyPath: m_Name
       value: Airplane_OverheadBin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
@@ -9221,6 +9430,38 @@ Prefab:
     - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
       propertyPath: m_Name
       value: Airplane_OverheadBin (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
@@ -11094,37 +11335,6 @@ Transform:
   m_Father: {fileID: 1547573815}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &779455784
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 626
-  m_Height: 391
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!4 &813755263
 Transform:
   m_ObjectHideFlags: 0
@@ -11327,6 +11537,38 @@ Prefab:
     - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
       propertyPath: m_Name
       value: Airplane_OverheadBin (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
@@ -11674,6 +11916,46 @@ Prefab:
     - target: {fileID: 1761270669825748, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
       propertyPath: m_Name
       value: Airplane_SeatingArea_Center_a_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679481493959974, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772746787341644, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524419076094864, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481871009783174, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523130442537272, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761270669825748, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1474642072159110, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692742352722796, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606803795976446, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500089791211148, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
@@ -12165,6 +12447,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1058791734012626, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243134130659692, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096315941158216, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092883319398494, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366440146785734, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a263b97ee02673345a88970d3df648a7, type: 2}
   m_IsPrefabParent: 0
@@ -12423,6 +12725,26 @@ Prefab:
       propertyPath: m_Name
       value: Airplane_SeatingArea_Left_a_01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1092883319398494, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243134130659692, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058791734012626, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366440146785734, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096315941158216, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a263b97ee02673345a88970d3df648a7, type: 2}
   m_IsPrefabParent: 0
@@ -12550,7 +12872,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &920389544
 Transform:
@@ -12651,6 +12973,38 @@ Prefab:
     - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
       propertyPath: m_Name
       value: Airplane_OverheadBin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
@@ -13113,6 +13467,38 @@ Prefab:
       propertyPath: m_Name
       value: Airplane_OverheadBin (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
   m_IsPrefabParent: 0
@@ -13208,6 +13594,38 @@ Prefab:
     - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
       propertyPath: m_Name
       value: Airplane_OverheadBin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
@@ -13468,6 +13886,34 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1449995413433590, guid: bf7a20c647ce4b5428498aad9ec8eb08, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849997837433118, guid: bf7a20c647ce4b5428498aad9ec8eb08, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849997837433118, guid: bf7a20c647ce4b5428498aad9ec8eb08, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449995413433590, guid: bf7a20c647ce4b5428498aad9ec8eb08, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1811179394316722, guid: bf7a20c647ce4b5428498aad9ec8eb08, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1134589668761182, guid: bf7a20c647ce4b5428498aad9ec8eb08, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1134589668761182, guid: bf7a20c647ce4b5428498aad9ec8eb08, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf7a20c647ce4b5428498aad9ec8eb08, type: 2}
   m_IsPrefabParent: 0
@@ -13657,7 +14103,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1095571575
 Transform:
@@ -13831,6 +14277,38 @@ Prefab:
     - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
       propertyPath: m_Name
       value: Airplane_OverheadBin (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
@@ -14010,6 +14488,26 @@ Prefab:
     - target: {fileID: 1243134130659692, guid: a263b97ee02673345a88970d3df648a7, type: 2}
       propertyPath: m_Name
       value: Airplane_SeatingArea_Left_a_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096315941158216, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243134130659692, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058791734012626, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366440146785734, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092883319398494, guid: a263b97ee02673345a88970d3df648a7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a263b97ee02673345a88970d3df648a7, type: 2}
@@ -14463,6 +14961,38 @@ Prefab:
       propertyPath: m_Name
       value: Airplane_OverheadBin (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
   m_IsPrefabParent: 0
@@ -14766,6 +15296,37 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: db147e252013b2c4790326bd40c56ca6, type: 3}
   m_PrefabInternal: {fileID: 1178640689}
+--- !u!84 &1184385996
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 626
+  m_Height: 391
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1194889198
 GameObject:
   m_ObjectHideFlags: 0
@@ -15033,6 +15594,26 @@ Prefab:
       propertyPath: m_Name
       value: Airplane_SeatingArea_Right_a_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1662591778588578, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529215852363962, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1601853190159106, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1562521450517400, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990992243124448, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
   m_IsPrefabParent: 0
@@ -15041,6 +15622,37 @@ Transform:
   m_PrefabParentObject: {fileID: 4436651024600104, guid: 174a48e04ec558541abc1f4ec95c052c,
     type: 2}
   m_PrefabInternal: {fileID: 1204361786}
+--- !u!84 &1211946648
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 626
+  m_Height: 391
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1214096136
 GameObject:
   m_ObjectHideFlags: 0
@@ -15190,8 +15802,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 1235673872}
   outlineCamera: {fileID: 2032682208}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 146127081}
-  extraRenderTexture: {fileID: 779455784}
+  renderTexture: {fileID: 1211946648}
+  extraRenderTexture: {fileID: 1184385996}
 --- !u!114 &1235673868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15679,7 +16291,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1245578530
 Transform:
@@ -15782,6 +16394,38 @@ Prefab:
       propertyPath: m_Name
       value: Airplane_OverheadBin (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
   m_IsPrefabParent: 0
@@ -15804,7 +16448,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1297357573
 Transform:
@@ -16053,6 +16697,46 @@ Prefab:
     - target: {fileID: 1761270669825748, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
       propertyPath: m_Name
       value: Airplane_SeatingArea_Center_a_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481871009783174, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1474642072159110, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761270669825748, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500089791211148, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772746787341644, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606803795976446, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524419076094864, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692742352722796, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679481493959974, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523130442537272, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
@@ -16847,6 +17531,26 @@ Prefab:
       propertyPath: m_Name
       value: Airplane_SeatingArea_Right_a_01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1990992243124448, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1562521450517400, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1601853190159106, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662591778588578, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529215852363962, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
   m_IsPrefabParent: 0
@@ -17001,6 +17705,38 @@ Prefab:
     - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
       propertyPath: m_Name
       value: Airplane_OverheadBin (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
@@ -17255,6 +17991,38 @@ Prefab:
       propertyPath: m_Name
       value: Airplane_OverheadBin (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
   m_IsPrefabParent: 0
@@ -17276,7 +18044,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1470923634
 Transform:
@@ -17310,7 +18078,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1474597033
 Transform:
@@ -17580,6 +18348,38 @@ Prefab:
       propertyPath: m_Name
       value: Airplane_OverheadBin (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
   m_IsPrefabParent: 0
@@ -17792,6 +18592,38 @@ Prefab:
     - target: {fileID: 4568234228912904, guid: 56635728966d7c94695492c952b63aff, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
@@ -18115,6 +18947,38 @@ Prefab:
     - target: {fileID: 4568234228912904, guid: 56635728966d7c94695492c952b63aff, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
@@ -18482,7 +19346,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1642003542
 Transform:
@@ -18628,6 +19492,26 @@ Prefab:
     - target: {fileID: 1990992243124448, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
       propertyPath: m_Name
       value: Airplane_SeatingArea_Right_a_01 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529215852363962, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1562521450517400, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662591778588578, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1601853190159106, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990992243124448, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 174a48e04ec558541abc1f4ec95c052c, type: 2}
@@ -19042,10 +19926,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1761270669825748, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
-      propertyPath: m_Name
-      value: Airplane_SeatingArea_Center_a_01
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
   m_IsPrefabParent: 0
@@ -19333,6 +20213,38 @@ Prefab:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
   m_IsPrefabParent: 0
@@ -19467,6 +20379,46 @@ Prefab:
     - target: {fileID: 1761270669825748, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
       propertyPath: m_Name
       value: Airplane_SeatingArea_Center_a_01 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772746787341644, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679481493959974, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606803795976446, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481871009783174, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1474642072159110, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523130442537272, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500089791211148, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761270669825748, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692742352722796, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524419076094864, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a3e5ca2f69baa6c49bfa294aaa41ae68, type: 2}
@@ -20985,7 +21937,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 146127081}
+  m_TargetTexture: {fileID: 1211946648}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -21247,6 +22199,38 @@ Prefab:
     - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
       propertyPath: m_Name
       value: Airplane_OverheadBin (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843881395051006, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617808646554114, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498541061776774, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030437457302318, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729364932854788, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461402542303256, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529638653470448, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769357342922588, guid: 56635728966d7c94695492c952b63aff, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56635728966d7c94695492c952b63aff, type: 2}
@@ -21574,6 +22558,110 @@ Prefab:
     - target: {fileID: 4579202609734304, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892276135520816, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1765537391984148, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857047003369948, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1696945703507124, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228956928871366, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849062116480892, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316169559712736, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114853170145072, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541543571825138, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916422227734276, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369466934454008, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948975183721364, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516236521454220, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491812248647668, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597993033803260, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261319301951334, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849062116480892, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114853170145072, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857047003369948, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916422227734276, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316169559712736, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369466934454008, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892276135520816, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228956928871366, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541543571825138, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1696945703507124, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70055d2f44d412645af7fac369a1340b, type: 2}
