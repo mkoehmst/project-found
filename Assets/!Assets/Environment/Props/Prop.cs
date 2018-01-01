@@ -9,6 +9,8 @@ namespace ProjectFound.Environment.Props {
 
 	public class Prop : Interactee
 	{
+		private const string m_activateTriggerString = "Prop_Activate";
+
 		[SerializeField] Sprite m_icon;
 		[SerializeField] Mesh m_clearanceMesh;
 
@@ -31,7 +33,7 @@ namespace ProjectFound.Environment.Props {
 		{
 			base.Start( );
 
-			m_activateTrigger = Animator.StringToHash( "Prop_Activate" );
+			m_activateTrigger = Animator.StringToHash( m_activateTriggerString );
 		}
 
 		public override bool ValidateAction( ActionType actionType )

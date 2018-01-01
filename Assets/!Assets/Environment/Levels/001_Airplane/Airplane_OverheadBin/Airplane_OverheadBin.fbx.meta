@@ -12,6 +12,14 @@ ModelImporter:
     100008: overheadBin_liner
     100010: overheadBin
     100012: overheadBin_
+    100014: Airplane_OverheadBin_Box
+    100016: Airplane_OverheadBin_Door
+    100018: Airplane_OverheadBin_DoorHandle
+    100020: Airplane_OverheadBin_Liner
+    100022: JT_Airplane_OverheadBin_Box_0
+    100024: JT_Airplane_OverheadBin_Door_0
+    100026: JT_Airplane_OverheadBin_Root_0
+    100028: SK_Airplane_OverheadBin_0
     400000: //RootNode
     400002: overheadBin 1
     400004: overheadBin_door
@@ -19,7 +27,16 @@ ModelImporter:
     400008: overheadBin_liner
     400010: overheadBin
     400012: overheadBin_
+    400014: Airplane_OverheadBin_Box
+    400016: Airplane_OverheadBin_Door
+    400018: Airplane_OverheadBin_DoorHandle
+    400020: Airplane_OverheadBin_Liner
+    400022: JT_Airplane_OverheadBin_Box_0
+    400024: JT_Airplane_OverheadBin_Door_0
+    400026: JT_Airplane_OverheadBin_Root_0
+    400028: SK_Airplane_OverheadBin_0
     2100000: phong1
+    2100002: Airplane_OverheadBin2
     2300000: overheadBin 1
     2300002: overheadBin_door
     2300004: overheadBin_door_handle
@@ -37,6 +54,10 @@ ModelImporter:
     4300004: overheadBin_door_handle
     4300006: overheadBin_liner
     4300008: overheadBin_
+    4300010: Airplane_OverheadBin_Box
+    4300012: Airplane_OverheadBin_Door
+    4300014: Airplane_OverheadBin_DoorHandle
+    4300016: Airplane_OverheadBin_Liner
     6400000: overheadBin
     6400002: overheadBin_door
     6400004: overheadBin_door_handle
@@ -44,6 +65,10 @@ ModelImporter:
     6400008: overheadBin_
     7400000: Airplane_OverheadBin_ANIM_Door_Open
     9500000: //RootNode
+    13700000: Airplane_OverheadBin_Box
+    13700002: Airplane_OverheadBin_Door
+    13700004: Airplane_OverheadBin_DoorHandle
+    13700006: Airplane_OverheadBin_Liner
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -113,8 +138,10 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
-    keepQuads: 0
+    keepQuads: 1
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

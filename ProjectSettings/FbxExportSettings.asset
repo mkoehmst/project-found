@@ -1,0 +1,22 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Fbx Export Settings",
+        "m_EditorClassIdentifier": "",
+        "mayaCompatibleNames": false,
+        "centerObjects": true,
+        "launchAfterInstallation": true,
+        "HideSendToUnityMenu": false,
+        "ExportFormatSelection": 0,
+        "IntegrationSavePath": "P:/Found/UnityMayaBridge",
+        "selectedDCCApp": 0,
+        "convertToModelSavePath": "!Exports",
+        "dccOptionNames": [
+            "Maya LT2018"
+        ],
+        "dccOptionPaths": [
+            "C:/Program Files/Autodesk/MayaLT2018/bin/maya.exe"
+        ]
+    }
+}

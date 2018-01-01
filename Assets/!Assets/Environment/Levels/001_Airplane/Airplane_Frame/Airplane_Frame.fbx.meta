@@ -36,6 +36,8 @@ ModelImporter:
     100056: Airplane_Frame_CabinRoof
     100058: Airplane_Frame_FuselageRoof
     100060: Airplane_Frame_CabinCeiling
+    100062: Airplane_Frame 1
+    100064: Airplane_WindowChambers
     400000: Airplane_BackWall_01
     400002: Airplane_BackWall_02
     400004: Airplane_BackWall_03
@@ -67,6 +69,8 @@ ModelImporter:
     400056: Airplane_Frame_CabinRoof
     400058: Airplane_Frame_FuselageRoof
     400060: Airplane_Frame_CabinCeiling
+    400062: Airplane_Frame 1
+    400064: Airplane_WindowChambers
     2100000: phong1
     2100002: phong4
     2100004: Airplane_Walls_MAT
@@ -97,6 +101,8 @@ ModelImporter:
     2300042: Airplane_Frame_CabinRoof
     2300044: Airplane_Frame_FuselageRoof
     2300046: Airplane_Frame_CabinCeiling
+    2300048: Airplane_Frame 1
+    2300050: Airplane_WindowChambers
     3300000: Airplane_BackWall_01
     3300002: Airplane_BackWall_02
     3300004: Airplane_BackWall_03
@@ -121,6 +127,8 @@ ModelImporter:
     3300042: Airplane_Frame_CabinRoof
     3300044: Airplane_Frame_FuselageRoof
     3300046: Airplane_Frame_CabinCeiling
+    3300048: Airplane_Frame 1
+    3300050: Airplane_WindowChambers
     4300000: Airplane_Frame
     4300002: Airplane_SectionWall
     4300004: Airplane_FrontWall_01
@@ -145,6 +153,7 @@ ModelImporter:
     4300042: Airplane_Frame_FuselageRoof
     4300044: Airplane_Frame_CabinRoof
     4300046: Airplane_Frame_CabinCeiling
+    4300048: Airplane_WindowChambers
     6400000: Airplane_BackWall_01
     6400002: Airplane_BackWall_02
     6400004: Airplane_BackWall_03
@@ -169,6 +178,8 @@ ModelImporter:
     6400042: Airplane_Frame_CabinRoof
     6400044: Airplane_Frame_FuselageRoof
     6400046: Airplane_Frame_CabinCeiling
+    6400048: Airplane_Frame 1
+    6400050: Airplane_WindowChambers
     7400000: Take 001
     9500000: //RootNode
   externalObjects:
@@ -227,8 +238,10 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
-    keepQuads: 0
+    keepQuads: 1
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

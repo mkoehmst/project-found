@@ -516,7 +516,7 @@ namespace ProjectFound.Core {
 
 		protected void AddFocus( KeyValuePair<GameObject,RaycastHit> pair )
 		{
-			Prop prop = pair.Key.GetComponent<Prop>( );
+			Prop prop = pair.Key.GetComponentInParent<Prop>( );
 
 			if ( prop.IsReceptive == true && prop.IsFocused == false )
 			{
