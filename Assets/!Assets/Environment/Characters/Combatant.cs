@@ -6,10 +6,12 @@ namespace ProjectFound.Environment.Characters {
 
 public abstract class Combatant : Character, IDamageable
 {
+	[SerializeField] int m_startingActionPoints;
+
 	protected System.Random m_rng = new System.Random( );
 
-	protected bool m_isAggro = false;
-	protected bool m_isAttacking = false;
+	public bool IsInCombat { get; set; } = false;
+	public bool IsActiveCombatant { get; set; } = false;
 
 	protected Combatant m_target = null;
 
@@ -18,6 +20,16 @@ public abstract class Combatant : Character, IDamageable
 	{
 		get { return m_initiative; }
 		set { m_initiative = value; }
+	}
+
+	public int ActionPoints { get; private set; }
+	public float MovementScore { get; private set; } = 2.3f;
+
+	new protected void Start( )
+	{
+		base.Start( );
+
+		ActionPoints = m_startingActionPoints;
 	}
 
 	// Player and Enemy have very different implementations so mark abstract

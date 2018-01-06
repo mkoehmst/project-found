@@ -26,6 +26,7 @@ namespace ProjectFound.Master {
 		{
 			Undefined,
 			CursorSelection,
+			CombatCursorSelection,
 			HoldToMove,
 			PropPlacement,
 			CameraOcclusion
@@ -93,10 +94,10 @@ namespace ProjectFound.Master {
 				{
 					GameObject obj = firstHit.collider.gameObject;
 
-					if ( PriorityHitCheck.ContainsKey( obj ) == false )
-					{
-						PriorityHitCheck.Add( obj, firstHit );
-					}
+					// We want the last hit (closest to final position)
+					// Calling Remove on key that doesn't exist is safe
+					PriorityHitCheck.Remove( obj );
+					PriorityHitCheck.Add( obj, firstHit );
 				}
 			}
 
@@ -178,10 +179,12 @@ namespace ProjectFound.Master {
 		public class PointRaycaster : Raycaster
 		{
 			public delegate void CasterAssignmentDelegate( ref Ray caster );
+			public delegate void HitFoundDelegate( ref RaycastHit hit );
 
 			protected Ray m_caster;
 
 			public CasterAssignmentDelegate DelegateCasterAssignment { get; set; }
+			public HitFoundDelegate DelegateHitFound { get; set; }
 
 			public PointRaycaster( RaycastMode mode, float maxDistance, bool isEnabled = true )
 				: base( mode, maxDistance, isEnabled )
@@ -204,6 +207,7 @@ namespace ProjectFound.Master {
 				switch ( Mode )
 				{
 					case RaycastMode.CursorSelection:
+					case RaycastMode.CombatCursorSelection:
 					case RaycastMode.PropPlacement:
 					case RaycastMode.HoldToMove:
 						// Select first hit that matches any Priority layer
@@ -211,6 +215,8 @@ namespace ProjectFound.Master {
 							Physics.Raycast( m_caster, out firstHit, MaxDistance, LayerMask );
 						if ( success == true )
 						{
+
+							DelegateHitFound?.Invoke( ref firstHit );
 							PriorityHitCheck.Add( firstHit.collider.gameObject, firstHit );
 							/*if ( !Misc.Floater.Equal( firstHit.normal.y, 1.0f ) )
 							{
@@ -514,11 +520,6 @@ namespace ProjectFound.Master {
 
 			return raycaster;
 		}
-
-		//private bool IsOverUIElement( )
-		//{
-		//	return EventSystem.current.IsPointerOverGameObject( );
-		//}
 	}
 
 

@@ -15,7 +15,7 @@ namespace ProjectFound.Environment.Characters
 		CharacterMovement m_movement = null;
 		public List<Item> InventoryItems { get; private set; }
 
-		new void Start( )
+		protected new void Start( )
 		{
 			base.Start( );
 
@@ -31,6 +31,13 @@ namespace ProjectFound.Environment.Characters
 
 		public override IEnumerator ExecuteRoundActions( )
 		{
+			//while ( true )
+			//{
+			//
+			//}
+
+
+
 			Vector3 target = m_target.transform.position;
 			float distance = (target - transform.position).magnitude;
 

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 using ProjectFound.CameraUI;
 using ProjectFound.Environment.Props;
+using ProjectFound.Environment.Characters;
 using System;
 
 namespace ProjectFound.Master {
@@ -11,17 +13,20 @@ namespace ProjectFound.Master {
 
 	public class UIMaster
 	{
+		public EventSystem EventSystem { get; private set; }
 		public InventoryUI InventoryUI { get; set; }
 		public OnScreenUI OnScreenUI { get; set; }
 		public PropCollectionUI PropCollectionUI { get; set; }
 		public DetectionRadius DetectionRadius { get; set; }
-		//public ActionBarUI ActionBarUI { get; set; }
+		public ActionBarUI ActionBarUI { get; set; }
 		//public PauseMenuUI PauseMenuUI { get; set; }
 
 		public Rect ScreenRect { get; private set; }
 
 		public UIMaster( )
 		{
+			EventSystem = EventSystem.current;
+
 			InventoryUI = GameObject.FindObjectOfType<InventoryUI>( );
 			InventoryUI.gameObject.SetActive( false );
 
@@ -32,6 +37,8 @@ namespace ProjectFound.Master {
 
 			DetectionRadius = GameObject.FindObjectOfType<DetectionRadius>( );
 			DetectionRadius.gameObject.SetActive( false );
+
+			ActionBarUI = GameObject.FindObjectOfType<ActionBarUI>( );
 
 			ScreenRect = new Rect( 0, 0, Screen.width, Screen.height );
 		}
@@ -115,9 +122,27 @@ namespace ProjectFound.Master {
 			}
 		}
 
+		//public void CombatMovementInRange( Vector3 loc )
+		//{
+
+		//}
+
 		public void RemovePropCollectionProp( Prop prop )
 		{
 			PropCollectionUI.RemoveProp( prop );
+		}
+
+		public UnityEngine.UI.Button AddSkillToActionBar( SkillDefinition skill )
+		{
+			//for ( int i = 0; i < skills.Length; ++i )
+			//{
+				return ActionBarUI.AddAction( skill.SkillIcon );
+			//}
+		}
+
+		public bool IsOverUIElement( )
+		{
+			return EventSystem.IsPointerOverGameObject( );
 		}
 	}
 

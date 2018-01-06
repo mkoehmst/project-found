@@ -66,10 +66,8 @@ public class Enemy : Combatant
 
 	private void AggroCheck( float distance )
 	{
-		if ( m_isAggro == false && distance < m_aggroRadius )
+		if ( IsInCombat == false && distance < m_aggroRadius )
 		{
-			m_isAggro = true;
-
 			CombatEncounter.singleton.AddCombatant( this as Combatant );
 		}
 	}

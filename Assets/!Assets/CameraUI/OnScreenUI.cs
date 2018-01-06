@@ -14,16 +14,7 @@ namespace ProjectFound.CameraUI {
 		void Awake( )
 		{
 			Assert.IsNotNull( m_promptPrefab );
-		}
-
-		// Use this for initialization
-		void Start () {
-
-		}
-
-		// Update is called once per frame
-		void Update () {
-
+			Assert.IsNotNull( m_promptPrefab.GetComponent<TextMeshProUGUI>( ) );
 		}
 
 		public GameObject CreatePrompt( KeyCode key, string action, string interactee )
@@ -31,8 +22,8 @@ namespace ProjectFound.CameraUI {
 			GameObject obj = GameObject.Instantiate( m_promptPrefab, transform );
 
 			TextMeshProUGUI textUI = obj.GetComponent<TextMeshProUGUI>( );
-			Assert.IsNotNull( textUI );
 
+			// Surely there is a more efficient way to replace these substrings
 			string fullText = textUI.text.Replace(
 				"{key}", key.ToString( ) ).Replace(
 				"{action}", action ).Replace(

@@ -26,6 +26,7 @@ namespace ProjectFound.Core {
 		public CameraMaster CameraMaster { get; private set; }
 		public UIMaster UIMaster { get; private set; }
 		public ShaderMaster ShaderMaster { get; private set; }
+		public CombatMaster CombatMaster { get; private set; } = new CombatMaster( );
 
 		public GameContext( PlayerMaster playerMaster )
 		{
@@ -38,6 +39,7 @@ namespace ProjectFound.Core {
 
 			SetupRaycasters( );
 			SetInputTracker( );
+			SetCombatDelegates( );
 			LoadInputMappings( );
 		}
 
@@ -47,6 +49,7 @@ namespace ProjectFound.Core {
 			RaycastMaster.Loop( );
 			PlayerMaster.Loop( );
 			CameraMaster.Loop( );
+			CombatMaster.Loop( );
 		}
 
 		protected void LoadInputMappings( )
@@ -57,6 +60,7 @@ namespace ProjectFound.Core {
 
 		protected abstract void SetupRaycasters( );
 		protected abstract void SetInputTracker( );
+		protected abstract void SetCombatDelegates( );
 		protected abstract void LoadMouseAndKeyboardMappings( );
 		protected abstract void LoadGamepadMappings( );
 	}

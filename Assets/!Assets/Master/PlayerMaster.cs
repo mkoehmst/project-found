@@ -16,14 +16,19 @@ namespace ProjectFound.Master {
 		public GameObject PropBeingPlaced { get; private set; }
 		public Player Player { get; private set; }
 		public CharacterMovement CharacterMovement { get; private set; }
+		public MovementFeedback MovementFeedback { get; private set; }
 
 		public bool OccludedFromCamera { get; set; }
+
+		public SkillDefinition[] SkillBook { get; private set; }
 
 		public PlayerMaster( )
 		{
 			Player = GameObject.FindObjectOfType<Player>( );
 			CharacterMovement = Player.gameObject.GetComponent<CharacterMovement>( );
+			MovementFeedback = Player.GetComponentInChildren<MovementFeedback>( );
 			OccludedFromCamera = false;
+			SkillBook = GameObject.FindObjectsOfType<SkillDefinition>( );
 		}
 
 		public void Loop( )
@@ -79,6 +84,26 @@ namespace ProjectFound.Master {
 		public void DropItem( Item item )
 		{
 			item.transform.position = Player.transform.position + Player.transform.forward * 0.75f;
+		}
+
+		public bool CanMoveTo( Vector3 destination )
+		{
+			return CharacterMovement.CanMoveTo( destination );
+		}
+
+		public float NavMeshDistanceTo( )
+		{
+			return CharacterMovement.CalculatePathDistance( );
+		}
+
+		public float DistanceTo( Vector3 point )
+		{
+			return (Player.transform.position - point).magnitude;
+		}
+
+		public void CombatMovementFeedback( Vector3 loc, bool isGood )
+		{
+			MovementFeedback.DrawCenter( loc, isGood );
 		}
 	}
 

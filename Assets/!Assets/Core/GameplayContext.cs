@@ -5,6 +5,7 @@ using UnityEngine;
 
 using ProjectFound.Master;
 using ProjectFound.Environment.Props;
+using ProjectFound.Environment.Characters;
 
 namespace ProjectFound.Core {
 
@@ -13,7 +14,25 @@ namespace ProjectFound.Core {
 	{
 		public GameplayContext( PlayerMaster playerMaster )
 			: base( playerMaster )
-		{}
+		{
+			SkillDefinition[] skills = PlayerMaster.SkillBook;
+
+			//UIMaster.AddSkillsToActionBar( skills );
+
+			for ( int i = 0; i < skills.Length; ++i )
+			{
+				UnityEngine.UI.Button button = UIMaster.AddSkillToActionBar( skills[i] );
+
+				if ( skills[i].SkillName == "Punch" )
+				{
+					//skills[i].DelegateSkillAction = () =>
+					button.onClick.AddListener( () =>
+					{
+						Debug.Log( "PUNNNCCH!!!!" );
+					} );
+				}
+			}
+		}
 
 		protected override void SetupRaycasters( )
 		{
@@ -44,6 +63,19 @@ namespace ProjectFound.Core {
 
 			cursorSelection.SetLayerDelegates
 				( LayerID.Item, OnCursorFocusGained, OnCursorFocusLost );
+
+			var combatCursorSelection =
+				RaycastMaster.AddPointRaycaster(
+					RaycastMaster.RaycastMode.CombatCursorSelection, 30f, false );
+
+			combatCursorSelection.AddPriority( LayerID.Walkable );
+
+			combatCursorSelection.DelegateHitFound = OnCombatRaycastHit;
+
+			combatCursorSelection.DelegateCasterAssignment = (ref Ray ray) =>
+			{
+				ray = Camera.main.ScreenPointToRay( InputMaster.MousePosition );
+			};
 
 			var holdToMove =
 				RaycastMaster.AddPointRaycaster(
@@ -96,6 +128,11 @@ namespace ProjectFound.Core {
 			InputMaster.DelegateCursorGained = OnCursorGained;
 		}
 
+		protected override void SetCombatDelegates( )
+		{
+			CombatMaster.SetCombatBeginDelegate( OnCombatBegin );
+		}
+
 		protected override void LoadMouseAndKeyboardMappings( )
 		{
 			InputMaster.AddNewDevice( InputMaster.InputDevice.MouseAndKeyboard );
@@ -109,6 +146,8 @@ namespace ProjectFound.Core {
 			InputMaster.MapKey( true, OnCameraRotationMod, KeyCode.Mouse2 );
 			InputMaster.MapKey( true, OnInventoryToggle, KeyCode.I );
 			InputMaster.MapKey( true, OnPropCollectionToggle, KeyCode.P );
+
+			InputMaster.MapKey( false, OnCombatAttack, KeyCode.Alpha1 );
 		}
 
 		protected override void LoadGamepadMappings( )
@@ -131,6 +170,56 @@ namespace ProjectFound.Core {
 		public void OnInputTracking( InputMaster.InputDevice device )
 		{
 			RaycastMaster.CursorDevice = device;
+		}
+
+		public void OnCombatBegin( List<Environment.Characters.Combatant> combatants )
+		{
+			RaycastMaster.CurrentRaycaster.IsEnabled = false;
+
+			RaycastMaster.CurrentRaycaster =
+				RaycastMaster.Raycasters[RaycastMaster.RaycastMode.CombatCursorSelection];
+
+			RaycastMaster.CurrentRaycaster.IsEnabled = true;
+
+			//InputMaster.DisableMap( InputMaster.GetKeyFromAction( )
+
+			//InputMaster.KeyMaps[InputMaster.GetKeyFromAction( OnCombatA)]
+		}
+
+		public void OnCombatRaycastHit( ref RaycastHit hit )
+		{
+			if ( PlayerMaster.CanMoveTo( hit.point ) == false )
+			{
+				PlayerMaster.CombatMovementFeedback( hit.point, false );
+				return ;
+			}
+
+			float distance = PlayerMaster.NavMeshDistanceTo( );
+			int actionPointCost =
+				CombatMaster.CalculateMovementCost( PlayerMaster.Player as Combatant, distance );
+
+			if ( CombatMaster.HasEnoughActionPoints(
+				PlayerMaster.Player as Combatant, actionPointCost ) )
+			{
+				PlayerMaster.CombatMovementFeedback( hit.point, true );
+			}
+			else
+			{
+				PlayerMaster.CombatMovementFeedback( hit.point, false );
+			}
+		}
+
+		public void OnCombatAttack( InputMaster.KeyMap map )
+		{
+			if ( map.Mode == InputMaster.KeyMode.OneShotRelease )
+			{
+				//CombatMaster.CalculateMovementCost( PlayerMaster.DistanceToTarget, PlayerMaster.MovementScore );
+				//CombatMaster.MoveCombatant( (ref Vector3 destination, int actionPointsLeft) =>
+				//{
+				//     PlayerMaster.MoveTo( ref destination );
+				//	   UIMaster.UpdateActionPoints( actionPointsLeft );
+				//} );
+			}
 		}
 
 		public void OnRaycastHits( ICollection<GameObject> hits )
@@ -207,6 +296,11 @@ namespace ProjectFound.Core {
 			RaycastMaster.Raycaster raycaster = RaycastMaster.CurrentRaycaster;
 
 			if ( raycaster.PreviousPriorityHitCheck.Count == 0 )
+			{
+				return ;
+			}
+
+			if ( UIMaster.IsOverUIElement( ) )
 			{
 				return ;
 			}

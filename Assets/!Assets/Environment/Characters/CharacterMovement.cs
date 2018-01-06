@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ProjectFound.Environment.Characters {
+using UnityEngine.AI;
+
+namespace ProjectFound.Environment.Characters
+{
 
 
-	[RequireComponent( typeof( UnityEngine.AI.NavMeshAgent ) )]
+	[RequireComponent( typeof(NavMeshAgent) )]
 	public class CharacterMovement : MonoBehaviour
 	{
 		[SerializeField] float m_movingTurnSpeed = 360;
@@ -13,24 +16,25 @@ namespace ProjectFound.Environment.Characters {
 		[SerializeField] float m_moveSpeedMultiplier = 1f;
 		[SerializeField] float m_animSpeedMultiplier = 1f;
 
-		private Rigidbody m_rigidBody;
-		private Animator m_animator;
-
 		private float m_turnAmount;
 		private float m_forwardAmount;
 
-		public UnityEngine.AI.NavMeshAgent Agent { get; private set; }
+		private Rigidbody m_rigidBody;
+		private Animator m_animator;
+		private NavMeshAgent m_agent;
+		private NavMeshPath m_path;
 
 		void Start( )
 		{
-			Agent = GetComponent<UnityEngine.AI.NavMeshAgent>( );
-			Agent.updateRotation = false;
-			Agent.updatePosition = true;
-			Agent.SetDestination( transform.position );
+			m_agent = GetComponent<NavMeshAgent>( );
+			m_agent.updateRotation = false;
+			m_agent.updatePosition = true;
+			m_agent.SetDestination( transform.position );
 
 			m_animator = GetComponent<Animator>( );
 			m_rigidBody = GetComponent<Rigidbody>( );
 			m_rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
+			m_path = new NavMeshPath( );
 
 			CombatEncounter.singleton.DelegateEncounterBegin += OnCombatEncounterBegin;
 		}
@@ -39,9 +43,9 @@ namespace ProjectFound.Environment.Characters {
 		{
 			m_animator.speed = m_animSpeedMultiplier;
 
-			if ( Agent.remainingDistance > Agent.stoppingDistance )
+			if ( m_agent.remainingDistance > m_agent.stoppingDistance )
 			{
-				Move( Agent.desiredVelocity );
+				Move( m_agent.desiredVelocity );
 			}
 			else
 			{
@@ -49,14 +53,36 @@ namespace ProjectFound.Environment.Characters {
 			}
 		}
 
+		public bool CanMoveTo( Vector3 destination )
+		{
+			m_path.ClearCorners( );
+
+			// 1 == Walkable
+			NavMesh.CalculatePath( transform.position, destination, 1, m_path );
+
+			return m_path.status == NavMeshPathStatus.PathComplete;
+		}
+
+		public float CalculatePathDistance( )
+		{
+			float distance = 0.0f;
+
+			for ( int i = 1; i < m_path.corners.Length; ++i )
+			{
+				distance += Vector3.Distance( m_path.corners[i-1], m_path.corners[i] );
+			}
+
+			return distance;
+		}
+
 		public void SetMoveTarget( Vector3 destination )
 		{
-			Agent.SetDestination( destination );
+			m_agent.SetDestination( destination );
 		}
 
 		public void ResetMoveTarget( )
 		{
-			Agent.SetDestination( transform.position );
+			m_agent.SetDestination( transform.position );
 		}
 
 		public void TranslateMoveTarget( float h, float v )
@@ -124,11 +150,11 @@ namespace ProjectFound.Environment.Characters {
 
 		private void OnDrawGizmos( )
 		{
-			if ( Agent && Agent.hasPath )
+			if ( m_agent && m_agent.hasPath )
 			{
 				Gizmos.color = Color.black;
-				Gizmos.DrawLine( transform.position, Agent.destination );
-				Gizmos.DrawSphere( Agent.destination, 0.08f );
+				Gizmos.DrawLine( transform.position, m_agent.destination );
+				Gizmos.DrawSphere( m_agent.destination, 0.08f );
 			}
 		}
 	}

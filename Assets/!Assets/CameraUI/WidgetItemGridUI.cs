@@ -19,13 +19,15 @@ namespace ProjectFound.CameraUI {
 		{
 			get
 			{
-				foreach ( GameObject slot in m_slots )
+				for ( int i = 0; i < m_slots.Count; ++i )
 				{
-					if ( slot.transform.childCount == 0 )
-						return slot;
+					if ( m_slots[i].transform.childCount == 0 )
+					{
+						return m_slots[i];
+					}
 				}
 
-				Debug.Log( "Inventory full!" );
+				Debug.Log( "Grid is full!" );
 				return null;
 			}
 		}
@@ -46,11 +48,6 @@ namespace ProjectFound.CameraUI {
 		new void Start( )
 		{
 			base.Start( );
-
-
-			//m_slots = new List<GameObject>( );
-
-
 		}
 
 		void LateUpdate( )

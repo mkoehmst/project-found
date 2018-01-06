@@ -41,7 +41,7 @@ namespace ProjectFound.Environment {
 			get { return m_curHealthPoints / m_maxHealthPoints; }
 		}
 
-		protected void Start( )
+		new protected void Start( )
 		{
 			Debug.Assert( m_curHealthPoints > 0f, "Must start with positive health" );
 
