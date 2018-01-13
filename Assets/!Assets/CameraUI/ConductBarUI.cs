@@ -7,20 +7,16 @@ namespace ProjectFound.CameraUI
 {
 
 
-	public class ActionBarUI : MonoBehaviour
+	public class ConductBarUI : MonoBehaviour
 	{
-		[SerializeField] GameObject m_actionBarButtonPrefab;
+		[SerializeField] GameObject m_conductBarButtonPrefab;
 
 		private WidgetItemGridUI m_grid;
 
+		// Use this for initialization
 		void Awake( )
 		{
 			m_grid = GetComponentInChildren<WidgetItemGridUI>( );
-		}
-
-		// Use this for initialization
-		void Start () {
-
 		}
 
 		// Update is called once per frame
@@ -28,11 +24,11 @@ namespace ProjectFound.CameraUI
 
 		}
 
-		public Button AddAction( Sprite sprite )
+		public Button AddConduct( Sprite sprite )
 		{
 			GameObject slot = m_grid.FirstEmptySlot;
 
-			GameObject obj = GameObject.Instantiate( m_actionBarButtonPrefab, slot.transform );
+			GameObject obj = GameObject.Instantiate( m_conductBarButtonPrefab, slot.transform );
 			Button button = obj.GetComponent<Button>( );
 			Image img = obj.GetComponent<Image>( );
 

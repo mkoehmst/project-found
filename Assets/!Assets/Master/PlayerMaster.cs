@@ -11,6 +11,8 @@ namespace ProjectFound.Master {
 
 	public class PlayerMaster
 	{
+		private ConductBar m_conductBar;
+
 		private Placement Placement { get; set; }
 
 		public GameObject PropBeingPlaced { get; private set; }
@@ -20,15 +22,20 @@ namespace ProjectFound.Master {
 
 		public bool OccludedFromCamera { get; set; }
 
-		public SkillDefinition[] SkillBook { get; private set; }
+		public SkillBook SkillBook { get; private set; }
+		public Skill[] ConductBarSkills
+		{
+			get { return m_conductBar.m_state.m_skills; }
+		}
 
 		public PlayerMaster( )
 		{
 			Player = GameObject.FindObjectOfType<Player>( );
-			CharacterMovement = Player.gameObject.GetComponent<CharacterMovement>( );
+			CharacterMovement = Player.GetComponent<CharacterMovement>( );
 			MovementFeedback = Player.GetComponentInChildren<MovementFeedback>( );
 			OccludedFromCamera = false;
-			SkillBook = GameObject.FindObjectsOfType<SkillDefinition>( );
+			SkillBook = Player.GetComponent<SkillBook>( );
+			m_conductBar = Player.GetComponent<ConductBar>( );
 		}
 
 		public void Loop( )
@@ -86,9 +93,19 @@ namespace ProjectFound.Master {
 			item.transform.position = Player.transform.position + Player.transform.forward * 0.75f;
 		}
 
+		public void MoveToTarget( )
+		{
+			CharacterMovement.SetMoveTarget( Player.Target.transform.position );
+		}
+
 		public bool CanMoveTo( Vector3 destination )
 		{
 			return CharacterMovement.CanMoveTo( destination );
+		}
+
+		public bool CanMoveToTarget( )
+		{
+			return CharacterMovement.CanMoveTo( Player.Target.transform.position );
 		}
 
 		public float NavMeshDistanceTo( )

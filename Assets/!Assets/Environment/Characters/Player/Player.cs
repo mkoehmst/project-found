@@ -31,12 +31,22 @@ namespace ProjectFound.Environment.Characters
 
 		public override IEnumerator ExecuteRoundActions( )
 		{
-			//while ( true )
-			//{
-			//
-			//}
+			while ( true )
+			{
+				if ( DelegateCombatHandler != null )
+				{
+					DelegateCombatHandler( );
+					DelegateCombatHandler = null;
+					IsActiveCombatant = false;
+					yield break;
+				}
+				else
+				{
+					yield return new WaitForSeconds( 1.0f );
+				}
+			}
 
-
+			/*
 
 			Vector3 target = m_target.transform.position;
 			float distance = (target - transform.position).magnitude;
@@ -56,6 +66,7 @@ namespace ProjectFound.Environment.Characters
 			m_target.TakeDamage( this, damageCaused );
 
 			yield break;
+			*/
 		}
 
 		public override bool Action( ActionType actionType, Interactee interactee,

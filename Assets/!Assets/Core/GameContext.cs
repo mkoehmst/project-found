@@ -37,6 +37,8 @@ namespace ProjectFound.Core {
 			ShaderMaster = new ShaderMaster( );
 			PlayerMaster = playerMaster;
 
+			Setup( );
+			//SetupConductBar( );
 			SetupRaycasters( );
 			SetInputTracker( );
 			SetCombatDelegates( );
@@ -58,6 +60,10 @@ namespace ProjectFound.Core {
 			LoadGamepadMappings( );
 		}
 
+		protected abstract void Setup( );
+
+		//protected abstract void SetupSkills( );
+		//protected abstract void SetupConductBar( );
 		protected abstract void SetupRaycasters( );
 		protected abstract void SetInputTracker( );
 		protected abstract void SetCombatDelegates( );

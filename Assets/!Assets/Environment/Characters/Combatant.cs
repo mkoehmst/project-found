@@ -14,6 +14,10 @@ public abstract class Combatant : Character, IDamageable
 	public bool IsActiveCombatant { get; set; } = false;
 
 	protected Combatant m_target = null;
+	public Combatant Target
+	{
+		get { return m_target; }
+	}
 
 	protected int m_initiative = 1;
 	public int initiative
@@ -24,6 +28,8 @@ public abstract class Combatant : Character, IDamageable
 
 	public int ActionPoints { get; private set; }
 	public float MovementScore { get; private set; } = 2.3f;
+
+	public System.Action DelegateCombatHandler { get; set; }
 
 	new protected void Start( )
 	{

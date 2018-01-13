@@ -105,7 +105,10 @@ namespace ProjectFound.Environment.Characters
 				ActiveCombatant = m_combatants[i];
 				ActiveCombatant.IsActiveCombatant = true;
 				StartCoroutine( ActiveCombatant.ExecuteRoundActions( ) );
-				yield return new WaitForSeconds( 1.5f );
+				while ( ActiveCombatant.IsActiveCombatant == true )
+				{
+					yield return new WaitForSeconds( 1.5f );
+				}
 			}
 
 			EndRound( );

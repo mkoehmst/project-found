@@ -14,24 +14,49 @@ namespace ProjectFound.Core {
 	{
 		public GameplayContext( PlayerMaster playerMaster )
 			: base( playerMaster )
+		{}
+
+		protected override void Setup( )
 		{
-			SkillDefinition[] skills = PlayerMaster.SkillBook;
+			SetupSkillBook( );
+			SetupConductBar( );
+		}
 
-			//UIMaster.AddSkillsToActionBar( skills );
-
+		private void SetupSkillBook( )
+		{
+			Skill[] skills = PlayerMaster.SkillBook.Skills;
 			for ( int i = 0; i < skills.Length; ++i )
 			{
-				UnityEngine.UI.Button button = UIMaster.AddSkillToActionBar( skills[i] );
+				Skill skill = skills[i];
 
-				if ( skills[i].SkillName == "Punch" )
+				skill.Handler.AssignMasters( RaycastMaster, InputMaster, PlayerMaster,
+					CameraMaster, UIMaster, ShaderMaster, CombatMaster );
+			}
+		}
+
+		private void SetupConductBar( )
+		{
+			Skill[] skills = PlayerMaster.ConductBarSkills;
+			for ( int i = 0; i < skills.Length; ++i )
+			{
+				Skill skill = skills[i];
+
+				if ( skill != null )
 				{
-					//skills[i].DelegateSkillAction = () =>
-					button.onClick.AddListener( () =>
-					{
-						Debug.Log( "PUNNNCCH!!!!" );
-					} );
+					AddSkillToConductBar( skill );
 				}
 			}
+		}
+
+		private void AddSkillToConductBar( Skill skill )
+		{
+			UnityEngine.UI.Button button =
+					UIMaster.AddSkillToConductBar( skill.Definition );
+
+			button.onClick.AddListener( () =>
+			{
+				PlayerMaster.Player.DelegateCombatHandler = skill.Handle;
+			} );
 		}
 
 		protected override void SetupRaycasters( )
@@ -172,7 +197,7 @@ namespace ProjectFound.Core {
 			RaycastMaster.CursorDevice = device;
 		}
 
-		public void OnCombatBegin( List<Environment.Characters.Combatant> combatants )
+		public void OnCombatBegin( List<Combatant> combatants )
 		{
 			RaycastMaster.CurrentRaycaster.IsEnabled = false;
 

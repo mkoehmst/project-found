@@ -18,7 +18,7 @@ namespace ProjectFound.Master {
 		public OnScreenUI OnScreenUI { get; set; }
 		public PropCollectionUI PropCollectionUI { get; set; }
 		public DetectionRadius DetectionRadius { get; set; }
-		public ActionBarUI ActionBarUI { get; set; }
+		public ConductBarUI ConductBarUI { get; set; }
 		//public PauseMenuUI PauseMenuUI { get; set; }
 
 		public Rect ScreenRect { get; private set; }
@@ -38,7 +38,7 @@ namespace ProjectFound.Master {
 			DetectionRadius = GameObject.FindObjectOfType<DetectionRadius>( );
 			DetectionRadius.gameObject.SetActive( false );
 
-			ActionBarUI = GameObject.FindObjectOfType<ActionBarUI>( );
+			ConductBarUI = GameObject.FindObjectOfType<ConductBarUI>( );
 
 			ScreenRect = new Rect( 0, 0, Screen.width, Screen.height );
 		}
@@ -132,11 +132,11 @@ namespace ProjectFound.Master {
 			PropCollectionUI.RemoveProp( prop );
 		}
 
-		public UnityEngine.UI.Button AddSkillToActionBar( SkillDefinition skill )
+		public UnityEngine.UI.Button AddSkillToConductBar( SkillDefinition skill )
 		{
 			//for ( int i = 0; i < skills.Length; ++i )
 			//{
-				return ActionBarUI.AddAction( skill.SkillIcon );
+				return ConductBarUI.AddConduct( skill.Icon );
 			//}
 		}
 

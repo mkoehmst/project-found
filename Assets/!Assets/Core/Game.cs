@@ -15,7 +15,7 @@ namespace ProjectFound.Core {
 		//public NonCombatContext NonCombatContext{ get; private set; }
 		public GameContext		CurrentContext	{ get; set; }
 
-		void Awake( )
+		void Start( )
 		{
 			PlayerMaster = new PlayerMaster( );
 			CombatContext = new CombatContext( PlayerMaster );
