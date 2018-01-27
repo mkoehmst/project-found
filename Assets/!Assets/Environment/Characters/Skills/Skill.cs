@@ -9,12 +9,12 @@ namespace ProjectFound.Environment.Characters
 	[CreateAssetMenu( menuName = ("Project Found/Skill") )]
 	public class Skill : ScriptableObject
 	{
-		[SerializeField] SkillDefinition m_definition;
+		[SerializeField] SkillSpec m_specification;
 		[SerializeField] SkillHandler m_handler;
 
-		public SkillDefinition Definition
+		public SkillSpec Specification
 		{
-			get { return m_definition; }
+			get { return m_specification; }
 		}
 
 		public SkillHandler Handler
@@ -24,7 +24,7 @@ namespace ProjectFound.Environment.Characters
 
 		public void Handle( )
 		{
-			m_handler.Handle( m_definition );
+			m_handler.Handle( m_specification );
 		}
 	}
 

@@ -5,50 +5,56 @@ using UnityEngine.UI;
 
 using ProjectFound.Environment.Props;
 
-namespace ProjectFound.Environment.Characters {
-
-public class Inventory
+namespace ProjectFound.Environment.Characters
 {
-	public struct Item
-	{
-		public Prop Prop { get; set; }
-		public Button Button { get; set; }
-	}
 
-	private int Count { get; set; }
-	public Prop[] Items { get; set; }
 
-	public Inventory( )
+	public class Inventory : MonoBehaviour
 	{
-		Items = new Prop[3];
-		Count = 0;
-	}
+		[SerializeField] InventoryState m_inventoryState;
 
-	public void AddItem( Prop prop )
-	{
-		if ( Count < 3 )
-			Items[Count++] = prop;
-	}
-
-	public void RemoveItem( Prop prop )
-	{
-		for ( int i = 0; i < Count; ++i )
+		void Start( )
 		{
-			if ( Items[i] == prop )
-			{
-				// If something other than the last item is removed, move others down to fill
-				// the gap
+			m_inventoryState.Initialize( );
+		}
 
-				while ( i < (Count - 1) )
+		public void AddItem( Item item )
+		{
+			Dictionary<Item,InventoryEntry> entries = m_inventoryState.m_entries;
+			Stack<InventoryEntry> availables = m_inventoryState.m_availables;
+
+			if ( entries.Count < m_inventoryState.m_maxEntries )
+			{
+				InventoryEntry entry = null;
+
+				if ( availables.Count > 0 )
 				{
-					Items[i] = Items[++i];
+					entry = availables.Pop( );
+				}
+				else
+				{
+					entry = new InventoryEntry( );
 				}
 
-				Items[i] = null;
-				--Count;
+				entries[item] = entry;
+			}
+		}
+
+		public void RemoveItem( Item item )
+		{
+			Dictionary<Item,InventoryEntry> entries = m_inventoryState.m_entries;
+			Stack<InventoryEntry> availables = m_inventoryState.m_availables;
+
+			if ( entries.ContainsKey( item ) )
+			{
+				InventoryEntry entry = entries[item];
+
+				availables.Push( entry );
+
+				entries.Remove( item );
 			}
 		}
 	}
-}
+
 
 }

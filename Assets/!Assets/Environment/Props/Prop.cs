@@ -9,36 +9,40 @@ namespace ProjectFound.Environment.Props {
 
 	public class Prop : Interactee
 	{
-		private const string m_activateTriggerString = "Prop_Activate";
-
 		[SerializeField] Sprite m_icon;
 		[SerializeField] Mesh m_clearanceMesh;
-
-		private int m_activateTrigger;
-
-		public Animator Animator { get; private set; }
+		[SerializeField] protected PropDefinition m_definition;
+		[SerializeField] protected PropHandler m_handler;
 
 		public Sprite Icon { get { return m_icon; } }
 		public Mesh ClearanceMesh { get { return m_clearanceMesh; } }
 		public GameObject Prompt { get; set; }
 
-		void Awake( )
+		protected void Awake( )
 		{
 			Assert.IsNotNull( m_icon );
-
-			Animator = GetComponent<Animator>( );
 		}
 
-		new void Start( )
+		new protected void Start( )
 		{
 			base.Start( );
 
-			m_activateTrigger = Animator.StringToHash( m_activateTriggerString );
+			m_handler.Initialize( this );
+		}
+
+		public void Activate( )
+		{
+			m_handler.Use( );
+		}
+
+		public void StartDragAndDrop( ref RaycastHit hit )
+		{
+			m_handler.DragAndDrop( ref hit );
 		}
 
 		public override bool ValidateAction( ActionType actionType )
 		{
-			switch ( actionType )
+			/*switch ( actionType )
 			{
 				case ActionType.Activate:
 					m_currentActionType = actionType;
@@ -46,12 +50,14 @@ namespace ProjectFound.Environment.Props {
 				default:
 					m_currentActionType = ActionType.None;
 					return false;
-			}
+			}*/
+
+			return true;
 		}
 
 		public override void Reaction( )
 		{
-			switch ( m_currentActionType )
+			/*switch ( m_currentActionType )
 			{
 				case ActionType.Activate:
 					Debug.Log( "Prop has been activated!" );
@@ -59,7 +65,7 @@ namespace ProjectFound.Environment.Props {
 						Animator.SetTrigger( m_activateTrigger );
 					m_isReceptive = false;
 					break;
-			}
+			}*/
 		}
 	}
 

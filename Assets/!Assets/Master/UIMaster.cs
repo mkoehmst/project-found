@@ -132,7 +132,7 @@ namespace ProjectFound.Master {
 			PropCollectionUI.RemoveProp( prop );
 		}
 
-		public UnityEngine.UI.Button AddSkillToConductBar( SkillDefinition skill )
+		public UnityEngine.UI.Button AddSkillToConductBar( SkillSpec skill )
 		{
 			//for ( int i = 0; i < skills.Length; ++i )
 			//{

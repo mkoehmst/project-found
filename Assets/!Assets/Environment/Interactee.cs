@@ -34,6 +34,7 @@ namespace ProjectFound.Environment {
 		public bool IsReceptive
 		{
 			get { return m_isReceptive; }
+			set { m_isReceptive = value; }
 		}
 
 		public float HealthAsPercentage

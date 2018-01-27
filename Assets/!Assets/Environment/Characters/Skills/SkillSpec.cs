@@ -7,7 +7,7 @@ namespace ProjectFound.Environment.Characters
 
 
 	[CreateAssetMenu( menuName = ("Project Found/Skill Definition") )]
-	public class SkillDefinition : ScriptableObject
+	public class SkillSpec : ScriptableObject
 	{
 		[SerializeField] string m_name;
 		[SerializeField] string m_description;

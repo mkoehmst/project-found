@@ -37,6 +37,11 @@ ModelImporter:
     4300004: Airplane_SeatSeparator_Right
     4300006: Airplane_SeatSeparator_Left
     4300008: Airplane_CenterColumnDivider
+    6400000: Airplane_CenterColumnDivider
+    6400002: Airplane_Seat_LegRest
+    6400004: Airplane_Seat_Main
+    6400006: Airplane_SeatSeparator_Left
+    6400008: Airplane_SeatSeparator_Right
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -69,7 +74,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -78,7 +83,7 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
-    keepQuads: 1
+    keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
     indexFormat: 0

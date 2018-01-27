@@ -12,6 +12,7 @@ namespace ProjectFound.Master {
 	public class PlayerMaster
 	{
 		private ConductBar m_conductBar;
+		private Inventory m_inventory;
 
 		private Placement Placement { get; set; }
 
@@ -36,6 +37,7 @@ namespace ProjectFound.Master {
 			OccludedFromCamera = false;
 			SkillBook = Player.GetComponent<SkillBook>( );
 			m_conductBar = Player.GetComponent<ConductBar>( );
+			m_inventory = Player.GetComponent<Inventory>( );
 		}
 
 		public void Loop( )
@@ -62,6 +64,11 @@ namespace ProjectFound.Master {
 			Debug.Log( "Player Activate: " + prop );
 
 			return Player.Action( ActionType.Activate, prop as Interactee, action );
+		}
+
+		public void AddInventoryItem( Item item )
+		{
+			m_inventory.AddItem( item );
 		}
 
 		public void StartPropPlacement( Prop prop, GameObject obj, ref RaycastHit hit )

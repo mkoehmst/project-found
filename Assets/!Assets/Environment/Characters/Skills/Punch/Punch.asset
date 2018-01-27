@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b175f62e8773c45b61cb2d431a5c96, type: 3}
   m_Name: Punch
   m_EditorClassIdentifier: 
-  m_definition: {fileID: 11400000, guid: 93ba5dded782fe04eaf89017c52806c5, type: 2}
+  m_specification: {fileID: 11400000, guid: 93ba5dded782fe04eaf89017c52806c5, type: 2}
   m_handler: {fileID: 11400000, guid: b71225efd6b91b148bfb65396b050090, type: 2}

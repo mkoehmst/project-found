@@ -9,7 +9,7 @@ namespace ProjectFound.Environment.Characters
 	[CreateAssetMenu( menuName = ("Project Found/Skill Handler/Punch Handler") )]
 	public class PunchHandler : SkillHandler
 	{
-		public override void Handle( SkillDefinition skillDefinition )
+		public override void Handle( SkillSpec skillDefinition )
 		{
 			if ( PlayerMaster.CanMoveToTarget( ) == false )
 			{

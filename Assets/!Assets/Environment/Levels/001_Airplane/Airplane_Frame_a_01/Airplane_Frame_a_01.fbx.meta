@@ -386,6 +386,143 @@ ModelImporter:
     100756: Airplane_DoubleWideRight 1
     100758: Airplane_DoubleWideRight 2
     100760: Airplane_Frame_Remainder
+    100762: Airplane_CabinNoWindow10
+    100764: Airplane_CabinNoWindow11
+    100766: Airplane_CabinNoWindow12
+    100768: Airplane_CabinNoWindow13
+    100770: Airplane_CabinNoWindow6
+    100772: Airplane_CabinNoWindow7
+    100774: Airplane_CabinNoWindow8
+    100776: Airplane_CabinNoWindow9
+    100778: Airplane_CabinNoWindowLeft 10
+    100780: Airplane_CabinNoWindowLeft 11
+    100782: Airplane_CabinNoWindowLeft 12
+    100784: Airplane_CabinNoWindowLeft 6
+    100786: Airplane_CabinNoWindowLeft 7
+    100788: Airplane_CabinNoWindowLeft 8
+    100790: Airplane_CabinNoWindowLeft 9
+    100792: Airplane_CabinNoWindowRight 10
+    100794: Airplane_CabinNoWindowRight 11
+    100796: Airplane_CabinNoWindowRight 12
+    100798: Airplane_CabinNoWindowRight 6
+    100800: Airplane_CabinNoWindowRight 7
+    100802: Airplane_CabinNoWindowRight 8
+    100804: Airplane_CabinNoWindowRight 9
+    100806: Airplane_CabinWindow15
+    100808: Airplane_CabinWindow16
+    100810: Airplane_CabinWindow17
+    100812: Airplane_CabinWindow18
+    100814: Airplane_CabinWindow19
+    100816: Airplane_CabinWindow20
+    100818: Airplane_CabinWindow21
+    100820: Airplane_CabinWindow22
+    100822: Airplane_CabinWindow23
+    100824: Airplane_CabinWindow24
+    100826: Airplane_CabinWindow25
+    100828: Airplane_CabinWindow26
+    100830: Airplane_CabinWindow27
+    100832: Airplane_CabinWindow28
+    100834: Airplane_CabinWindow29
+    100836: Airplane_CabinWindow30
+    100838: Airplane_CabinWindow31
+    100840: Airplane_CabinWindow32
+    100842: Airplane_CabinWindow33
+    100844: Airplane_CabinWindow34
+    100846: Airplane_CabinWindow35
+    100848: Airplane_CabinWindow36
+    100850: Airplane_CabinWindow37
+    100852: Airplane_CabinWindow38
+    100854: Airplane_CabinWindow39
+    100856: Airplane_CabinWindow40
+    100858: Airplane_CabinWindow41
+    100860: Airplane_CabinWindow42
+    100862: Airplane_CabinWindow43
+    100864: Airplane_CabinWindow44
+    100866: Airplane_CabinWindow45
+    100868: Airplane_CabinWindow46
+    100870: Airplane_CabinWindow47
+    100872: Airplane_CabinWindow48
+    100874: Airplane_CabinWindowLeft 13
+    100876: Airplane_CabinWindowLeft 14
+    100878: Airplane_CabinWindowLeft 15
+    100880: Airplane_CabinWindowLeft 16
+    100882: Airplane_CabinWindowLeft 17
+    100884: Airplane_CabinWindowLeft 18
+    100886: Airplane_CabinWindowLeft 19
+    100888: Airplane_CabinWindowLeft 20
+    100890: Airplane_CabinWindowLeft 21
+    100892: Airplane_CabinWindowLeft 22
+    100894: Airplane_CabinWindowLeft 23
+    100896: Airplane_CabinWindowLeft 24
+    100898: Airplane_CabinWindowLeft 25
+    100900: Airplane_CabinWindowLeft 26
+    100902: Airplane_CabinWindowLeft 27
+    100904: Airplane_CabinWindowLeft 28
+    100906: Airplane_CabinWindowLeft 29
+    100908: Airplane_CabinWindowLeft 30
+    100910: Airplane_CabinWindowLeft 31
+    100912: Airplane_CabinWindowLeft 32
+    100914: Airplane_CabinWindowLeft 33
+    100916: Airplane_CabinWindowLeft 34
+    100918: Airplane_CabinWindowLeft 35
+    100920: Airplane_CabinWindowLeft 36
+    100922: Airplane_CabinWindowLeft 37
+    100924: Airplane_CabinWindowLeft 38
+    100926: Airplane_CabinWindowLeft 39
+    100928: Airplane_CabinWindowLeft 40
+    100930: Airplane_CabinWindowLeft 41
+    100932: Airplane_CabinWindowLeft 42
+    100934: Airplane_CabinWindowLeft 43
+    100936: Airplane_CabinWindowLeft 44
+    100938: Airplane_CabinWindowLeft 45
+    100940: Airplane_CabinWindowLeft 46
+    100942: Airplane_CabinWindowLeft 47
+    100944: Airplane_CabinWindowLeft 48
+    100946: Airplane_CabinWindowRight 13
+    100948: Airplane_CabinWindowRight 14
+    100950: Airplane_CabinWindowRight 15
+    100952: Airplane_CabinWindowRight 16
+    100954: Airplane_CabinWindowRight 17
+    100956: Airplane_CabinWindowRight 18
+    100958: Airplane_CabinWindowRight 19
+    100960: Airplane_CabinWindowRight 20
+    100962: Airplane_CabinWindowRight 21
+    100964: Airplane_CabinWindowRight 22
+    100966: Airplane_CabinWindowRight 23
+    100968: Airplane_CabinWindowRight 24
+    100970: Airplane_CabinWindowRight 25
+    100972: Airplane_CabinWindowRight 26
+    100974: Airplane_CabinWindowRight 27
+    100976: Airplane_CabinWindowRight 28
+    100978: Airplane_CabinWindowRight 29
+    100980: Airplane_CabinWindowRight 30
+    100982: Airplane_CabinWindowRight 31
+    100984: Airplane_CabinWindowRight 32
+    100986: Airplane_CabinWindowRight 33
+    100988: Airplane_CabinWindowRight 34
+    100990: Airplane_CabinWindowRight 35
+    100992: Airplane_CabinWindowRight 36
+    100994: Airplane_CabinWindowRight 37
+    100996: Airplane_CabinWindowRight 38
+    100998: Airplane_CabinWindowRight 39
+    101000: Airplane_CabinWindowRight 40
+    101002: Airplane_CabinWindowRight 41
+    101004: Airplane_CabinWindowRight 42
+    101006: Airplane_CabinWindowRight 43
+    101008: Airplane_CabinWindowRight 44
+    101010: Airplane_CabinWindowRight 45
+    101012: Airplane_CabinWindowRight 46
+    101014: Airplane_CabinWindowRight 47
+    101016: Airplane_CabinWindowRight 48
+    101018: Airplane_DoubleWideDoor1
+    101020: Airplane_DoubleWideDoor2
+    101022: Airplane_DoubleWideDoor3
+    101024: Airplane_DoubleWideDoorRight 1
+    101026: Airplane_DoubleWideDoorRight 2
+    101028: Airplane_DoubleWideDoorRight 3
+    101030: Airplane_DoubleWideLeft 4
+    101032: Airplane_DoubleWideLeft 5
+    101034: Airplane_DoubleWideLeft 6
     400000: Airplane_BackWall_01
     400002: Airplane_BackWall_02
     400004: Airplane_BackWall_03
@@ -767,6 +904,143 @@ ModelImporter:
     400756: Airplane_DoubleWideRight 1
     400758: Airplane_DoubleWideRight 2
     400760: Airplane_Frame_Remainder
+    400762: Airplane_CabinNoWindow10
+    400764: Airplane_CabinNoWindow11
+    400766: Airplane_CabinNoWindow12
+    400768: Airplane_CabinNoWindow13
+    400770: Airplane_CabinNoWindow6
+    400772: Airplane_CabinNoWindow7
+    400774: Airplane_CabinNoWindow8
+    400776: Airplane_CabinNoWindow9
+    400778: Airplane_CabinNoWindowLeft 10
+    400780: Airplane_CabinNoWindowLeft 11
+    400782: Airplane_CabinNoWindowLeft 12
+    400784: Airplane_CabinNoWindowLeft 6
+    400786: Airplane_CabinNoWindowLeft 7
+    400788: Airplane_CabinNoWindowLeft 8
+    400790: Airplane_CabinNoWindowLeft 9
+    400792: Airplane_CabinNoWindowRight 10
+    400794: Airplane_CabinNoWindowRight 11
+    400796: Airplane_CabinNoWindowRight 12
+    400798: Airplane_CabinNoWindowRight 6
+    400800: Airplane_CabinNoWindowRight 7
+    400802: Airplane_CabinNoWindowRight 8
+    400804: Airplane_CabinNoWindowRight 9
+    400806: Airplane_CabinWindow15
+    400808: Airplane_CabinWindow16
+    400810: Airplane_CabinWindow17
+    400812: Airplane_CabinWindow18
+    400814: Airplane_CabinWindow19
+    400816: Airplane_CabinWindow20
+    400818: Airplane_CabinWindow21
+    400820: Airplane_CabinWindow22
+    400822: Airplane_CabinWindow23
+    400824: Airplane_CabinWindow24
+    400826: Airplane_CabinWindow25
+    400828: Airplane_CabinWindow26
+    400830: Airplane_CabinWindow27
+    400832: Airplane_CabinWindow28
+    400834: Airplane_CabinWindow29
+    400836: Airplane_CabinWindow30
+    400838: Airplane_CabinWindow31
+    400840: Airplane_CabinWindow32
+    400842: Airplane_CabinWindow33
+    400844: Airplane_CabinWindow34
+    400846: Airplane_CabinWindow35
+    400848: Airplane_CabinWindow36
+    400850: Airplane_CabinWindow37
+    400852: Airplane_CabinWindow38
+    400854: Airplane_CabinWindow39
+    400856: Airplane_CabinWindow40
+    400858: Airplane_CabinWindow41
+    400860: Airplane_CabinWindow42
+    400862: Airplane_CabinWindow43
+    400864: Airplane_CabinWindow44
+    400866: Airplane_CabinWindow45
+    400868: Airplane_CabinWindow46
+    400870: Airplane_CabinWindow47
+    400872: Airplane_CabinWindow48
+    400874: Airplane_CabinWindowLeft 13
+    400876: Airplane_CabinWindowLeft 14
+    400878: Airplane_CabinWindowLeft 15
+    400880: Airplane_CabinWindowLeft 16
+    400882: Airplane_CabinWindowLeft 17
+    400884: Airplane_CabinWindowLeft 18
+    400886: Airplane_CabinWindowLeft 19
+    400888: Airplane_CabinWindowLeft 20
+    400890: Airplane_CabinWindowLeft 21
+    400892: Airplane_CabinWindowLeft 22
+    400894: Airplane_CabinWindowLeft 23
+    400896: Airplane_CabinWindowLeft 24
+    400898: Airplane_CabinWindowLeft 25
+    400900: Airplane_CabinWindowLeft 26
+    400902: Airplane_CabinWindowLeft 27
+    400904: Airplane_CabinWindowLeft 28
+    400906: Airplane_CabinWindowLeft 29
+    400908: Airplane_CabinWindowLeft 30
+    400910: Airplane_CabinWindowLeft 31
+    400912: Airplane_CabinWindowLeft 32
+    400914: Airplane_CabinWindowLeft 33
+    400916: Airplane_CabinWindowLeft 34
+    400918: Airplane_CabinWindowLeft 35
+    400920: Airplane_CabinWindowLeft 36
+    400922: Airplane_CabinWindowLeft 37
+    400924: Airplane_CabinWindowLeft 38
+    400926: Airplane_CabinWindowLeft 39
+    400928: Airplane_CabinWindowLeft 40
+    400930: Airplane_CabinWindowLeft 41
+    400932: Airplane_CabinWindowLeft 42
+    400934: Airplane_CabinWindowLeft 43
+    400936: Airplane_CabinWindowLeft 44
+    400938: Airplane_CabinWindowLeft 45
+    400940: Airplane_CabinWindowLeft 46
+    400942: Airplane_CabinWindowLeft 47
+    400944: Airplane_CabinWindowLeft 48
+    400946: Airplane_CabinWindowRight 13
+    400948: Airplane_CabinWindowRight 14
+    400950: Airplane_CabinWindowRight 15
+    400952: Airplane_CabinWindowRight 16
+    400954: Airplane_CabinWindowRight 17
+    400956: Airplane_CabinWindowRight 18
+    400958: Airplane_CabinWindowRight 19
+    400960: Airplane_CabinWindowRight 20
+    400962: Airplane_CabinWindowRight 21
+    400964: Airplane_CabinWindowRight 22
+    400966: Airplane_CabinWindowRight 23
+    400968: Airplane_CabinWindowRight 24
+    400970: Airplane_CabinWindowRight 25
+    400972: Airplane_CabinWindowRight 26
+    400974: Airplane_CabinWindowRight 27
+    400976: Airplane_CabinWindowRight 28
+    400978: Airplane_CabinWindowRight 29
+    400980: Airplane_CabinWindowRight 30
+    400982: Airplane_CabinWindowRight 31
+    400984: Airplane_CabinWindowRight 32
+    400986: Airplane_CabinWindowRight 33
+    400988: Airplane_CabinWindowRight 34
+    400990: Airplane_CabinWindowRight 35
+    400992: Airplane_CabinWindowRight 36
+    400994: Airplane_CabinWindowRight 37
+    400996: Airplane_CabinWindowRight 38
+    400998: Airplane_CabinWindowRight 39
+    401000: Airplane_CabinWindowRight 40
+    401002: Airplane_CabinWindowRight 41
+    401004: Airplane_CabinWindowRight 42
+    401006: Airplane_CabinWindowRight 43
+    401008: Airplane_CabinWindowRight 44
+    401010: Airplane_CabinWindowRight 45
+    401012: Airplane_CabinWindowRight 46
+    401014: Airplane_CabinWindowRight 47
+    401016: Airplane_CabinWindowRight 48
+    401018: Airplane_DoubleWideDoor1
+    401020: Airplane_DoubleWideDoor2
+    401022: Airplane_DoubleWideDoor3
+    401024: Airplane_DoubleWideDoorRight 1
+    401026: Airplane_DoubleWideDoorRight 2
+    401028: Airplane_DoubleWideDoorRight 3
+    401030: Airplane_DoubleWideLeft 4
+    401032: Airplane_DoubleWideLeft 5
+    401034: Airplane_DoubleWideLeft 6
     2100000: phong1
     2100002: phong4
     2100004: Airplane_Walls_MAT
@@ -1006,6 +1280,98 @@ ModelImporter:
     2300442: Airplane_DoubleWideRight 1
     2300444: Airplane_DoubleWideRight 2
     2300446: Airplane_Frame_Remainder
+    2300448: Airplane_CabinNoWindowLeft 10
+    2300450: Airplane_CabinNoWindowLeft 11
+    2300452: Airplane_CabinNoWindowLeft 12
+    2300454: Airplane_CabinNoWindowLeft 6
+    2300456: Airplane_CabinNoWindowLeft 7
+    2300458: Airplane_CabinNoWindowLeft 8
+    2300460: Airplane_CabinNoWindowLeft 9
+    2300462: Airplane_CabinNoWindowRight 10
+    2300464: Airplane_CabinNoWindowRight 11
+    2300466: Airplane_CabinNoWindowRight 12
+    2300468: Airplane_CabinNoWindowRight 6
+    2300470: Airplane_CabinNoWindowRight 7
+    2300472: Airplane_CabinNoWindowRight 8
+    2300474: Airplane_CabinNoWindowRight 9
+    2300476: Airplane_CabinWindowLeft 13
+    2300478: Airplane_CabinWindowLeft 14
+    2300480: Airplane_CabinWindowLeft 15
+    2300482: Airplane_CabinWindowLeft 16
+    2300484: Airplane_CabinWindowLeft 17
+    2300486: Airplane_CabinWindowLeft 18
+    2300488: Airplane_CabinWindowLeft 19
+    2300490: Airplane_CabinWindowLeft 20
+    2300492: Airplane_CabinWindowLeft 21
+    2300494: Airplane_CabinWindowLeft 22
+    2300496: Airplane_CabinWindowLeft 23
+    2300498: Airplane_CabinWindowLeft 24
+    2300500: Airplane_CabinWindowLeft 25
+    2300502: Airplane_CabinWindowLeft 26
+    2300504: Airplane_CabinWindowLeft 27
+    2300506: Airplane_CabinWindowLeft 28
+    2300508: Airplane_CabinWindowLeft 29
+    2300510: Airplane_CabinWindowLeft 30
+    2300512: Airplane_CabinWindowLeft 31
+    2300514: Airplane_CabinWindowLeft 32
+    2300516: Airplane_CabinWindowLeft 33
+    2300518: Airplane_CabinWindowLeft 34
+    2300520: Airplane_CabinWindowLeft 35
+    2300522: Airplane_CabinWindowLeft 36
+    2300524: Airplane_CabinWindowLeft 37
+    2300526: Airplane_CabinWindowLeft 38
+    2300528: Airplane_CabinWindowLeft 39
+    2300530: Airplane_CabinWindowLeft 40
+    2300532: Airplane_CabinWindowLeft 41
+    2300534: Airplane_CabinWindowLeft 42
+    2300536: Airplane_CabinWindowLeft 43
+    2300538: Airplane_CabinWindowLeft 44
+    2300540: Airplane_CabinWindowLeft 45
+    2300542: Airplane_CabinWindowLeft 46
+    2300544: Airplane_CabinWindowLeft 47
+    2300546: Airplane_CabinWindowLeft 48
+    2300548: Airplane_CabinWindowRight 13
+    2300550: Airplane_CabinWindowRight 14
+    2300552: Airplane_CabinWindowRight 15
+    2300554: Airplane_CabinWindowRight 16
+    2300556: Airplane_CabinWindowRight 17
+    2300558: Airplane_CabinWindowRight 18
+    2300560: Airplane_CabinWindowRight 19
+    2300562: Airplane_CabinWindowRight 20
+    2300564: Airplane_CabinWindowRight 21
+    2300566: Airplane_CabinWindowRight 22
+    2300568: Airplane_CabinWindowRight 23
+    2300570: Airplane_CabinWindowRight 24
+    2300572: Airplane_CabinWindowRight 25
+    2300574: Airplane_CabinWindowRight 26
+    2300576: Airplane_CabinWindowRight 27
+    2300578: Airplane_CabinWindowRight 28
+    2300580: Airplane_CabinWindowRight 29
+    2300582: Airplane_CabinWindowRight 30
+    2300584: Airplane_CabinWindowRight 31
+    2300586: Airplane_CabinWindowRight 32
+    2300588: Airplane_CabinWindowRight 33
+    2300590: Airplane_CabinWindowRight 34
+    2300592: Airplane_CabinWindowRight 35
+    2300594: Airplane_CabinWindowRight 36
+    2300596: Airplane_CabinWindowRight 37
+    2300598: Airplane_CabinWindowRight 38
+    2300600: Airplane_CabinWindowRight 39
+    2300602: Airplane_CabinWindowRight 40
+    2300604: Airplane_CabinWindowRight 41
+    2300606: Airplane_CabinWindowRight 42
+    2300608: Airplane_CabinWindowRight 43
+    2300610: Airplane_CabinWindowRight 44
+    2300612: Airplane_CabinWindowRight 45
+    2300614: Airplane_CabinWindowRight 46
+    2300616: Airplane_CabinWindowRight 47
+    2300618: Airplane_CabinWindowRight 48
+    2300620: Airplane_DoubleWideDoorRight 1
+    2300622: Airplane_DoubleWideDoorRight 2
+    2300624: Airplane_DoubleWideDoorRight 3
+    2300626: Airplane_DoubleWideLeft 4
+    2300628: Airplane_DoubleWideLeft 5
+    2300630: Airplane_DoubleWideLeft 6
     3300000: Airplane_BackWall_01
     3300002: Airplane_BackWall_02
     3300004: Airplane_BackWall_03
@@ -1230,6 +1596,98 @@ ModelImporter:
     3300442: Airplane_DoubleWideRight 1
     3300444: Airplane_DoubleWideRight 2
     3300446: Airplane_Frame_Remainder
+    3300448: Airplane_CabinNoWindowLeft 10
+    3300450: Airplane_CabinNoWindowLeft 11
+    3300452: Airplane_CabinNoWindowLeft 12
+    3300454: Airplane_CabinNoWindowLeft 6
+    3300456: Airplane_CabinNoWindowLeft 7
+    3300458: Airplane_CabinNoWindowLeft 8
+    3300460: Airplane_CabinNoWindowLeft 9
+    3300462: Airplane_CabinNoWindowRight 10
+    3300464: Airplane_CabinNoWindowRight 11
+    3300466: Airplane_CabinNoWindowRight 12
+    3300468: Airplane_CabinNoWindowRight 6
+    3300470: Airplane_CabinNoWindowRight 7
+    3300472: Airplane_CabinNoWindowRight 8
+    3300474: Airplane_CabinNoWindowRight 9
+    3300476: Airplane_CabinWindowLeft 13
+    3300478: Airplane_CabinWindowLeft 14
+    3300480: Airplane_CabinWindowLeft 15
+    3300482: Airplane_CabinWindowLeft 16
+    3300484: Airplane_CabinWindowLeft 17
+    3300486: Airplane_CabinWindowLeft 18
+    3300488: Airplane_CabinWindowLeft 19
+    3300490: Airplane_CabinWindowLeft 20
+    3300492: Airplane_CabinWindowLeft 21
+    3300494: Airplane_CabinWindowLeft 22
+    3300496: Airplane_CabinWindowLeft 23
+    3300498: Airplane_CabinWindowLeft 24
+    3300500: Airplane_CabinWindowLeft 25
+    3300502: Airplane_CabinWindowLeft 26
+    3300504: Airplane_CabinWindowLeft 27
+    3300506: Airplane_CabinWindowLeft 28
+    3300508: Airplane_CabinWindowLeft 29
+    3300510: Airplane_CabinWindowLeft 30
+    3300512: Airplane_CabinWindowLeft 31
+    3300514: Airplane_CabinWindowLeft 32
+    3300516: Airplane_CabinWindowLeft 33
+    3300518: Airplane_CabinWindowLeft 34
+    3300520: Airplane_CabinWindowLeft 35
+    3300522: Airplane_CabinWindowLeft 36
+    3300524: Airplane_CabinWindowLeft 37
+    3300526: Airplane_CabinWindowLeft 38
+    3300528: Airplane_CabinWindowLeft 39
+    3300530: Airplane_CabinWindowLeft 40
+    3300532: Airplane_CabinWindowLeft 41
+    3300534: Airplane_CabinWindowLeft 42
+    3300536: Airplane_CabinWindowLeft 43
+    3300538: Airplane_CabinWindowLeft 44
+    3300540: Airplane_CabinWindowLeft 45
+    3300542: Airplane_CabinWindowLeft 46
+    3300544: Airplane_CabinWindowLeft 47
+    3300546: Airplane_CabinWindowLeft 48
+    3300548: Airplane_CabinWindowRight 13
+    3300550: Airplane_CabinWindowRight 14
+    3300552: Airplane_CabinWindowRight 15
+    3300554: Airplane_CabinWindowRight 16
+    3300556: Airplane_CabinWindowRight 17
+    3300558: Airplane_CabinWindowRight 18
+    3300560: Airplane_CabinWindowRight 19
+    3300562: Airplane_CabinWindowRight 20
+    3300564: Airplane_CabinWindowRight 21
+    3300566: Airplane_CabinWindowRight 22
+    3300568: Airplane_CabinWindowRight 23
+    3300570: Airplane_CabinWindowRight 24
+    3300572: Airplane_CabinWindowRight 25
+    3300574: Airplane_CabinWindowRight 26
+    3300576: Airplane_CabinWindowRight 27
+    3300578: Airplane_CabinWindowRight 28
+    3300580: Airplane_CabinWindowRight 29
+    3300582: Airplane_CabinWindowRight 30
+    3300584: Airplane_CabinWindowRight 31
+    3300586: Airplane_CabinWindowRight 32
+    3300588: Airplane_CabinWindowRight 33
+    3300590: Airplane_CabinWindowRight 34
+    3300592: Airplane_CabinWindowRight 35
+    3300594: Airplane_CabinWindowRight 36
+    3300596: Airplane_CabinWindowRight 37
+    3300598: Airplane_CabinWindowRight 38
+    3300600: Airplane_CabinWindowRight 39
+    3300602: Airplane_CabinWindowRight 40
+    3300604: Airplane_CabinWindowRight 41
+    3300606: Airplane_CabinWindowRight 42
+    3300608: Airplane_CabinWindowRight 43
+    3300610: Airplane_CabinWindowRight 44
+    3300612: Airplane_CabinWindowRight 45
+    3300614: Airplane_CabinWindowRight 46
+    3300616: Airplane_CabinWindowRight 47
+    3300618: Airplane_CabinWindowRight 48
+    3300620: Airplane_DoubleWideDoorRight 1
+    3300622: Airplane_DoubleWideDoorRight 2
+    3300624: Airplane_DoubleWideDoorRight 3
+    3300626: Airplane_DoubleWideLeft 4
+    3300628: Airplane_DoubleWideLeft 5
+    3300630: Airplane_DoubleWideLeft 6
     4300000: Airplane_Frame
     4300002: Airplane_SectionWall
     4300004: Airplane_FrontWall_01
@@ -1529,6 +1987,98 @@ ModelImporter:
     6400442: Airplane_DoubleWideRight 1
     6400444: Airplane_DoubleWideRight 2
     6400446: Airplane_Frame_Remainder
+    6400448: Airplane_CabinNoWindowLeft 10
+    6400450: Airplane_CabinNoWindowLeft 11
+    6400452: Airplane_CabinNoWindowLeft 12
+    6400454: Airplane_CabinNoWindowLeft 6
+    6400456: Airplane_CabinNoWindowLeft 7
+    6400458: Airplane_CabinNoWindowLeft 8
+    6400460: Airplane_CabinNoWindowLeft 9
+    6400462: Airplane_CabinNoWindowRight 10
+    6400464: Airplane_CabinNoWindowRight 11
+    6400466: Airplane_CabinNoWindowRight 12
+    6400468: Airplane_CabinNoWindowRight 6
+    6400470: Airplane_CabinNoWindowRight 7
+    6400472: Airplane_CabinNoWindowRight 8
+    6400474: Airplane_CabinNoWindowRight 9
+    6400476: Airplane_CabinWindowLeft 13
+    6400478: Airplane_CabinWindowLeft 14
+    6400480: Airplane_CabinWindowLeft 15
+    6400482: Airplane_CabinWindowLeft 16
+    6400484: Airplane_CabinWindowLeft 17
+    6400486: Airplane_CabinWindowLeft 18
+    6400488: Airplane_CabinWindowLeft 19
+    6400490: Airplane_CabinWindowLeft 20
+    6400492: Airplane_CabinWindowLeft 21
+    6400494: Airplane_CabinWindowLeft 22
+    6400496: Airplane_CabinWindowLeft 23
+    6400498: Airplane_CabinWindowLeft 24
+    6400500: Airplane_CabinWindowLeft 25
+    6400502: Airplane_CabinWindowLeft 26
+    6400504: Airplane_CabinWindowLeft 27
+    6400506: Airplane_CabinWindowLeft 28
+    6400508: Airplane_CabinWindowLeft 29
+    6400510: Airplane_CabinWindowLeft 30
+    6400512: Airplane_CabinWindowLeft 31
+    6400514: Airplane_CabinWindowLeft 32
+    6400516: Airplane_CabinWindowLeft 33
+    6400518: Airplane_CabinWindowLeft 34
+    6400520: Airplane_CabinWindowLeft 35
+    6400522: Airplane_CabinWindowLeft 36
+    6400524: Airplane_CabinWindowLeft 37
+    6400526: Airplane_CabinWindowLeft 38
+    6400528: Airplane_CabinWindowLeft 39
+    6400530: Airplane_CabinWindowLeft 40
+    6400532: Airplane_CabinWindowLeft 41
+    6400534: Airplane_CabinWindowLeft 42
+    6400536: Airplane_CabinWindowLeft 43
+    6400538: Airplane_CabinWindowLeft 44
+    6400540: Airplane_CabinWindowLeft 45
+    6400542: Airplane_CabinWindowLeft 46
+    6400544: Airplane_CabinWindowLeft 47
+    6400546: Airplane_CabinWindowLeft 48
+    6400548: Airplane_CabinWindowRight 13
+    6400550: Airplane_CabinWindowRight 14
+    6400552: Airplane_CabinWindowRight 15
+    6400554: Airplane_CabinWindowRight 16
+    6400556: Airplane_CabinWindowRight 17
+    6400558: Airplane_CabinWindowRight 18
+    6400560: Airplane_CabinWindowRight 19
+    6400562: Airplane_CabinWindowRight 20
+    6400564: Airplane_CabinWindowRight 21
+    6400566: Airplane_CabinWindowRight 22
+    6400568: Airplane_CabinWindowRight 23
+    6400570: Airplane_CabinWindowRight 24
+    6400572: Airplane_CabinWindowRight 25
+    6400574: Airplane_CabinWindowRight 26
+    6400576: Airplane_CabinWindowRight 27
+    6400578: Airplane_CabinWindowRight 28
+    6400580: Airplane_CabinWindowRight 29
+    6400582: Airplane_CabinWindowRight 30
+    6400584: Airplane_CabinWindowRight 31
+    6400586: Airplane_CabinWindowRight 32
+    6400588: Airplane_CabinWindowRight 33
+    6400590: Airplane_CabinWindowRight 34
+    6400592: Airplane_CabinWindowRight 35
+    6400594: Airplane_CabinWindowRight 36
+    6400596: Airplane_CabinWindowRight 37
+    6400598: Airplane_CabinWindowRight 38
+    6400600: Airplane_CabinWindowRight 39
+    6400602: Airplane_CabinWindowRight 40
+    6400604: Airplane_CabinWindowRight 41
+    6400606: Airplane_CabinWindowRight 42
+    6400608: Airplane_CabinWindowRight 43
+    6400610: Airplane_CabinWindowRight 44
+    6400612: Airplane_CabinWindowRight 45
+    6400614: Airplane_CabinWindowRight 46
+    6400616: Airplane_CabinWindowRight 47
+    6400618: Airplane_CabinWindowRight 48
+    6400620: Airplane_DoubleWideDoorRight 1
+    6400622: Airplane_DoubleWideDoorRight 2
+    6400624: Airplane_DoubleWideDoorRight 3
+    6400626: Airplane_DoubleWideLeft 4
+    6400628: Airplane_DoubleWideLeft 5
+    6400630: Airplane_DoubleWideLeft 6
     7400000: Take 001
     9500000: //RootNode
   externalObjects:

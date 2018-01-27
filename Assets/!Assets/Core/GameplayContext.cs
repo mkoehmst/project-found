@@ -18,20 +18,21 @@ namespace ProjectFound.Core {
 
 		protected override void Setup( )
 		{
+			ContextHandler.AssignMasters( RaycastMaster, InputMaster, PlayerMaster, CameraMaster, UIMaster, ShaderMaster, CombatMaster );
+
 			SetupSkillBook( );
 			SetupConductBar( );
 		}
 
 		private void SetupSkillBook( )
 		{
-			Skill[] skills = PlayerMaster.SkillBook.Skills;
+			/*Skill[] skills = PlayerMaster.SkillBook.Skills;
 			for ( int i = 0; i < skills.Length; ++i )
 			{
 				Skill skill = skills[i];
 
-				skill.Handler.AssignMasters( RaycastMaster, InputMaster, PlayerMaster,
-					CameraMaster, UIMaster, ShaderMaster, CombatMaster );
-			}
+
+			}*/
 		}
 
 		private void SetupConductBar( )
@@ -51,7 +52,7 @@ namespace ProjectFound.Core {
 		private void AddSkillToConductBar( Skill skill )
 		{
 			UnityEngine.UI.Button button =
-					UIMaster.AddSkillToConductBar( skill.Definition );
+					UIMaster.AddSkillToConductBar( skill.Specification );
 
 			button.onClick.AddListener( () =>
 			{
@@ -358,19 +359,23 @@ namespace ProjectFound.Core {
 				switch ( layer )
 				{
 					case LayerID.Item:
-						Item item = obj.GetComponent<Item>( );
-						PlayerMaster.PickUp( item, () =>
-						{
-							RemoveFocusDirectly( item as Prop );
-							AddToInventory( item );
-						} );
+						obj.GetComponent<Item>( ).PickUp( );
+						//Item item = obj.GetComponent<Item>( );
+						//RemoveFocusDirectly( item as Prop );
+						//item.PickUp( );
+						//PlayerMaster.PickUp( item, () =>
+						//{
+						//	RemoveFocusDirectly( item as Prop );
+						//	AddToInventory( item );
+						//} );
 						break;
 					case LayerID.Prop:
-						Prop prop = obj.GetComponent<Prop>( );
-						PlayerMaster.Activate( prop, () =>
-						{
-							RemoveFocusDirectly( prop );
-						} );
+						obj.GetComponent<Prop>( ).Activate( );
+						//Prop prop = obj.GetComponent<Prop>( );
+						//PlayerMaster.Activate( prop, () =>
+						//{
+						//	RemoveFocusDirectly( prop );
+						//} );
 						break;
 				}
 			}
@@ -383,6 +388,7 @@ namespace ProjectFound.Core {
 					switch ( layer )
 					{
 						case LayerID.Walkable:
+							// PlayerMaster.CharacterMovement.StartHoldToMove( hit.point );
 							PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 							raycaster.IsEnabled = false;
 							raycaster = RaycastMaster.CurrentRaycaster =
@@ -391,14 +397,15 @@ namespace ProjectFound.Core {
 							break;
 						case LayerID.Item:
 						case LayerID.Prop:
-							Prop prop = obj.GetComponent<Prop>( );
+							obj.GetComponent<Prop>( ).StartDragAndDrop( ref hit );
+							/*Prop prop = obj.GetComponent<Prop>( );
 							RemoveFocus( prop );
 							raycaster.IsEnabled = false;
 							raycaster = RaycastMaster.CurrentRaycaster =
 								RaycastMaster.Raycasters[RaycastMaster.RaycastMode.PropPlacement];
 							raycaster.IsEnabled = true;
 							raycaster.AddBlacklistee( obj );
-							PlayerMaster.StartPropPlacement( prop, obj, ref hit );
+							PlayerMaster.StartPropPlacement( prop, obj, ref hit );*/
 							break;
 					}
 				}
@@ -407,6 +414,7 @@ namespace ProjectFound.Core {
 					switch ( raycaster.Mode )
 					{
 						case RaycastMaster.RaycastMode.HoldToMove:
+							// PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 							PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 							break;
 						case RaycastMaster.RaycastMode.PropPlacement:
@@ -597,6 +605,8 @@ namespace ProjectFound.Core {
 
 		protected void AddToInventory( Item item )
 		{
+			PlayerMaster.AddInventoryItem( item );
+
 			// Lambda statement delegates...love this
 			UIMaster.AddInventoryButton( item ).onClick.AddListener( () =>
 			{
@@ -665,6 +675,7 @@ namespace ProjectFound.Core {
 			{
 				// Nullify Raycast Hit Check so RemoveFocus isn't called twice
 				RaycastMaster.CurrentRaycaster.PriorityHitCheck.Remove( prop.gameObject );
+				//RaycastMaster.CurrentRaycaster.PreviousPriorityHitCheck.Remove( prop.gameObject );
 				RemoveFocus( prop );
 			}
 		}

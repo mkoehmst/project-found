@@ -9,11 +9,20 @@ namespace ProjectFound.Environment.Props {
 	public class Item : Prop
 	{
 
+		//[SerializeField] ItemSpec m_itemSpec;
+
 		new void Start( )
 		{
 			base.Start( );
 
+			//m_handler.Initialize( this );
+
 			//GenerateIcon( );
+		}
+
+		public void PickUp( )
+		{
+			(m_handler as ItemHandler).AddToInventory( );
 		}
 
 		public override bool ValidateAction( ActionType actionType )

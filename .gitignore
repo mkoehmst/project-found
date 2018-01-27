@@ -5,6 +5,8 @@
 /[Bb]uilds/
 /Assets/*.meta
 /Assets/AssetStoreTools*
+/Assets/Cinemachine
+/Assets/Gizmos
 /Assets/AutoSave
 /Assets/Plugins
 /Assets/ProCore

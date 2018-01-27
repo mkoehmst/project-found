@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e3a6eb42d82ceff4084871ec0748d42e
-timeCreated: 1513533759
+timeCreated: 1516567331
 licenseType: Free
 SubstanceImporter:
   externalObjects: {}
@@ -89,6 +89,7 @@ SubstanceImporter:
       colors:
       - _Color: {r: 1, g: 1, b: 1, a: 1}
       - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+      - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     textureParameters:
     - name: Airplane_Seat_basecolor
       alphaSource: 6

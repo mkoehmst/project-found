@@ -10,7 +10,7 @@ namespace ProjectFound.Environment.Characters
 
 	public abstract class SkillHandler : ContextHandler
 	{
-		public abstract void Handle( SkillDefinition skillDefinition );
+		public abstract void Handle( SkillSpec skillDefinition );
 	}
 
 

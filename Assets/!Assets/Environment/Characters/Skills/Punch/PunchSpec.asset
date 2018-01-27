@@ -9,11 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1b95315089c2904bac4084511f2bcb2, type: 3}
-  m_Name: PunchDefinition
+  m_Name: PunchSpec
   m_EditorClassIdentifier: 
-  m_skillName: Punch
-  m_skillDescription: Hit in the face
+  m_name: 
+  m_description: 
   m_icon: {fileID: 21300000, guid: 25dd802c575809d4db1e1e137dd9839d, type: 3}
   m_actionPointCost: 2
   m_range: 0.75
-  m_handler: {fileID: 11400000, guid: b71225efd6b91b148bfb65396b050090, type: 2}
