@@ -1,0 +1,122 @@
+fileFormatVersion: 2
+guid: a99439fc2d768d34bb18bdfcf86f1bc5
+timeCreated: 1517520677
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Airplane_OverheadBin_Box
+    100004: Airplane_OverheadBin_Box_Cushion
+    100006: Airplane_OverheadBin_Door
+    100008: Airplane_OverheadBin_DoorHandle
+    100010: Airplane_OverheadBin_Liner
+    100012: JT_Airplane_OverheadBin_Box_0
+    100014: JT_Airplane_OverheadBin_Door_0
+    100016: JT_Airplane_OverheadBin_Root_0
+    400000: //RootNode
+    400002: Airplane_OverheadBin_Box
+    400004: Airplane_OverheadBin_Box_Cushion
+    400006: Airplane_OverheadBin_Door
+    400008: Airplane_OverheadBin_DoorHandle
+    400010: Airplane_OverheadBin_Liner
+    400012: JT_Airplane_OverheadBin_Box_0
+    400014: JT_Airplane_OverheadBin_Door_0
+    400016: JT_Airplane_OverheadBin_Root_0
+    2100000: Airplane_OverheadBin2
+    4300000: Airplane_OverheadBin_Liner
+    4300002: Airplane_OverheadBin_DoorHandle
+    4300004: Airplane_OverheadBin_Door
+    4300006: Airplane_OverheadBin_Box
+    4300008: Airplane_OverheadBin_Box_Cushion
+    9500000: //RootNode
+    13700000: Airplane_OverheadBin_Box
+    13700002: Airplane_OverheadBin_Box_Cushion
+    13700004: Airplane_OverheadBin_Door
+    13700006: Airplane_OverheadBin_DoorHandle
+    13700008: Airplane_OverheadBin_Liner
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Airplane_OverheadBin2
+    second: {fileID: -691106731, guid: d622555ab72c4824c9fb4d8786edfa5a, type: 3}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: JT_Airplane_OverheadBin_Root_0
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

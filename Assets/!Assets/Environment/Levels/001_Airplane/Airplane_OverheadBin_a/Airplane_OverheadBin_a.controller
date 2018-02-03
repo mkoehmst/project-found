@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Airplane_OverheadBin_a_01
+  m_Name: Airplane_OverheadBin_a
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Prop_Activate
@@ -27,7 +27,7 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1101 &1101526524157511896
+--- !u!1101 &1101452305955053068
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -38,14 +38,14 @@ AnimatorStateTransition:
     m_ConditionEvent: Prop_Activate
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1102709614084062614}
+  m_DstState: {fileID: 1102288739985826464}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.9619707
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0.000000006741114
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -76,7 +76,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1102709614084062614
+--- !u!1102 &1102288739985826464
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
@@ -95,7 +95,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 66a73e282618f854bafe0d551b218dce, type: 3}
+  m_Motion: {fileID: 7400000, guid: 730ffeb89c764684a8fcdeb1c2070bcb, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -110,14 +110,14 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: 1102709614084062614}
-    m_Position: {x: 300, y: 168, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 1102226772168874208}
-    m_Position: {x: 48, y: 168, z: 0}
+    m_Position: {x: -12, y: 300, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102288739985826464}
+    m_Position: {x: 332, y: 359, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
-  - {fileID: 1101526524157511896}
+  - {fileID: 1101452305955053068}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []

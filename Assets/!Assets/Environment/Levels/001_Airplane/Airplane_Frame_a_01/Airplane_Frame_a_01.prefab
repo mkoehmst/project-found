@@ -320,6 +320,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!1 &1063167635169744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4264000523446304}
+  - component: {fileID: 33410325199948090}
+  - component: {fileID: 23614533582764918}
+  - component: {fileID: 64921144802372428}
+  m_Layer: 0
+  m_Name: Airplane_FloorStrip_Inside
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1070127273747948
 GameObject:
   m_ObjectHideFlags: 1
@@ -1411,6 +1429,24 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!1 &1392756300212650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4882767571883040}
+  - component: {fileID: 33191413577074624}
+  - component: {fileID: 23626038812411844}
+  - component: {fileID: 64447332971498458}
+  m_Layer: 0
+  m_Name: Airplane_FloorStrip_Outside
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1399624024639662
 GameObject:
@@ -4049,7 +4085,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1822987633424104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.7763568e-17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4845616805086128}
@@ -4438,6 +4474,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4805748490434614}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4264000523446304
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063167635169744}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.005, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4845616805086128}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4267217393822874
 Transform:
@@ -6122,6 +6171,8 @@ Transform:
   - {fileID: 4126244785150694}
   - {fileID: 4986807947604856}
   - {fileID: 4433578352096484}
+  - {fileID: 4264000523446304}
+  - {fileID: 4882767571883040}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6230,6 +6281,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4131061713713880}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4882767571883040
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1392756300212650}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.005, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4845616805086128}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4887387104050924
 Transform:
@@ -9779,6 +9843,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23614533582764918
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063167635169744}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100030, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
+  - {fileID: 2100030, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23615265797405552
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -9794,6 +9893,41 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 410977609, guid: 4057d16856e390a4fa3eafccf31f87da, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!23 &23626038812411844
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1392756300212650}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100030, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
+  - {fileID: 2100030, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11483,6 +11617,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1175713381549858}
   m_Mesh: {fileID: 4300124, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
+--- !u!33 &33191413577074624
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1392756300212650}
+  m_Mesh: {fileID: 4300150, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
 --- !u!33 &33193627889069836
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -11763,6 +11904,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1301598744946384}
   m_Mesh: {fileID: 4300120, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
+--- !u!33 &33410325199948090
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063167635169744}
+  m_Mesh: {fileID: 4300152, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
 --- !u!33 &33412066901902346
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -13191,6 +13339,20 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300056, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
+--- !u!64 &64447332971498458
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1392756300212650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300150, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
 --- !u!64 &64451099211627340
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -14241,6 +14403,20 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300056, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
+--- !u!64 &64921144802372428
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063167635169744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300152, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
 --- !u!64 &64921438661341092
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -14353,7 +14529,15 @@ MonoBehaviour:
   m_fbxHistory: '{"-Airplane_Floor":{"UnityEngine.MeshCollider": "{\"MeshCollider\":{\"m_Material\":{\"instanceID\":0},\"m_IsTrigger\":false,\"m_Enabled\":true,\"serializedVersion\":\"3\",\"m_Convex\":false,\"m_CookingOptions\":14,\"m_SkinWidth\":0.009999999776482582,\"m_Mesh\":{\"fileID\":4300030,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}}}","UnityEngine.MeshFilter":
     "{\"MeshFilter\":{\"m_Mesh\":{\"fileID\":4300030,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}}}","UnityEngine.MeshRenderer":
     "{\"MeshRenderer\":{\"m_Enabled\":true,\"m_CastShadows\":1,\"m_ReceiveShadows\":true,\"m_DynamicOccludee\":true,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_Materials\":[{\"fileID\":2100000,\"guid\":\"1f712ca14db801e43a2e7a536bf83792\",\"type\":2},{\"fileID\":2100000,\"guid\":\"1f712ca14db801e43a2e7a536bf83792\",\"type\":2}],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":{\"instanceID\":0},\"m_ProbeAnchor\":{\"instanceID\":0},\"m_LightProbeVolumeOverride\":{\"instanceID\":0},\"m_ScaleInLightmap\":1.0,\"m_PreserveUVs\":false,\"m_IgnoreNormalsForChartDetection\":false,\"m_ImportantGI\":false,\"m_StitchLightmapSeams\":false,\"m_SelectedEditorRenderState\":3,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89.0,\"m_LightmapParameters\":{\"instanceID\":0},\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0}}","UnityEngine.Transform":
-    "{\"Transform\":{\"m_LocalRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"m_LocalPosition\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"m_LocalScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"m_RootOrder\":0,\"m_LocalEulerAnglesHint\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}}"},"-Airplane_Frame":{"-Airplane_CabinNoWindow":{"-Airplane_CabinNoWindowLeft":{"UnityEngine.MeshCollider":
+    "{\"Transform\":{\"m_LocalRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"m_LocalPosition\":{\"x\":0.0,\"y\":1.776356799695581e-17,\"z\":0.0},\"m_LocalScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"m_RootOrder\":0,\"m_LocalEulerAnglesHint\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}}"},"-Airplane_FloorStrip_Inside":{"UnityEngine.MeshCollider":
+    "{\"MeshCollider\":{\"m_Material\":{\"instanceID\":0},\"m_IsTrigger\":false,\"m_Enabled\":true,\"serializedVersion\":\"3\",\"m_Convex\":false,\"m_CookingOptions\":14,\"m_SkinWidth\":0.009999999776482582,\"m_Mesh\":{\"fileID\":4300152,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}}}","UnityEngine.MeshFilter":
+    "{\"MeshFilter\":{\"m_Mesh\":{\"fileID\":4300152,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}}}","UnityEngine.MeshRenderer":
+    "{\"MeshRenderer\":{\"m_Enabled\":true,\"m_CastShadows\":1,\"m_ReceiveShadows\":true,\"m_DynamicOccludee\":true,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_Materials\":[{\"fileID\":2100030,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3},{\"fileID\":2100030,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":{\"instanceID\":0},\"m_ProbeAnchor\":{\"instanceID\":0},\"m_LightProbeVolumeOverride\":{\"instanceID\":0},\"m_ScaleInLightmap\":1.0,\"m_PreserveUVs\":false,\"m_IgnoreNormalsForChartDetection\":false,\"m_ImportantGI\":false,\"m_StitchLightmapSeams\":false,\"m_SelectedEditorRenderState\":3,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89.0,\"m_LightmapParameters\":{\"instanceID\":0},\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0}}","UnityEngine.Transform":
+    "{\"Transform\":{\"m_LocalRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"m_LocalPosition\":{\"x\":0.0,\"y\":0.004999999888241291,\"z\":0.0},\"m_LocalScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"m_RootOrder\":1,\"m_LocalEulerAnglesHint\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}}"},"-Airplane_FloorStrip_Outside":{"UnityEngine.MeshCollider":
+    "{\"MeshCollider\":{\"m_Material\":{\"instanceID\":0},\"m_IsTrigger\":false,\"m_Enabled\":true,\"serializedVersion\":\"3\",\"m_Convex\":false,\"m_CookingOptions\":14,\"m_SkinWidth\":0.009999999776482582,\"m_Mesh\":{\"fileID\":4300150,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}}}","UnityEngine.MeshFilter":
+    "{\"MeshFilter\":{\"m_Mesh\":{\"fileID\":4300150,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}}}","UnityEngine.MeshRenderer":
+    "{\"MeshRenderer\":{\"m_Enabled\":true,\"m_CastShadows\":1,\"m_ReceiveShadows\":true,\"m_DynamicOccludee\":true,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_Materials\":[{\"fileID\":2100030,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3},{\"fileID\":2100030,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":{\"instanceID\":0},\"m_ProbeAnchor\":{\"instanceID\":0},\"m_LightProbeVolumeOverride\":{\"instanceID\":0},\"m_ScaleInLightmap\":1.0,\"m_PreserveUVs\":false,\"m_IgnoreNormalsForChartDetection\":false,\"m_ImportantGI\":false,\"m_StitchLightmapSeams\":false,\"m_SelectedEditorRenderState\":3,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89.0,\"m_LightmapParameters\":{\"instanceID\":0},\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0}}","UnityEngine.Transform":
+    "{\"Transform\":{\"m_LocalRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"m_LocalPosition\":{\"x\":0.0,\"y\":0.004999999888241291,\"z\":0.0},\"m_LocalScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"m_RootOrder\":2,\"m_LocalEulerAnglesHint\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}}"},"-Airplane_Frame":{"-Airplane_CabinNoWindow":{"-Airplane_CabinNoWindowLeft":{"UnityEngine.MeshCollider":
     "{\"MeshCollider\":{\"m_Material\":{\"instanceID\":0},\"m_IsTrigger\":false,\"m_Enabled\":true,\"serializedVersion\":\"3\",\"m_Convex\":false,\"m_CookingOptions\":14,\"m_SkinWidth\":0.009999999776482582,\"m_Mesh\":{\"fileID\":4300126,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}}}","UnityEngine.MeshFilter":
     "{\"MeshFilter\":{\"m_Mesh\":{\"fileID\":4300126,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}}}","UnityEngine.MeshRenderer":
     "{\"MeshRenderer\":{\"m_Enabled\":true,\"m_CastShadows\":1,\"m_ReceiveShadows\":true,\"m_DynamicOccludee\":true,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_Materials\":[{\"fileID\":2100008,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":{\"instanceID\":0},\"m_ProbeAnchor\":{\"instanceID\":0},\"m_LightProbeVolumeOverride\":{\"instanceID\":0},\"m_ScaleInLightmap\":1.0,\"m_PreserveUVs\":false,\"m_IgnoreNormalsForChartDetection\":false,\"m_ImportantGI\":false,\"m_StitchLightmapSeams\":false,\"m_SelectedEditorRenderState\":3,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89.0,\"m_LightmapParameters\":{\"instanceID\":0},\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0}}","UnityEngine.Transform":
@@ -14979,11 +15163,11 @@ MonoBehaviour:
     "{\"MeshFilter\":{\"m_Mesh\":{\"fileID\":4300148,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}}}","UnityEngine.MeshRenderer":
     "{\"MeshRenderer\":{\"m_Enabled\":true,\"m_CastShadows\":1,\"m_ReceiveShadows\":true,\"m_DynamicOccludee\":true,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_Materials\":[{\"fileID\":2100008,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3},{\"fileID\":2100008,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":{\"instanceID\":0},\"m_ProbeAnchor\":{\"instanceID\":0},\"m_LightProbeVolumeOverride\":{\"instanceID\":0},\"m_ScaleInLightmap\":1.0,\"m_PreserveUVs\":false,\"m_IgnoreNormalsForChartDetection\":false,\"m_ImportantGI\":false,\"m_StitchLightmapSeams\":false,\"m_SelectedEditorRenderState\":3,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89.0,\"m_LightmapParameters\":{\"instanceID\":0},\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0}}","UnityEngine.Transform":
     "{\"Transform\":{\"m_LocalRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"m_LocalPosition\":{\"x\":-7.629394076502649e-7,\"y\":0.5999996662139893,\"z\":0.9402111768722534},\"m_LocalScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"m_RootOrder\":69,\"m_LocalEulerAnglesHint\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}}"},"UnityEngine.Transform":
-    "{\"Transform\":{\"m_LocalRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"m_LocalPosition\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"m_LocalScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"m_RootOrder\":1,\"m_LocalEulerAnglesHint\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}}"},"-Airplane_Roof":{"UnityEngine.MeshCollider":
+    "{\"Transform\":{\"m_LocalRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"m_LocalPosition\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"m_LocalScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"m_RootOrder\":3,\"m_LocalEulerAnglesHint\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}}"},"-Airplane_Roof":{"UnityEngine.MeshCollider":
     "{\"MeshCollider\":{\"m_Material\":{\"instanceID\":0},\"m_IsTrigger\":false,\"m_Enabled\":true,\"serializedVersion\":\"3\",\"m_Convex\":false,\"m_CookingOptions\":14,\"m_SkinWidth\":0.009999999776482582,\"m_Mesh\":{\"fileID\":4300054,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}}}","UnityEngine.MeshFilter":
     "{\"MeshFilter\":{\"m_Mesh\":{\"fileID\":4300054,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3}}}","UnityEngine.MeshRenderer":
     "{\"MeshRenderer\":{\"m_Enabled\":true,\"m_CastShadows\":1,\"m_ReceiveShadows\":true,\"m_DynamicOccludee\":true,\"m_MotionVectors\":1,\"m_LightProbeUsage\":1,\"m_ReflectionProbeUsage\":1,\"m_Materials\":[{\"fileID\":2100000,\"guid\":\"ec6371b90ca2fef4ea2fc9d8aae5bd41\",\"type\":2}],\"m_StaticBatchInfo\":{\"firstSubMesh\":0,\"subMeshCount\":0},\"m_StaticBatchRoot\":{\"instanceID\":0},\"m_ProbeAnchor\":{\"instanceID\":0},\"m_LightProbeVolumeOverride\":{\"instanceID\":0},\"m_ScaleInLightmap\":1.0,\"m_PreserveUVs\":false,\"m_IgnoreNormalsForChartDetection\":false,\"m_ImportantGI\":false,\"m_StitchLightmapSeams\":false,\"m_SelectedEditorRenderState\":3,\"m_MinimumChartSize\":4,\"m_AutoUVMaxDistance\":0.5,\"m_AutoUVMaxAngle\":89.0,\"m_LightmapParameters\":{\"instanceID\":0},\"m_SortingLayerID\":0,\"m_SortingLayer\":0,\"m_SortingOrder\":0}}","UnityEngine.Transform":
-    "{\"Transform\":{\"m_LocalRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"m_LocalPosition\":{\"x\":-0.000002441406195430318,\"y\":3.57560658454895,\"z\":0.0},\"m_LocalScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"m_RootOrder\":2,\"m_LocalEulerAnglesHint\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}}"},"UnityEngine.Animator":
+    "{\"Transform\":{\"m_LocalRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"m_LocalPosition\":{\"x\":-0.000002441406195430318,\"y\":3.57560658454895,\"z\":0.0},\"m_LocalScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"m_RootOrder\":4,\"m_LocalEulerAnglesHint\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}}"},"UnityEngine.Animator":
     "{\"Animator\":{\"serializedVersion\":\"3\",\"m_Enabled\":true,\"m_Avatar\":{\"fileID\":9000000,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3},\"m_Controller\":{\"instanceID\":0},\"m_CullingMode\":0,\"m_UpdateMode\":0,\"m_ApplyRootMotion\":false,\"m_LinearVelocityBlending\":false,\"m_WarningMessage\":\"\",\"m_HasTransformHierarchy\":true,\"m_AllowConstantClipSamplingOptimization\":true}}"}'
   m_fbxModel: {fileID: 100008, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
   m_autoUpdate: 1

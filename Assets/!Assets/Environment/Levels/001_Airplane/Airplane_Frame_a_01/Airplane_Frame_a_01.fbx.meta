@@ -523,6 +523,8 @@ ModelImporter:
     101030: Airplane_DoubleWideLeft 4
     101032: Airplane_DoubleWideLeft 5
     101034: Airplane_DoubleWideLeft 6
+    101036: Airplane_FloorStrip_Inside
+    101038: Airplane_FloorStrip_Outside
     400000: Airplane_BackWall_01
     400002: Airplane_BackWall_02
     400004: Airplane_BackWall_03
@@ -1041,6 +1043,8 @@ ModelImporter:
     401030: Airplane_DoubleWideLeft 4
     401032: Airplane_DoubleWideLeft 5
     401034: Airplane_DoubleWideLeft 6
+    401036: Airplane_FloorStrip_Inside
+    401038: Airplane_FloorStrip_Outside
     2100000: phong1
     2100002: phong4
     2100004: Airplane_Walls_MAT
@@ -1056,6 +1060,7 @@ ModelImporter:
     2100024: pasted__Airplane_Walls_MAT14
     2100026: pasted__Airplane_Walls_MAT15
     2100028: pasted__Airplane_Walls_MAT16
+    2100030: Airplane_Frame_FloorStrip_MAT
     2300000: Airplane_BackWall_01
     2300002: Airplane_BackWall_02
     2300004: Airplane_BackWall_03
@@ -1372,6 +1377,8 @@ ModelImporter:
     2300626: Airplane_DoubleWideLeft 4
     2300628: Airplane_DoubleWideLeft 5
     2300630: Airplane_DoubleWideLeft 6
+    2300632: Airplane_FloorStrip_Inside
+    2300634: Airplane_FloorStrip_Outside
     3300000: Airplane_BackWall_01
     3300002: Airplane_BackWall_02
     3300004: Airplane_BackWall_03
@@ -1688,6 +1695,8 @@ ModelImporter:
     3300626: Airplane_DoubleWideLeft 4
     3300628: Airplane_DoubleWideLeft 5
     3300630: Airplane_DoubleWideLeft 6
+    3300632: Airplane_FloorStrip_Inside
+    3300634: Airplane_FloorStrip_Outside
     4300000: Airplane_Frame
     4300002: Airplane_SectionWall
     4300004: Airplane_FrontWall_01
@@ -1763,6 +1772,8 @@ ModelImporter:
     4300144: Airplane_DoubleWideLeft
     4300146: Airplane_DoubleWideRight
     4300148: Airplane_Frame_Remainder
+    4300150: Airplane_FloorStrip_Outside
+    4300152: Airplane_FloorStrip_Inside
     6400000: Airplane_BackWall_01
     6400002: Airplane_BackWall_02
     6400004: Airplane_BackWall_03
@@ -2079,6 +2090,8 @@ ModelImporter:
     6400626: Airplane_DoubleWideLeft 4
     6400628: Airplane_DoubleWideLeft 5
     6400630: Airplane_DoubleWideLeft 6
+    6400632: Airplane_FloorStrip_Inside
+    6400634: Airplane_FloorStrip_Outside
     7400000: Take 001
     9500000: //RootNode
   externalObjects:

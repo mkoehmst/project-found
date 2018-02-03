@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 66a73e282618f854bafe0d551b218dce
-timeCreated: 1514826088
+guid: 730ffeb89c764684a8fcdeb1c2070bcb
+timeCreated: 1517520904
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -13,7 +13,7 @@ ModelImporter:
     400002: JT_Airplane_OverheadBin_Box_0
     400004: JT_Airplane_OverheadBin_Door_0
     400006: JT_Airplane_OverheadBin_Root_0
-    7400000: Take 001
+    7400000: OpenDoor
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -41,7 +41,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: OpenDoor
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -71,7 +99,7 @@ ModelImporter:
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
-  copyAvatar: 0
+  copyAvatar: 1
   humanDescription:
     serializedVersion: 2
     human: []
@@ -83,12 +111,13 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: JT_Airplane_OverheadBin_Root_0
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: a99439fc2d768d34bb18bdfcf86f1bc5,
+    type: 3}
   animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
