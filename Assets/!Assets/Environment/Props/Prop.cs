@@ -32,7 +32,11 @@ namespace ProjectFound.Environment.Props {
 
 		public void Activate( )
 		{
-			m_handler.Use( );
+			if ( m_isReceptive == true )
+			{
+				m_handler.Use( );
+				m_isReceptive = false;
+			}
 		}
 
 		public void StartDragAndDrop( ref RaycastHit hit )

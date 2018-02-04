@@ -31,7 +31,7 @@ namespace ProjectFound.Environment.Props
 		public override void Use( )
 		{
 			m_animator?.SetTrigger( m_activateTrigger );
-			m_component.IsReceptive = false;
+			//m_component.IsReceptive = false;
 		}
 
 		public void DragAndDrop( ref RaycastHit hit )
