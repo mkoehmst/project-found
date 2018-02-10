@@ -91,7 +91,7 @@ namespace ProjectFound.Master {
 
 		public void EndPropPlacement( )
 		{
-			Placement.Cleanup( );
+			Placement.ValidatePlacement( );
 			PropBeingPlaced = null;
 		}
 
