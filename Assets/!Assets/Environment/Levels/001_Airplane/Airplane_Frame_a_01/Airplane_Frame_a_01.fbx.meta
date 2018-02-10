@@ -2099,12 +2099,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Airplane_Floor_MAT
-    second: {fileID: 2100000, guid: 1f712ca14db801e43a2e7a536bf83792, type: 2}
+    second: {fileID: 2100000, guid: c48dca8e360829b4e93470363e885e92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Airplane_Frame_FloorStrip_MAT
+    second: {fileID: 2100000, guid: c48dca8e360829b4e93470363e885e92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Airplane_Frame_MAT
+    second: {fileID: 2100000, guid: c48dca8e360829b4e93470363e885e92, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Airplane_Roof_MAT
-    second: {fileID: 2100000, guid: ec6371b90ca2fef4ea2fc9d8aae5bd41, type: 2}
+    second: {fileID: 2100000, guid: c48dca8e360829b4e93470363e885e92, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -2147,7 +2157,7 @@ ModelImporter:
     importCameras: 0
     importLights: 0
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 1

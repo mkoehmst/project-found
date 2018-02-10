@@ -22,7 +22,7 @@ namespace ProjectFound.Environment.Props {
 
 		public void PickUp( )
 		{
-			(m_handler as ItemHandler).AddToInventory( );
+			(m_handler as ItemHandler).AddToInventory( this );
 		}
 
 		public override bool ValidateAction( ActionType actionType )

@@ -370,7 +370,7 @@ namespace ProjectFound.Core {
 						//} );
 						break;
 					case LayerID.Prop:
-						obj.GetComponent<Prop>( ).Activate( );
+						obj.GetComponentInParent<Prop>( ).Activate( );
 						//Prop prop = obj.GetComponent<Prop>( );
 						//PlayerMaster.Activate( prop, () =>
 						//{

@@ -16,13 +16,14 @@ namespace ProjectFound.Environment.Props
 
 		//public abstract void AddToInventory( ItemDefinition item );
 		//public abstract void RemoveFromInventory( ItemDefinition item );
-		public abstract override void Use( );
+		public abstract override void Use( Interactee interactee );
 
-		public virtual void AddToInventory( )
+		public virtual void AddToInventory( Item item )
 		{
-			Item item = m_component as Item;
+			//Item item = m_component as Item;
+			GameObject gameObj = item.gameObject;
 
-			RemoveFocusDirectly( );
+			RemoveFocusDirectly( item as Prop );
 
 			PlayerMaster.AddInventoryItem( item );
 			// Nullify Raycast Hit Check so RemoveFocus isn't called twice
@@ -38,14 +39,14 @@ namespace ProjectFound.Environment.Props
 					// Layering of lamba expressions even more powerful!
 				UIMaster.RemoveInventoryButton( item );
 				PlayerMaster.DropItem( item );
-				m_gameObject.SetActive( true );
+				gameObj.SetActive( true );
 				//} );
 			} );
 
-			m_gameObject.SetActive( false );
+			gameObj.SetActive( false );
 		}
 
-		public virtual void RemoveFromInventory( )
+		public virtual void RemoveFromInventory( Item item )
 		{
 
 		}

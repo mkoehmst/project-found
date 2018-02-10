@@ -10,7 +10,7 @@ namespace ProjectFound.Environment.Props
 
 	public abstract class InteracteeHandler : ContextHandler
 	{
-		public abstract void Use( );
+		public abstract void Use( Interactee i );
 	}
 
 

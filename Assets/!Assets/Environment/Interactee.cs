@@ -12,18 +12,30 @@ namespace ProjectFound.Environment {
 		// Bring health all the way down to the Interactee level because inanimate objects
 		// can have health too, the amount of damage before they are destroyed
 		[SerializeField] protected float m_maxHealthPoints = 100f;
-		[SerializeField] protected string m_promptText = "Pickup";
+		[SerializeField] protected string m_activateText = "Pickup";
+		[SerializeField] protected string m_deactivateText = "Drop";
 		[SerializeField] protected string m_ingameName = "Unknown";
 		[SerializeField] protected bool m_isReceptive = true;
+		[SerializeField] protected bool m_isActivated = false;
 
 		protected ActionType m_currentActionType = ActionType.None;
 		protected float m_curHealthPoints = 1f;
 
 		public bool IsFocused { get; set; }
 
+		public string ActivateText
+		{
+			get { return m_activateText; }
+		}
+
+		public string DeactivateText
+		{
+			get { return m_deactivateText; }
+		}
+
 		public string PromptText
 		{
-			get { return m_promptText; }
+			get { return m_isActivated ? m_deactivateText : m_activateText; }
 		}
 
 		public string IngameName
@@ -35,6 +47,12 @@ namespace ProjectFound.Environment {
 		{
 			get { return m_isReceptive; }
 			set { m_isReceptive = value; }
+		}
+
+		public bool IsActivated
+		{
+			get { return m_isActivated; }
+			set { m_isActivated = value; }
 		}
 
 		public float HealthAsPercentage

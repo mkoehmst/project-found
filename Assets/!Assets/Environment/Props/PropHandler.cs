@@ -12,56 +12,91 @@ namespace ProjectFound.Environment.Props
 	public class PropHandler : InteracteeHandler
 	{
 		private const string m_activateTriggerString = "Prop_Activate";
+		private const string m_deactivateTriggerString = "Prop_Deactivate";
 		private int m_activateTrigger;
+		private int m_deactivateTrigger;
 
-		protected Prop m_component;
-		protected GameObject m_gameObject;
+		//protected Prop m_component;
+		//protected GameObject m_gameObject;
 
-		protected Animator m_animator;
+		//protected Animator m_animator;
 
 		public void Initialize( Prop prop )
 		{
-			m_component = prop;
-			m_gameObject = prop.gameObject;
-			m_animator = m_gameObject.GetComponent<Animator>( );
+			//m_component = prop;
+			//m_gameObject = prop.gameObject;
+			//m_animator = m_gameObject.GetComponent<Animator>( );
 
-			m_activateTrigger = Animator.StringToHash( m_activateTriggerString );
+			if ( m_activateTrigger == 0 )
+			{
+				m_activateTrigger = Animator.StringToHash( m_activateTriggerString );
+			}
+
+			if ( m_deactivateTrigger == 0 )
+			{
+				m_deactivateTrigger = Animator.StringToHash( m_deactivateTriggerString );
+			}
 		}
 
-		public override void Use( )
+		public override void Use( Interactee interactee )
 		{
-			m_animator?.SetTrigger( m_activateTrigger );
-			//m_component.IsReceptive = false;
+			if ( interactee.IsReceptive == false )
+			{
+				return ;
+			}
+
+			Animator animator = interactee.GetComponent<Animator>( );
+
+			if ( interactee.IsActivated == false )
+			{
+				animator?.SetTrigger( m_activateTrigger );
+				//m_animator?.SetBool( "IsActivated", true );
+				interactee.IsActivated = true;
+			}
+			else
+			{
+				animator?.SetTrigger( m_deactivateTrigger );
+				//m_animator?.SetBool( "IsActivated", false );
+				interactee.IsActivated = false;
+			}
 		}
 
-		public void DragAndDrop( ref RaycastHit hit )
+		public void DragAndDrop( Prop prop, ref RaycastHit hit )
 		{
+			if ( prop.IsReceptive == false || prop.IsDraggable == false )
+			{
+				return ;
+			}
+
+			GameObject gameObj = prop.gameObject;
 			var raycaster = RaycastMaster.CurrentRaycaster;
 
-			RemoveFocus( );
+			RemoveFocus( prop );
 			raycaster.IsEnabled = false;
 			raycaster = RaycastMaster.CurrentRaycaster =
 				RaycastMaster.Raycasters[RaycastMaster.RaycastMode.PropPlacement];
 			raycaster.IsEnabled = true;
-			raycaster.AddBlacklistee( m_gameObject );
-			PlayerMaster.StartPropPlacement( m_component, m_gameObject, ref hit );
+			raycaster.AddBlacklistee( gameObj );
+			PlayerMaster.StartPropPlacement( prop, gameObj, ref hit );
 		}
 
-		protected void RemoveFocusDirectly( )
+		protected void RemoveFocusDirectly( Prop prop )
 		{
+			GameObject gameObj = prop.gameObject;
 			// Nullify Previous Raycast Hit Check so RemoveFocus isn't called twice
-			RaycastMaster.CurrentRaycaster.PreviousPriorityHitCheck.Remove( m_gameObject );
-			RemoveFocus( );
+			RaycastMaster.CurrentRaycaster.PreviousPriorityHitCheck.Remove( gameObj );
+			RemoveFocus( prop );
 		}
 
-		protected void RemoveFocus( )
+		protected void RemoveFocus( Prop prop )
 		{
-			if ( m_component.IsFocused == true )
+			if ( prop.IsFocused == true )
 			{
-				m_component.IsFocused = false;
+				GameObject gameObj = prop.gameObject;
+				prop.IsFocused = false;
 
-				UIMaster.RemovePrompt( m_component );
-				ShaderMaster.ToggleSelectionOutline( m_gameObject );
+				UIMaster.RemovePrompt( prop );
+				ShaderMaster.ToggleSelectionOutline( gameObj );
 			}
 		}
 	}

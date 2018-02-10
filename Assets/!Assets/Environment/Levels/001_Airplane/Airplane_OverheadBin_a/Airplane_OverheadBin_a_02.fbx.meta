@@ -24,11 +24,14 @@ ModelImporter:
     400014: JT_Airplane_OverheadBin_Door_0
     400016: JT_Airplane_OverheadBin_Root_0
     2100000: Airplane_OverheadBin2
+    2300000: Airplane_OverheadBin_Box_Cushion
+    3300000: Airplane_OverheadBin_Box_Cushion
     4300000: Airplane_OverheadBin_Liner
     4300002: Airplane_OverheadBin_DoorHandle
     4300004: Airplane_OverheadBin_Door
     4300006: Airplane_OverheadBin_Box
     4300008: Airplane_OverheadBin_Box_Cushion
+    6400000: Airplane_OverheadBin_Box_Cushion
     9500000: //RootNode
     13700000: Airplane_OverheadBin_Box
     13700002: Airplane_OverheadBin_Box_Cushion

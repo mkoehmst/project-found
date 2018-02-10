@@ -9,6 +9,7 @@ namespace ProjectFound.Environment.Props {
 
 	public class Prop : Interactee
 	{
+		[SerializeField] bool m_isDraggable = true;
 		[SerializeField] Sprite m_icon;
 		[SerializeField] Mesh m_clearanceMesh;
 		[SerializeField] protected PropDefinition m_definition;
@@ -17,6 +18,11 @@ namespace ProjectFound.Environment.Props {
 		public Sprite Icon { get { return m_icon; } }
 		public Mesh ClearanceMesh { get { return m_clearanceMesh; } }
 		public GameObject Prompt { get; set; }
+
+		public bool IsDraggable
+		{
+			get { return m_isDraggable; }
+		}
 
 		protected void Awake( )
 		{
@@ -32,16 +38,12 @@ namespace ProjectFound.Environment.Props {
 
 		public void Activate( )
 		{
-			if ( m_isReceptive == true )
-			{
-				m_handler.Use( );
-				m_isReceptive = false;
-			}
+			m_handler.Use( this );
 		}
 
 		public void StartDragAndDrop( ref RaycastHit hit )
 		{
-			m_handler.DragAndDrop( ref hit );
+			m_handler.DragAndDrop( this, ref hit );
 		}
 
 		public override bool ValidateAction( ActionType actionType )
