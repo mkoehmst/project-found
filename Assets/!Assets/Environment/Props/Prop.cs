@@ -13,7 +13,7 @@ namespace ProjectFound.Environment.Props {
 		[SerializeField] Sprite m_icon;
 		[SerializeField] Mesh m_clearanceMesh;
 		[SerializeField] protected PropDefinition m_definition;
-		[SerializeField] protected PropHandler m_handler;
+		[SerializeField] protected InteracteeHandler m_handler;
 
 		public Sprite Icon { get { return m_icon; } }
 		public Mesh ClearanceMesh { get { return m_clearanceMesh; } }
@@ -33,7 +33,7 @@ namespace ProjectFound.Environment.Props {
 		{
 			base.Start( );
 
-			m_handler.Initialize( this );
+			//m_handler.Initialize( this );
 		}
 
 		public void Activate( )
@@ -43,7 +43,7 @@ namespace ProjectFound.Environment.Props {
 
 		public void StartDragAndDrop( ref RaycastHit hit )
 		{
-			m_handler.DragAndDrop( this, ref hit );
+			(m_handler as PropHandler).DragAndDrop( this, ref hit );
 		}
 
 		public override bool ValidateAction( ActionType actionType )

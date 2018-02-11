@@ -17,6 +17,7 @@ namespace ProjectFound.Environment {
 		[SerializeField] protected string m_ingameName = "Unknown";
 		[SerializeField] protected bool m_isReceptive = true;
 		[SerializeField] protected bool m_isActivated = false;
+		[SerializeField] protected NodeCanvas.DialogueTrees.DialogueTree m_dialogueTree;
 
 		protected ActionType m_currentActionType = ActionType.None;
 		protected float m_curHealthPoints = 1f;
@@ -53,6 +54,11 @@ namespace ProjectFound.Environment {
 		{
 			get { return m_isActivated; }
 			set { m_isActivated = value; }
+		}
+
+		public NodeCanvas.DialogueTrees.DialogueTree DialogueTree
+		{
+			get { return m_dialogueTree; }
 		}
 
 		public float HealthAsPercentage

@@ -21,7 +21,20 @@ namespace ProjectFound.Environment.Props
 
 		//protected Animator m_animator;
 
-		public void Initialize( Prop prop )
+		void OnEnable( )
+		{
+			if ( m_activateTrigger == 0 )
+			{
+				m_activateTrigger = Animator.StringToHash( m_activateTriggerString );
+			}
+
+			if ( m_deactivateTrigger == 0 )
+			{
+				m_deactivateTrigger = Animator.StringToHash( m_deactivateTriggerString );
+			}
+		}
+
+		/*public void Initialize( Prop prop )
 		{
 			//m_component = prop;
 			//m_gameObject = prop.gameObject;
@@ -36,7 +49,7 @@ namespace ProjectFound.Environment.Props
 			{
 				m_deactivateTrigger = Animator.StringToHash( m_deactivateTriggerString );
 			}
-		}
+		}*/
 
 		public override void Use( Interactee interactee )
 		{
