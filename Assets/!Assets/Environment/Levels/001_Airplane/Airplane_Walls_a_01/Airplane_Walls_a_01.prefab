@@ -25,8 +25,8 @@ GameObject:
   m_Name: Airplane_BackWall_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1228956928871366
 GameObject:
@@ -42,8 +42,8 @@ GameObject:
   m_Name: Airplane_Restroom_FrontRight_Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1261319301951334
 GameObject:
@@ -58,7 +58,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1316169559712736
 GameObject:
@@ -70,12 +70,16 @@ GameObject:
   - component: {fileID: 4800902972565636}
   - component: {fileID: 33796267695708236}
   - component: {fileID: 23850304411673072}
-  m_Layer: 0
+  - component: {fileID: 64298971801265502}
+  - component: {fileID: 114047387031066500}
+  - component: {fileID: 114986235727403888}
+  - component: {fileID: 114375194242514132}
+  m_Layer: 10
   m_Name: Airplane_Restroom_FrontLeft_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1369466934454008
 GameObject:
@@ -91,8 +95,8 @@ GameObject:
   m_Name: Airplane_Restroom_FrontLeft_Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1491812248647668
 GameObject:
@@ -107,7 +111,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1516236521454220
 GameObject:
@@ -122,7 +126,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1541543571825138
 GameObject:
@@ -138,8 +142,8 @@ GameObject:
   m_Name: Airplane_FrontWall_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1597993033803260
 GameObject:
@@ -154,7 +158,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1696945703507124
 GameObject:
@@ -170,8 +174,8 @@ GameObject:
   m_Name: Airplane_FrontWall_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1765537391984148
 GameObject:
@@ -187,7 +191,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1849062116480892
 GameObject:
@@ -203,8 +207,8 @@ GameObject:
   m_Name: Airplane_BackWall_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1857047003369948
 GameObject:
@@ -220,8 +224,8 @@ GameObject:
   m_Name: Airplane_BackWall_Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1892276135520816
 GameObject:
@@ -233,12 +237,16 @@ GameObject:
   - component: {fileID: 4966112754555196}
   - component: {fileID: 33637882896596860}
   - component: {fileID: 23941600428492866}
-  m_Layer: 0
+  - component: {fileID: 64829189695841480}
+  - component: {fileID: 114865843500863880}
+  - component: {fileID: 114266876925108134}
+  - component: {fileID: 114667489161667448}
+  m_Layer: 10
   m_Name: Airplane_Restroom_FrontRight_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1916422227734276
 GameObject:
@@ -254,8 +262,8 @@ GameObject:
   m_Name: Airplane_Restroom_Back_Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1948975183721364
 GameObject:
@@ -270,7 +278,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4012724849673438
 Transform:
@@ -905,6 +913,121 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1857047003369948}
   m_Mesh: {fileID: 4300298, guid: ed7890425e671c64ea9b9d065e86650f, type: 3}
+--- !u!64 &64298971801265502
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1316169559712736}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300304, guid: ed7890425e671c64ea9b9d065e86650f, type: 3}
+--- !u!64 &64829189695841480
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1892276135520816}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300308, guid: ed7890425e671c64ea9b9d065e86650f, type: 3}
+--- !u!114 &114047387031066500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1316169559712736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df6cdcf050b5a92469b0b45a8b352797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealthPoints: 100
+  m_activateText: Open
+  m_deactivateText: Close
+  m_ingameName: Restroom Door
+  m_isReceptive: 1
+  m_isActivated: 0
+  m_dialogueTree: {fileID: 11400000, guid: ed70222909448f946833db63b636b8d8, type: 2}
+  m_isDraggable: 0
+  m_icon: {fileID: 0}
+  m_clearanceMesh: {fileID: 0}
+  m_definition: {fileID: 0}
+  m_handler: {fileID: 11400000, guid: 8e96ccc2d3ea489459e085c8981ac79b, type: 2}
+--- !u!114 &114266876925108134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1892276135520816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d71fb7c52372e244baf2e69a9d0d116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Little Kid
+  _portrait: {fileID: 0}
+  _dialogueColor: {r: 1, g: 1, b: 1, a: 1}
+  _dialogueOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &114375194242514132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1316169559712736}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 1
+  eraseRenderer: 0
+--- !u!114 &114667489161667448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1892276135520816}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 1
+  eraseRenderer: 0
+--- !u!114 &114865843500863880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1892276135520816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df6cdcf050b5a92469b0b45a8b352797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealthPoints: 100
+  m_activateText: Knock on
+  m_deactivateText: Close
+  m_ingameName: Restroom Door
+  m_isReceptive: 1
+  m_isActivated: 0
+  m_dialogueTree: {fileID: 11400000, guid: 614c96c5caf2af54792cea627e27a29f, type: 2}
+  m_isDraggable: 1
+  m_icon: {fileID: 0}
+  m_clearanceMesh: {fileID: 0}
+  m_definition: {fileID: 11400000, guid: a0ae4177728016b429908a90da4814d6, type: 2}
+  m_handler: {fileID: 11400000, guid: 8e96ccc2d3ea489459e085c8981ac79b, type: 2}
 --- !u!114 &114954916304961046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -954,3 +1077,18 @@ MonoBehaviour:
     "{\"Transform\":{\"m_LocalRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"m_LocalPosition\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"m_LocalScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"m_RootOrder\":4,\"m_LocalEulerAnglesHint\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}}"}}'
   m_fbxModel: {fileID: 100442, guid: ed7890425e671c64ea9b9d065e86650f, type: 3}
   m_autoUpdate: 1
+--- !u!114 &114986235727403888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1316169559712736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d71fb7c52372e244baf2e69a9d0d116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Man on the pot
+  _portrait: {fileID: 2800000, guid: d2b659a5f937b554b92ffa66be9bb4a8, type: 3}
+  _dialogueColor: {r: 1, g: 1, b: 1, a: 1}
+  _dialogueOffset: {x: 0, y: 0, z: 0}

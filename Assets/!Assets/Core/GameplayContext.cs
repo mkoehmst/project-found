@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using ProjectFound.Master;
+using ProjectFound.Environment;
 using ProjectFound.Environment.Props;
 using ProjectFound.Environment.Characters;
+using ProjectFound.Environment.Occlusion;
 
 namespace ProjectFound.Core {
 
@@ -62,15 +64,18 @@ namespace ProjectFound.Core {
 
 		protected override void SetupRaycasters( )
 		{
-			var cursorSelection =
-				RaycastMaster.AddLineRaycaster(
-					RaycastMaster.RaycastMode.CursorSelection, 30f, 3 );
+			RaycastMaster.Initialize( );
+
+			var cursorSelection = RaycastMaster.CursorSelectionRaycaster;
 
 			cursorSelection.AddPriority( LayerID.UI );
+			//cursorSelection.AddPriority( LayerID.Roof );
+			//cursorSelection.AddPriority( LayerID.Usable );
+			cursorSelection.AddPriority( LayerID.Walkable );
 			cursorSelection.AddPriority( LayerID.Enemy );
 			cursorSelection.AddPriority( LayerID.Item );
 			cursorSelection.AddPriority( LayerID.Prop );
-			cursorSelection.AddPriority( LayerID.Walkable );
+
 			//cursorSelection.AddPriority( LayerID.Default ); // Temporary debug
 
 			cursorSelection.DelegateLineTracking = (ref Vector3 start, ref Vector3 end) =>
@@ -90,9 +95,7 @@ namespace ProjectFound.Core {
 			cursorSelection.SetLayerDelegates
 				( LayerID.Item, OnCursorFocusGained, OnCursorFocusLost );
 
-			var combatCursorSelection =
-				RaycastMaster.AddPointRaycaster(
-					RaycastMaster.RaycastMode.CombatCursorSelection, 30f, false );
+			var combatCursorSelection = RaycastMaster.CombatCursorSelectionRaycaster;
 
 			combatCursorSelection.AddPriority( LayerID.Walkable );
 
@@ -103,9 +106,7 @@ namespace ProjectFound.Core {
 				ray = Camera.main.ScreenPointToRay( InputMaster.MousePosition );
 			};
 
-			var holdToMove =
-				RaycastMaster.AddPointRaycaster(
-					RaycastMaster.RaycastMode.HoldToMove, 30f, false );
+			var holdToMove = RaycastMaster.HoldToMoveRaycaster;
 
 			holdToMove.AddPriority( LayerID.Walkable );
 
@@ -114,28 +115,26 @@ namespace ProjectFound.Core {
 				ray = Camera.main.ScreenPointToRay( InputMaster.MousePosition );
 			};
 
-			var propPlacement =
-				RaycastMaster.AddPointRaycaster(
-					RaycastMaster.RaycastMode.PropPlacement, 30f, false );
+			var propPlacement = RaycastMaster.PropPlacementRaycaster;
 
-			propPlacement.AddPriority( LayerID.Item );
+			//propPlacement.AddPriority( LayerID.Item );
 			propPlacement.AddPriority( LayerID.Prop );
+			propPlacement.AddPriority( LayerID.Usable );
 			propPlacement.AddPriority( LayerID.Walkable );
-			propPlacement.AddPriority( LayerID.Default );
+			//propPlacement.AddPriority( LayerID.Default );
 
 			propPlacement.DelegateCasterAssignment = (ref Ray ray) =>
 			{
 				ray = Camera.main.ScreenPointToRay( InputMaster.MousePosition );
 			};
 
-			var cameraOcclusion =
-				RaycastMaster.AddOcclusionRaycaster(
-					RaycastMaster.RaycastMode.CameraOcclusion, 70f, PlayerMaster.Player.transform );
+			var cameraOcclusion = RaycastMaster.CameraOcclusionRaycaster;
 
 			cameraOcclusion.AddPriority( LayerID.Roof );
+			cameraOcclusion.Target = PlayerMaster.Player.transform;
 
-			cameraOcclusion.DelegateHitsFound = OnRaycastHits;
-			cameraOcclusion.DelegateHitsNotFound = OnRaycastNoHits;
+			cameraOcclusion.DelegateOcclusionEnable = OnPlayerOccluded;
+			cameraOcclusion.DelegateOcclusionDisable = OnPlayerNotOccluded;
 
 			cameraOcclusion.DelegateCasterAssignment = (ref Ray ray) =>
 			{
@@ -144,7 +143,7 @@ namespace ProjectFound.Core {
 			};
 
 
-			RaycastMaster.CurrentRaycaster = cursorSelection;
+			RaycastMaster.CurrentInteracteeRaycaster = cursorSelection;
 		}
 
 		protected override void SetInputTracker( )
@@ -200,12 +199,12 @@ namespace ProjectFound.Core {
 
 		public void OnCombatBegin( List<Combatant> combatants )
 		{
-			RaycastMaster.CurrentRaycaster.IsEnabled = false;
+			RaycastMaster.CurrentInteracteeRaycaster.IsEnabled = false;
 
-			RaycastMaster.CurrentRaycaster =
-				RaycastMaster.Raycasters[RaycastMaster.RaycastMode.CombatCursorSelection];
+			//RaycastMaster.CurrentInteracteeRaycaster =
+				//RaycastMaster.Raycasters[RaycastMaster.RaycastMode.CombatCursorSelection];
 
-			RaycastMaster.CurrentRaycaster.IsEnabled = true;
+			RaycastMaster.CurrentInteracteeRaycaster.IsEnabled = true;
 
 			//InputMaster.DisableMap( InputMaster.GetKeyFromAction( )
 
@@ -248,33 +247,33 @@ namespace ProjectFound.Core {
 			}
 		}
 
-		public void OnRaycastHits( ICollection<GameObject> hits )
+		public void OnPlayerOccluded( Occludable occludable )
 		{
 			PlayerMaster.OccludedFromCamera = true;
 
-			for ( var e = hits.GetEnumerator( ); e.MoveNext( ); )
-			{
-				e.Current.layer = (int)LayerID.RoofHidden;
-			}
+			occludable.Hide( );
+			//for ( var e = hits.GetEnumerator( ); e.MoveNext( ); )
+			//{
+				//e.Current.gameObject.layer = (int)LayerID.RoofHidden;
+			//}
 
-			RaycastMaster.Raycaster raycaster =
-				RaycastMaster.Raycasters[RaycastMaster.RaycastMode.CameraOcclusion];
+			var raycaster = RaycastMaster.CameraOcclusionRaycaster;
 
 			raycaster.RemovePriority( LayerID.Roof );
 			raycaster.AddPriority( LayerID.RoofHidden );
 		}
 
-		public void OnRaycastNoHits( ICollection<GameObject> hits )
+		public void OnPlayerNotOccluded( Occludable occludable )
 		{
 			PlayerMaster.OccludedFromCamera = false;
 
-			for ( var e = hits.GetEnumerator( ); e.MoveNext( ); )
-			{
-				e.Current.layer = (int)LayerID.Roof;
-			}
+			//for ( var e = hits.GetEnumerator( ); e.MoveNext( ); )
+		//	{
+			//	e.Current.gameObject.layer = (int)LayerID.Roof;
+			//}
+			occludable.Show( );
 
-			RaycastMaster.Raycaster raycaster =
-				RaycastMaster.Raycasters[RaycastMaster.RaycastMode.CameraOcclusion];
+			var raycaster = RaycastMaster.CameraOcclusionRaycaster;
 
 			raycaster.RemovePriority( LayerID.RoofHidden );
 			raycaster.AddPriority( LayerID.Roof );
@@ -282,44 +281,55 @@ namespace ProjectFound.Core {
 
 		public void OnCursorLost( )
 		{
-			RaycastMaster.Raycaster raycaster = RaycastMaster.CurrentRaycaster;
+			var raycasters = RaycastMaster.Raycasters;
+			int count = raycasters.Count;
 
-			switch ( raycaster.Mode )
+			for ( int i = 0; i < count; ++i )
 			{
-				case RaycastMaster.RaycastMode.CursorSelection:
-					var objs = RaycastMaster.CurrentRaycaster.GetPreviousHitObjects( );
-					for ( var e = objs.GetEnumerator( ); e.MoveNext( ); )
-					{
-						RemoveFocusDirectly( e.Current.GetComponent<Prop>( ) );
-					}
-					break;
-				case RaycastMaster.RaycastMode.HoldToMove:
-					InputMaster.ResetKeyMap( OnCursorSelect );
-					PlayerMaster.CharacterMovement.ResetMoveTarget( );
-					break;
-				case RaycastMaster.RaycastMode.PropPlacement:
-					raycaster.ClearBlacklist( );
-					PlayerMaster.EndPropPlacement( );
-					InputMaster.ResetKeyMap( OnCursorSelect );
-					break;
+				RaycastMaster.Raycaster raycaster = raycasters[i];
+
+				if ( raycaster.IsEnabled == false ||
+					raycaster.Mode == RaycastMaster.RaycastMode.CameraOcclusion )
+				{
+					continue;
+				}
+
+				switch ( raycaster.Mode )
+				{
+					case RaycastMaster.RaycastMode.CursorSelection:
+						var csr = RaycastMaster.CursorSelectionRaycaster;
+						var components = csr.GetPreviousHitComponents( );
+						for ( var e = components.GetEnumerator( ); e.MoveNext( ); )
+						{
+							RemoveFocusDirectly( e.Current );
+						}
+						break;
+					case RaycastMaster.RaycastMode.HoldToMove:
+						InputMaster.ResetKeyMap( OnCursorSelect );
+						PlayerMaster.CharacterMovement.ResetMoveTarget( );
+						break;
+					case RaycastMaster.RaycastMode.PropPlacement:
+						var ppr = RaycastMaster.PropPlacementRaycaster;
+						ppr.ClearBlacklist( );
+						PlayerMaster.EndPropPlacement( );
+						InputMaster.ResetKeyMap( OnCursorSelect );
+						break;
+				}
+
+				raycaster.IsEnabled = false;
 			}
 
-			raycaster.IsEnabled = false;
-
-			RaycastMaster.CurrentRaycaster =
-				RaycastMaster.Raycasters[RaycastMaster.RaycastMode.CursorSelection];
-
-			RaycastMaster.CurrentRaycaster.IsEnabled = false;
+			RaycastMaster.CurrentInteracteeRaycaster = RaycastMaster.CursorSelectionRaycaster;
 		}
 
 		public void OnCursorGained( )
 		{
-			RaycastMaster.CurrentRaycaster.IsEnabled = true;
+			RaycastMaster.CursorSelectionRaycaster.IsEnabled = true;
 		}
 
 		public virtual void OnCursorSelect( InputMaster.KeyMap map )
 		{
-			RaycastMaster.Raycaster raycaster = RaycastMaster.CurrentRaycaster;
+			var raycaster = RaycastMaster.CurrentInteracteeRaycaster;
 
 			if ( raycaster.PreviousPriorityHitCheck.Count == 0 )
 			{
@@ -331,9 +341,10 @@ namespace ProjectFound.Core {
 				return ;
 			}
 
-			KeyValuePair<GameObject,RaycastHit> pair = raycaster.GetLastHit( );
+			KeyValuePair<Interactee,RaycastHit> pair = raycaster.GetLastHit( );
+			Interactee interactee = pair.Key;
 			RaycastHit hit = pair.Value;
-			GameObject obj = pair.Key;
+			GameObject obj = interactee.gameObject;
 			LayerID layer = (LayerID)obj.layer;
 
 			if ( map.Mode == InputMaster.KeyMode.OneShot )
@@ -359,7 +370,7 @@ namespace ProjectFound.Core {
 				switch ( layer )
 				{
 					case LayerID.Item:
-						obj.GetComponent<Item>( ).PickUp( );
+						(interactee as Item).PickUp( );
 						//Item item = obj.GetComponent<Item>( );
 						//RemoveFocusDirectly( item as Prop );
 						//item.PickUp( );
@@ -370,7 +381,7 @@ namespace ProjectFound.Core {
 						//} );
 						break;
 					case LayerID.Prop:
-						obj.GetComponentInParent<Prop>( ).Activate( );
+						(interactee as Prop).Activate( );
 						//Prop prop = obj.GetComponent<Prop>( );
 						//PlayerMaster.Activate( prop, () =>
 						//{
@@ -391,13 +402,13 @@ namespace ProjectFound.Core {
 							// PlayerMaster.CharacterMovement.StartHoldToMove( hit.point );
 							PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 							raycaster.IsEnabled = false;
-							raycaster = RaycastMaster.CurrentRaycaster =
-								RaycastMaster.Raycasters[RaycastMaster.RaycastMode.HoldToMove];
+							raycaster = RaycastMaster.CurrentInteracteeRaycaster =
+								RaycastMaster.HoldToMoveRaycaster;
 							raycaster.IsEnabled = true;
 							break;
 						case LayerID.Item:
 						case LayerID.Prop:
-							obj.GetComponent<Prop>( ).StartDragAndDrop( ref hit );
+							(interactee as Prop).StartDragAndDrop( ref hit );
 							/*Prop prop = obj.GetComponent<Prop>( );
 							RemoveFocus( prop );
 							raycaster.IsEnabled = false;
@@ -433,21 +444,21 @@ namespace ProjectFound.Core {
 						PlayerMaster.CharacterMovement.ResetMoveTarget( );
 						break;
 					case RaycastMaster.RaycastMode.PropPlacement:
-						raycaster.RemoveBlacklistee( PlayerMaster.PropBeingPlaced.gameObject );
+						raycaster.RemoveBlacklistee( PlayerMaster.PropBeingPlaced );
 						PlayerMaster.EndPropPlacement( ref hit );
 						break;
 				}
 
 				raycaster.IsEnabled = false;
 
-				raycaster = RaycastMaster.CurrentRaycaster =
-					RaycastMaster.Raycasters[RaycastMaster.RaycastMode.CursorSelection];
+				raycaster = RaycastMaster.CurrentInteracteeRaycaster =
+					RaycastMaster.CursorSelectionRaycaster;
 
 				raycaster.IsEnabled = true;
 			}
 		}
 
-		public void OnCursorFocusGained( KeyValuePair<GameObject,RaycastHit> pair )
+		public void OnCursorFocusGained( KeyValuePair<Interactee,RaycastHit> pair )
 		{
 			Debug.Log( "Cursor Gained" );
 
@@ -455,12 +466,12 @@ namespace ProjectFound.Core {
 			AddFocus( pair );
 		}
 
-		public void OnCursorFocusLost( GameObject obj )
+		public void OnCursorFocusLost( Interactee interactee )
 		{
 			Debug.Log( "Cursor Lost" );
 
-			Prop prop = obj.GetComponentInParent<Prop>( );
-			RemoveFocus( prop );
+			//Prop prop = obj.GetComponentInParent<Prop>( );
+			RemoveFocus( interactee );
 		}
 
 		public virtual void OnCameraMoveHorizontal( InputMaster.AxisMap map, float movement )
@@ -643,40 +654,40 @@ namespace ProjectFound.Core {
 			} );
 		}
 
-		protected void AddFocus( KeyValuePair<GameObject,RaycastHit> pair )
+		protected void AddFocus( KeyValuePair<Interactee,RaycastHit> pair )
 		{
-			Prop prop = pair.Key.GetComponentInParent<Prop>( );
+			Interactee interactee = pair.Key;//pair.Key.GetComponentInParent<Prop>( );
 
-			if ( prop.IsReceptive == true && prop.IsFocused == false )
+			if ( interactee.IsReceptive == true && interactee.IsFocused == false )
 			{
-				prop.IsFocused = true;
+				interactee.IsFocused = true;
 
 				//RaycastHit hit = RaycastMaster.CurrentRaycaster.PriorityHitCheck.Value;
 				KeyCode key = InputMaster.GetKeyFromAction( OnCursorSelect );
-				UIMaster.DisplayPrompt( prop, key, pair.Value.point );
-				ShaderMaster.ToggleSelectionOutline( prop.gameObject );
+				UIMaster.DisplayPrompt( interactee as Prop, key, pair.Value.point );
+				ShaderMaster.ToggleSelectionOutline( interactee.gameObject );
 			}
 		}
 
-		protected void RemoveFocus( Prop prop )
+		protected void RemoveFocus( Interactee interactee )
 		{
-			if ( prop.IsFocused == true )
+			if ( interactee.IsFocused == true )
 			{
-				prop.IsFocused = false;
+				interactee.IsFocused = false;
 
-				UIMaster.RemovePrompt( prop );
-				ShaderMaster.ToggleSelectionOutline( prop.gameObject );
+				UIMaster.RemovePrompt( interactee as Prop );
+				ShaderMaster.ToggleSelectionOutline( interactee.gameObject );
 			}
 		}
 
-		protected void RemoveFocusDirectly( Prop prop )
+		protected void RemoveFocusDirectly( Interactee interactee )
 		{
-			if ( prop != null )
+			if ( interactee != null )
 			{
 				// Nullify Raycast Hit Check so RemoveFocus isn't called twice
-				RaycastMaster.CurrentRaycaster.PriorityHitCheck.Remove( prop.gameObject );
+				RaycastMaster.CursorSelectionRaycaster.PriorityHitCheck.Remove( interactee );
 				//RaycastMaster.CurrentRaycaster.PreviousPriorityHitCheck.Remove( prop.gameObject );
-				RemoveFocus( prop );
+				RemoveFocus( interactee );
 			}
 		}
 	}

@@ -19,12 +19,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4266644961237160}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: JT_Airplane_Seat_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1225628874564572
 GameObject:
@@ -34,12 +34,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4286462497256944}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Jt_Airplane_Seat_LegRest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1375907561828366
 GameObject:
@@ -49,12 +49,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4208333868120298}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: JT_Airplane_Seat_Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1484149024159140
 GameObject:
@@ -66,12 +66,12 @@ GameObject:
   - component: {fileID: 4341686508340272}
   - component: {fileID: 137579648941548510}
   - component: {fileID: 64153908200443234}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Airplane_Seat_Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1679106896739144
 GameObject:
@@ -83,12 +83,12 @@ GameObject:
   - component: {fileID: 4914492419030414}
   - component: {fileID: 137020414407835688}
   - component: {fileID: 64314775062995052}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Airplane_Seat_LegRest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1832037385095064
 GameObject:
@@ -100,12 +100,13 @@ GameObject:
   - component: {fileID: 4605870937944784}
   - component: {fileID: 95799201711809594}
   - component: {fileID: 114787701834026034}
-  m_Layer: 0
+  - component: {fileID: 114830725568290134}
+  m_Layer: 8
   m_Name: Airplane_SeatingArea_Seat_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4208333868120298
 Transform:
@@ -167,8 +168,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1832037385095064}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.1736482, z: -0, w: 0.9848078}
+  m_LocalPosition: {x: -0.45, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4266644961237160}
@@ -256,6 +257,24 @@ MonoBehaviour:
     "{\"Animator\":{\"serializedVersion\":\"3\",\"m_Enabled\":true,\"m_Avatar\":{\"fileID\":9000000,\"guid\":\"2daa1c2fed0d75d4c81b705e588bcee2\",\"type\":3},\"m_Controller\":{\"instanceID\":0},\"m_CullingMode\":1,\"m_UpdateMode\":0,\"m_ApplyRootMotion\":true,\"m_LinearVelocityBlending\":false,\"m_WarningMessage\":\"\",\"m_HasTransformHierarchy\":true,\"m_AllowConstantClipSamplingOptimization\":true}}"}'
   m_fbxModel: {fileID: 100006, guid: 2daa1c2fed0d75d4c81b705e588bcee2, type: 3}
   m_autoUpdate: 1
+--- !u!114 &114830725568290134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1832037385095064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ee509e13dae5343aa7a467623aeacf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealthPoints: 100
+  m_activateText: Pickup
+  m_deactivateText: Drop
+  m_ingameName: Unknown
+  m_isReceptive: 1
+  m_isActivated: 0
+  m_dialogueTree: {fileID: 0}
 --- !u!137 &137020414407835688
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

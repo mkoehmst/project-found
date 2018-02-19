@@ -38,6 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4326337312252980}
   - component: {fileID: 114805938564256502}
+  - component: {fileID: 114119106466490114}
   m_Layer: 0
   m_Name: Airplane_SeatingArea_SeatSeparatorRight_a
   m_TagString: Untagged
@@ -128,6 +129,24 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 6a52a6c1b37567c42ae4c714dcc63fb9, type: 3}
+--- !u!114 &114119106466490114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1516905718733552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ee509e13dae5343aa7a467623aeacf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealthPoints: 100
+  m_activateText: Pickup
+  m_deactivateText: Drop
+  m_ingameName: Unknown
+  m_isReceptive: 1
+  m_isActivated: 0
+  m_dialogueTree: {fileID: 0}
 --- !u!114 &114805938564256502
 MonoBehaviour:
   m_ObjectHideFlags: 1

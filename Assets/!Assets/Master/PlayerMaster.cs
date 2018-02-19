@@ -16,7 +16,7 @@ namespace ProjectFound.Master {
 
 		private Placement Placement { get; set; }
 
-		public GameObject PropBeingPlaced { get; private set; }
+		public Prop PropBeingPlaced { get; private set; }
 		public Player Player { get; private set; }
 		public CharacterMovement CharacterMovement { get; private set; }
 		public MovementFeedback MovementFeedback { get; private set; }
@@ -73,7 +73,7 @@ namespace ProjectFound.Master {
 
 		public void StartPropPlacement( Prop prop, GameObject obj, ref RaycastHit hit )
 		{
-			PropBeingPlaced = obj;
+			PropBeingPlaced = prop;
 			Placement = obj.AddComponent<Placement>( );
 			//Placement.RecordCursorOffset( ref hit );
 		}

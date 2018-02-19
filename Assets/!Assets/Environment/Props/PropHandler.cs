@@ -82,22 +82,21 @@ namespace ProjectFound.Environment.Props
 			}
 
 			GameObject gameObj = prop.gameObject;
-			var raycaster = RaycastMaster.CurrentRaycaster;
+			var raycaster = RaycastMaster.CurrentInteracteeRaycaster;
 
 			RemoveFocus( prop );
 			raycaster.IsEnabled = false;
-			raycaster = RaycastMaster.CurrentRaycaster =
-				RaycastMaster.Raycasters[RaycastMaster.RaycastMode.PropPlacement];
+			raycaster = RaycastMaster.CurrentInteracteeRaycaster =
+				RaycastMaster.PropPlacementRaycaster;
 			raycaster.IsEnabled = true;
-			raycaster.AddBlacklistee( gameObj );
+			raycaster.AddBlacklistee( prop );
 			PlayerMaster.StartPropPlacement( prop, gameObj, ref hit );
 		}
 
 		protected void RemoveFocusDirectly( Prop prop )
 		{
-			GameObject gameObj = prop.gameObject;
 			// Nullify Previous Raycast Hit Check so RemoveFocus isn't called twice
-			RaycastMaster.CurrentRaycaster.PreviousPriorityHitCheck.Remove( gameObj );
+			RaycastMaster.CurrentInteracteeRaycaster.PreviousPriorityHitCheck.Remove( prop );
 			RemoveFocus( prop );
 		}
 

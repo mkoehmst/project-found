@@ -331,12 +331,13 @@ GameObject:
   - component: {fileID: 33410325199948090}
   - component: {fileID: 23614533582764918}
   - component: {fileID: 64921144802372428}
+  - component: {fileID: 114890263586229522}
   m_Layer: 0
   m_Name: Airplane_FloorStrip_Inside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1070127273747948
 GameObject:
@@ -1441,12 +1442,13 @@ GameObject:
   - component: {fileID: 33191413577074624}
   - component: {fileID: 23626038812411844}
   - component: {fileID: 64447332971498458}
+  - component: {fileID: 114980549738794580}
   m_Layer: 0
   m_Name: Airplane_FloorStrip_Outside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1399624024639662
 GameObject:
@@ -1759,6 +1761,7 @@ GameObject:
   - component: {fileID: 33821589182305208}
   - component: {fileID: 23520403468089284}
   - component: {fileID: 64164744497787394}
+  - component: {fileID: 114464597013306916}
   m_Layer: 28
   m_Name: Airplane_Roof
   m_TagString: Untagged
@@ -2872,6 +2875,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4986807947604856}
+  - component: {fileID: 114189048376953684}
   m_Layer: 0
   m_Name: Airplane_Frame
   m_TagString: Untagged
@@ -3014,7 +3018,8 @@ GameObject:
   - component: {fileID: 33275724293553690}
   - component: {fileID: 23958439118045530}
   - component: {fileID: 64285559947045958}
-  m_Layer: 8
+  - component: {fileID: 114654796990149744}
+  m_Layer: 0
   m_Name: Airplane_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14515,6 +14520,53 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300058, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
+--- !u!114 &114189048376953684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1787588842787652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ee509e13dae5343aa7a467623aeacf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealthPoints: 100
+  m_activateText: Pickup
+  m_deactivateText: Drop
+  m_ingameName: Unknown
+  m_isReceptive: 1
+  m_isActivated: 0
+  m_dialogueTree: {fileID: 0}
+--- !u!114 &114464597013306916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1494333732405832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc4d2d051d7dfd44bb42c1190f5ed698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114654796990149744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1822987633424104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809b9629f031a8444b05d0f770f11943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealthPoints: 100
+  m_activateText: Pickup
+  m_deactivateText: Drop
+  m_ingameName: Unknown
+  m_isReceptive: 1
+  m_isActivated: 0
+  m_dialogueTree: {fileID: 0}
 --- !u!114 &114843174904303576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15171,3 +15223,39 @@ MonoBehaviour:
     "{\"Animator\":{\"serializedVersion\":\"3\",\"m_Enabled\":true,\"m_Avatar\":{\"fileID\":9000000,\"guid\":\"f1530baf3ee0b6444842c4718fb9605b\",\"type\":3},\"m_Controller\":{\"instanceID\":0},\"m_CullingMode\":0,\"m_UpdateMode\":0,\"m_ApplyRootMotion\":false,\"m_LinearVelocityBlending\":false,\"m_WarningMessage\":\"\",\"m_HasTransformHierarchy\":true,\"m_AllowConstantClipSamplingOptimization\":true}}"}'
   m_fbxModel: {fileID: 100008, guid: f1530baf3ee0b6444842c4718fb9605b, type: 3}
   m_autoUpdate: 1
+--- !u!114 &114890263586229522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063167635169744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809b9629f031a8444b05d0f770f11943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealthPoints: 100
+  m_activateText: Pickup
+  m_deactivateText: Drop
+  m_ingameName: Unknown
+  m_isReceptive: 1
+  m_isActivated: 0
+  m_dialogueTree: {fileID: 0}
+--- !u!114 &114980549738794580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1392756300212650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809b9629f031a8444b05d0f770f11943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealthPoints: 100
+  m_activateText: Pickup
+  m_deactivateText: Drop
+  m_ingameName: Unknown
+  m_isReceptive: 1
+  m_isActivated: 0
+  m_dialogueTree: {fileID: 0}

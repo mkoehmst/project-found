@@ -22,12 +22,12 @@ GameObject:
   - component: {fileID: 33802813718779234}
   - component: {fileID: 23299281906696014}
   - component: {fileID: 64540118257779466}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Airplane_SeatSeparatorLeft 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1265481862212864
 GameObject:
@@ -38,12 +38,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4787051940764074}
   - component: {fileID: 114825280171508962}
-  m_Layer: 0
+  - component: {fileID: 114189469535664556}
+  m_Layer: 8
   m_Name: Airplane_SeatingArea_SeatSeparatorLeft_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4424191581782242
 Transform:
@@ -64,8 +65,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1265481862212864}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4424191581782242}
@@ -128,6 +129,24 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 189f896265686f141b949a4891f766f1, type: 3}
+--- !u!114 &114189469535664556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1265481862212864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ee509e13dae5343aa7a467623aeacf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealthPoints: 100
+  m_activateText: Pickup
+  m_deactivateText: Drop
+  m_ingameName: Unknown
+  m_isReceptive: 1
+  m_isActivated: 0
+  m_dialogueTree: {fileID: 0}
 --- !u!114 &114825280171508962
 MonoBehaviour:
   m_ObjectHideFlags: 1

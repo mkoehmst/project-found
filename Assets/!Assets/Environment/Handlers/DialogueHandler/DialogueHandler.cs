@@ -21,6 +21,11 @@ namespace ProjectFound.Environment.Handlers
 			}
 		}
 
+		void OnDisable( )
+		{
+			m_dialogueTreeController = null;
+		}
+
 		public override void Use( Interactee interactee )
 		{
 			DialogueActor dialogueActor = interactee.GetComponent<DialogueActor>( );
