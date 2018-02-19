@@ -37714,8 +37714,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 1235673872}
   outlineCamera: {fileID: 2032682208}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 1356865033}
-  extraRenderTexture: {fileID: 1967568889}
+  renderTexture: {fileID: 2067852324}
+  extraRenderTexture: {fileID: 1613732674}
 --- !u!114 &1235673868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37775,7 +37775,7 @@ Camera:
     height: 1
   near clip plane: 0.05
   far clip plane: 225
-  field of view: 60
+  field of view: 70
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -37925,12 +37925,12 @@ MonoBehaviour:
   m_CameraCutEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+BrainEvent, Assembly-CSharp, Version=1.0.6623.29147,
+    m_TypeName: Cinemachine.CinemachineBrain+BrainEvent, Assembly-CSharp, Version=1.0.6624.17205,
       Culture=neutral, PublicKeyToken=null
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Assembly-CSharp, Version=1.0.6623.29147,
+    m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Assembly-CSharp, Version=1.0.6624.17205,
       Culture=neutral, PublicKeyToken=null
 --- !u!95 &1235673876
 Animator:
@@ -40824,37 +40824,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4326337312252980, guid: a7986ee027579334d93dc7ad2e6737ce,
     type: 2}
   m_PrefabInternal: {fileID: 1334743905}
---- !u!84 &1356865033
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 678
-  m_Height: 424
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1357935655
 GameObject:
   m_ObjectHideFlags: 0
@@ -47852,7 +47821,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1583124887}
-  m_LocalRotation: {x: -0.04638586, y: -0.7577661, z: -0.054191764, w: 0.64861554}
+  m_LocalRotation: {x: -0.04756976, y: -0.7389457, z: -0.052463546, w: 0.6700328}
   m_LocalPosition: {x: 185.11745, y: 0.85809183, z: 0.073153496}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -47900,12 +47869,12 @@ MonoBehaviour:
   m_CameraCutEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+BrainEvent, Assembly-CSharp, Version=1.0.6623.29147,
+    m_TypeName: Cinemachine.CinemachineBrain+BrainEvent, Assembly-CSharp, Version=1.0.6624.17205,
       Culture=neutral, PublicKeyToken=null
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Assembly-CSharp, Version=1.0.6623.29147,
+    m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Assembly-CSharp, Version=1.0.6624.17205,
       Culture=neutral, PublicKeyToken=null
 --- !u!1001 &1587963441
 Prefab:
@@ -49097,6 +49066,37 @@ Transform:
   m_PrefabParentObject: {fileID: 4996070444496594, guid: 61bbfa1b70ee6734c891d4ea3cdb4b1c,
     type: 2}
   m_PrefabInternal: {fileID: 1605512234}
+--- !u!84 &1613732674
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 678
+  m_Height: 424
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1628986310
 GameObject:
   m_ObjectHideFlags: 0
@@ -59119,37 +59119,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400072, guid: 59f54de82a6dfd74ea34eb3d0d2548a6, type: 3}
   m_PrefabInternal: {fileID: 1954547829}
---- !u!84 &1967568889
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 678
-  m_Height: 424
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1971702390
 GameObject:
   m_ObjectHideFlags: 0
@@ -60404,7 +60373,7 @@ Camera:
     height: 1
   near clip plane: 0.05
   far clip plane: 225
-  field of view: 60
+  field of view: 70
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -60412,7 +60381,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1356865033}
+  m_TargetTexture: {fileID: 2067852324}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -61539,6 +61508,37 @@ Transform:
   m_PrefabParentObject: {fileID: 4605870937944784, guid: 311685fd0b7621343abb511d77f41c4d,
     type: 2}
   m_PrefabInternal: {fileID: 2056341898}
+--- !u!84 &2067852324
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 678
+  m_Height: 424
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &2074648771
 Prefab:
   m_ObjectHideFlags: 0
