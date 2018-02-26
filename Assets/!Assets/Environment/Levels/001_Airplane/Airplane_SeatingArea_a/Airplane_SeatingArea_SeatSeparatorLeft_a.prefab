@@ -26,7 +26,7 @@ GameObject:
   m_Name: Airplane_SeatSeparatorLeft 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1265481862212864
@@ -147,6 +147,8 @@ MonoBehaviour:
   m_isReceptive: 1
   m_isActivated: 0
   m_dialogueTree: {fileID: 0}
+  m_approachRange: 0.25
+  m_handler: {fileID: 0}
 --- !u!114 &114825280171508962
 MonoBehaviour:
   m_ObjectHideFlags: 1

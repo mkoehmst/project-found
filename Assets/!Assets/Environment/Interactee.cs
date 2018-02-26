@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using ProjectFound.Environment.Handlers;
+
 namespace ProjectFound.Environment {
 
 
@@ -18,6 +20,7 @@ namespace ProjectFound.Environment {
 		[SerializeField] protected bool m_isReceptive = true;
 		[SerializeField] protected bool m_isActivated = false;
 		[SerializeField] protected NodeCanvas.DialogueTrees.DialogueTree m_dialogueTree;
+		[SerializeField] protected InteracteeHandler m_handler;
 
 		protected ActionType m_currentActionType = ActionType.None;
 		protected float m_curHealthPoints = 1f;
@@ -72,6 +75,11 @@ namespace ProjectFound.Environment {
 
 			m_curHealthPoints = m_maxHealthPoints;
 			IsFocused = false;
+		}
+
+		public void Use( )
+		{
+			StartCoroutine( m_handler.Use( this ) );
 		}
 
 		public abstract bool ValidateAction( ActionType actionType );

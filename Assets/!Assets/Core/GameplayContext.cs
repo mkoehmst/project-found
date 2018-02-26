@@ -370,7 +370,9 @@ namespace ProjectFound.Core {
 				switch ( layer )
 				{
 					case LayerID.Item:
-						(interactee as Item).PickUp( );
+						// PlayerMaster.Approach( interactee, .25f );
+						//(interactee as Item).PickUp( );
+						interactee.Use( );
 						//Item item = obj.GetComponent<Item>( );
 						//RemoveFocusDirectly( item as Prop );
 						//item.PickUp( );
@@ -381,7 +383,9 @@ namespace ProjectFound.Core {
 						//} );
 						break;
 					case LayerID.Prop:
-						(interactee as Prop).Activate( );
+						// PlayerMaster.Approach( interactee, .25f );
+						//(interactee as Prop).Activate( );
+						interactee.Use( );
 						//Prop prop = obj.GetComponent<Prop>( );
 						//PlayerMaster.Activate( prop, () =>
 						//{

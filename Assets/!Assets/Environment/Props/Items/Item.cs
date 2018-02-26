@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+using ProjectFound.Environment.Handlers;
+
 namespace ProjectFound.Environment.Props {
 
 
@@ -22,7 +24,7 @@ namespace ProjectFound.Environment.Props {
 
 		public void PickUp( )
 		{
-			(m_handler as ItemHandler).AddToInventory( this );
+			StartCoroutine( m_handler.Use( this ) );
 		}
 
 		public override bool ValidateAction( ActionType actionType )

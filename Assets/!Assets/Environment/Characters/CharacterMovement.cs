@@ -24,6 +24,11 @@ namespace ProjectFound.Environment.Characters
 		private NavMeshAgent m_agent;
 		private NavMeshPath m_path;
 
+		public float StoppingDistance
+		{
+			get { return m_agent.stoppingDistance; }
+		}
+
 		void Start( )
 		{
 			m_agent = GetComponent<NavMeshAgent>( );
@@ -51,6 +56,16 @@ namespace ProjectFound.Environment.Characters
 			{
 				Move( Vector3.zero );
 			}
+		}
+
+		public float RemainingDistance( )
+		{
+			return m_agent.remainingDistance;
+		}
+
+		public float CheckVelocity( )
+		{
+			return m_agent.velocity.magnitude;
 		}
 
 		public bool CanMoveTo( Vector3 destination )

@@ -26,15 +26,21 @@ namespace ProjectFound.Environment.Handlers
 			m_dialogueTreeController = null;
 		}
 
-		public override void Use( Interactee interactee )
+		public override IEnumerator Use( Interactee interactee )
 		{
-			DialogueActor dialogueActor = interactee.GetComponent<DialogueActor>( );
+			yield return MovePlayerTowards( interactee );
 
-			//interactee.DialogueTree.SetActorReference( dialogueActor.name, dialogueActor );
+			//DialogueActor dialogueActor = interactee.GetComponent<DialogueActor>( );
+
 			m_dialogueTreeController.graph = interactee.DialogueTree;
+
+			// Dialogue instigator is the Player
 			m_dialogueTreeController.StartDialogue(
 				PlayerMaster.Player.GetComponent<IDialogueActor>( ) );
+
+			yield break;
 		}
+
 	}
 
 

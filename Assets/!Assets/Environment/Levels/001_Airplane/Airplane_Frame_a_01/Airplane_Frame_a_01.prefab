@@ -1985,7 +1985,7 @@ GameObject:
   m_Name: Airplane_CabinWindowLeft 23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1535093268459734
@@ -4487,7 +4487,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063167635169744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.005, z: 0}
+  m_LocalPosition: {x: 0, y: -0.005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4845616805086128}
@@ -6294,7 +6294,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1392756300212650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.005, z: 0}
+  m_LocalPosition: {x: 0, y: -0.005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4845616805086128}
@@ -14538,6 +14538,8 @@ MonoBehaviour:
   m_isReceptive: 1
   m_isActivated: 0
   m_dialogueTree: {fileID: 0}
+  m_approachRange: 0.25
+  m_handler: {fileID: 0}
 --- !u!114 &114464597013306916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14549,6 +14551,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc4d2d051d7dfd44bb42c1190f5ed698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_maxHealthPoints: 100
+  m_activateText: Pickup
+  m_deactivateText: Drop
+  m_ingameName: Unknown
+  m_isReceptive: 1
+  m_isActivated: 0
+  m_dialogueTree: {fileID: 0}
+  m_approachRange: 0.25
+  m_handler: {fileID: 0}
 --- !u!114 &114654796990149744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14567,6 +14578,8 @@ MonoBehaviour:
   m_isReceptive: 1
   m_isActivated: 0
   m_dialogueTree: {fileID: 0}
+  m_approachRange: 0.25
+  m_handler: {fileID: 0}
 --- !u!114 &114843174904303576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15241,6 +15254,8 @@ MonoBehaviour:
   m_isReceptive: 1
   m_isActivated: 0
   m_dialogueTree: {fileID: 0}
+  m_approachRange: 0.25
+  m_handler: {fileID: 0}
 --- !u!114 &114980549738794580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15259,3 +15274,5 @@ MonoBehaviour:
   m_isReceptive: 1
   m_isActivated: 0
   m_dialogueTree: {fileID: 0}
+  m_approachRange: 0.25
+  m_handler: {fileID: 0}

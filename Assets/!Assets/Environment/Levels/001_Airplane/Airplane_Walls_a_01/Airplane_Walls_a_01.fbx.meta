@@ -315,6 +315,11 @@ ModelImporter:
     100614: Airplane_FrontWall_01
     100616: Airplane_FrontWall_02
     100618: Airplane_FrontWalls
+    100620: Airplane_BigRestroom_Door
+    100622: Airplane_BigRestroom_Frame
+    100624: transform1
+    100626: Airplane_FrontWall_Left
+    100628: Airplane_FrontWall_Right
     400000: Airplane_BackWall_Center
     400002: Airplane_BackWall_Left
     400004: Airplane_BackWall_Right
@@ -625,6 +630,11 @@ ModelImporter:
     400614: Airplane_FrontWall_01
     400616: Airplane_FrontWall_02
     400618: Airplane_FrontWalls
+    400620: Airplane_BigRestroom_Door
+    400622: Airplane_BigRestroom_Frame
+    400624: transform1
+    400626: Airplane_FrontWall_Left
+    400628: Airplane_FrontWall_Right
     2100000: Airplane_Floor_MAT1
     2100002: phong3
     2100004: Airplane_OverheadBin3
@@ -794,6 +804,10 @@ ModelImporter:
     2300310: Airplane_WindowChambers
     2300312: Airplane_FrontWall_01
     2300314: Airplane_FrontWall_02
+    2300316: Airplane_BigRestroom_Door
+    2300318: Airplane_BigRestroom_Frame
+    2300320: Airplane_FrontWall_Left
+    2300322: Airplane_FrontWall_Right
     3300000: Airplane_BackWall_Center
     3300002: Airplane_BackWall_Left
     3300004: Airplane_BackWall_Right
@@ -952,6 +966,10 @@ ModelImporter:
     3300310: Airplane_WindowChambers
     3300312: Airplane_FrontWall_01
     3300314: Airplane_FrontWall_02
+    3300316: Airplane_BigRestroom_Door
+    3300318: Airplane_BigRestroom_Frame
+    3300320: Airplane_FrontWall_Left
+    3300322: Airplane_FrontWall_Right
     4300000: Airplane_Floor
     4300002: Airplane_Frame_1
     4300004: Airplane_WindowChambers
@@ -1110,6 +1128,10 @@ ModelImporter:
     4300310: Airplane_Restroom_FrontRight_Frame
     4300312: Airplane_FrontWall_01
     4300314: Airplane_FrontWall_02
+    4300316: Airplane_BigRestroom_Frame
+    4300318: Airplane_BigRestroom_Door
+    4300320: Airplane_FrontWall_Right
+    4300322: Airplane_FrontWall_Left
   externalObjects: {}
   materials:
     importMaterials: 1

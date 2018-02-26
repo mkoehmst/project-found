@@ -4,8 +4,9 @@ using UnityEngine;
 
 using ProjectFound.Core;
 using ProjectFound.Master;
+using ProjectFound.Environment.Props;
 
-namespace ProjectFound.Environment.Props
+namespace ProjectFound.Environment.Handlers
 {
 
 	[CreateAssetMenu(menuName=("Project Found/Prop Handler"))]
@@ -51,11 +52,11 @@ namespace ProjectFound.Environment.Props
 			}
 		}*/
 
-		public override void Use( Interactee interactee )
+		public override IEnumerator Use( Interactee interactee )
 		{
 			if ( interactee.IsReceptive == false )
 			{
-				return ;
+				yield break;
 			}
 
 			Animator animator = interactee.GetComponent<Animator>( );

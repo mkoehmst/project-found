@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+using ProjectFound.Environment.Handlers;
+
 namespace ProjectFound.Environment.Props {
 
 
@@ -13,7 +15,6 @@ namespace ProjectFound.Environment.Props {
 		[SerializeField] Sprite m_icon;
 		[SerializeField] Mesh m_clearanceMesh;
 		[SerializeField] protected PropDefinition m_definition;
-		[SerializeField] protected InteracteeHandler m_handler;
 
 		public Sprite Icon { get { return m_icon; } }
 		public Mesh ClearanceMesh { get { return m_clearanceMesh; } }
@@ -38,7 +39,7 @@ namespace ProjectFound.Environment.Props {
 
 		public void Activate( )
 		{
-			m_handler.Use( this );
+			StartCoroutine( m_handler.Use( this ) );
 		}
 
 		public void StartDragAndDrop( ref RaycastHit hit )
