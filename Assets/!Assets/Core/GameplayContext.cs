@@ -69,14 +69,13 @@ namespace ProjectFound.Core {
 			var cursorSelection = RaycastMaster.CursorSelectionRaycaster;
 
 			cursorSelection.AddPriority( LayerID.UI );
-			//cursorSelection.AddPriority( LayerID.Roof );
-			//cursorSelection.AddPriority( LayerID.Usable );
 			cursorSelection.AddPriority( LayerID.Walkable );
 			cursorSelection.AddPriority( LayerID.Enemy );
 			cursorSelection.AddPriority( LayerID.Item );
 			cursorSelection.AddPriority( LayerID.Prop );
-
-			//cursorSelection.AddPriority( LayerID.Default ); // Temporary debug
+			cursorSelection.AddBlocker( LayerID.Default );
+			cursorSelection.AddBlocker( LayerID.Roof );
+			cursorSelection.AddBlocker( LayerID.Usable );
 
 			cursorSelection.DelegateLineTracking = (ref Vector3 start, ref Vector3 end) =>
 			{

@@ -47,12 +47,20 @@ namespace ProjectFound.Master
 			public RaycastMode Mode { get; private set; } = RaycastMode.Undefined;
 			public float MaxDistance { get; set; }
 			public int LayerMask { get; protected set; }
+			public List<LayerID> Blockers { get; private set; }
 
 			public Raycaster( RaycastMode mode, float maxDistance, bool isEnabled )
 			{
 				Mode = mode;
 				MaxDistance = maxDistance;
 				IsEnabled = isEnabled;
+				Blockers = new List<LayerID>( );
+			}
+
+			public void AddBlocker( LayerID layer )
+			{
+				LayerMask |= (1 << (int)layer);
+				Blockers.Add( layer );
 			}
 
 			//public KeyValuePair<_T,RaycastHit> GetLastHit<_T>( )
@@ -68,7 +76,7 @@ namespace ProjectFound.Master
 		public abstract class Raycaster<_T> : Raycaster
 			where _T : Component
 		{
-			public delegate void FocusGainedDelegate( KeyValuePair<_T, RaycastHit> pair );
+			public delegate void FocusGainedDelegate( KeyValuePair<_T,RaycastHit> pair );
 			public delegate void FocusLostDelegate( _T component );
 
 			public class LayerDetails
@@ -77,10 +85,10 @@ namespace ProjectFound.Master
 				public FocusLostDelegate DelegateFocusLost;
 			}
 
-			public OrderedDictionary<_T, RaycastHit> PriorityHitCheck { get; protected set; }
-			public OrderedDictionary<_T, RaycastHit> PreviousPriorityHitCheck { get; protected set; }
-			public OrderedDictionary<Transform, Blacklistee> Blacklist { get; private set; }
-			public OrderedDictionary<LayerID, LayerDetails> Priority { get; private set; }
+			public OrderedDictionary<_T,RaycastHit> PriorityHitCheck { get; protected set; }
+			public OrderedDictionary<_T,RaycastHit> PreviousPriorityHitCheck { get; protected set; }
+			public OrderedDictionary<Transform,Blacklistee> Blacklist { get; private set; }
+			public OrderedDictionary<LayerID,LayerDetails> Priority { get; private set; }
 
 			public Raycaster( RaycastMode mode, float maxDistance, bool isEnabled )
 				: base( mode, maxDistance, isEnabled )

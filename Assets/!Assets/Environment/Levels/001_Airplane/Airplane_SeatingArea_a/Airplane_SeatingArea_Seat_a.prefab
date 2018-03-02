@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4266644961237160}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: JT_Airplane_Seat_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4286462497256944}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Jt_Airplane_Seat_LegRest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4208333868120298}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: JT_Airplane_Seat_Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 4341686508340272}
   - component: {fileID: 137579648941548510}
   - component: {fileID: 64153908200443234}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Airplane_Seat_Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 4914492419030414}
   - component: {fileID: 137020414407835688}
   - component: {fileID: 64314775062995052}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Airplane_Seat_LegRest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 95799201711809594}
   - component: {fileID: 114787701834026034}
   - component: {fileID: 114830725568290134}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Airplane_SeatingArea_Seat_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,6 +275,7 @@ MonoBehaviour:
   m_isReceptive: 1
   m_isActivated: 0
   m_dialogueTree: {fileID: 0}
+  m_handler: {fileID: 0}
 --- !u!137 &137020414407835688
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

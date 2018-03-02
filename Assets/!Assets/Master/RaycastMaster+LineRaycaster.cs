@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 using mattmc3.dotmore.Collections.Generic;
 
+using ProjectFound.Environment;
+
 namespace ProjectFound.Master
 {
 
@@ -91,6 +93,11 @@ namespace ProjectFound.Master
 
 				if ( success == true )
 				{
+					if ( WasBlockerHit( ref firstHit ) == true )
+					{
+						return ;
+					}
+
 					GameObject obj = firstHit.collider.gameObject;
 					_T component = obj.GetComponentInParent<_T>( );
 
@@ -98,7 +105,7 @@ namespace ProjectFound.Master
 						"Raycast found an object (" + obj + ") but it did not have a " + typeof( _T ) + " Component" );
 
 					if ( component == null )
-						return;
+						return ;
 
 					// We want the last hit (closest to final position)
 					// Calling Remove on key that doesn't exist is safe
@@ -130,6 +137,13 @@ namespace ProjectFound.Master
 						ObjectFocusLost( component );
 					}
 				}
+			}
+
+			protected bool WasBlockerHit( ref RaycastHit hit )
+			{
+				LayerID layer = (LayerID)hit.collider.gameObject.layer;
+
+				return Blockers.Contains( layer );
 			}
 		}
 	}
