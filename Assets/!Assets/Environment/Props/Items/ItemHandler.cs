@@ -38,6 +38,9 @@ namespace ProjectFound.Environment.Handlers
 			} );
 
 			gameObj.SetActive( false );
+
+			GameStateLink stateLink = item.GetComponent<GameStateLink>( );
+			stateLink?.m_gameStateDatum.SetValue( true );
 		}
 
 		public virtual void RemoveFromInventory( Item item )
