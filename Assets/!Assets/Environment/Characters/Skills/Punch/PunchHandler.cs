@@ -9,11 +9,11 @@ namespace ProjectFound.Environment.Characters
 	[CreateAssetMenu( menuName = ("Project Found/Skill Handler/Punch Handler") )]
 	public class PunchHandler : SkillHandler
 	{
-		public override void Handle( SkillSpec skillDefinition )
+		public override IEnumerator Handle( SkillSpec skillDefinition, Combatant wielder )
 		{
 			if ( PlayerMaster.CanMoveToTarget( ) == false )
 			{
-				return;
+				yield break;
 			}
 
 			float distance = PlayerMaster.NavMeshDistanceTo( );
@@ -26,7 +26,9 @@ namespace ProjectFound.Environment.Characters
 			if ( CombatMaster.HasEnoughActionPoints(
 				PlayerMaster.Player as Combatant, actionPointCost ) )
 			{
-				PlayerMaster.MoveToTarget( );
+				yield return MovePlayerTowards( PlayerMaster.Player.Target );
+
+				PlayerMaster.Player.Target.TakeDamage( PlayerMaster.Player, 5f );
 			}
 		}
 	}

@@ -127,7 +127,8 @@ namespace ProjectFound.Master {
 
 		public void CombatMovementFeedback( Vector3 loc, bool isGood )
 		{
-			MovementFeedback.DrawCenter( loc, isGood );
+			MovementFeedback.IsFeedbackGood = isGood;
+			MovementFeedback.DrawCenter( loc );
 		}
 	}
 

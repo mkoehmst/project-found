@@ -200,8 +200,8 @@ namespace ProjectFound.Core {
 		{
 			RaycastMaster.CurrentInteracteeRaycaster.IsEnabled = false;
 
-			//RaycastMaster.CurrentInteracteeRaycaster =
-				//RaycastMaster.Raycasters[RaycastMaster.RaycastMode.CombatCursorSelection];
+			RaycastMaster.CurrentInteracteeRaycaster =
+				RaycastMaster.CombatCursorSelectionRaycaster;
 
 			RaycastMaster.CurrentInteracteeRaycaster.IsEnabled = true;
 
@@ -353,6 +353,12 @@ namespace ProjectFound.Core {
 				switch ( layer )
 				{
 					case LayerID.Walkable:
+						if ( raycaster.Mode == RaycastMaster.RaycastMode.CombatCursorSelection
+							&& PlayerMaster.MovementFeedback.IsFeedbackGood == false )
+						{
+							return ;
+						}
+
 						map.HoldingWindow = 0.35f;
 						PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 						break;
@@ -395,6 +401,11 @@ namespace ProjectFound.Core {
 			}
 			else if ( map.Mode == InputMaster.KeyMode.Holding )
 			{
+				if ( raycaster.Mode == RaycastMaster.RaycastMode.CombatCursorSelection )
+				{
+					return ;
+				}
+
 				Debug.Log( "Holding: " + map.Key );
 
 				if ( map.HoldingCount == 1 )
@@ -439,6 +450,11 @@ namespace ProjectFound.Core {
 			}
 			else if ( map.Mode == InputMaster.KeyMode.HoldingRelease )
 			{
+				if ( raycaster.Mode == RaycastMaster.RaycastMode.CombatCursorSelection )
+				{
+					return ;
+				}
+
 				Debug.Log( "HoldingRelease: " + map.Key );
 
 				switch ( raycaster.Mode )

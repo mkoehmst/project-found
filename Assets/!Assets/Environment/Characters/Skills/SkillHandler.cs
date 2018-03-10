@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using ProjectFound.Core;
+using ProjectFound.Environment.Handlers;
 
 namespace ProjectFound.Environment.Characters
 {
 
 
-	public abstract class SkillHandler : ContextHandler
+	public abstract class SkillHandler : BaseHandler
 	{
-		public abstract void Handle( SkillSpec skillDefinition );
+		public abstract IEnumerator Handle( SkillSpec skillDefinition, Combatant wielder );
 	}
 
 

@@ -40,7 +40,9 @@ namespace ProjectFound.Environment.Characters
 		void LateUpdate( )
 		{
 			if ( m_combatRound == 0 && m_combatants.Count > 1 )
+			{
 				BeginEncounter( );
+			}
 		}
 
 		// TODO Co-routine to check for end-of-encounter (i.e. player dies or all enemies die)

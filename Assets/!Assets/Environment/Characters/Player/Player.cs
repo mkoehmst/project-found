@@ -35,7 +35,7 @@ namespace ProjectFound.Environment.Characters
 			{
 				if ( DelegateCombatHandler != null )
 				{
-					DelegateCombatHandler( );
+					DelegateCombatHandler( this );
 					DelegateCombatHandler = null;
 					IsActiveCombatant = false;
 					yield break;

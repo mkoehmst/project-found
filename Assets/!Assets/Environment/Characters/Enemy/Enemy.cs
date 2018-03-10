@@ -7,7 +7,7 @@ namespace ProjectFound.Environment.Characters {
 
 public class Enemy : Combatant
 {
-	[SerializeField] float m_aggroRadius = 6f;
+	[SerializeField] EnemyDefinition m_enemyDefinition;
 
 	Transform m_player = null;
 
@@ -66,7 +66,7 @@ public class Enemy : Combatant
 
 	private void AggroCheck( float distance )
 	{
-		if ( IsInCombat == false && distance < m_aggroRadius )
+		if ( IsInCombat == false && distance < m_enemyDefinition.m_aggroRadius )
 		{
 			CombatEncounter.singleton.AddCombatant( this as Combatant );
 		}
@@ -75,7 +75,7 @@ public class Enemy : Combatant
 	private void OnDrawGizmos( )
 	{
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere( transform.position, m_aggroRadius );
+		Gizmos.DrawWireSphere( transform.position, m_enemyDefinition.m_aggroRadius );
 	}
 }
 

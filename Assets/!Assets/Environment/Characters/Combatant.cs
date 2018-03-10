@@ -27,9 +27,9 @@ public abstract class Combatant : Character, IDamageable
 	}
 
 	public int ActionPoints { get; private set; }
-	public float MovementScore { get; private set; } = 2.3f;
+	public float MovementScore { get; private set; } = 2.0f;
 
-	public System.Action DelegateCombatHandler { get; set; }
+	public System.Action<Combatant> DelegateCombatHandler { get; set; }
 
 	new protected void Start( )
 	{

@@ -15,9 +15,12 @@ namespace ProjectFound.Environment.Characters
 		[SerializeField] Material m_feedbackBadMaterial;
 
 		private int size;
+		//private bool m_feedbackIsGood = false;
 		private float theta = 0f;
 
 		public LineRenderer LineDrawer { get; private set; }
+		public bool IsFeedbackGood { get; set; } = false;
+
 
 		void Awake( )
 		{
@@ -31,9 +34,9 @@ namespace ProjectFound.Environment.Characters
 			LineDrawer.positionCount = size;
 		}
 
-		public void DrawCenter( Vector3 worldPos, bool isGood )
+		public void DrawCenter( Vector3 worldPos )
 		{
-			if ( isGood == true )
+			if ( IsFeedbackGood == true )
 			{
 				LineDrawer.material = m_feedbackGoodMaterial;
 			}

@@ -11,36 +11,73 @@ ModelImporter:
     100006: Airplane_SmallRestroom_ToiletRecepticle
     100008: Airplane_SmallRestroom_ToiletSeat
     100010: Airplane_SmallRestroom_ToiletSeatCover
+    100012: Airplane_SmallRestroom_ToiletPaperHolder_Bottom
+    100014: Airplane_SmallRestroom_ToiletPaperHolder_Top
+    100016: Airplane_SmallRestroom_ToiletPaperHolderMount_Bottom
+    100018: Airplane_SmallRestroom_ToiletPaperHolderMount_Top
+    100020: Airplane_SmallRestroom_ToiletPaperRoll_Bottom
+    100022: Airplane_SmallRestroom_ToiletPaperRoll_Top
     400000: //RootNode
     400002: Airplane_SmallRestroom_Counter
     400004: Airplane_SmallRestroom_Toilet
     400006: Airplane_SmallRestroom_ToiletRecepticle
     400008: Airplane_SmallRestroom_ToiletSeat
     400010: Airplane_SmallRestroom_ToiletSeatCover
+    400012: Airplane_SmallRestroom_ToiletPaperHolder_Bottom
+    400014: Airplane_SmallRestroom_ToiletPaperHolder_Top
+    400016: Airplane_SmallRestroom_ToiletPaperHolderMount_Bottom
+    400018: Airplane_SmallRestroom_ToiletPaperHolderMount_Top
+    400020: Airplane_SmallRestroom_ToiletPaperRoll_Bottom
+    400022: Airplane_SmallRestroom_ToiletPaperRoll_Top
     2100000: Airplane_SmallRestroom_ToiletRecepticle_MAT
     2100002: Airplane_SmallRestroom_CounterTop_MAT
     2100004: Airplane_SmallRestroom_ToiletSeat_MAT
     2100006: Airplane_SmallRestroom_Counter_MAT
+    2100008: phong1
     2300000: Airplane_SmallRestroom_Counter
     2300002: Airplane_SmallRestroom_Toilet
     2300004: Airplane_SmallRestroom_ToiletRecepticle
     2300006: Airplane_SmallRestroom_ToiletSeat
     2300008: Airplane_SmallRestroom_ToiletSeatCover
+    2300010: Airplane_SmallRestroom_ToiletPaperHolder_Bottom
+    2300012: Airplane_SmallRestroom_ToiletPaperHolder_Top
+    2300014: Airplane_SmallRestroom_ToiletPaperHolderMount_Bottom
+    2300016: Airplane_SmallRestroom_ToiletPaperHolderMount_Top
+    2300018: Airplane_SmallRestroom_ToiletPaperRoll_Bottom
+    2300020: Airplane_SmallRestroom_ToiletPaperRoll_Top
     3300000: Airplane_SmallRestroom_Counter
     3300002: Airplane_SmallRestroom_Toilet
     3300004: Airplane_SmallRestroom_ToiletRecepticle
     3300006: Airplane_SmallRestroom_ToiletSeat
     3300008: Airplane_SmallRestroom_ToiletSeatCover
+    3300010: Airplane_SmallRestroom_ToiletPaperHolder_Bottom
+    3300012: Airplane_SmallRestroom_ToiletPaperHolder_Top
+    3300014: Airplane_SmallRestroom_ToiletPaperHolderMount_Bottom
+    3300016: Airplane_SmallRestroom_ToiletPaperHolderMount_Top
+    3300018: Airplane_SmallRestroom_ToiletPaperRoll_Bottom
+    3300020: Airplane_SmallRestroom_ToiletPaperRoll_Top
     4300000: Airplane_SmallRestroom_ToiletRecepticle
     4300002: Airplane_SmallRestroom_Toilet
     4300004: Airplane_SmallRestroom_ToiletSeat
     4300006: Airplane_SmallRestroom_ToiletSeatCover
     4300008: Airplane_SmallRestroom_Counter
+    4300010: Airplane_SmallRestroom_ToiletPaperRoll_Top
+    4300012: Airplane_SmallRestroom_ToiletPaperHolder_Top
+    4300014: Airplane_SmallRestroom_ToiletPaperHolderMount_Top
+    4300016: Airplane_SmallRestroom_ToiletPaperRoll_Bottom
+    4300018: Airplane_SmallRestroom_ToiletPaperHolder_Bottom
+    4300020: Airplane_SmallRestroom_ToiletPaperHolderMount_Bottom
     6400000: Airplane_SmallRestroom_Counter
     6400002: Airplane_SmallRestroom_Toilet
     6400004: Airplane_SmallRestroom_ToiletRecepticle
     6400006: Airplane_SmallRestroom_ToiletSeat
     6400008: Airplane_SmallRestroom_ToiletSeatCover
+    6400010: Airplane_SmallRestroom_ToiletPaperHolder_Bottom
+    6400012: Airplane_SmallRestroom_ToiletPaperHolder_Top
+    6400014: Airplane_SmallRestroom_ToiletPaperHolderMount_Bottom
+    6400016: Airplane_SmallRestroom_ToiletPaperHolderMount_Top
+    6400018: Airplane_SmallRestroom_ToiletPaperRoll_Bottom
+    6400020: Airplane_SmallRestroom_ToiletPaperRoll_Top
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -61,6 +98,11 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Airplane_SmallRestroom_ToiletSeat_MAT
+    second: {fileID: -615885302, guid: 56bb0840a270e46429c6efd9775d1b1e, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phong1
     second: {fileID: -615885302, guid: 56bb0840a270e46429c6efd9775d1b1e, type: 3}
   materials:
     importMaterials: 1
