@@ -31,20 +31,16 @@ namespace ProjectFound.Environment.Characters
 
 		public override IEnumerator ExecuteRoundActions( )
 		{
-			while ( true )
+			while ( DelegateCombatHandler == null )
 			{
-				if ( DelegateCombatHandler != null )
-				{
-					DelegateCombatHandler( this );
-					DelegateCombatHandler = null;
-					IsActiveCombatant = false;
-					yield break;
-				}
-				else
-				{
-					yield return new WaitForSeconds( 1.0f );
-				}
+				yield return new WaitForSeconds( 1.0f );
 			}
+
+			yield return DelegateCombatHandler( this );
+			DelegateCombatHandler = null;
+			//IsActiveCombatant = false;
+			//yield break;
+
 
 			/*
 

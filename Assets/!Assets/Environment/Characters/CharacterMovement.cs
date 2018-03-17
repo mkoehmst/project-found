@@ -16,13 +16,13 @@ namespace ProjectFound.Environment.Characters
 		[SerializeField] float m_moveSpeedMultiplier = 1f;
 		[SerializeField] float m_animSpeedMultiplier = 1f;
 
-		private float m_turnAmount;
-		private float m_forwardAmount;
-
-		private Rigidbody m_rigidBody;
 		private Animator m_animator;
 		private NavMeshAgent m_agent;
+		private Rigidbody m_rigidBody;
 		private NavMeshPath m_path;
+
+		private float m_turnAmount;
+		private float m_forwardAmount;
 
 		public float StoppingDistance
 		{
@@ -31,15 +31,15 @@ namespace ProjectFound.Environment.Characters
 
 		void Start( )
 		{
-			m_agent = GetComponent<NavMeshAgent>( );
-			m_agent.updateRotation = false;
-			m_agent.updatePosition = true;
-			m_agent.SetDestination( transform.position );
-
 			m_animator = GetComponent<Animator>( );
+			m_agent = GetComponent<NavMeshAgent>( );
 			m_rigidBody = GetComponent<Rigidbody>( );
 			m_rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
 			m_path = new NavMeshPath( );
+
+			m_agent.updateRotation = false;
+			m_agent.updatePosition = true;
+			ResetMoveTarget( );
 
 			CombatEncounter.singleton.DelegateEncounterBegin += OnCombatEncounterBegin;
 		}
@@ -50,11 +50,11 @@ namespace ProjectFound.Environment.Characters
 
 			if ( m_agent.remainingDistance > m_agent.stoppingDistance )
 			{
-				Move( m_agent.desiredVelocity );
+				AnimatorMove( m_agent.desiredVelocity );
 			}
 			else
 			{
-				Move( Vector3.zero );
+				AnimatorHalt( );
 			}
 		}
 
@@ -113,14 +113,22 @@ namespace ProjectFound.Environment.Characters
 			}
 		}
 
-		private void Move( Vector3 movement )
+		private void AnimatorMove( Vector3 movement )
 		{
-			SetTransform( movement );
-			ApplyExtraTurnRotation( );
+			CalculateLocalMovement( ref movement );
+			ApplyRootRotation( );
 			UpdateAnimator( );
 		}
 
-		private void SetTransform( Vector3 worldSpaceMovement )
+		private void AnimatorHalt( )
+		{
+			m_turnAmount = 0f;
+			m_forwardAmount = 0f;
+
+			UpdateAnimator( );
+		}
+
+		private void CalculateLocalMovement( ref Vector3 worldSpaceMovement )
 		{
 			if ( worldSpaceMovement.magnitude > 1f )
 			{
@@ -132,7 +140,7 @@ namespace ProjectFound.Environment.Characters
 			m_forwardAmount = localSpaceMovement.z;
 		}
 
-		private void ApplyExtraTurnRotation( )
+		private void ApplyRootRotation( )
 		{
 			float turnSpeed =
 				Mathf.Lerp( m_stationaryTurnSpeed, m_movingTurnSpeed, m_forwardAmount );
@@ -149,9 +157,10 @@ namespace ProjectFound.Environment.Characters
 		private void OnCombatEncounterBegin( List<Combatant> combatants )
 		{
 			ResetMoveTarget( );
+			AnimatorHalt( );
 		}
 
-		private void OnAnimatorMove( )
+		void OnAnimatorMove( )
 		{
 			if ( Time.deltaTime > 0 )
 			{
@@ -163,7 +172,7 @@ namespace ProjectFound.Environment.Characters
 			}
 		}
 
-		private void OnDrawGizmos( )
+		void OnDrawGizmos( )
 		{
 			if ( m_agent && m_agent.hasPath )
 			{

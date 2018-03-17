@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using NodeCanvas.BehaviourTrees;
+
 namespace ProjectFound.Environment.Characters {
 
 public class Enemy : Combatant
@@ -37,10 +39,18 @@ public class Enemy : Combatant
 
 	public override IEnumerator ExecuteRoundActions( )
 	{
-		float damageCaused = m_rng.Next( 12, 15 );
-		m_target.TakeDamage( this, damageCaused );
+		BehaviourTreeOwner bto = GetComponent<BehaviourTreeOwner>( );
+		bto.Tick( );
 
-		yield break;
+		Skill skill = bto.blackboard.GetVariable<Skill>( "_skill" ).value;
+
+		yield return skill.Handle( this );
+
+		//float damageCaused = m_rng.Next( 12, 15 );
+		//m_target.TakeDamage( this, damageCaused );
+		//IsActiveCombatant = false;
+
+		//yield break;
 	}
 
 	public override bool ValidateAction( ActionType actionType )

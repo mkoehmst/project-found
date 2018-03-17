@@ -41,11 +41,9 @@ namespace ProjectFound.Environment.Characters
 		{
 			if ( m_combatRound == 0 && m_combatants.Count > 1 )
 			{
-				BeginEncounter( );
+				StartCoroutine( BeginEncounter( ) );
 			}
 		}
-
-		// TODO Co-routine to check for end-of-encounter (i.e. player dies or all enemies die)
 
 		public void AddCombatant( Combatant combatant )
 		{
@@ -72,7 +70,7 @@ namespace ProjectFound.Environment.Characters
 				EndEncounter( );
 		}
 
-		public void BeginEncounter( )
+		public IEnumerator BeginEncounter( )
 		{
 			Debug.Assert( m_combatants.Count > 1 );
 			Debug.Assert( m_combatants[0] != null );
@@ -81,9 +79,9 @@ namespace ProjectFound.Environment.Characters
 
 			m_enemiesRemaining = m_combatants.Count - 1;
 
-			StartCoroutine( BeginRound( ) );
-
 			DelegateEncounterBegin( m_combatants );
+
+			yield return BeginRound( );
 		}
 
 		public void EndEncounter( )
@@ -95,41 +93,37 @@ namespace ProjectFound.Environment.Characters
 		private IEnumerator BeginRound( )
 		{
 			++m_combatRound;
-
 			DetermineAttackOrder( );
 			DelegateRoundBegin( m_combatants );
 
-			yield return new WaitForSeconds( 2f );
+			yield return new WaitForSeconds( 1.25f );
 
 			// Do NOT use foreach because the iteration gets screwed if a Combatant is removed
 			for ( int i = 0; i < m_combatants.Count; ++i )
 			{
+				yield return new WaitForSeconds( 2.5f );
+
 				ActiveCombatant = m_combatants[i];
-				ActiveCombatant.IsActiveCombatant = true;
-				StartCoroutine( ActiveCombatant.ExecuteRoundActions( ) );
-				while ( ActiveCombatant.IsActiveCombatant == true )
-				{
-					yield return new WaitForSeconds( 1.5f );
-				}
+
+				yield return ActiveCombatant.ExecuteRoundActions( );
 			}
 
-			EndRound( );
-
-			yield break;
+			yield return EndRound( );
 		}
 
-		private void EndRound( )
+		private IEnumerator EndRound( )
 		{
 			ActiveCombatant = null;
 
 			// Temporarily cap round count at 10 to prevent infinite looping
 			if ( m_enemiesRemaining > 0 && m_combatRound < 10 )
 			{
-				StartCoroutine( BeginRound( ) );
+				yield return BeginRound( );
 			}
 			else
 			{
 				EndEncounter( );
+				yield break;
 			}
 		}
 

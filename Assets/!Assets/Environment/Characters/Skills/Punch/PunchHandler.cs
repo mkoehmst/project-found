@@ -11,24 +11,26 @@ namespace ProjectFound.Environment.Characters
 	{
 		public override IEnumerator Handle( SkillSpec skillDefinition, Combatant wielder )
 		{
-			if ( PlayerMaster.CanMoveToTarget( ) == false )
+			CharacterMovement mover = wielder.GetComponent<CharacterMovement>( );
+			Combatant target = wielder.Target;
+			Transform targetXform = target.transform;
+
+			Debug.Log( wielder + " is punching " + target );
+
+			if ( mover.CanMoveTo( targetXform.position ) == false )
 			{
 				yield break;
 			}
 
-			float distance = PlayerMaster.NavMeshDistanceTo( );
-
-			int actionPointCost = CombatMaster.CalculateMovementCost(
-						PlayerMaster.Player as Combatant, distance );
-
+			float distance = mover.CalculatePathDistance( );
+			int actionPointCost = CombatMaster.CalculateMovementCost( wielder, distance );
 			actionPointCost += skillDefinition.ActionPointCost;
 
-			if ( CombatMaster.HasEnoughActionPoints(
-				PlayerMaster.Player as Combatant, actionPointCost ) )
+			if ( CombatMaster.HasEnoughActionPoints( wielder, actionPointCost ) )
 			{
-				yield return MovePlayerTowards( PlayerMaster.Player.Target );
+				yield return MoveCharacterTowards( mover, target );
 
-				PlayerMaster.Player.Target.TakeDamage( PlayerMaster.Player, 5f );
+				target.TakeDamage( wielder, 5f );
 			}
 		}
 	}

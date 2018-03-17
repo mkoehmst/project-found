@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+using ProjectFound.Environment.Characters;
 using ProjectFound.Core;
 
 namespace ProjectFound.Environment.Handlers
@@ -17,15 +18,29 @@ namespace ProjectFound.Environment.Handlers
 
 			if ( approach != null )
 			{
-				return MovePlayerTowards( approach.transform );
+				return MoveCharacterTowards( PlayerMaster.CharacterMovement, approach.transform );
 			}
 			else
 			{
-				return MovePlayerTowards( i.transform );
+				return MoveCharacterTowards( PlayerMaster.CharacterMovement, i.transform );
 			}
 		}
 
-		protected IEnumerator MovePlayerTowards( Transform xform )
+		protected IEnumerator MoveCharacterTowards( CharacterMovement character, Interactee i )
+		{
+			Approach approach = i.GetComponentInChildren<Approach>( );
+
+			if ( approach != null )
+			{
+				return MoveCharacterTowards( character, approach.transform );
+			}
+			else
+			{
+				return MoveCharacterTowards( character, i.transform );
+			}
+		}
+
+		protected IEnumerator MoveCharacterTowards( CharacterMovement character, Transform xform )
 		{
 			const float maxCheckRange = .6f;
 
@@ -35,26 +50,25 @@ namespace ProjectFound.Environment.Handlers
 				xform.position, out navHit, maxCheckRange, NavMesh.AllAreas );
 
 			Vector3 destination = navHit.position;
-			PlayerMaster.CharacterMovement.SetMoveTarget( destination );
+			character.SetMoveTarget( destination );
 
-			Transform playerTransform = PlayerMaster.Player.transform;
+			Transform characterXform = character.transform;
 			// Give a little buffer room for the StoppingDistance
-			float distanceThreshold = PlayerMaster.CharacterMovement.StoppingDistance * 1.25f;
+			float distanceThreshold = character.StoppingDistance * 1.25f;
 
 			while ( true )
 			{
-				Vector3 playerPosition = new Vector3(
-						playerTransform.position.x, destination.y, playerTransform.position.z );
+				Vector3 characterPosition = new Vector3(
+						characterXform.position.x, destination.y, characterXform.position.z );
 
-				float distance = (playerPosition - destination).magnitude;
+				float distance = (characterPosition - destination).magnitude;
 				if ( distance > distanceThreshold )
 				{
-					yield return null;
+					yield return new WaitForSeconds( 0.3333f );
 				}
 				else
 				{
-					yield return new WaitForSeconds( 0.40f );
-					break;
+					yield break;
 				}
 			}
 		}

@@ -8,9 +8,9 @@ namespace ProjectFound.Environment.Characters
 
 	public class SkillBook : MonoBehaviour
 	{
-		[SerializeField] Skill[] m_skills;
+		[SerializeField] List<Skill> m_skills;
 
-		public Skill[] Skills
+		public List<Skill> Skills
 		{
 			get { return m_skills; }
 		}

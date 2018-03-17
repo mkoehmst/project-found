@@ -69,6 +69,11 @@ namespace ProjectFound.Environment {
 			get { return m_curHealthPoints / m_maxHealthPoints; }
 		}
 
+		public float Health
+		{
+			get { return m_curHealthPoints; }
+		}
+
 		new protected void Start( )
 		{
 			Debug.Assert( m_curHealthPoints > 0f, "Must start with positive health" );

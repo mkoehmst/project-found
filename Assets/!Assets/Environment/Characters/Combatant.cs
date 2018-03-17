@@ -11,7 +11,7 @@ public abstract class Combatant : Character, IDamageable
 	protected System.Random m_rng = new System.Random( );
 
 	public bool IsInCombat { get; set; } = false;
-	public bool IsActiveCombatant { get; set; } = false;
+	//public bool IsActiveCombatant { get; set; } = false;
 
 	protected Combatant m_target = null;
 	public Combatant Target
@@ -29,7 +29,7 @@ public abstract class Combatant : Character, IDamageable
 	public int ActionPoints { get; private set; }
 	public float MovementScore { get; private set; } = 2.0f;
 
-	public System.Action<Combatant> DelegateCombatHandler { get; set; }
+	public System.Func<Combatant,IEnumerator> DelegateCombatHandler { get; set; }
 
 	new protected void Start( )
 	{
@@ -41,6 +41,11 @@ public abstract class Combatant : Character, IDamageable
 	// Player and Enemy have very different implementations so mark abstract
 	public abstract IEnumerator ExecuteRoundActions( );
 
+	//public void WieldSkill( Skill skill )
+	//{
+	//	StartCoroutine( skill.Handler.Handle( skill.Specification, this ) );
+	//}
+
 	// ********************************************************************************************
 	// ** IDamageable
 	// ********************************************************************************************
@@ -50,7 +55,7 @@ public abstract class Combatant : Character, IDamageable
 
 		float computedHealthPoints = m_curHealthPoints - damage;
 
-		if ( computedHealthPoints <= 0f )
+		if ( Misc.Floater.LessThanOrEqual( computedHealthPoints, 0f ) )
 		{
 			if ( gameObject.tag != "Player" )
 				Destroy( gameObject );

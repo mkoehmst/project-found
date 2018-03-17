@@ -22,9 +22,9 @@ namespace ProjectFound.Environment.Characters
 			get { return m_handler; }
 		}
 
-		public void Handle( Combatant wielder )
+		public IEnumerator Handle( Combatant wielder )
 		{
-			wielder.StartCoroutine( m_handler.Handle( m_specification, wielder ) );
+			return m_handler.Handle( m_specification, wielder );
 		}
 	}
 
