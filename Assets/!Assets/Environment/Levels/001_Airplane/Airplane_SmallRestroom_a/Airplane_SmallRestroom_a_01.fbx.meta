@@ -17,6 +17,7 @@ ModelImporter:
     100018: Airplane_SmallRestroom_ToiletPaperHolderMount_Top
     100020: Airplane_SmallRestroom_ToiletPaperRoll_Bottom
     100022: Airplane_SmallRestroom_ToiletPaperRoll_Top
+    100024: Airplane_SmallRestroom_Faucet
     400000: //RootNode
     400002: Airplane_SmallRestroom_Counter
     400004: Airplane_SmallRestroom_Toilet
@@ -29,6 +30,7 @@ ModelImporter:
     400018: Airplane_SmallRestroom_ToiletPaperHolderMount_Top
     400020: Airplane_SmallRestroom_ToiletPaperRoll_Bottom
     400022: Airplane_SmallRestroom_ToiletPaperRoll_Top
+    400024: Airplane_SmallRestroom_Faucet
     2100000: Airplane_SmallRestroom_ToiletRecepticle_MAT
     2100002: Airplane_SmallRestroom_CounterTop_MAT
     2100004: Airplane_SmallRestroom_ToiletSeat_MAT
@@ -45,6 +47,7 @@ ModelImporter:
     2300016: Airplane_SmallRestroom_ToiletPaperHolderMount_Top
     2300018: Airplane_SmallRestroom_ToiletPaperRoll_Bottom
     2300020: Airplane_SmallRestroom_ToiletPaperRoll_Top
+    2300022: Airplane_SmallRestroom_Faucet
     3300000: Airplane_SmallRestroom_Counter
     3300002: Airplane_SmallRestroom_Toilet
     3300004: Airplane_SmallRestroom_ToiletRecepticle
@@ -56,6 +59,7 @@ ModelImporter:
     3300016: Airplane_SmallRestroom_ToiletPaperHolderMount_Top
     3300018: Airplane_SmallRestroom_ToiletPaperRoll_Bottom
     3300020: Airplane_SmallRestroom_ToiletPaperRoll_Top
+    3300022: Airplane_SmallRestroom_Faucet
     4300000: Airplane_SmallRestroom_ToiletRecepticle
     4300002: Airplane_SmallRestroom_Toilet
     4300004: Airplane_SmallRestroom_ToiletSeat
@@ -67,6 +71,7 @@ ModelImporter:
     4300016: Airplane_SmallRestroom_ToiletPaperRoll_Bottom
     4300018: Airplane_SmallRestroom_ToiletPaperHolder_Bottom
     4300020: Airplane_SmallRestroom_ToiletPaperHolderMount_Bottom
+    4300022: Airplane_SmallRestroom_Faucet
     6400000: Airplane_SmallRestroom_Counter
     6400002: Airplane_SmallRestroom_Toilet
     6400004: Airplane_SmallRestroom_ToiletRecepticle
@@ -78,6 +83,7 @@ ModelImporter:
     6400016: Airplane_SmallRestroom_ToiletPaperHolderMount_Top
     6400018: Airplane_SmallRestroom_ToiletPaperRoll_Bottom
     6400020: Airplane_SmallRestroom_ToiletPaperRoll_Top
+    6400022: Airplane_SmallRestroom_Faucet
   externalObjects:
   - first:
       type: UnityEngine:Material
