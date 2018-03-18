@@ -14349,6 +14349,25 @@ Transform:
   m_PrefabParentObject: {fileID: 4326337312252980, guid: a7986ee027579334d93dc7ad2e6737ce,
     type: 2}
   m_PrefabInternal: {fileID: 352221846}
+--- !u!114 &380108360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a686a47eee2fa44cb0a34b5d86e4d5e, type: 3}
+  m_Name: CartoonLevelVillain BehaviourTree
+  m_EditorClassIdentifier: 
+  _serializedGraph: '{"version":2.7,"type":"NodeCanvas.BehaviourTrees.BehaviourTree","translation":{"x":-3337.0,"y":-3266.0},"zoomFactor":0.7037193,"nodes":[{"_position":{"x":5453.0,"y":5167.0},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"2"},{"_condition":{"target":{"_name":"Target","_targetVariableID":"da3db1a3-85e4-4eb1-bf95-c2be6a9dd632"},"checkType":"GreaterThan","valueB":{"_value":175.0},"$type":"CheckTargetHealth"},"_position":{"x":5296.0,"y":5306.0},"$type":"NodeCanvas.BehaviourTrees.BinarySelector","$id":"3"},{"_action":{"targetList":{"_name":"Skills","_targetVariableID":"8704a599-b68c-4e43-8216-d14d10747cf0"},"index":{},"saveAs":{"_name":"_skill"},"$type":"NodeCanvas.Tasks.Actions.PickListElement`1[[ProjectFound.Environment.Characters.Skill,
+    Assembly-CSharp, Version=1.0.6651.17045, Culture=neutral, PublicKeyToken=null]]"},"_position":{"x":5210.0,"y":5460.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"7"},{"_action":{"targetList":{"_name":"Skills","_targetVariableID":"8704a599-b68c-4e43-8216-d14d10747cf0"},"index":{},"saveAs":{"_name":"_skill"},"$type":"NodeCanvas.Tasks.Actions.PickListElement`1[[ProjectFound.Environment.Characters.Skill,
+    Assembly-CSharp, Version=1.0.6651.17045, Culture=neutral, PublicKeyToken=null]]"},"_position":{"x":5418.0,"y":5455.0},"_comment":"Kick","$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"12"}],"connections":[{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"12"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"primeNode":{"$ref":"2"},"localBlackboard":{"_name":"Local
+    Blackboard","_variables":{}},"derivedData":{"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
+  _objectReferences: []
+  _deserializationFailed: 0
+  repeat: 0
+  updateInterval: 0
 --- !u!4 &390529448 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400072, guid: 59f54de82a6dfd74ea34eb3d0d2548a6, type: 3}
@@ -14678,6 +14697,7 @@ RectTransform:
   - {fileID: 1140299904}
   - {fileID: 805705472}
   - {fileID: 937556361}
+  - {fileID: 1557700369}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15587,8 +15607,8 @@ MonoBehaviour:
   m_Name: CartoonLevelVillain BehaviourTree
   m_EditorClassIdentifier: 
   _serializedGraph: '{"version":2.7,"type":"NodeCanvas.BehaviourTrees.BehaviourTree","translation":{"x":-3337.0,"y":-3266.0},"zoomFactor":0.7037193,"nodes":[{"_position":{"x":5453.0,"y":5167.0},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"2"},{"_condition":{"target":{"_name":"Target","_targetVariableID":"da3db1a3-85e4-4eb1-bf95-c2be6a9dd632"},"checkType":"GreaterThan","valueB":{"_value":175.0},"$type":"CheckTargetHealth"},"_position":{"x":5296.0,"y":5306.0},"$type":"NodeCanvas.BehaviourTrees.BinarySelector","$id":"3"},{"_action":{"targetList":{"_name":"Skills","_targetVariableID":"8704a599-b68c-4e43-8216-d14d10747cf0"},"index":{},"saveAs":{"_name":"_skill"},"$type":"NodeCanvas.Tasks.Actions.PickListElement`1[[ProjectFound.Environment.Characters.Skill,
-    Assembly-CSharp, Version=1.0.6650.18419, Culture=neutral, PublicKeyToken=null]]"},"_position":{"x":5210.0,"y":5460.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"7"},{"_action":{"targetList":{"_name":"Skills","_targetVariableID":"8704a599-b68c-4e43-8216-d14d10747cf0"},"index":{},"saveAs":{"_name":"_skill"},"$type":"NodeCanvas.Tasks.Actions.PickListElement`1[[ProjectFound.Environment.Characters.Skill,
-    Assembly-CSharp, Version=1.0.6650.18419, Culture=neutral, PublicKeyToken=null]]"},"_position":{"x":5418.0,"y":5455.0},"_comment":"Kick","$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"12"}],"connections":[{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"12"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"primeNode":{"$ref":"2"},"localBlackboard":{"_name":"Local
+    Assembly-CSharp, Version=1.0.6651.17045, Culture=neutral, PublicKeyToken=null]]"},"_position":{"x":5210.0,"y":5460.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"7"},{"_action":{"targetList":{"_name":"Skills","_targetVariableID":"8704a599-b68c-4e43-8216-d14d10747cf0"},"index":{},"saveAs":{"_name":"_skill"},"$type":"NodeCanvas.Tasks.Actions.PickListElement`1[[ProjectFound.Environment.Characters.Skill,
+    Assembly-CSharp, Version=1.0.6651.17045, Culture=neutral, PublicKeyToken=null]]"},"_position":{"x":5418.0,"y":5455.0},"_comment":"Kick","$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"12"}],"connections":[{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"12"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"primeNode":{"$ref":"2"},"localBlackboard":{"_name":"Local
     Blackboard","_variables":{}},"derivedData":{"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
   _objectReferences: []
   _deserializationFailed: 0
@@ -23231,6 +23251,23 @@ Transform:
   m_PrefabParentObject: {fileID: 4326337312252980, guid: a7986ee027579334d93dc7ad2e6737ce,
     type: 2}
   m_PrefabInternal: {fileID: 692080908}
+--- !u!114 &695104775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f945e777233a59f4aba40aeca29093a6, type: 3}
+  m_Name: State FSM
+  m_EditorClassIdentifier: 
+  _serializedGraph: '{"version":2.7,"type":"NodeCanvas.StateMachines.FSM","translation":{"x":-4888.0,"y":-5111.0},"nodes":[{"_actionList":{"executionMode":"ActionsRunInParallel","actions":[]},"_position":{"x":5135.0,"y":5484.0},"_name":"Root
+    State","$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_position":{"x":5321.0,"y":5624.0},"$type":"NodeCanvas.StateMachines.AnyState","$id":"5"},{"_actionList":{"executionMode":"ActionsRunInParallel","actions":[]},"_position":{"x":5094.0,"y":5751.0},"_name":"hasCandyEvent","$type":"NodeCanvas.StateMachines.ActionState","$id":"6"}],"connections":[{"_condition":{"eventName":{"_value":"hasCandyEvent"},"saveEventValue":{"_name":"hasCandy","_targetVariableID":"bc8aaa7a-773e-4678-b7c3-4d3548121d6c"},"$type":"NodeCanvas.Tasks.Conditions.CheckEvent`1[[System.Boolean,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"primeNode":{"$ref":"2"},"localBlackboard":{"_name":"Local
+    Blackboard","_variables":{}}}'
+  _objectReferences: []
+  _deserializationFailed: 0
 --- !u!1 &696575224
 GameObject:
   m_ObjectHideFlags: 0
@@ -23312,37 +23349,68 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &721154435
-RenderTexture:
+--- !u!1 &726470652
+GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 726470655}
+  - component: {fileID: 726470654}
+  - component: {fileID: 726470653}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &726470653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 726470652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 670
-  m_Height: 419
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &726470654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 726470652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 5
+--- !u!4 &726470655
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 726470652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 29
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &727980281 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1572674278394430, guid: 61bbfa1b70ee6734c891d4ea3cdb4b1c,
@@ -23394,6 +23462,37 @@ Transform:
   m_Father: {fileID: 685328177}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &748132886
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 673
+  m_Height: 420
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!224 &757715951
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32815,23 +32914,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4996070444496594, guid: 61bbfa1b70ee6734c891d4ea3cdb4b1c,
     type: 2}
   m_PrefabInternal: {fileID: 1091296041}
---- !u!114 &1105613373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f945e777233a59f4aba40aeca29093a6, type: 3}
-  m_Name: State FSM
-  m_EditorClassIdentifier: 
-  _serializedGraph: '{"version":2.7,"type":"NodeCanvas.StateMachines.FSM","translation":{"x":-4888.0,"y":-5111.0},"nodes":[{"_actionList":{"executionMode":"ActionsRunInParallel","actions":[]},"_position":{"x":5135.0,"y":5484.0},"_name":"Root
-    State","$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_position":{"x":5321.0,"y":5624.0},"$type":"NodeCanvas.StateMachines.AnyState","$id":"5"},{"_actionList":{"executionMode":"ActionsRunInParallel","actions":[]},"_position":{"x":5094.0,"y":5751.0},"_name":"hasCandyEvent","$type":"NodeCanvas.StateMachines.ActionState","$id":"6"}],"connections":[{"_condition":{"eventName":{"_value":"hasCandyEvent"},"saveEventValue":{"_name":"hasCandy","_targetVariableID":"bc8aaa7a-773e-4678-b7c3-4d3548121d6c"},"$type":"NodeCanvas.Tasks.Conditions.CheckEvent`1[[System.Boolean,
-    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"primeNode":{"$ref":"2"},"localBlackboard":{"_name":"Local
-    Blackboard","_variables":{}}}'
-  _objectReferences: []
-  _deserializationFailed: 0
 --- !u!1001 &1123095533
 Prefab:
   m_ObjectHideFlags: 0
@@ -37638,8 +37720,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 1235673872}
   outlineCamera: {fileID: 2032682208}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 1633756776}
-  extraRenderTexture: {fileID: 721154435}
+  renderTexture: {fileID: 1520238598}
+  extraRenderTexture: {fileID: 748132886}
 --- !u!114 &1235673868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37849,12 +37931,12 @@ MonoBehaviour:
   m_CameraCutEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+BrainEvent, Assembly-CSharp, Version=1.0.6650.18419,
+    m_TypeName: Cinemachine.CinemachineBrain+BrainEvent, Assembly-CSharp, Version=1.0.6651.17045,
       Culture=neutral, PublicKeyToken=null
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Assembly-CSharp, Version=1.0.6650.18419,
+    m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Assembly-CSharp, Version=1.0.6651.17045,
       Culture=neutral, PublicKeyToken=null
 --- !u!95 &1235673876
 Animator:
@@ -46014,7 +46096,7 @@ MonoBehaviour:
   boundGraphObjectReferences: []
   enableAction: 0
   disableAction: 0
-  _graph: {fileID: 1105613373}
+  _graph: {fileID: 695104775}
   _blackboard: {fileID: 1446726706}
 --- !u!1001 &1450653611
 Prefab:
@@ -48220,6 +48302,37 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
+--- !u!84 &1520238598
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 673
+  m_Height: 420
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1520634054
 GameObject:
   m_ObjectHideFlags: 0
@@ -48311,6 +48424,173 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1520634054}
   m_Mesh: {fileID: 4300004, guid: b79a78c59ced2414ea86d2a68cf37b5b, type: 3}
+--- !u!1 &1557700368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1557700369}
+  - component: {fileID: 1557700371}
+  - component: {fileID: 1557700372}
+  - component: {fileID: 1557700370}
+  m_Layer: 5
+  m_Name: CombatEncounterBegin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!224 &1557700369
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1557700368}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 447010636}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1557700370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1557700368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_text: 'COMBAT MODE ENTERED!
+
+'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 808aa8f1ab804104aa7d0c337a6c1481, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 808aa8f1ab804104aa7d0c337a6c1481, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4293322470
+  m_fontColor: {r: 0.9019608, g: 0.9019608, b: 0.9019608, a: 1}
+  m_enableVertexGradient: 0
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 47
+  m_fontSizeBase: 50
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 36
+  m_fontSizeMax: 52
+  m_fontStyle: 1
+  m_textAlignment: 514
+  m_isAlignmentEnumConverted: 1
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 1557700370}
+    characterCount: 21
+    spriteCount: 0
+    spaceCount: 3
+    wordCount: 3
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_havePropertiesChanged: 0
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_isInputParsingRequired: 0
+  m_inputSource: 0
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1557700371
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1557700368}
+--- !u!114 &1557700372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1557700368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33860e6ad0a6194b8a066799e64993f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1557981472 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400072, guid: 59f54de82a6dfd74ea34eb3d0d2548a6, type: 3}
@@ -48489,12 +48769,12 @@ MonoBehaviour:
   m_CameraCutEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+BrainEvent, Assembly-CSharp, Version=1.0.6650.18419,
+    m_TypeName: Cinemachine.CinemachineBrain+BrainEvent, Assembly-CSharp, Version=1.0.6651.17045,
       Culture=neutral, PublicKeyToken=null
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Assembly-CSharp, Version=1.0.6650.18419,
+    m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Assembly-CSharp, Version=1.0.6651.17045,
       Culture=neutral, PublicKeyToken=null
 --- !u!1001 &1587963441
 Prefab:
@@ -49777,37 +50057,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1628986310}
   m_Mesh: {fileID: 4300008, guid: b79a78c59ced2414ea86d2a68cf37b5b, type: 3}
---- !u!84 &1633756776
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 670
-  m_Height: 419
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &1638684038
 Prefab:
   m_ObjectHideFlags: 0
@@ -51688,25 +51937,6 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400072, guid: 59f54de82a6dfd74ea34eb3d0d2548a6, type: 3}
   m_PrefabInternal: {fileID: 1893945669}
---- !u!114 &1738775763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a686a47eee2fa44cb0a34b5d86e4d5e, type: 3}
-  m_Name: CartoonLevelVillain BehaviourTree
-  m_EditorClassIdentifier: 
-  _serializedGraph: '{"version":2.7,"type":"NodeCanvas.BehaviourTrees.BehaviourTree","translation":{"x":-3337.0,"y":-3266.0},"zoomFactor":0.7037193,"nodes":[{"_position":{"x":5453.0,"y":5167.0},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"2"},{"_condition":{"target":{"_name":"Target","_targetVariableID":"da3db1a3-85e4-4eb1-bf95-c2be6a9dd632"},"checkType":"GreaterThan","valueB":{"_value":175.0},"$type":"CheckTargetHealth"},"_position":{"x":5296.0,"y":5306.0},"$type":"NodeCanvas.BehaviourTrees.BinarySelector","$id":"3"},{"_action":{"targetList":{"_name":"Skills","_targetVariableID":"8704a599-b68c-4e43-8216-d14d10747cf0"},"index":{},"saveAs":{"_name":"_skill"},"$type":"NodeCanvas.Tasks.Actions.PickListElement`1[[ProjectFound.Environment.Characters.Skill,
-    Assembly-CSharp, Version=1.0.6650.18419, Culture=neutral, PublicKeyToken=null]]"},"_position":{"x":5210.0,"y":5460.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"7"},{"_action":{"targetList":{"_name":"Skills","_targetVariableID":"8704a599-b68c-4e43-8216-d14d10747cf0"},"index":{},"saveAs":{"_name":"_skill"},"$type":"NodeCanvas.Tasks.Actions.PickListElement`1[[ProjectFound.Environment.Characters.Skill,
-    Assembly-CSharp, Version=1.0.6650.18419, Culture=neutral, PublicKeyToken=null]]"},"_position":{"x":5418.0,"y":5455.0},"_comment":"Kick","$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"12"}],"connections":[{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"12"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"primeNode":{"$ref":"2"},"localBlackboard":{"_name":"Local
-    Blackboard","_variables":{}},"derivedData":{"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
-  _objectReferences: []
-  _deserializationFailed: 0
-  repeat: 0
-  updateInterval: 0
 --- !u!1001 &1744519999
 Prefab:
   m_ObjectHideFlags: 0
@@ -61063,7 +61293,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1633756776}
+  m_TargetTexture: {fileID: 1520238598}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
