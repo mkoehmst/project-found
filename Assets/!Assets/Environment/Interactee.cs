@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using ProjectFound.Environment.Handlers;
+using ProjectFound.Environment.Characters;
 
 namespace ProjectFound.Environment {
 
@@ -21,6 +22,7 @@ namespace ProjectFound.Environment {
 		[SerializeField] protected bool m_isReceptive = true;
 		[SerializeField] protected bool m_isActivated = false;
 		[SerializeField] protected NodeCanvas.DialogueTrees.DialogueTree m_dialogueTree;
+		[SerializeField] protected CommentSpec m_commentSpec;
 		[SerializeField] protected InteracteeHandler m_handler;
 
 		protected ActionType m_currentActionType = ActionType.None;
@@ -62,6 +64,11 @@ namespace ProjectFound.Environment {
 		public NodeCanvas.DialogueTrees.DialogueTree DialogueTree
 		{
 			get { return m_dialogueTree; }
+		}
+
+		public CommentSpec CommentSpec
+		{
+			get { return m_commentSpec; }
 		}
 
 		public float HealthAsPercentage

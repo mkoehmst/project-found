@@ -491,7 +491,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1163106515588828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.232}
+  m_LocalPosition: {x: 0, y: 0, z: 1.586}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4800902972565636}
@@ -548,7 +548,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1813051649965236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 1.488}
+  m_LocalPosition: {x: -0, y: 0, z: 1.638}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4966112754555196}
@@ -666,7 +666,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100018, guid: ed7890425e671c64ea9b9d065e86650f, type: 3}
+  - {fileID: 2100000, guid: f4d6871cb4ffead4da9cbf599a2564c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -904,7 +904,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100018, guid: ed7890425e671c64ea9b9d065e86650f, type: 3}
+  - {fileID: 2100000, guid: f4d6871cb4ffead4da9cbf599a2564c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -972,7 +972,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100018, guid: ed7890425e671c64ea9b9d065e86650f, type: 3}
+  - {fileID: 2100000, guid: a4f144a7e22914c43a8ae2fa691e1924, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1006,7 +1006,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100018, guid: ed7890425e671c64ea9b9d065e86650f, type: 3}
+  - {fileID: 2100000, guid: a4f144a7e22914c43a8ae2fa691e1924, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1143,14 +1143,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealthPoints: 100
+  m_curHealthPoints: 1
   m_activateText: Open
   m_deactivateText: Close
   m_ingameName: Restroom Door
   m_isReceptive: 1
   m_isActivated: 0
-  m_dialogueTree: {fileID: 11400000, guid: ed70222909448f946833db63b636b8d8, type: 2}
-  m_approachRange: 1.5
-  m_handler: {fileID: 11400000, guid: 8e96ccc2d3ea489459e085c8981ac79b, type: 2}
+  m_dialogueTree: {fileID: 0}
+  m_commentSpec: {fileID: 11400000, guid: bbbe7f60f4324e64eb4d13edf192d2ab, type: 2}
+  m_handler: {fileID: 11400000, guid: 15d60ff54c6527d488a77d34de59779d, type: 2}
   m_isDraggable: 0
   m_icon: {fileID: 0}
   m_clearanceMesh: {fileID: 0}
@@ -1219,13 +1220,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealthPoints: 100
+  m_curHealthPoints: 1
   m_activateText: Knock on
   m_deactivateText: Close
   m_ingameName: Restroom Door
   m_isReceptive: 1
   m_isActivated: 0
   m_dialogueTree: {fileID: 11400000, guid: 614c96c5caf2af54792cea627e27a29f, type: 2}
-  m_approachRange: 1.5
+  m_commentSpec: {fileID: 0}
   m_handler: {fileID: 11400000, guid: 8e96ccc2d3ea489459e085c8981ac79b, type: 2}
   m_isDraggable: 1
   m_icon: {fileID: 0}

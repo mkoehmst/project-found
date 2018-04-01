@@ -7,11 +7,11 @@ SubstanceImporter:
   serializedVersion: 5
   materialInstances:
   - serializedVersion: 16
-    name: Airplane_SmallRestroom_a
-    prototypeName: Airplane_SmallRestroom_a
+    name: Airplane_SmallRestroom_Specular_a
+    prototypeName: Airplane_SmallRestroom_Specular_a
     shaderName: 
-    shader: {fileID: 47, guid: 0000000000000000f000000000000000, type: 0}
-    shaderKeywords: _METALLICGLOSSMAP _NORMALMAP
+    shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+    shaderKeywords: _NORMALMAP _SPECGLOSSMAP
     renderQueue: -1
     lightmapFlags: 4
     inputs:
@@ -29,7 +29,7 @@ SubstanceImporter:
       scale: {x: 1, y: 1}
       generateMipmaps: 1
       generateAllOutputs: 0
-      animationUpdateRate: 42
+      animationUpdateRate: 0
     materialProperties:
       serializedVersion: 3
       texEnvs:
@@ -57,10 +57,6 @@ SubstanceImporter:
           texture: {instanceID: 0}
           scale: {x: 1, y: 1}
           offset: {x: 0, y: 0}
-      - _MetallicGlossMap:
-          texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
-          offset: {x: 0, y: 0}
       - _OcclusionMap:
           texture: {instanceID: 0}
           scale: {x: 1, y: 1}
@@ -79,7 +75,7 @@ SubstanceImporter:
       - _DetailNormalMapScale: 1
       - _DstBlend: 0
       - _GlossMapScale: 1
-      - _Glossiness: 1
+      - _Glossiness: 0.5
       - _GlossyReflections: 1
       - _Metallic: 0
       - _Mode: 0
@@ -93,18 +89,19 @@ SubstanceImporter:
       colors:
       - _Color: {r: 1, g: 1, b: 1, a: 1}
       - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+      - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     textureParameters:
-    - name: Airplane_SmallRestroom_a_basecolor
+    - name: Airplane_SmallRestroom_Specular_a_diffuse
       alphaSource: 6
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: Airplane_SmallRestroom_a_normal
+    - name: Airplane_SmallRestroom_Specular_a_normal
       alphaSource: 0
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: Airplane_SmallRestroom_a_metallic
+    - name: Airplane_SmallRestroom_Specular_a_specular
       alphaSource: 7
       filterMode: 1
       aniso: 1
@@ -112,13 +109,13 @@ SubstanceImporter:
     textureAssignments:
     - shaderProp: _MainTex
       material: {instanceID: 0}
-      baseUID: 3654141135
+      baseUID: 1764219235
     - shaderProp: _BumpMap
       material: {instanceID: 0}
-      baseUID: 3654141133
-    - shaderProp: _MetallicGlossMap
+      baseUID: 1764219233
+    - shaderProp: _SpecGlossMap
       material: {instanceID: 0}
-      baseUID: 3654141129
+      baseUID: 1764219239
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 
@@ -127,6 +124,7 @@ SubstanceImporter:
       textureFormat: 0
       loadingBehavior: 1
   deletedPrototypes:
+  - Airplane_SmallRestroom_a
   - Airplane_SmallRestroom_a_BlackPlastic
   - Airplane_SmallRestroom_a_BlandPlastic
   - Airplane_SmallRestroom_a_WhiteCeramic

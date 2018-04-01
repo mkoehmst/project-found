@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 using ProjectFound.CameraUI;
+using ProjectFound.Environment;
 using ProjectFound.Environment.Props;
 using ProjectFound.Environment.Characters;
 using System;
@@ -49,6 +50,13 @@ namespace ProjectFound.Master {
 			{
 				ScreenRect = new Rect( 0, 0, Screen.width, Screen.height );
 			}
+		}
+
+		public void DisplayComment( Interactee i, string comment )
+		{
+			InGameCommentUI igcUI = i.GetComponentInChildren<InGameCommentUI>( );
+
+			igcUI.DisplayComment( comment );
 		}
 
 		public void DisplayPrompt( Prop prop, KeyCode key, Vector3 worldPos )
