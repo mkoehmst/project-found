@@ -8,9 +8,9 @@ namespace ProjectFound.Environment.Handlers
 	[CreateAssetMenu( menuName = ("Project Found/Item Handler/Book Handler") )]
 	public class BookHandler : ItemHandler
 	{
-		public override IEnumerator Use( Interactee interactee )
+		public override IEnumerator Activate( Interactee interactee )
 		{
-			yield return base.Use( interactee );
+			yield return base.Activate( interactee );
 
 			// Show book on screen
 			//yield break;

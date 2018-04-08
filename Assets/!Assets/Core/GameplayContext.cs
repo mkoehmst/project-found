@@ -375,27 +375,10 @@ namespace ProjectFound.Core {
 				switch ( layer )
 				{
 					case LayerID.Item:
-						// PlayerMaster.Approach( interactee, .25f );
-						//(interactee as Item).PickUp( );
-						interactee.Use( );
-						//Item item = obj.GetComponent<Item>( );
-						//RemoveFocusDirectly( item as Prop );
-						//item.PickUp( );
-						//PlayerMaster.PickUp( item, () =>
-						//{
-						//	RemoveFocusDirectly( item as Prop );
-						//	AddToInventory( item );
-						//} );
+						interactee.Activate( );
 						break;
 					case LayerID.Prop:
-						// PlayerMaster.Approach( interactee, .25f );
-						//(interactee as Prop).Activate( );
-						interactee.Use( );
-						//Prop prop = obj.GetComponent<Prop>( );
-						//PlayerMaster.Activate( prop, () =>
-						//{
-						//	RemoveFocusDirectly( prop );
-						//} );
+						interactee.Activate( );
 						break;
 				}
 			}
@@ -638,7 +621,7 @@ namespace ProjectFound.Core {
 			PlayerMaster.AddInventoryItem( item );
 
 			// Lambda statement delegates...love this
-			UIMaster.AddInventoryButton( item ).onClick.AddListener( () =>
+			/*UIMaster.AddInventoryButton( item ).onClick.AddListener( () =>
 			{
 				// Automatically caches item reference until called! Very powerful.
 				PlayerMaster.Use( item, () =>
@@ -647,30 +630,30 @@ namespace ProjectFound.Core {
 					UIMaster.RemoveInventoryButton( item );
 					PlayerMaster.DropItem( item );
 				} );
-			} );
+			} );*/
 		}
 
 		protected void AddItemToPropCollection( Item item )
 		{
-			UIMaster.AddPropCollectionButton( item as Prop ).onClick.AddListener( () =>
+			/*UIMaster.AddPropCollectionButton( item as Prop ).onClick.AddListener( () =>
 			{
 				PlayerMaster.PickUp( item, () =>
 				{
 					AddToInventory( item );
 					UIMaster.RemovePropCollectionProp( item as Prop );
 				} );
-			} );
+			} );*/
 		}
 
 		protected void AddPropToPropCollection( Prop prop )
 		{
-			UIMaster.AddPropCollectionButton( prop ).onClick.AddListener( () =>
+			/*UIMaster.AddPropCollectionButton( prop ).onClick.AddListener( () =>
 			{
 				PlayerMaster.Activate( prop, () =>
 				{
 					UIMaster.RemovePropCollectionProp( prop );
 				} );
-			} );
+			} );*/
 		}
 
 		protected void AddFocus( KeyValuePair<Interactee,RaycastHit> pair )

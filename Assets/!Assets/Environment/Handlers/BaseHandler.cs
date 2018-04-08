@@ -12,6 +12,9 @@ namespace ProjectFound.Environment.Handlers
 
 	public abstract class BaseHandler : ContextHandler
 	{
+		static public void StaticTest( )
+		{ }
+
 		protected IEnumerator MovePlayerTowards( Interactee i )
 		{
 			Approach approach = i.GetComponentInChildren<Approach>( );

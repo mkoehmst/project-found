@@ -9,6 +9,7 @@ using ProjectFound.Environment.Props;
 namespace ProjectFound.Environment.Handlers
 {
 
+
 	[CreateAssetMenu(menuName=("Project Found/Prop Handler"))]
 	public class PropHandler : InteracteeHandler
 	{
@@ -16,11 +17,6 @@ namespace ProjectFound.Environment.Handlers
 		private const string m_deactivateTriggerString = "Prop_Deactivate";
 		private int m_activateTrigger;
 		private int m_deactivateTrigger;
-
-		//protected Prop m_component;
-		//protected GameObject m_gameObject;
-
-		//protected Animator m_animator;
 
 		void OnEnable( )
 		{
@@ -35,27 +31,13 @@ namespace ProjectFound.Environment.Handlers
 			}
 		}
 
-		/*public void Initialize( Prop prop )
+		public override IEnumerator Activate( Interactee interactee )
 		{
-			//m_component = prop;
-			//m_gameObject = prop.gameObject;
-			//m_animator = m_gameObject.GetComponent<Animator>( );
+			interactee.HandlerExecutionDictionary[this] = true;
 
-			if ( m_activateTrigger == 0 )
-			{
-				m_activateTrigger = Animator.StringToHash( m_activateTriggerString );
-			}
-
-			if ( m_deactivateTrigger == 0 )
-			{
-				m_deactivateTrigger = Animator.StringToHash( m_deactivateTriggerString );
-			}
-		}*/
-
-		public override IEnumerator Use( Interactee interactee )
-		{
 			if ( interactee.IsReceptive == false )
 			{
+				interactee.HandlerExecutionDictionary[this] = false;
 				yield break;
 			}
 
@@ -73,6 +55,10 @@ namespace ProjectFound.Environment.Handlers
 				//m_animator?.SetBool( "IsActivated", false );
 				interactee.IsActivated = false;
 			}
+
+			yield return new WaitForSeconds( 3.3333f );
+
+			interactee.HandlerExecutionDictionary[this] = false;
 		}
 
 		public void DragAndDrop( Prop prop, ref RaycastHit hit )

@@ -13,7 +13,7 @@ namespace ProjectFound.Environment.Handlers
 
 	public abstract class InteracteeHandler : BaseHandler
 	{
-		public abstract IEnumerator Use( Interactee i );
+		public abstract IEnumerator Activate( Interactee i );
 	}
 
 

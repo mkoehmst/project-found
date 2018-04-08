@@ -43,7 +43,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Airplane_OverheadBin2
-    second: {fileID: -691106731, guid: d622555ab72c4824c9fb4d8786edfa5a, type: 3}
+    second: {fileID: -1908272918, guid: d622555ab72c4824c9fb4d8786edfa5a, type: 3}
   materials:
     importMaterials: 1
     materialName: 0

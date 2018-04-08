@@ -45,7 +45,7 @@ namespace ProjectFound.Master {
 
 		}
 
-		public bool PickUp( Item item, System.Action action )
+		/*public bool PickUp( Item item, System.Action action )
 		{
 			Debug.Log( "Player PickUp: " + item );
 
@@ -64,7 +64,7 @@ namespace ProjectFound.Master {
 			Debug.Log( "Player Activate: " + prop );
 
 			return Player.Action( ActionType.Activate, prop as Interactee, action );
-		}
+		}*/
 
 		public void AddInventoryItem( Item item )
 		{

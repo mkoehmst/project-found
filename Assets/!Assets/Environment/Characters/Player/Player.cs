@@ -65,31 +65,6 @@ namespace ProjectFound.Environment.Characters
 			*/
 		}
 
-		public override bool Action( ActionType actionType, Interactee interactee,
-			System.Action action )
-		{
-			if ( interactee.ValidateAction( actionType ) == true )
-			{
-				action( );
-
-				interactee.Reaction( );
-
-				return true;
-			}
-
-			return false;
-		}
-
-		public override bool ValidateAction( ActionType actionType )
-		{
-			return true;
-		}
-
-		public override void Reaction( )
-		{
-
-		}
-
 		private void OnCombatEncounterBegin( List<Combatant> combatants )
 		{
 			m_target = combatants[1];

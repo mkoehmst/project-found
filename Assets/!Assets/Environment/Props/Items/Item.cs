@@ -22,40 +22,6 @@ namespace ProjectFound.Environment.Props {
 			//GenerateIcon( );
 		}
 
-		public void PickUp( )
-		{
-			StartCoroutine( m_handler.Use( this ) );
-		}
-
-		public override bool ValidateAction( ActionType actionType )
-		{
-			switch ( actionType )
-			{
-				case ActionType.PickUp:
-				case ActionType.Use:
-					m_currentActionType = actionType;
-					return true;
-				default:
-					m_currentActionType = ActionType.None;
-					return false;
-			}
-		}
-
-		public override void Reaction( )
-		{
-			switch ( m_currentActionType )
-			{
-				case ActionType.PickUp:
-					this.gameObject.SetActive( false );
-					break;
-				case ActionType.Use:
-					this.gameObject.SetActive( true );
-					break;
-				default:
-					base.Reaction( );
-					break;
-			}
-		}
 		/*
 		public void GenerateIcon( )
 		{

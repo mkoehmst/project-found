@@ -11,7 +11,7 @@ namespace ProjectFound.Environment.Handlers
 
 	public abstract class ItemHandler : PropHandler
 	{
-		public override IEnumerator Use( Interactee interactee )
+		public override IEnumerator Activate( Interactee interactee )
 		{
 			yield return MovePlayerTowards( interactee );
 

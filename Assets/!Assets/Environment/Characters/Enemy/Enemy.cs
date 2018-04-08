@@ -53,22 +53,6 @@ public class Enemy : Combatant
 		//yield break;
 	}
 
-	public override bool ValidateAction( ActionType actionType )
-	{
-		return true;
-	}
-
-	public override bool Action( ActionType actionType, Interactee interactee,
-		System.Action action )
-	{
-		return true;
-	}
-
-	public override void Reaction( )
-	{
-
-	}
-
 	private void OnCombatEncounterBegin( List<Combatant> combatants )
 	{
 		m_target = combatants[0];

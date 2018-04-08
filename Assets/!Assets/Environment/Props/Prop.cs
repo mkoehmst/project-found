@@ -37,42 +37,9 @@ namespace ProjectFound.Environment.Props {
 			//m_handler.Initialize( this );
 		}
 
-		public void Activate( )
-		{
-			StartCoroutine( m_handler.Use( this ) );
-		}
-
 		public void StartDragAndDrop( ref RaycastHit hit )
 		{
-			(m_handler as PropHandler).DragAndDrop( this, ref hit );
-		}
-
-		public override bool ValidateAction( ActionType actionType )
-		{
-			/*switch ( actionType )
-			{
-				case ActionType.Activate:
-					m_currentActionType = actionType;
-					return true;
-				default:
-					m_currentActionType = ActionType.None;
-					return false;
-			}*/
-
-			return true;
-		}
-
-		public override void Reaction( )
-		{
-			/*switch ( m_currentActionType )
-			{
-				case ActionType.Activate:
-					Debug.Log( "Prop has been activated!" );
-					if ( Animator != null )
-						Animator.SetTrigger( m_activateTrigger );
-					m_isReceptive = false;
-					break;
-			}*/
+			//(m_handler as PropHandler).DragAndDrop( this, ref hit );
 		}
 	}
 

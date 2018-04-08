@@ -13,7 +13,7 @@ namespace ProjectFound.Environment.Handlers
 	{
 
 
-		public override IEnumerator Use( Interactee i )
+		public override IEnumerator Activate( Interactee i )
 		{
 			List<string> comments = i.CommentSpec.m_comments;
 

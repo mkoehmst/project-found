@@ -7,8 +7,6 @@ namespace ProjectFound.Environment {
 
 	public abstract class Interactor : Interactee
 	{
-		public abstract bool Action( ActionType actionType, Interactee interactee,
-			System.Action action );
 	}
 
 

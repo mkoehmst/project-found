@@ -25,7 +25,7 @@ namespace ProjectFound.Environment.Handlers
 			m_dialogueTreeController = null;
 		}
 
-		public override IEnumerator Use( Interactee interactee )
+		public override IEnumerator Activate( Interactee interactee )
 		{
 			yield return MovePlayerTowards( interactee );
 

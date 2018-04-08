@@ -21,14 +21,6 @@ namespace ProjectFound.Environment
 			base.Start( );
 		}
 
-		public override bool ValidateAction( ActionType actionType )
-		{
-			return true;
-		}
-
-		public override void Reaction( )
-		{ }
-
 		protected void SetLayer( Transform parent, LayerID layer )
 		{
 			int count = parent.childCount;

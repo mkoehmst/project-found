@@ -41,14 +41,6 @@ namespace ProjectFound.Environment.Occlusion
 
 			parent.gameObject.layer = (int)LayerID.Roof;
 		}
-
-		public override bool ValidateAction( ActionType actionType )
-		{
-			return true;
-		}
-
-		public override void Reaction( )
-		{ }
 	}
 
 

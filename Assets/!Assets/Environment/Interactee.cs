@@ -23,9 +23,13 @@ namespace ProjectFound.Environment {
 		[SerializeField] protected bool m_isActivated = false;
 		[SerializeField] protected NodeCanvas.DialogueTrees.DialogueTree m_dialogueTree;
 		[SerializeField] protected CommentSpec m_commentSpec;
-		[SerializeField] protected InteracteeHandler m_handler;
 
 		protected ActionType m_currentActionType = ActionType.None;
+		protected Bolt.StateMachine m_boltStateMachine;
+		protected Bolt.VariableDeclarations m_boltVariables;
+
+		public Dictionary<InteracteeHandler,bool> HandlerExecutionDictionary { get; private set; }
+			= new Dictionary<InteracteeHandler,bool>( );
 
 		public bool IsFocused { get; set; }
 
@@ -87,15 +91,25 @@ namespace ProjectFound.Environment {
 
 			m_curHealthPoints = m_maxHealthPoints;
 			IsFocused = false;
+
+			m_boltStateMachine = GetComponent<Bolt.StateMachine>( );
+			m_boltVariables = Bolt.Variables.Object( gameObject );
 		}
 
-		public void Use( )
+		public void Activate( )
 		{
-			StartCoroutine( m_handler.Use( this ) );
+			m_boltVariables.Set( "doStartActivation", true );
 		}
 
-		public abstract bool ValidateAction( ActionType actionType );
-		public abstract void Reaction( );
+		public void StartHandlerCoroutine( InteracteeHandler handler )
+		{
+			StartCoroutine( handler.Activate( this ) );
+		}
+
+		public bool CheckExecutionState( InteracteeHandler handler )
+		{
+			return HandlerExecutionDictionary[handler];
+		}
 	}
 
 
