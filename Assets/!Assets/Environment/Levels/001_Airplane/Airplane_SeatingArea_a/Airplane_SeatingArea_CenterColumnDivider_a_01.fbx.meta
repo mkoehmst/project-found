@@ -13,6 +13,7 @@ ModelImporter:
     400004: Airplane_CenterColumnDivider 1
     2100000: airplaneSeat_Separator_whitePlastic
     2100002: AirplaneSeat_Separator_whitePlastic
+    2100004: phong1
     2300000: //RootNode
     2300002: Airplane_CenterColumnDivider
     2300004: Airplane_CenterColumnDivider 1
@@ -22,7 +23,12 @@ ModelImporter:
     4300000: Airplane_CenterColumnDivider
     6400000: Airplane_CenterColumnDivider
     6400002: Airplane_CenterColumnDivider 1
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phong1
+    second: {fileID: 2123616865, guid: e3a6eb42d82ceff4084871ec0748d42e, type: 3}
   materials:
     importMaterials: 1
     materialName: 0

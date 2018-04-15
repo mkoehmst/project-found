@@ -9,12 +9,51 @@ ModelImporter:
     100002: JT_Airplane_OverheadBin_Box_0
     100004: JT_Airplane_OverheadBin_Door_0
     100006: JT_Airplane_OverheadBin_Root_0
+    100008: JT_Airplane_OverheadBin_Box
+    100010: JT_Airplane_OverheadBin_Door
+    100012: JT_Airplane_OverheadBin_Root
+    100014: JT_Airplane_OverheadBin_a_Box
+    100016: JT_Airplane_OverheadBin_a_Door
+    100018: JT_Airplane_OverheadBin_a_Root
+    100020: _JT_Airplane_OverheadBin_a_Box
+    100022: _JT_Airplane_OverheadBin_a_Door
+    100024: _JT_Airplane_OverheadBin_a_Root
+    100026: Airplane_OverheadBin_a_Box
+    100028: Airplane_OverheadBin_a_BoxCushion
+    100030: Airplane_OverheadBin_a_Door
+    100032: Airplane_OverheadBin_a_DoorHandle
+    100034: Airplane_OverheadBin_a_Liner
     400000: //RootNode
     400002: JT_Airplane_OverheadBin_Box_0
     400004: JT_Airplane_OverheadBin_Door_0
     400006: JT_Airplane_OverheadBin_Root_0
+    400008: JT_Airplane_OverheadBin_Box
+    400010: JT_Airplane_OverheadBin_Door
+    400012: JT_Airplane_OverheadBin_Root
+    400014: JT_Airplane_OverheadBin_a_Box
+    400016: JT_Airplane_OverheadBin_a_Door
+    400018: JT_Airplane_OverheadBin_a_Root
+    400020: _JT_Airplane_OverheadBin_a_Box
+    400022: _JT_Airplane_OverheadBin_a_Door
+    400024: _JT_Airplane_OverheadBin_a_Root
+    400026: Airplane_OverheadBin_a_Box
+    400028: Airplane_OverheadBin_a_BoxCushion
+    400030: Airplane_OverheadBin_a_Door
+    400032: Airplane_OverheadBin_a_DoorHandle
+    400034: Airplane_OverheadBin_a_Liner
+    2100000: Airplane_OverheadBin2
+    4300000: Airplane_OverheadBin_a_Liner
+    4300002: Airplane_OverheadBin_a_DoorHandle
+    4300004: Airplane_OverheadBin_a_Door
+    4300006: Airplane_OverheadBin_a_Box
+    4300008: Airplane_OverheadBin_a_BoxCushion
     7400000: OpenDoor
     9500000: //RootNode
+    13700000: Airplane_OverheadBin_a_Box
+    13700002: Airplane_OverheadBin_a_BoxCushion
+    13700004: Airplane_OverheadBin_a_Door
+    13700006: Airplane_OverheadBin_a_DoorHandle
+    13700008: Airplane_OverheadBin_a_Liner
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -111,7 +150,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: JT_Airplane_OverheadBin_Root_0
+    rootMotionBoneName: _JT_Airplane_OverheadBin_a_Root
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0

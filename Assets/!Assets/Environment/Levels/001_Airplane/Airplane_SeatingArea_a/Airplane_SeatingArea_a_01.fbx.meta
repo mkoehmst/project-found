@@ -24,6 +24,8 @@ ModelImporter:
     100032: SK_Airplane_SeatSeparatorLeft
     100034: SK_Airplane_SeatSeparatorRight
     100036: Jt_Airplane_Seat_LegRest
+    100038: Airplane_CenterColumnDivider_EndPiece
+    100040: Airplane_CenterColumnDivider_EndPiece 1
     400000: Airplane_CenterColumnDivider
     400002: Airplane_CenterColumnDivider 1
     400004: Airplane_Seat
@@ -43,33 +45,40 @@ ModelImporter:
     400032: SK_Airplane_SeatSeparatorLeft
     400034: SK_Airplane_SeatSeparatorRight
     400036: Jt_Airplane_Seat_LegRest
+    400038: Airplane_CenterColumnDivider_EndPiece
+    400040: Airplane_CenterColumnDivider_EndPiece 1
     2100000: AirplaneSeat_phong
     2100002: AirplaneSeat_Separator_whitePlastic
     2100004: AirplaneSeat_Separator_bluePlastic
     2100006: Default_Material
+    2100008: phong1
     2300000: Airplane_CenterColumnDivider 1
     2300002: Airplane_SeatSeparatorLeft 1
     2300004: Airplane_SeatSeparatorRight 1
     2300006: Airplane_CenterColumnDivider
     2300008: Airplane_SeatSeparatorLeft
     2300010: Airplane_SeatSeparatorRight
+    2300012: Airplane_CenterColumnDivider_EndPiece 1
     3300000: Airplane_CenterColumnDivider 1
     3300002: Airplane_SeatSeparatorLeft 1
     3300004: Airplane_SeatSeparatorRight 1
     3300006: Airplane_CenterColumnDivider
     3300008: Airplane_SeatSeparatorLeft
     3300010: Airplane_SeatSeparatorRight
+    3300012: Airplane_CenterColumnDivider_EndPiece 1
     4300000: Airplane_Seat_Main
     4300002: Airplane_Seat_LegRest
     4300004: Airplane_SeatSeparatorRight
     4300006: Airplane_SeatSeparatorLeft
     4300008: Airplane_CenterColumnDivider
+    4300010: Airplane_CenterColumnDivider_EndPiece
     6400000: Airplane_CenterColumnDivider
     6400002: Airplane_SeatSeparatorLeft
     6400004: Airplane_SeatSeparatorRight
     6400006: Airplane_CenterColumnDivider 1
     6400008: Airplane_SeatSeparatorLeft 1
     6400010: Airplane_SeatSeparatorRight 1
+    6400012: Airplane_CenterColumnDivider_EndPiece 1
     9500000: //RootNode
     13700000: Airplane_Seat_LegRest
     13700002: Airplane_Seat_Main

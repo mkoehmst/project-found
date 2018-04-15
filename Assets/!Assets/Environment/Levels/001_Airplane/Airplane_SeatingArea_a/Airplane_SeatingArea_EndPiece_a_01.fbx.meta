@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: 6a52a6c1b37567c42ae4c714dcc63fb9
-timeCreated: 1517939613
+guid: c7d90949e4695ac4c832a257c86189a8
+timeCreated: 1523733081
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Airplane_SeatSeparatorRight 1
-    400000: //RootNode
-    400002: Airplane_SeatSeparatorRight 1
-    2100000: airplaneSeat_Separator_whitePlastic
-    2100002: airplaneSeat_Separator_bluePlastic
-    2100004: AirplaneSeat_Separator_whitePlastic
-    2100006: AirplaneSeat_Separator_bluePlastic
-    2100008: phong1
-    2300000: //RootNode
-    2300002: Airplane_SeatSeparatorRight 1
-    3300000: //RootNode
-    3300002: Airplane_SeatSeparatorRight 1
-    4300000: Airplane_SeatSeparatorRight
-    6400000: Airplane_SeatSeparatorRight 1
+    100000: Airplane_CenterColumnDivider_EndPiece 1
+    100002: //RootNode
+    400000: Airplane_CenterColumnDivider_EndPiece 1
+    400002: //RootNode
+    2100000: phong1
+    2300000: Airplane_CenterColumnDivider_EndPiece 1
+    3300000: Airplane_CenterColumnDivider_EndPiece 1
+    4300000: Airplane_CenterColumnDivider_EndPiece
+    6400000: Airplane_CenterColumnDivider_EndPiece 1
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -80,7 +74,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

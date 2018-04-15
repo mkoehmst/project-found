@@ -1,34 +1,28 @@
 fileFormatVersion: 2
-guid: a99439fc2d768d34bb18bdfcf86f1bc5
-timeCreated: 1523808431
+guid: cf9dd19e34f8a6f40b52493fa168d65b
+timeCreated: 1523809231
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Airplane_OverheadBin_a_Box
-    100004: Airplane_OverheadBin_a_BoxCushion
-    100006: Airplane_OverheadBin_a_Door
-    100008: Airplane_OverheadBin_a_DoorHandle
-    100010: Airplane_OverheadBin_a_Liner
-    100012: JT_Airplane_OverheadBin_a_Box
-    100014: JT_Airplane_OverheadBin_a_Door
-    100016: JT_Airplane_OverheadBin_a_Root
-    100018: _JT_Airplane_OverheadBin_a_Box
-    100020: _JT_Airplane_OverheadBin_a_Door
-    100022: _JT_Airplane_OverheadBin_a_Root
-    400000: //RootNode
-    400002: Airplane_OverheadBin_a_Box
-    400004: Airplane_OverheadBin_a_BoxCushion
-    400006: Airplane_OverheadBin_a_Door
-    400008: Airplane_OverheadBin_a_DoorHandle
-    400010: Airplane_OverheadBin_a_Liner
-    400012: JT_Airplane_OverheadBin_a_Box
-    400014: JT_Airplane_OverheadBin_a_Door
-    400016: JT_Airplane_OverheadBin_a_Root
-    400018: _JT_Airplane_OverheadBin_a_Box
-    400020: _JT_Airplane_OverheadBin_a_Door
-    400022: _JT_Airplane_OverheadBin_a_Root
+    100000: _JT_Airplane_OverheadBin_a_Box
+    100002: _JT_Airplane_OverheadBin_a_Door
+    100004: _JT_Airplane_OverheadBin_a_Root
+    100006: //RootNode
+    100008: Airplane_OverheadBin_a_Box
+    100010: Airplane_OverheadBin_a_BoxCushion
+    100012: Airplane_OverheadBin_a_Door
+    100014: Airplane_OverheadBin_a_DoorHandle
+    100016: Airplane_OverheadBin_a_Liner
+    400000: _JT_Airplane_OverheadBin_a_Box
+    400002: _JT_Airplane_OverheadBin_a_Door
+    400004: _JT_Airplane_OverheadBin_a_Root
+    400006: //RootNode
+    400008: Airplane_OverheadBin_a_Box
+    400010: Airplane_OverheadBin_a_BoxCushion
+    400012: Airplane_OverheadBin_a_Door
+    400014: Airplane_OverheadBin_a_DoorHandle
+    400016: Airplane_OverheadBin_a_Liner
     2100000: Airplane_OverheadBin2
     2300000: Airplane_OverheadBin_a_Box
     2300002: Airplane_OverheadBin_a_BoxCushion
@@ -45,18 +39,14 @@ ModelImporter:
     4300004: Airplane_OverheadBin_a_Door
     4300006: Airplane_OverheadBin_a_Box
     4300008: Airplane_OverheadBin_a_BoxCushion
+    7400000: Take 001
     9500000: //RootNode
     13700000: Airplane_OverheadBin_a_Box
     13700002: Airplane_OverheadBin_a_BoxCushion
     13700004: Airplane_OverheadBin_a_Door
     13700006: Airplane_OverheadBin_a_DoorHandle
     13700008: Airplane_OverheadBin_a_Liner
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Airplane_OverheadBin2
-    second: {fileID: -1908272918, guid: d622555ab72c4824c9fb4d8786edfa5a, type: 3}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -75,7 +65,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -124,13 +114,13 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: _JT_Airplane_OverheadBin_a_Root
+    rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

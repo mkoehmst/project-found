@@ -24,6 +24,7 @@ ModelImporter:
     400014: SK_Airplane_Seat
     400016: Jt_Airplane_Seat_LegRest
     2100000: AirplaneSeat_phong
+    2100002: phong1
     2300000: Airplane_Seat_LegRest
     2300002: Airplane_Seat_Main
     3300000: Airplane_Seat_LegRest
@@ -33,7 +34,12 @@ ModelImporter:
     9500000: //RootNode
     13700000: Airplane_Seat_LegRest
     13700002: Airplane_Seat_Main
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phong1
+    second: {fileID: 2123616865, guid: e3a6eb42d82ceff4084871ec0748d42e, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
