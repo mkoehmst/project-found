@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ProjectFound.Environment.Characters {
 
-public abstract class Combatant : Character, IDamageable
+public abstract class Combatant : Character
 {
 	[SerializeField] int m_startingActionPoints;
 
@@ -49,7 +49,7 @@ public abstract class Combatant : Character, IDamageable
 	// ********************************************************************************************
 	// ** IDamageable
 	// ********************************************************************************************
-	public void TakeDamage( IDamageable attacker, float damage )
+	public void TakeDamage( Combatant attacker, float damage )
 	{
 		Debug.Log( attacker + " does " + damage + " damage to " + this );
 

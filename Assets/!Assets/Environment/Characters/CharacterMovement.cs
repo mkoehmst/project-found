@@ -44,7 +44,7 @@ namespace ProjectFound.Environment.Characters
 			CombatEncounter.singleton.DelegateEncounterBegin += OnCombatEncounterBegin;
 		}
 
-		void Update( )
+		void LateUpdate( )
 		{
 			m_animator.speed = m_animSpeedMultiplier;
 

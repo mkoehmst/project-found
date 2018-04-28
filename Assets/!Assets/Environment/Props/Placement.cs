@@ -52,7 +52,7 @@ namespace ProjectFound.Environment.Props
 			StartingRotation = transform.rotation;
 		}
 
-		void Update( )
+		void LateUpdate( )
 		{
 			if ( IsLerpActive )
 			{

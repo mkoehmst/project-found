@@ -254,6 +254,7 @@ MonoBehaviour:
     "{\"Transform\":{\"m_LocalRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"m_LocalPosition\":{\"x\":-3.245098033600247e-17,\"y\":0.27986952662467959,\"z\":-1.3037669263300487e-17},\"m_LocalScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"m_RootOrder\":0,\"m_LocalEulerAnglesHint\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}}"},"UnityEngine.Transform":
     "{\"Transform\":{\"m_LocalRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"m_LocalPosition\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"m_LocalScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"m_RootOrder\":2,\"m_LocalEulerAnglesHint\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}}"},"UnityEngine.Animator":
     "{\"Animator\":{\"serializedVersion\":\"3\",\"m_Enabled\":true,\"m_Avatar\":{\"fileID\":9000000,\"guid\":\"2daa1c2fed0d75d4c81b705e588bcee2\",\"type\":3},\"m_Controller\":{\"instanceID\":0},\"m_CullingMode\":1,\"m_UpdateMode\":0,\"m_ApplyRootMotion\":true,\"m_LinearVelocityBlending\":false,\"m_WarningMessage\":\"\",\"m_HasTransformHierarchy\":true,\"m_AllowConstantClipSamplingOptimization\":true}}"}'
+  m_nameMapping: []
   m_fbxModel: {fileID: 100006, guid: 2daa1c2fed0d75d4c81b705e588bcee2, type: 3}
   m_autoUpdate: 1
 --- !u!137 &137165854977184982

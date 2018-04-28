@@ -26,7 +26,8 @@ namespace ProjectFound.Core {
 		public CameraMaster CameraMaster { get; private set; }
 		public UIMaster UIMaster { get; private set; }
 		public ShaderMaster ShaderMaster { get; private set; }
-		public CombatMaster CombatMaster { get; private set; } = new CombatMaster( );
+		public CombatMaster CombatMaster { get; } = new CombatMaster( );
+		public InteractionMaster InteractionMaster { get; } = new InteractionMaster( );
 
 		public GameContext( PlayerMaster playerMaster )
 		{

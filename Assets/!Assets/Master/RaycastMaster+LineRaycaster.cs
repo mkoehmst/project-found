@@ -69,7 +69,7 @@ namespace ProjectFound.Master
 				int numPoints = Mathf.RoundToInt( lineGap ) + 1; // Add one to ensure at least one
 				numPoints = (numPoints > m_maxPoints) ? m_maxPoints : numPoints;
 
-				Debug.Log( numPoints );
+				//Debug.Log( numPoints );
 
 				for ( int i = 0; i < numPoints; ++i )
 				{

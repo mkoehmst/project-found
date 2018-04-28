@@ -14,7 +14,6 @@ namespace ProjectFound.Environment.Props {
 		[SerializeField] bool m_isDraggable = true;
 		[SerializeField] Sprite m_icon;
 		[SerializeField] Mesh m_clearanceMesh;
-		[SerializeField] protected PropDefinition m_definition;
 
 		public Sprite Icon { get { return m_icon; } }
 		public Mesh ClearanceMesh { get { return m_clearanceMesh; } }
@@ -33,14 +32,8 @@ namespace ProjectFound.Environment.Props {
 		new protected void Start( )
 		{
 			base.Start( );
-
-			//m_handler.Initialize( this );
 		}
 
-		public void StartDragAndDrop( ref RaycastHit hit )
-		{
-			//(m_handler as PropHandler).DragAndDrop( this, ref hit );
-		}
 	}
 
 

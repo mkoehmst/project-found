@@ -27,7 +27,7 @@ namespace ProjectFound.CameraUI {
 			LineDrawer = GetComponent<LineRenderer>( );
 		}
 
-		void Update( )
+		void LateUpdate( )
 		{
 			m_radius += m_growthRate * Time.deltaTime;
 			if ( m_radius > m_fullRadius )

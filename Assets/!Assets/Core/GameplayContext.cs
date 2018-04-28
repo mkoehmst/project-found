@@ -5,6 +5,7 @@ using UnityEngine;
 
 using ProjectFound.Master;
 using ProjectFound.Environment;
+using ProjectFound.Environment.Handlers;
 using ProjectFound.Environment.Props;
 using ProjectFound.Environment.Characters;
 using ProjectFound.Environment.Occlusion;
@@ -20,7 +21,8 @@ namespace ProjectFound.Core {
 
 		protected override void Setup( )
 		{
-			ContextHandler.AssignMasters( RaycastMaster, InputMaster, PlayerMaster, CameraMaster, UIMaster, ShaderMaster, CombatMaster );
+			ContextHandler.AssignMasters( RaycastMaster, InputMaster, PlayerMaster, CameraMaster,
+				UIMaster, ShaderMaster, CombatMaster, InteractionMaster );
 
 			SetupSkillBook( );
 			SetupConductBar( );
@@ -326,9 +328,20 @@ namespace ProjectFound.Core {
 			RaycastMaster.CursorSelectionRaycaster.IsEnabled = true;
 		}
 
+		public virtual void OnCursorSelect2( InputMaster.KeyMap map )
+		{
+			var raycaster = RaycastMaster.CurrentInteracteeRaycaster;
+
+			if ( raycaster.Mode == RaycastMaster.RaycastMode.PropPlacement )
+			{
+
+			}
+		}
+
 		public virtual void OnCursorSelect( InputMaster.KeyMap map )
 		{
 			var raycaster = RaycastMaster.CurrentInteracteeRaycaster;
+			var player = PlayerMaster.Player;
 
 			if ( raycaster.PreviousPriorityHitCheck.Count == 0 )
 			{
@@ -346,10 +359,13 @@ namespace ProjectFound.Core {
 			GameObject obj = interactee.gameObject;
 			LayerID layer = (LayerID)obj.layer;
 
+			SelectionSpec spec = player.SelectionSpec;
+			spec.hit = pair.Value;
+			spec.gameObj = pair.Key.gameObject;
+			spec.layer = (LayerID)spec.gameObj.layer;
+
 			if ( map.Mode == InputMaster.KeyMode.OneShot )
 			{
-				Debug.Log( "Cursor OneShot: " + map.Key );
-
 				switch ( layer )
 				{
 					case LayerID.Walkable:
@@ -370,15 +386,12 @@ namespace ProjectFound.Core {
 			}
 			else if ( map.Mode == InputMaster.KeyMode.OneShotRelease )
 			{
-				Debug.Log( "Cursor OneShotRelease: " + map.Key );
-
 				switch ( layer )
 				{
 					case LayerID.Item:
-						interactee.Activate( );
-						break;
 					case LayerID.Prop:
-						interactee.Activate( );
+						interactee.ExecuteSelectionChain( player );
+//						player.StartSelection( interactee );
 						break;
 				}
 			}
@@ -389,14 +402,12 @@ namespace ProjectFound.Core {
 					return ;
 				}
 
-				Debug.Log( "Holding: " + map.Key );
-
 				if ( map.HoldingCount == 1 )
 				{
 					switch ( layer )
 					{
 						case LayerID.Walkable:
-							// PlayerMaster.CharacterMovement.StartHoldToMove( hit.point );
+							// InteractionMaster.StartHoldToMove( interactee as WalkableSurface,
 							PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 							raycaster.IsEnabled = false;
 							raycaster = RaycastMaster.CurrentInteracteeRaycaster =
@@ -405,15 +416,7 @@ namespace ProjectFound.Core {
 							break;
 						case LayerID.Item:
 						case LayerID.Prop:
-							(interactee as Prop).StartDragAndDrop( ref hit );
-							/*Prop prop = obj.GetComponent<Prop>( );
-							RemoveFocus( prop );
-							raycaster.IsEnabled = false;
-							raycaster = RaycastMaster.CurrentRaycaster =
-								RaycastMaster.Raycasters[RaycastMaster.RaycastMode.PropPlacement];
-							raycaster.IsEnabled = true;
-							raycaster.AddBlacklistee( obj );
-							PlayerMaster.StartPropPlacement( prop, obj, ref hit );*/
+							//(interactee as Prop).StartDragAndDrop( );
 							break;
 					}
 				}
@@ -422,11 +425,7 @@ namespace ProjectFound.Core {
 					switch ( raycaster.Mode )
 					{
 						case RaycastMaster.RaycastMode.HoldToMove:
-							// PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
 							PlayerMaster.CharacterMovement.SetMoveTarget( hit.point );
-							break;
-						case RaycastMaster.RaycastMode.PropPlacement:
-							PlayerMaster.PropPlacement( ref hit );
 							break;
 					}
 				}
@@ -438,40 +437,32 @@ namespace ProjectFound.Core {
 					return ;
 				}
 
-				Debug.Log( "HoldingRelease: " + map.Key );
-
 				switch ( raycaster.Mode )
 				{
 					case RaycastMaster.RaycastMode.HoldToMove:
 						PlayerMaster.CharacterMovement.ResetMoveTarget( );
+						raycaster.IsEnabled = false;
+						raycaster = RaycastMaster.CurrentInteracteeRaycaster =
+							RaycastMaster.CursorSelectionRaycaster;
+						raycaster.IsEnabled = true;
 						break;
 					case RaycastMaster.RaycastMode.PropPlacement:
-						raycaster.RemoveBlacklistee( PlayerMaster.PropBeingPlaced );
-						PlayerMaster.EndPropPlacement( ref hit );
+					//	PlayerMaster.PropBeingPlaced.BoltVariables.Set(
+					//		"doStartDragAndDrop", false );
 						break;
 				}
 
-				raycaster.IsEnabled = false;
-
-				raycaster = RaycastMaster.CurrentInteracteeRaycaster =
-					RaycastMaster.CursorSelectionRaycaster;
-
-				raycaster.IsEnabled = true;
 			}
 		}
 
 		public void OnCursorFocusGained( KeyValuePair<Interactee,RaycastHit> pair )
 		{
-			Debug.Log( "Cursor Gained" );
-
 			//Prop prop = pair.Key.GetComponentInParent<Prop>( );
 			AddFocus( pair );
 		}
 
 		public void OnCursorFocusLost( Interactee interactee )
 		{
-			Debug.Log( "Cursor Lost" );
-
 			//Prop prop = obj.GetComponentInParent<Prop>( );
 			RemoveFocus( interactee );
 		}

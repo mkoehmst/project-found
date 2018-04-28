@@ -19,11 +19,6 @@ namespace ProjectFound.CameraUI
 			m_grid = GetComponentInChildren<WidgetItemGridUI>( );
 		}
 
-		// Update is called once per frame
-		void Update () {
-
-		}
-
 		public Button AddConduct( Sprite sprite )
 		{
 			GameObject slot = m_grid.FirstEmptySlot;

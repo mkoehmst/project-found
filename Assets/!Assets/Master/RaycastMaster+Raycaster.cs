@@ -272,7 +272,7 @@ namespace ProjectFound.Master
 
 			public KeyValuePair<_T, RaycastHit> GetLastHit( )
 			{
-				int i = PreviousPriorityHitCheck.Keys.Count - 1;
+				int i = PreviousPriorityHitCheck.Count - 1;
 
 				return PreviousPriorityHitCheck.GetItem( i );
 			}

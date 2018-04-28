@@ -51,8 +51,6 @@ namespace ProjectFound.Master
 				bool success = Physics.Raycast( m_caster, out hit, MaxDistance, LayerMask );
 				if ( success == true )
 				{
-					Debug.Log( "Camera Occlusion Cast: TRUE!" );
-
 					if ( m_isOccluded == false )
 					{
 						m_isOccluded = true;

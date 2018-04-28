@@ -13,13 +13,9 @@ namespace ProjectFound.Master
 		{
 			var outlines = obj.GetComponentsInChildren<cakeslice.Outline>( );
 
-			Assert.IsTrue(
-				outlines.Length > 0,
-				"ShaderMaster: GO(" + obj +") or its children does not have Outline component." );
-
-			foreach ( var outline in outlines )
+			for ( int i = 0; i < outlines.Length; ++i )
 			{
-				outline.enabled = !outline.enabled;
+				outlines[i].ToggleOutline( );
 			}
 		}
 	}

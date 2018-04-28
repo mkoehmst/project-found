@@ -10,8 +10,8 @@ namespace ProjectFound.Environment.Props {
 
 	public class Item : Prop
 	{
-
-		//[SerializeField] ItemSpec m_itemSpec;
+		[SerializeField] HandlerChain m_usageHandlerChain;
+		public HandlerChain UsageHandlerChain { get { return m_usageHandlerChain; } }
 
 		new void Start( )
 		{
@@ -20,6 +20,19 @@ namespace ProjectFound.Environment.Props {
 			//m_handler.Initialize( this );
 
 			//GenerateIcon( );
+		}
+
+		public void Use( )
+		{
+
+		}
+
+		public void ExecuteUsageChain( Interactor ir )
+		{
+			if ( m_isReceptive == true && ir.IsBusy == false )
+			{
+				ir.StartCoroutine( m_usageHandlerChain.ExecuteChain( this, ir ) );
+			}
 		}
 
 		/*

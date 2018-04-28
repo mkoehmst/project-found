@@ -21,9 +21,9 @@ namespace ProjectFound.CameraUI
 			m_tmPro.canvasRenderer.SetAlpha( 0f );
 		}
 
-		new void Update( )
+		new void LateUpdate( )
 		{
-			base.Update( );
+			base.LateUpdate( );
 
 			if ( m_isFadingOut == true )
 			{

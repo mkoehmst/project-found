@@ -45,27 +45,6 @@ namespace ProjectFound.Master {
 
 		}
 
-		/*public bool PickUp( Item item, System.Action action )
-		{
-			Debug.Log( "Player PickUp: " + item );
-
-			return Player.Action( ActionType.PickUp, item as Interactee, action );
-		}
-
-		public bool Use( Item item, System.Action action )
-		{
-			Debug.Log( "Player Use: " + item );
-
-			return Player.Action( ActionType.Use, item as Interactee, action );
-		}
-
-		public bool Activate( Prop prop, System.Action action )
-		{
-			Debug.Log( "Player Activate: " + prop );
-
-			return Player.Action( ActionType.Activate, prop as Interactee, action );
-		}*/
-
 		public void AddInventoryItem( Item item )
 		{
 			m_inventory.AddItem( item );

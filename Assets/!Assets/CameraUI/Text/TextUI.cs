@@ -44,7 +44,7 @@ namespace ProjectFound.CameraUI
 			HideText( );
 		}
 
-		protected void Update( )
+		protected void LateUpdate( )
 		{
 			if ( IsVisible( ) == true )
 			{
