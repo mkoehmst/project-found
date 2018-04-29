@@ -370,6 +370,7 @@ namespace ProjectFound.Master {
 		public float CheckAxis( string axisToCheck )
 		{ return Input.GetAxis( axisToCheck ); }
 
+		// TODO: Eliminate garbage generation
 		public float[] CheckAxii( string[] axiiToCheck )
 		{
 			float[] movements = new float[axiiToCheck.Length];

@@ -41,7 +41,7 @@ namespace ProjectFound.Master {
 			= new OrderedDictionary<RaycastMode,Raycaster>( );
 
 		public LineRaycaster<Interactee> CursorSelectionRaycaster { get; private set; }
-			= new LineRaycaster<Interactee>( RaycastMode.CursorSelection, 30f, 3 );
+			= new LineRaycaster<Interactee>( RaycastMode.CursorSelection, 30f, 6 );
 
 		public PointRaycaster<Interactee> CombatCursorSelectionRaycaster { get; private set; }
 			= new PointRaycaster<Interactee>( RaycastMode.CombatCursorSelection, 30f, false );
@@ -63,7 +63,7 @@ namespace ProjectFound.Master {
 		//******************************************************************************************
 		public void Loop( )
 		{
-			int count = Raycasters.Values.Count;
+			int count = Raycasters.Count;
 			for ( int i = 0; i < count; ++i )
 			{
 				Raycaster raycaster = Raycasters[i];

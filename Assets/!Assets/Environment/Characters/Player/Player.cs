@@ -1,18 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Assertions;
-
-using ProjectFound.Environment.Props;
-
 namespace ProjectFound.Environment.Characters
 {
 
+	using System.Collections;
+	using System.Collections.Generic;
+	using UnityEngine;
+
+	using ProjectFound.Environment.Props;
 
 	public class Player : Combatant
 	{
-		CharacterMovement m_movement = null;
 		public List<Item> InventoryItems { get; private set; }
 
 		protected new void Start( )
@@ -25,7 +21,6 @@ namespace ProjectFound.Environment.Characters
 
 			m_initiative = 10;
 
-			m_movement = GetComponent<CharacterMovement>( );
 			InventoryItems = new List<Item>( );
 		}
 
@@ -92,6 +87,5 @@ namespace ProjectFound.Environment.Characters
 			m_target = null;
 		}
 	}
-
 
 }

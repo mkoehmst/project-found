@@ -50,7 +50,12 @@ namespace ProjectFound.Master
 				RaycastMode mode, float maxDistance, int resolution, bool isEnabled = true )
 					: base( mode, maxDistance, isEnabled )
 			{
-				m_pixelResolution = 48 / Mathf.Clamp( resolution, 1, 4 );
+				const int minResolution = 1;
+				const int maxResolution = 8;
+
+				int clampedResolution = Mathf.Clamp( resolution, minResolution, maxResolution );
+
+				m_pixelResolution = 2 + ((maxResolution - clampedResolution) * 2);
 			}
 
 			public override void Cast( )

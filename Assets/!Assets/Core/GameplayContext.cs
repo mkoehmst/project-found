@@ -391,7 +391,6 @@ namespace ProjectFound.Core {
 					case LayerID.Item:
 					case LayerID.Prop:
 						interactee.ExecuteSelectionChain( player );
-//						player.StartSelection( interactee );
 						break;
 				}
 			}
@@ -416,7 +415,7 @@ namespace ProjectFound.Core {
 							break;
 						case LayerID.Item:
 						case LayerID.Prop:
-							//(interactee as Prop).StartDragAndDrop( );
+							(interactee as Prop).ExecuteDragAndDropChain( player );
 							break;
 					}
 				}
@@ -447,8 +446,7 @@ namespace ProjectFound.Core {
 						raycaster.IsEnabled = true;
 						break;
 					case RaycastMaster.RaycastMode.PropPlacement:
-					//	PlayerMaster.PropBeingPlaced.BoltVariables.Set(
-					//		"doStartDragAndDrop", false );
+						PlayerMaster.PropBeingPlaced.StopDragAndDropChain( );
 						break;
 				}
 

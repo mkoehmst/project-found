@@ -26,6 +26,10 @@ namespace ProjectFound.Core {
 
 		void Update( )
 		{
+			/*if ( CurrentContext == CombatContext )
+			{
+				CombatContext.Loop( );
+			}*/
 			CurrentContext.Loop( );
 		}
 	}

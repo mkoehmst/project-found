@@ -8,6 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32c86e8e984f5644b944a6c25286c066, type: 3}
-  m_Name: EndDragAndDropHandler
+  m_Script: {fileID: 11500000, guid: 4664eb58c08738e4eb1c8afd28c47245, type: 3}
+  m_Name: DragAndDropBasicPropChain
   m_EditorClassIdentifier: 
+  m_dragAndDropHandler: {fileID: 11400000, guid: fd5f9e1f9d6443443bc9a305feeafe50,
+    type: 2}

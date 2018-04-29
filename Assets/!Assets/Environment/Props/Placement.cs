@@ -93,12 +93,14 @@ namespace ProjectFound.Environment.Props
 				DoRejectPlacement = true;
 
 				Outline.color = 0;
-				Outline.enabled = true;
+				//Outline.ToggleOutline( );
+				//Outline.enabled = true;
 			}
 			else
 			{
 				DoRejectPlacement = false;
-				Outline.enabled = false;
+				//Outline.ToggleOutline( );
+				//Outline.enabled = false;
 			}
 
 			var rotationAdjustment = Quaternion.FromToRotation( transform.up, hit.normal );

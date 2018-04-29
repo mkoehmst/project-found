@@ -24,8 +24,9 @@ namespace ProjectFound.Environment {
 		[SerializeField] protected NodeCanvas.DialogueTrees.DialogueTree m_dialogueTree;
 		[SerializeField] protected CommentSpec m_commentSpec;
 
-		[SerializeField] protected HandlerChain m_selectionHandlerChain;
-		public HandlerChain SelectionHandlerChain { get { return m_selectionHandlerChain; } }
+		[SerializeField] protected HandlerChain m_selectionChain;
+		public HandlerChain SelectionChain { get { return m_selectionChain; } }
+		public bool ContinueSelectionChain { get; set; }
 
 		public bool IsFocused { get; set; }
 
@@ -86,7 +87,7 @@ namespace ProjectFound.Environment {
 			get { return (LayerID)gameObject.layer; }
 		}
 
-		new protected void Start( )
+		protected void Start( )
 		{
 			Debug.Assert( m_curHealthPoints > 0f, "Must start with positive health" );
 
@@ -98,7 +99,9 @@ namespace ProjectFound.Environment {
 		{
 			if ( m_isReceptive == true && ir.IsBusy == false )
 			{
-				StartCoroutine( m_selectionHandlerChain.ExecuteChain( this, ir ) );
+				ContinueSelectionChain = true;
+
+				StartCoroutine( m_selectionChain.ExecuteChain( this, ir ) );
 			}
 		}
 	}

@@ -46,7 +46,7 @@ namespace ProjectFound.Environment.Handlers
 
 			NavMeshHit navHit;
 
-			bool didFindNavHit = NavMesh.SamplePosition(
+			/*bool didFindNavHit =*/ NavMesh.SamplePosition(
 				xform.position, out navHit, maxCheckRange, NavMesh.AllAreas );
 
 			Vector3 destination = navHit.position;

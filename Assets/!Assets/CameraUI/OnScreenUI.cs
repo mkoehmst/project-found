@@ -19,6 +19,7 @@ namespace ProjectFound.CameraUI {
 
 		public GameObject CreatePrompt( KeyCode key, string action, string interactee )
 		{
+			//TODO: Eliminate garbage generation
 			GameObject obj = GameObject.Instantiate( m_promptPrefab, transform );
 
 			TextMeshProUGUI textUI = obj.GetComponent<TextMeshProUGUI>( );

@@ -8,30 +8,11 @@ namespace ProjectFound.Environment.Handlers
 	{
 		public DropItemHandler m_dropItemHandler;
 
-		void OnEnable( )
+		new void OnEnable( )
 		{
-			if ( m_dropItemHandler == null )
-			{
-				Debug.LogError( "m_dropItemHandler is null!" );
-			}
-			else
-			{
-				m_asyncHandlers.Add( m_dropItemHandler );
-			}
-		}
+			base.OnEnable( );
 
-		public override IEnumerator ExecuteChain( Interactee ie, Interactor ir )
-		{
-			BeginChain( ir );
-
-			ir.StartCoroutine( m_dropItemHandler.Handle( ie, ir ) );
-
-			while ( EndChain( ir ) == false )
-			{
-				yield return null;
-			}
-
-			yield break;
+			AddHandler( m_dropItemHandler, HandlerExecutionMode.Async );
 		}
 	}
 

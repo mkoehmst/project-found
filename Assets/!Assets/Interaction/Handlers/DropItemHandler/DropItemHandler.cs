@@ -8,7 +8,7 @@ namespace ProjectFound.Environment.Handlers
 	using ProjectFound.Environment.Props;
 
 	[CreateAssetMenu(menuName =("Project Found/Handlers/Drop Item Handler"))]
-	public class DropItemHandler : ItemHandler
+	public class DropItemHandler : InteracteeHandler
 	{
 		public override IEnumerator Handle( Interactee ie, Interactor ir )
 		{

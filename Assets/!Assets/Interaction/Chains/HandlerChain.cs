@@ -6,25 +6,91 @@ namespace ProjectFound.Environment.Handlers
 
 	public abstract class HandlerChain : ScriptableObject
 	{
-		protected List<InteracteeHandler> m_asyncHandlers = new List<InteracteeHandler>( );
+		protected enum HandlerExecutionMode
+		{
+			Undefined,
+			Async,
+			Blocking
+		}
 
-		public abstract IEnumerator ExecuteChain( Interactee ie, Interactor ir );
+		protected struct HandlerDesc
+		{
+			public InteracteeHandler m_handler;
+			public HandlerExecutionMode m_executionMode;
 
-		protected virtual void BeginChain( Interactor ir )
+			public HandlerDesc( InteracteeHandler handler, HandlerExecutionMode executionMode )
+			{
+				m_handler = handler;
+				m_executionMode = executionMode;
+			}
+		}
+
+		protected List<HandlerDesc> m_handlers = new List<HandlerDesc>( );
+
+		protected void OnEnable( )
+		{
+			m_handlers.Clear( );
+		}
+
+		public IEnumerator ExecuteChain( Interactee ie, Interactor ir )
+		{
+			BeginChain( ir );
+
+			for ( int i = 0; i < m_handlers.Count; ++i )
+			{
+				HandlerDesc handlerDesc = m_handlers[i];
+				InteracteeHandler handler = handlerDesc.m_handler;
+
+				if ( handlerDesc.m_executionMode == HandlerExecutionMode.Async )
+				{
+					ir.StartCoroutine( handler.Handle( ie, ir ) );
+				}
+				else
+				{
+					yield return handler.Handle( ie, ir );
+				}
+			}
+
+			while ( EndChain( ir ) == false )
+			{
+				yield return null;
+			}
+
+			yield break;
+		}
+
+		protected void AddHandler( InteracteeHandler handler, HandlerExecutionMode executionMode )
+		{
+			if ( handler == null )
+			{
+				Debug.LogError( "HandlerChain.AddHandler: handler is null!" );
+			}
+			else
+			{
+				m_handlers.Add( new HandlerDesc( handler, executionMode ) );
+			}
+		}
+
+		private void BeginChain( Interactor ir )
 		{
 			ir.IsBusy = true;
 		}
 
-		protected virtual bool EndChain( Interactor ir )
+		private bool EndChain( Interactor ir )
 		{
-			for ( int i = 0; i < m_asyncHandlers.Count; ++i )
+			for ( int i = 0; i < m_handlers.Count; ++i )
 			{
-				InteracteeHandler handler = m_asyncHandlers[i];
+				HandlerDesc handlerDesc = m_handlers[i];
 
-				if ( ir.HandlerExecutionDictionary.ContainsKey( handler )
-					&& ir.HandlerExecutionDictionary[handler] == true )
+				if ( handlerDesc.m_executionMode == HandlerExecutionMode.Async )
 				{
-					return false;
+					InteracteeHandler handler = handlerDesc.m_handler;
+
+					if ( ir.HandlerExecutionDictionary.ContainsKey( handler )
+						&& ir.HandlerExecutionDictionary[handler] == true )
+					{
+						return false;
+					}
 				}
 			}
 

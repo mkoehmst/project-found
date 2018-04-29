@@ -67,8 +67,8 @@ namespace ProjectFound.Master
 							GameObject obj = firstHit.collider.gameObject;
 							_T component = obj.GetComponentInParent<_T>( );
 
-							Assert.IsNotNull( component,
-								"Raycast found an object (" + obj + ") but it did not have a " + typeof( _T ) + " Component" );
+							/*Assert.IsNotNull( component,
+								"Raycast found an object (" + obj + ") but it did not have a " + typeof( _T ) + " Component" );*/
 
 							if ( component == null )
 								return;

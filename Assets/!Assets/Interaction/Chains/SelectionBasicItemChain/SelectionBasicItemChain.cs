@@ -8,30 +8,11 @@ namespace ProjectFound.Environment.Handlers
 	{
 		public PickupHandler m_pickupHandler;
 
-		void OnEnable( )
+		new void OnEnable( )
 		{
-			if ( m_pickupHandler == null )
-			{
-				Debug.LogError( "m_pickupHandler is null!" );
-			}
-			else
-			{
-				m_asyncHandlers.Add( m_pickupHandler );
-			}
-		}
+			base.OnEnable( );
 
-		public override IEnumerator ExecuteChain( Interactee ie, Interactor ir )
-		{
-			BeginChain( ir );
-
-			ir.StartCoroutine( m_pickupHandler.Handle( ie, ir ) );
-
-			while ( EndChain( ir ) == false )
-			{
-				yield return null;
-			}
-
-			yield break;
+			AddHandler( m_pickupHandler, HandlerExecutionMode.Async );
 		}
 	}
 

@@ -7,7 +7,7 @@ namespace ProjectFound.Environment.Handlers
 	using ProjectFound.Environment.Props;
 
 	[CreateAssetMenu( menuName = ("Project Found/Handlers/Pickup Handler") )]
-	public class PickupHandler : ItemHandler
+	public class PickupHandler : InteracteeHandler
 	{
 		public override IEnumerator Handle( Interactee ie, Interactor ir )
 		{
