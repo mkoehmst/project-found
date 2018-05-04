@@ -44,7 +44,7 @@ namespace ProjectFound.Environment.Props {
 			{
 				ContinueDragAndDropChain = true;
 
-				StartCoroutine( m_dragAndDropChain.ExecuteChain( this, ir ) );
+				MEC.Timing.RunCoroutine( m_dragAndDropChain.ExecuteChain( this, ir ) );
 			}
 		}
 

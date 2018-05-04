@@ -1,7 +1,7 @@
 namespace ProjectFound.Environment.Handlers
 {
 
-	using System.Collections;
+	using System.Collections.Generic;
 	using UnityEngine;
 
 	[CreateAssetMenu( menuName = ("Project Found/Handlers/Animation Handler") )]
@@ -27,7 +27,7 @@ namespace ProjectFound.Environment.Handlers
 			}
 		}
 
-		public override IEnumerator Handle( Interactee interactee, Interactor interactor )
+		public override IEnumerator<float> Handle( Interactee interactee, Interactor interactor )
 		{
 			interactor.HandlerExecutionDictionary[this] = true;
 
@@ -46,7 +46,7 @@ namespace ProjectFound.Environment.Handlers
 				interactee.IsActivated = false;
 			}
 
-			yield return m_waitFor5s;
+			yield return MEC.Timing.WaitForSeconds( 5f );
 
 			interactor.HandlerExecutionDictionary[this] = false;
 		}

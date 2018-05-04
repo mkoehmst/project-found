@@ -101,7 +101,7 @@ namespace ProjectFound.Environment {
 			{
 				ContinueSelectionChain = true;
 
-				StartCoroutine( m_selectionChain.ExecuteChain( this, ir ) );
+				MEC.Timing.RunCoroutine( m_selectionChain.ExecuteChain( this, ir ) );
 			}
 		}
 	}

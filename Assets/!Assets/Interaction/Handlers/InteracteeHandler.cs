@@ -1,11 +1,11 @@
 namespace ProjectFound.Environment.Handlers
 {
 
-	using System.Collections;
+	using System.Collections.Generic;
 
 	public abstract class InteracteeHandler : BaseHandler
 	{
-		public abstract IEnumerator Handle( Interactee ie, Interactor ir );
+		public abstract IEnumerator<float> Handle( Interactee ie, Interactor ir );
 	}
 
 }

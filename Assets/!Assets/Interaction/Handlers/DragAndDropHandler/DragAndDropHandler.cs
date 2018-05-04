@@ -1,7 +1,6 @@
 namespace ProjectFound.Environment.Handlers
 {
 
-	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
 
@@ -10,7 +9,7 @@ namespace ProjectFound.Environment.Handlers
 	[CreateAssetMenu( menuName = ("Project Found/Handlers/Drag And Drop/Begin Drag And Drop") )]
 	public class DragAndDropHandler : InteracteeHandler
 	{
-		public override IEnumerator Handle( Interactee ie, Interactor ir )
+		public override IEnumerator<float> Handle( Interactee ie, Interactor ir )
 		{
 			ir.HandlerExecutionDictionary[this] = true;
 
@@ -27,12 +26,12 @@ namespace ProjectFound.Environment.Handlers
 			UIMaster.RemovePrompt( prop );
 			PlayerMaster.StartPropPlacement( prop, spec.gameObj, ref spec.hit );
 
-			yield return null;
+			yield return MEC.Timing.WaitForOneFrame;
 
 			while ( prop.ContinueDragAndDropChain == true )
 			{
 				PlayerMaster.PropPlacement( ref spec.hit );
-				yield return null;
+				yield return MEC.Timing.WaitForOneFrame;
 			}
 
 			prop.IsFocused = false;

@@ -46,15 +46,19 @@ namespace ProjectFound.CameraUI
 			}
 		}
 
-		protected IEnumerator FadeInThenOut( float inStagnation, float inSeconds, float finalInAlpha,
+		protected IEnumerator<float> FadeInThenOut( float inStagnation, float inSeconds, float finalInAlpha,
 			float outStagnation, float outSeconds, float finalOutAlpha )
 		{
-			yield return FadeIn( inStagnation, inSeconds, finalInAlpha );
-			yield return new WaitForSeconds( inSeconds );
-			yield return FadeOut( outStagnation, outSeconds, finalOutAlpha );
+			yield return
+				MEC.Timing.WaitUntilDone( FadeIn( inStagnation, inSeconds, finalInAlpha ) );
+
+			yield return MEC.Timing.WaitForSeconds( inSeconds );
+
+			yield return
+				MEC.Timing.WaitUntilDone( FadeOut( outStagnation, outSeconds, finalOutAlpha ) );
 		}
 
-		protected IEnumerator FadeIn( float stagnation, float seconds, float finalAlpha = 1f )
+		protected IEnumerator<float> FadeIn( float stagnation, float seconds, float finalAlpha = 1f )
 		{
 			DisplayText( );
 
@@ -63,7 +67,7 @@ namespace ProjectFound.CameraUI
 
 			if ( stagnation != 0f )
 			{
-				yield return new WaitForSeconds( stagnation );
+				yield return MEC.Timing.WaitForSeconds( stagnation );
 			}
 
 			m_tmPro.CrossFadeAlpha( finalAlpha, seconds, false );
@@ -71,14 +75,14 @@ namespace ProjectFound.CameraUI
 			yield break;
 		}
 
-		protected IEnumerator FadeOut( float stagnation, float seconds, float finalAlpha = 0f )
+		protected IEnumerator<float> FadeOut( float stagnation, float seconds, float finalAlpha = 0f )
 		{
 			m_fadeOutAlpha = finalAlpha;
 			m_isFadingOut = true;
 
 			if ( stagnation != 0f )
 			{
-				yield return new WaitForSeconds( stagnation );
+				yield return MEC.Timing.WaitForSeconds( stagnation );
 			}
 
 			m_tmPro.CrossFadeAlpha( finalAlpha, seconds, false );

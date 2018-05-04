@@ -1,7 +1,6 @@
 namespace ProjectFound.Environment.Handlers
 {
 
-	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
 
@@ -10,7 +9,7 @@ namespace ProjectFound.Environment.Handlers
 	[CreateAssetMenu(menuName =("Project Found/Handlers/Drop Item Handler"))]
 	public class DropItemHandler : InteracteeHandler
 	{
-		public override IEnumerator Handle( Interactee ie, Interactor ir )
+		public override IEnumerator<float> Handle( Interactee ie, Interactor ir )
 		{
 			ir.HandlerExecutionDictionary[this] = true;
 

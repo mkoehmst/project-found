@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ namespace ProjectFound.Environment.Handlers
 	[CreateAssetMenu( menuName = ("Project Found/Handlers/Pickup Handler") )]
 	public class PickupHandler : InteracteeHandler
 	{
-		public override IEnumerator Handle( Interactee ie, Interactor ir )
+		public override IEnumerator<float> Handle( Interactee ie, Interactor ir )
 		{
 			ir.HandlerExecutionDictionary[this] = true;
 

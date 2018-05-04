@@ -32,7 +32,7 @@ namespace ProjectFound.Environment.Handlers
 			m_handlers.Clear( );
 		}
 
-		public IEnumerator ExecuteChain( Interactee ie, Interactor ir )
+		public IEnumerator<float> ExecuteChain( Interactee ie, Interactor ir )
 		{
 			BeginChain( ir );
 
@@ -43,17 +43,18 @@ namespace ProjectFound.Environment.Handlers
 
 				if ( handlerDesc.m_executionMode == HandlerExecutionMode.Async )
 				{
-					ir.StartCoroutine( handler.Handle( ie, ir ) );
+					MEC.Timing.RunCoroutine( handler.Handle( ie, ir ) );
+					//ir.StartCoroutine( handler.Handle( ie, ir ) );
 				}
 				else
 				{
-					yield return handler.Handle( ie, ir );
+					yield return MEC.Timing.WaitUntilDone( handler.Handle( ie, ir ) );
 				}
 			}
 
 			while ( EndChain( ir ) == false )
 			{
-				yield return null;
+				yield return MEC.Timing.WaitForOneFrame;
 			}
 
 			yield break;

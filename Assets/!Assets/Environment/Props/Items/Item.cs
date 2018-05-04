@@ -31,7 +31,7 @@ namespace ProjectFound.Environment.Props {
 		{
 			if ( m_isReceptive == true && ir.IsBusy == false )
 			{
-				ir.StartCoroutine( m_usageHandlerChain.ExecuteChain( this, ir ) );
+				MEC.Timing.RunCoroutine( m_usageHandlerChain.ExecuteChain( this, ir ) );
 			}
 		}
 

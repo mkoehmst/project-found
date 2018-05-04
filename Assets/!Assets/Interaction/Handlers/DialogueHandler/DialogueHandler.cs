@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,9 +24,9 @@ namespace ProjectFound.Environment.Handlers
 			m_dialogueTreeController = null;
 		}
 
-		public override IEnumerator Handle( Interactee interactee, Interactor interactor )
+		public override IEnumerator<float> Handle( Interactee interactee, Interactor interactor )
 		{
-			yield return MovePlayerTowards( interactee );
+			yield return MEC.Timing.WaitUntilDone( MovePlayerTowards( interactee ) );
 
 			//DialogueActor dialogueActor = interactee.GetComponent<DialogueActor>( );
 

@@ -12,7 +12,7 @@ namespace ProjectFound.Environment.Handlers
 
 	public abstract class BaseHandler : ContextHandler
 	{
-		protected IEnumerator MovePlayerTowards( Interactee i )
+		protected IEnumerator<float> MovePlayerTowards( Interactee i )
 		{
 			Approach approach = i.GetComponentInChildren<Approach>( );
 
@@ -26,7 +26,8 @@ namespace ProjectFound.Environment.Handlers
 			}
 		}
 
-		protected IEnumerator MoveCharacterTowards( CharacterMovement character, Interactee i )
+		protected IEnumerator<float>
+			MoveCharacterTowards( CharacterMovement character, Interactee i )
 		{
 			Approach approach = i.GetComponentInChildren<Approach>( );
 
@@ -40,7 +41,8 @@ namespace ProjectFound.Environment.Handlers
 			}
 		}
 
-		protected IEnumerator MoveCharacterTowards( CharacterMovement character, Transform xform )
+		protected IEnumerator<float>
+			MoveCharacterTowards( CharacterMovement character, Transform xform )
 		{
 			const float maxCheckRange = .6f;
 
@@ -64,7 +66,7 @@ namespace ProjectFound.Environment.Handlers
 				float distance = (characterPosition - destination).magnitude;
 				if ( distance > distanceThreshold )
 				{
-					yield return new WaitForSeconds( 0.3333f );
+					yield return MEC.Timing.WaitForSeconds( 0.3333f );
 				}
 				else
 				{

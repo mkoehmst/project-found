@@ -328,16 +328,6 @@ namespace ProjectFound.Core {
 			RaycastMaster.CursorSelectionRaycaster.IsEnabled = true;
 		}
 
-		public virtual void OnCursorSelect2( InputMaster.KeyMap map )
-		{
-			var raycaster = RaycastMaster.CurrentInteracteeRaycaster;
-
-			if ( raycaster.Mode == RaycastMaster.RaycastMode.PropPlacement )
-			{
-
-			}
-		}
-
 		public virtual void OnCursorSelect( InputMaster.KeyMap map )
 		{
 			var raycaster = RaycastMaster.CurrentInteracteeRaycaster;

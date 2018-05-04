@@ -1,13 +1,13 @@
 namespace ProjectFound.Environment.Handlers
 {
 
-	using System.Collections;
+	using System.Collections.Generic;
 	using UnityEngine;
 
 	[CreateAssetMenu( menuName = ("Project Found/Handlers/Console Handler") )]
 	public class ConsoleHandler : InteracteeHandler
 	{
-		public override IEnumerator Handle( Interactee interactee, Interactor interactor )
+		public override IEnumerator<float> Handle( Interactee interactee, Interactor interactor )
 		{
 			interactor.HandlerExecutionDictionary[this] = true;
 
