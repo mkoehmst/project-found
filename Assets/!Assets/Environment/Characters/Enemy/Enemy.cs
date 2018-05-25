@@ -24,7 +24,7 @@ public class Enemy : Combatant
 
 		Debug.Assert( m_player != null, "No GameObject with Player component found" );
 
-		CombatEncounter.singleton.DelegateEncounterBegin += OnCombatEncounterBegin;
+		CombatEncounter.Instance.DelegateEncounterBegin += OnCombatEncounterBegin;
 	}
 
 	// Check distances in LateUpdate to make sure all Transforms are up-to-date
@@ -55,14 +55,14 @@ public class Enemy : Combatant
 
 	private void OnCombatEncounterBegin( List<Combatant> combatants )
 	{
-		m_target = combatants[0];
+		m_combatTarget = combatants[0];
 	}
 
 	private void AggroCheck( float distance )
 	{
 		if ( IsInCombat == false && distance < m_enemyDefinition.m_aggroRadius )
 		{
-			CombatEncounter.singleton.AddCombatant( this as Combatant );
+			CombatEncounter.Instance.AddCombatant( this as Combatant );
 		}
 	}
 

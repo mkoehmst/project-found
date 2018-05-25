@@ -1,28 +1,27 @@
-using UnityEngine;
-using UnityEngine.Assertions;
-
-namespace ProjectFound.Misc {
-
-public class Singleton< _T > : MonoBehaviour
-    where _T : Component
+namespace ProjectFound.Misc 
 {
-    private static _T m_instance = null;
 
-    public static _T singleton
-    {
-        get
-        {
-			if ( m_instance == null )
+	using UnityEngine;
+
+	public class Singleton<_T> : MonoBehaviour
+		where _T : MonoBehaviour
+	{
+		private static _T m_instance;
+
+		public static _T Instance
+		{
+			get
 			{
-				m_instance = FindObjectOfType< _T >( );
+				if ( m_instance == null )
+				{
+					m_instance = FindObjectOfType<_T>( );
+
+					// If still null, create the instance
+				}
+
+				return m_instance;
 			}
-
-            return m_instance;
-        }
-
-        set
-		{ }
-    }
-}
+		}
+	}
 
 }

@@ -1,12 +1,10 @@
-using System;
-using UnityEngine;
+namespace ProjectFound.Misc 
+{
 
-
-namespace ProjectFound.Misc {
+	using System;
 
 	class Floater
 	{
-
 		public static bool Equal( float v, float k )
 		{
 			float leftSide = Math.Abs( v - k );

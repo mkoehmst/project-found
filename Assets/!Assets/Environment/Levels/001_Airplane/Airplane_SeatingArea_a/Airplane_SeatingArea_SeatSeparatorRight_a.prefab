@@ -148,6 +148,7 @@ MonoBehaviour:
   m_isActivated: 0
   m_dialogueTree: {fileID: 0}
   m_commentSpec: {fileID: 0}
+  m_selectionChain: {fileID: 0}
 --- !u!114 &114805938564256502
 MonoBehaviour:
   m_ObjectHideFlags: 1

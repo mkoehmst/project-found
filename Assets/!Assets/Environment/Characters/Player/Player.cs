@@ -15,9 +15,9 @@ namespace ProjectFound.Environment.Characters
 		{
 			base.Start( );
 
-			CombatEncounter.singleton.DelegateEncounterBegin += OnCombatEncounterBegin;
-			CombatEncounter.singleton.DelegateRoundBegin += OnCombatRoundBegin;
-			CombatEncounter.singleton.DelegateDeath += OnCombatDeath;
+			CombatEncounter.Instance.DelegateEncounterBegin += OnCombatEncounterBegin;
+			CombatEncounter.Instance.DelegateRoundBegin += OnCombatRoundBegin;
+			CombatEncounter.Instance.DelegateDeath += OnCombatDeath;
 
 			m_initiative = 10;
 
@@ -62,7 +62,7 @@ namespace ProjectFound.Environment.Characters
 
 		private void OnCombatEncounterBegin( List<Combatant> combatants )
 		{
-			m_target = combatants[1];
+			m_combatTarget = combatants[1];
 		}
 
 		private void OnCombatRoundBegin( List<Combatant> combatants )
@@ -72,19 +72,19 @@ namespace ProjectFound.Environment.Characters
 
 		private void OnCombatDeath( Combatant deceased, List<Combatant> remainders )
 		{
-			if ( deceased != m_target )
+			if ( deceased != m_combatTarget )
 				return ;
 
 			foreach ( Combatant combatant in remainders )
 			{
 				if ( combatant != this )
 				{
-					m_target = combatant;
+					m_combatTarget = combatant;
 					return ;
 				}
 			}
 
-			m_target = null;
+			m_combatTarget = null;
 		}
 	}
 

@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace ProjectFound.Environment.Characters {
 
+	using ProjectFound.Environment.Handlers;
 
 	public abstract class Character : Interactor
 	{
-
 	}
 
 

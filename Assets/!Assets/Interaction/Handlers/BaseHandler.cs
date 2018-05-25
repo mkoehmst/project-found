@@ -12,35 +12,38 @@ namespace ProjectFound.Environment.Handlers
 
 	public abstract class BaseHandler : ContextHandler
 	{
-		protected IEnumerator MovePlayerTowards( Interactee i )
+		protected IEnumerator<float> MovePlayerTowards( Interactee i )
 		{
 			Approach approach = i.GetComponentInChildren<Approach>( );
 
 			if ( approach != null )
 			{
-				return MoveCharacterTowards( PlayerMaster.CharacterMovement, approach.transform );
+				return MoveCharacterTowards( PlayerMaster.CharacterController, approach.transform );
 			}
 			else
 			{
-				return MoveCharacterTowards( PlayerMaster.CharacterMovement, i.transform );
+				return MoveCharacterTowards( PlayerMaster.CharacterController, i.transform );
 			}
 		}
 
-		protected IEnumerator MoveCharacterTowards( CharacterMovement character, Interactee i )
+		protected IEnumerator<float>
+			MoveCharacterTowards( MK_RPGCharacterControllerFREE characterController, Interactee i )
 		{
 			Approach approach = i.GetComponentInChildren<Approach>( );
 
 			if ( approach != null )
 			{
-				return MoveCharacterTowards( character, approach.transform );
+				return MoveCharacterTowards( characterController, approach.transform );
 			}
 			else
 			{
-				return MoveCharacterTowards( character, i.transform );
+				return MoveCharacterTowards( characterController, i.transform );
 			}
 		}
 
-		protected IEnumerator MoveCharacterTowards( CharacterMovement character, Transform xform )
+		protected IEnumerator<float>
+			MoveCharacterTowards( MK_RPGCharacterControllerFREE characterController, 
+				Transform xform )
 		{
 			const float maxCheckRange = .6f;
 
@@ -50,11 +53,11 @@ namespace ProjectFound.Environment.Handlers
 				xform.position, out navHit, maxCheckRange, NavMesh.AllAreas );
 
 			Vector3 destination = navHit.position;
-			character.SetMoveTarget( destination );
+			characterController.SetMovementTarget( ref destination );
 
-			Transform characterXform = character.transform;
+			Transform characterXform = characterController.transform;
 			// Give a little buffer room for the StoppingDistance
-			float distanceThreshold = character.StoppingDistance * 1.25f;
+			float distanceThreshold = characterController.StoppingDistance * 1.25f;
 
 			while ( true )
 			{
@@ -64,7 +67,7 @@ namespace ProjectFound.Environment.Handlers
 				float distance = (characterPosition - destination).magnitude;
 				if ( distance > distanceThreshold )
 				{
-					yield return new WaitForSeconds( 0.3333f );
+					yield return MEC.Timing.WaitForSeconds( 0.3333f );
 				}
 				else
 				{
@@ -89,7 +92,7 @@ namespace ProjectFound.Environment.Handlers
 				prop.IsFocused = false;
 
 				UIMaster.RemovePrompt( prop );
-				ShaderMaster.ToggleSelectionOutline( gameObj );
+				//ShaderMaster.ToggleFocusOutline( gameObj );
 			}
 		}
 	}

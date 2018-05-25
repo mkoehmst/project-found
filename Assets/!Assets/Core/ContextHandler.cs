@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-using ProjectFound.Master;
-
 namespace ProjectFound.Core
 {
 
+	using UnityEngine;
+
+	using ProjectFound.Master;
 
 	public abstract class ContextHandler : ScriptableObject
 	{
+		static protected GameContext GameContext { get; private set; }
+
 		static protected RaycastMaster		RaycastMaster		{ get; private set; }
 		static protected InputMaster		InputMaster			{ get; private set; }
 		static protected PlayerMaster		PlayerMaster		{ get; private set; }
@@ -19,20 +18,19 @@ namespace ProjectFound.Core
 		static protected CombatMaster		CombatMaster		{ get; private set; }
 		static protected InteractionMaster	InteractionMaster	{ get; private set; }
 
-		static public void AssignMasters( RaycastMaster raycast, InputMaster input,
-			PlayerMaster player, CameraMaster camera, UIMaster ui, ShaderMaster shader,
-			CombatMaster combat, InteractionMaster interaction )
+		static public void AssignContext( GameContext context )
 		{
-			RaycastMaster = raycast;
-			InputMaster = input;
-			PlayerMaster = player;
-			CameraMaster = camera;
-			UIMaster = ui;
-			ShaderMaster = shader;
-			CombatMaster = combat;
-			InteractionMaster = interaction;
+			GameContext = context;
+
+			RaycastMaster		= context.RaycastMaster;
+			InputMaster			= context.InputMaster;
+			PlayerMaster		= context.PlayerMaster;
+			CameraMaster		= context.CameraMaster;
+			UIMaster			= context.UIMaster;
+			ShaderMaster		= context.ShaderMaster;
+			CombatMaster		= context.CombatMaster;
+			InteractionMaster	= context.InteractionMaster;
 		}
 	}
-
 
 }

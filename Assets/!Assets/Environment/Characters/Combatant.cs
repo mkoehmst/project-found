@@ -13,10 +13,10 @@ public abstract class Combatant : Character
 	public bool IsInCombat { get; set; } = false;
 	//public bool IsActiveCombatant { get; set; } = false;
 
-	protected Combatant m_target = null;
-	public Combatant Target
+	protected Combatant m_combatTarget = null;
+	public Combatant CombatTarget
 	{
-		get { return m_target; }
+		get { return m_combatTarget; }
 	}
 
 	protected int m_initiative = 1;
@@ -60,7 +60,7 @@ public abstract class Combatant : Character
 			if ( gameObject.tag != "Player" )
 				Destroy( gameObject );
 
-			CombatEncounter.singleton.RemoveCombatant( this );
+			CombatEncounter.Instance.RemoveCombatant( this );
 
 			// TODO figure out what to do on Player death
 		}

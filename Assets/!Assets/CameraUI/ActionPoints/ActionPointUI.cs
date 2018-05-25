@@ -69,7 +69,7 @@ namespace ProjectFound.CameraUI
 
 		void Start( )
 		{
-			CombatEncounter.singleton.DelegateEncounterBegin += OnCombatBegin;
+			CombatEncounter.Instance.DelegateEncounterBegin += OnCombatBegin;
 			MaxActionPoints = 15;
 		}
 

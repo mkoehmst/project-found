@@ -5,6 +5,7 @@ using UnityEngine;
 namespace ProjectFound.Environment
 {
 
+	using ProjectFound.Environment.Handlers;
 
 	public class WalkableSurface : UsableSurface
 	{
