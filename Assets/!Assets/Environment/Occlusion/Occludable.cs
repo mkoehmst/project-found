@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace ProjectFound.Environment.Occlusion
 {
 
+	using UnityEngine;
 
 	public class Occludable : Interactee
 	{
@@ -42,6 +39,5 @@ namespace ProjectFound.Environment.Occlusion
 			parent.gameObject.layer = (int)LayerID.Roof;
 		}
 	}
-
 
 }

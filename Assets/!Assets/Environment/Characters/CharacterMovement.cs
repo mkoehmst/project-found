@@ -41,21 +41,25 @@ namespace ProjectFound.Environment.Characters
 			m_agent.updatePosition = true;
 			ResetMoveTarget( );
 
-			CombatEncounter.singleton.DelegateEncounterBegin += OnCombatEncounterBegin;
+			CombatEncounter.Instance.DelegateEncounterBegin += OnCombatEncounterBegin;
 		}
 
 		void LateUpdate( )
 		{
 			m_animator.speed = m_animSpeedMultiplier;
 
-			if ( m_agent.remainingDistance > m_agent.stoppingDistance )
-			{
-				AnimatorMove( m_agent.desiredVelocity );
-			}
-			else
-			{
-				AnimatorHalt( );
-			}
+			//if ( m_agent.remainingDistance > 0f )
+			//{ 
+				if ( m_agent.remainingDistance > m_agent.stoppingDistance )
+				{
+					AnimatorMove( m_agent.velocity );
+				}
+				else
+				{
+				//ResetMoveTarget( );
+					AnimatorHalt( );
+				}
+			//}
 		}
 
 		public float RemainingDistance( )
@@ -98,6 +102,9 @@ namespace ProjectFound.Environment.Characters
 		public void ResetMoveTarget( )
 		{
 			m_agent.SetDestination( transform.position );
+			m_rigidBody.MovePosition( transform.position );
+			m_agent.velocity = Vector3.zero;
+			m_rigidBody.velocity = Vector3.zero;
 		}
 
 		public void TranslateMoveTarget( float h, float v )
@@ -117,7 +124,7 @@ namespace ProjectFound.Environment.Characters
 		{
 			CalculateLocalMovement( ref movement );
 			ApplyRootRotation( );
-			UpdateAnimator( );
+			UpdateAnimator( movement.sqrMagnitude );
 		}
 
 		private void AnimatorHalt( )
@@ -154,13 +161,19 @@ namespace ProjectFound.Environment.Characters
 			m_animator.SetFloat( "Turn", m_turnAmount, 0.1f, Time.deltaTime );
 		}
 
+		private void UpdateAnimator( float movementMagnitude )
+		{
+			m_animator.SetFloat("Forward", movementMagnitude, 0.1f, Time.deltaTime);
+			m_animator.SetFloat("Turn", m_turnAmount, 0.1f, Time.deltaTime);
+		}
+
 		private void OnCombatEncounterBegin( List<Combatant> combatants )
 		{
 			ResetMoveTarget( );
 			AnimatorHalt( );
 		}
 
-		void OnAnimatorMove( )
+		/*void OnAnimatorMove( )
 		{
 			if ( Time.deltaTime > 0 )
 			{
@@ -170,7 +183,7 @@ namespace ProjectFound.Environment.Characters
 				velocity.y = m_rigidBody.velocity.y;
 				m_rigidBody.velocity = velocity;
 			}
-		}
+		}*/
 
 		void OnDrawGizmos( )
 		{

@@ -1,8 +1,11 @@
 namespace ProjectFound.CameraUI
 {
+	
 	using UnityEngine;
 
-	public abstract class AbstractTargetFollower : MonoBehaviour
+	using ProjectFound.Environment;
+
+	public abstract class AbstractTargetFollower : Interactee
 	{
 		public enum UpdateType // The available methods of updating are:
 		{
@@ -21,8 +24,10 @@ namespace ProjectFound.CameraUI
 			get { return m_Target; }
 		}
 
-		protected virtual void Start( )
+		protected new virtual void Start( )
 		{
+			base.Start( );
+
 			// if auto targeting is used, find the object tagged "Player"
 			// any class inheriting from this should call base.Start() to perform this action!
 			if ( m_Target == null ) return;
@@ -30,7 +35,7 @@ namespace ProjectFound.CameraUI
 		}
 
 
-		private void FixedUpdate( )
+		protected void FixedUpdate( )
 		{
 			if ( m_UpdateType == UpdateType.FixedUpdate )
 			{
@@ -39,7 +44,7 @@ namespace ProjectFound.CameraUI
 		}
 
 
-		private void LateUpdate( )
+		protected void LateUpdate( )
 		{
 			if ( m_UpdateType == UpdateType.LateUpdate )
 			{

@@ -11,18 +11,18 @@ namespace ProjectFound.Environment.Characters
 	{
 		public override IEnumerator Handle( SkillSpec skillDefinition, Combatant wielder )
 		{
-			CharacterMovement mover = wielder.GetComponent<CharacterMovement>( );
-			Combatant target = wielder.Target;
+			MK_RPGCharacterControllerFREE mover = wielder.GetComponent<MK_RPGCharacterControllerFREE>( );
+			Combatant target = wielder.CombatTarget;
 			Transform targetXform = target.transform;
 
 			Debug.Log( wielder + " is punching " + target );
 
-			if ( mover.CanMoveTo( targetXform.position ) == false )
+			if ( PlayerMaster.CanMoveTo( targetXform.position ) == false )
 			{
 				yield break;
 			}
 
-			float distance = mover.CalculatePathDistance( );
+			float distance = PlayerMaster.NavMeshDistanceTo( );
 			int actionPointCost = CombatMaster.CalculateMovementCost( wielder, distance );
 			actionPointCost += skillDefinition.ActionPointCost;
 

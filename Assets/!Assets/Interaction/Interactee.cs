@@ -14,19 +14,44 @@ namespace ProjectFound.Environment {
 
 		// Bring health all the way down to the Interactee level because inanimate objects
 		// can have health too, the amount of damage before they are destroyed
+	//	[UnityEditor.]
+		[SerializeField] protected string m_ingameName = "Unknown";
 		[SerializeField] protected float m_maxHealthPoints = 100f;
 		[SerializeField] protected float m_curHealthPoints = 1f;
 		[SerializeField] protected string m_activateText = "Pickup";
 		[SerializeField] protected string m_deactivateText = "Drop";
-		[SerializeField] protected string m_ingameName = "Unknown";
-		[SerializeField] protected bool m_isReceptive = true;
 		[SerializeField] protected bool m_isActivated = false;
 		[SerializeField] protected NodeCanvas.DialogueTrees.DialogueTree m_dialogueTree;
 		[SerializeField] protected CommentSpec m_commentSpec;
 
-		[SerializeField] protected HandlerChain m_selectionChain;
-		public HandlerChain SelectionChain { get { return m_selectionChain; } }
-		public bool ContinueSelectionChain { get; set; }
+
+
+		[SerializeField] protected HandlerChain m_oneShotChain;
+		public HandlerChain OneShotChain { get { return m_oneShotChain; } }
+
+		[SerializeField] protected HandlerChain m_oneShotReleaseChain;
+		public HandlerChain OneShotReleaseChain {  get { return m_oneShotReleaseChain; } }
+
+		[SerializeField] protected HandlerChain m_windowChain;
+		public HandlerChain WindowChain { get { return m_windowChain; } }
+
+		[SerializeField] protected HandlerChain m_windowReleaseChain;
+		public HandlerChain WindowReleaseChain { get { return m_windowReleaseChain; } }
+
+		[SerializeField] protected HandlerChain m_holdingChain;
+		public HandlerChain HoldingChain { get { return m_holdingChain; } }
+
+		[SerializeField] protected HandlerChain m_holdingReleaseChain;
+		public HandlerChain HoldingReleaseChain { get { return m_holdingReleaseChain; } }
+
+		[SerializeField] protected HandlerChain m_focusChain;
+		public HandlerChain FocusChain { get { return m_focusChain; } }
+
+		[SerializeField] protected HandlerChain m_focusReleaseChain;
+		public HandlerChain FocusReleaseChain { get { return m_focusReleaseChain; } }
+
+		[SerializeField] protected HandlerChain m_usageChain;
+		public HandlerChain UsageChain { get { return m_usageChain; } }
 
 		public bool IsFocused { get; set; }
 
@@ -48,12 +73,6 @@ namespace ProjectFound.Environment {
 		public string IngameName
 		{
 			get { return m_ingameName; }
-		}
-
-		public bool IsReceptive
-		{
-			get { return m_isReceptive; }
-			set { m_isReceptive = value; }
 		}
 
 		public bool IsActivated
@@ -95,15 +114,7 @@ namespace ProjectFound.Environment {
 			IsFocused = false;
 		}
 
-		public void ExecuteSelectionChain( Interactor ir )
-		{
-			if ( m_isReceptive == true && ir.IsBusy == false )
-			{
-				ContinueSelectionChain = true;
 
-				MEC.Timing.RunCoroutine( m_selectionChain.ExecuteChain( this, ir ) );
-			}
-		}
 	}
 
 

@@ -1,59 +1,33 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Assertions;
+namespace ProjectFound.Environment.Props 
+{
 
-using ProjectFound.Environment.Handlers;
+	using UnityEngine;
+	using UnityEngine.Assertions;
 
-namespace ProjectFound.Environment.Props {
-
+	using ProjectFound.Environment.Handlers;
 
 	public class Prop : Interactee
 	{
 		[SerializeField] bool m_isDraggable = true;
+		public bool IsDraggable { get { return m_isDraggable; } }
+
 		[SerializeField] Sprite m_icon;
-		[SerializeField] Mesh m_clearanceMesh;
-
-		[SerializeField] HandlerChain m_dragAndDropChain;
-		public HandlerChain DragAndDropChain { get { return m_dragAndDropChain; } }
-		public bool ContinueDragAndDropChain { get; set; }
-
 		public Sprite Icon { get { return m_icon; } }
-		public Mesh ClearanceMesh { get { return m_clearanceMesh; } }
-		public GameObject Prompt { get; set; }
 
-		public bool IsDraggable
-		{
-			get { return m_isDraggable; }
-		}
+		[SerializeField] Mesh m_clearanceMesh;
+		public Mesh ClearanceMesh { get { return m_clearanceMesh; } }
+
+		public GameObject Prompt { get; set; }
 
 		protected void Awake( )
 		{
-			Assert.IsNotNull( m_icon );
+			//Assert.IsNotNull( m_icon );
 		}
 
 		new protected void Start( )
 		{
 			base.Start( );
 		}
-
-		public void ExecuteDragAndDropChain( Interactor ir )
-		{
-			if ( m_isReceptive == true && m_isDraggable == true && ir.IsBusy == false )
-			{
-				ContinueDragAndDropChain = true;
-
-				MEC.Timing.RunCoroutine( m_dragAndDropChain.ExecuteChain( this, ir ) );
-			}
-		}
-
-		public void StopDragAndDropChain( )
-		{
-			ContinueDragAndDropChain = false;
-		}
-
 	}
-
 
 }

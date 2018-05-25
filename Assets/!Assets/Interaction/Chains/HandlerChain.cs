@@ -13,6 +13,17 @@ namespace ProjectFound.Environment.Handlers
 			Blocking
 		}
 
+		public enum ChainType
+		{
+			Undefined,
+			Window,
+			WindowRelease,
+			WindowAbort,
+			Handler,
+			HandlerRelease,
+			HandlerAbort
+		}
+
 		protected struct HandlerDesc
 		{
 			public InteracteeHandler m_handler;
@@ -27,34 +38,157 @@ namespace ProjectFound.Environment.Handlers
 
 		protected List<HandlerDesc> m_handlers = new List<HandlerDesc>( );
 
-		protected void OnEnable( )
+		protected void OnEnable()
 		{
 			m_handlers.Clear( );
 		}
 
-		public IEnumerator<float> ExecuteChain( Interactee ie, Interactor ir )
+		public IEnumerator<float> RunWindowChain( Interactee ie, Interactor ir )
+		{
+			int count = m_handlers.Count;
+			for ( int i = 0; i < count; ++i )
+			{
+				HandlerDesc handlerDesc = m_handlers[i];
+				InteracteeHandler handler = handlerDesc.m_handler;
+
+				if ( handler.DelegateWindow != null )
+				{
+					//Debug.Log( "HandlerChain.RunWindowChain() " + handler 
+						//+ handlerDesc.m_executionMode );
+					MEC.Timing.RunCoroutine( handler.DelegateWindow( ie, ir ) );
+				}
+			}
+
+			//Debug.Log( "HandlerChain RunWindowChain() exited gracefully" );
+
+			yield break;
+		}
+
+		public IEnumerator<float> RunWindowReleaseChain( Interactee ie, Interactor ir )
+		{
+			int count = m_handlers.Count;
+			for ( int i = 0; i < count; ++i )
+			{
+				HandlerDesc handlerDesc = m_handlers[i];
+				InteracteeHandler handler = handlerDesc.m_handler;
+
+				if ( handler.DelegateWindow != null )
+				{
+					//Debug.Log( "HandlerChain.RunWindowReleaseChain() " + handler 
+						//+ handlerDesc.m_executionMode );
+					MEC.Timing.RunCoroutine( handler.DelegateWindowRelease( ie, ir ) );
+				}
+			}
+
+			//Debug.Log( "HandlerChain RunWindowReleaseChain() exited gracefully" );
+
+			yield break;
+		}
+
+		public IEnumerator<float> RunWindowAbortChain( Interactee ie, Interactor ir )
+		{
+			int count = m_handlers.Count;
+			for ( int i = 0; i < count; ++i )
+			{
+				HandlerDesc handlerDesc = m_handlers[i];
+				InteracteeHandler handler = handlerDesc.m_handler;
+
+				if ( handler.DelegateWindowAbort != null )
+				{
+					//Debug.Log( "HandlerChain.RunWindowAbortChain() " + handler 
+					//	+ handlerDesc.m_executionMode );
+					MEC.Timing.RunCoroutine( handler.DelegateWindowAbort( ie, ir ) );
+				}
+			}
+
+			yield break;
+		}
+
+		public IEnumerator<float> RunHandlerChain( Interactee ie, Interactor ir )
 		{
 			BeginChain( ir );
 
+			MEC.CoroutineHandle chainHandle = new MEC.CoroutineHandle( );
+
+			// GetMyHandle is special in that does not cause a one frame delay even though it's in 
+			// a yield return statement.
+			yield return MEC.Timing.GetMyHandle( x => chainHandle = x );
+
+			int count = m_handlers.Count;
+			for ( int i = 0; i < count; ++i )
+			{
+				HandlerDesc handlerDesc = m_handlers[i];
+				InteracteeHandler handler = handlerDesc.m_handler;
+
+				//Debug.Log( "HandlerChain.RunHandlerChain() " + handler + handlerDesc.m_executionMode );
+
+				MEC.CoroutineHandle handlerHandle
+					= MEC.Timing.RunCoroutine( handler.Handler( ie, ir ) );
+
+				MEC.Timing.LinkCoroutines( chainHandle, handlerHandle );
+
+				if ( handlerDesc.m_executionMode == HandlerExecutionMode.Blocking )
+				{
+					while ( handlerHandle.IsRunning )
+					{
+						yield return MEC.Timing.WaitForOneFrame;
+					}
+				}
+			}
+
+			HashSet<MEC.CoroutineHandle> slaves = MEC.Timing.GetLinkedSlaves( ref chainHandle );
+			if ( slaves != null )
+			{
+				// Since this Chain Coroutine runs before the Handler Coroutines,
+				// it would only detect a Handler Coroutine finishing on the frame afterwards.
+				// So instead run in the LateUpdate Segment, allowing it to detect
+				// on the same frame that the Handler Coroutines finish.
+				yield return MEC.Timing.WaitUntilDoneAndContinue(
+					WaitForSlaves( slaves ), MEC.Segment.LateUpdate );
+			}
+
+			EndChain( ir );
+
+			//Debug.Log( "HandlerChain.RunHandlerChain() exited gracefully" );
+
+			yield break;
+		}
+
+		public IEnumerator<float> RunHandlerReleaseChain( Interactee ie, Interactor ir )
+		{
+			int count = m_handlers.Count;
 			for ( int i = 0; i < m_handlers.Count; ++i )
 			{
 				HandlerDesc handlerDesc = m_handlers[i];
 				InteracteeHandler handler = handlerDesc.m_handler;
 
-				if ( handlerDesc.m_executionMode == HandlerExecutionMode.Async )
+				if ( handler.DelegateHandlerRelease != null )
 				{
-					MEC.Timing.RunCoroutine( handler.Handle( ie, ir ) );
-					//ir.StartCoroutine( handler.Handle( ie, ir ) );
-				}
-				else
-				{
-					yield return MEC.Timing.WaitUntilDone( handler.Handle( ie, ir ) );
+					//Debug.Log( "HandlerChain.RunHandlerReleaseChain() " + handler 
+						//+ handlerDesc.m_executionMode );
+					MEC.Timing.RunCoroutine( handler.DelegateHandlerRelease( ie, ir ) );
 				}
 			}
 
-			while ( EndChain( ir ) == false )
+			//Debug.Log( "HandlerChain RunHandlerReleaseChain() exited gracefully" );
+
+			yield break;
+		}
+
+		public IEnumerator<float> RunHandlerAbortChain( Interactee ie, Interactor ir )
+		{
+			int count = m_handlers.Count;
+			for ( int i = 0; i < m_handlers.Count; ++i )
 			{
-				yield return MEC.Timing.WaitForOneFrame;
+				HandlerDesc handlerDesc = m_handlers[i];
+				InteracteeHandler handler = handlerDesc.m_handler;
+
+				if ( handler.DelegateHandlerAbort != null )
+				{
+					//Debug.Log( "HandlerChain.RunAbortHandleChain() " + handler 
+						//+ handlerDesc.m_executionMode );
+					MEC.Timing.RunCoroutine( handler.DelegateHandlerAbort( ie, ir ) );
+				}
 			}
 
 			yield break;
@@ -77,26 +211,40 @@ namespace ProjectFound.Environment.Handlers
 			ir.IsBusy = true;
 		}
 
-		private bool EndChain( Interactor ir )
+		private void EndChain( Interactor ir )
 		{
-			for ( int i = 0; i < m_handlers.Count; ++i )
+			ir.IsBusy = false;
+		}
+
+		private IEnumerator<float> WaitForSlaves( HashSet<MEC.CoroutineHandle> slaves )
+		{
+			//MEC.CoroutineHandle rawHandle = new MEC.CoroutineHandle( );
+			/*const string message1 = "Coroutine 1 is no longer running";
+			const string message2 = "Coroutine 2 is no longer running";
+			const string message3 = "Coroutine 3 is no longer running";
+			const string message4 = "Coroutine 4 is no longer running";*/
+
+			bool isStillExecuting = false;
+
+			do
 			{
-				HandlerDesc handlerDesc = m_handlers[i];
 
-				if ( handlerDesc.m_executionMode == HandlerExecutionMode.Async )
+				foreach ( var handler in slaves )
 				{
-					InteracteeHandler handler = handlerDesc.m_handler;
+					isStillExecuting = handler.IsRunning;
 
-					if ( ir.HandlerExecutionDictionary.ContainsKey( handler )
-						&& ir.HandlerExecutionDictionary[handler] == true )
+					if ( isStillExecuting )
 					{
-						return false;
+						yield return MEC.Timing.WaitForOneFrame;
+						break;
 					}
 				}
-			}
 
-			ir.IsBusy = false;
-			return true;
+			} while ( isStillExecuting );
+
+			slaves.Clear( );
+
+			yield break;
 		}
 	}
 

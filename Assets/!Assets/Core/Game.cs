@@ -1,38 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-using ProjectFound.Master;
-
-namespace ProjectFound.Core {
-
+namespace ProjectFound.Core 
+{
 
 	public class Game : Misc.Singleton<Game>
 	{
-		public PlayerMaster PlayerMaster { get; private set; }
-
-		public CombatContext	CombatContext	{ get; private set; }
-		//public NonCombatContext NonCombatContext{ get; private set; }
-		public GameContext		CurrentContext	{ get; set; }
+		private GameContext m_gameContext;
 
 		void Start( )
 		{
-			PlayerMaster = new PlayerMaster( );
-			CombatContext = new CombatContext( PlayerMaster );
-			//NonCombatContext	= new NonCombatContext( );
+			m_gameContext = new GameContext( );
 
-			CurrentContext = CombatContext;
+			m_gameContext.Setup( );
 		}
 
 		void Update( )
 		{
-			/*if ( CurrentContext == CombatContext )
-			{
-				CombatContext.Loop( );
-			}*/
-			CurrentContext.Loop( );
+			m_gameContext.Loop( );
 		}
 	}
-
 
 }

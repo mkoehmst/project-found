@@ -14532,14 +14532,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealthPoints: 100
+  m_curHealthPoints: 1
   m_activateText: Pickup
   m_deactivateText: Drop
   m_ingameName: Unknown
   m_isReceptive: 1
   m_isActivated: 0
   m_dialogueTree: {fileID: 0}
-  m_approachRange: 0.25
-  m_handler: {fileID: 0}
+  m_commentSpec: {fileID: 0}
+  m_selectionChain: {fileID: 0}
 --- !u!114 &114464597013306916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14552,14 +14553,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealthPoints: 100
+  m_curHealthPoints: 1
   m_activateText: Pickup
   m_deactivateText: Drop
   m_ingameName: Unknown
   m_isReceptive: 1
   m_isActivated: 0
   m_dialogueTree: {fileID: 0}
-  m_approachRange: 0.25
-  m_handler: {fileID: 0}
+  m_commentSpec: {fileID: 0}
+  m_selectionChain: {fileID: 0}
 --- !u!114 &114654796990149744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14572,14 +14574,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealthPoints: 100
+  m_curHealthPoints: 1
   m_activateText: Pickup
   m_deactivateText: Drop
   m_ingameName: Unknown
   m_isReceptive: 1
   m_isActivated: 0
   m_dialogueTree: {fileID: 0}
-  m_approachRange: 0.25
-  m_handler: {fileID: 0}
+  m_commentSpec: {fileID: 0}
+  m_selectionChain: {fileID: 0}
 --- !u!114 &114843174904303576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15249,14 +15252,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealthPoints: 100
+  m_curHealthPoints: 1
   m_activateText: Pickup
   m_deactivateText: Drop
   m_ingameName: Unknown
   m_isReceptive: 1
   m_isActivated: 0
   m_dialogueTree: {fileID: 0}
-  m_approachRange: 0.25
-  m_handler: {fileID: 0}
+  m_commentSpec: {fileID: 0}
+  m_selectionChain: {fileID: 0}
 --- !u!114 &114980549738794580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15269,11 +15273,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealthPoints: 100
+  m_curHealthPoints: 1
   m_activateText: Pickup
   m_deactivateText: Drop
   m_ingameName: Unknown
   m_isReceptive: 1
   m_isActivated: 0
   m_dialogueTree: {fileID: 0}
-  m_approachRange: 0.25
-  m_handler: {fileID: 0}
+  m_commentSpec: {fileID: 0}
+  m_selectionChain: {fileID: 0}

@@ -13,7 +13,7 @@ namespace ProjectFound.CameraUI
 		{
 			base.Start( );
 
-			CombatEncounter.singleton.DelegateEncounterBegin += OnCombatBegin;
+			CombatEncounter.Instance.DelegateEncounterBegin += OnCombatBegin;
 		}
 
 		public void OnCombatBegin( List<Combatant> combatants )

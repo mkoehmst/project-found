@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814efc4a07ea13845b5a5d413fd63b69, type: 3}
+  m_Name: SelectionBasicWalkableChain
+  m_EditorClassIdentifier: 
+  m_clickToMoveHandler: {fileID: 11400000, guid: 2bc2e770800fc8d45b914d81f4109d55,
+    type: 2}
+  m_holdToMoveHandler: {fileID: 11400000, guid: 106935e3c6f770c44903d0376e6d6f17,
+    type: 2}

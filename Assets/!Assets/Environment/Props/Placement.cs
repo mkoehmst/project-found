@@ -19,14 +19,16 @@ namespace ProjectFound.Environment.Props
 		private float m_dragDistance;
 		private float m_ratioTraversed;
 
-		private Vector3 StartingPosition { get; set; }
-		private Quaternion StartingRotation { get; set; }
+		private Vector3 m_startingPosition;
+		private Quaternion m_startingRotation;
+		//private Vector3 StartingPosition { get; set; }
+		//private Quaternion StartingRotation { get; set; }
 		private bool DoRejectPlacement { get; set; }
 		private bool IsLerpActive { get; set; } = false;
 
 		private cakeslice.Outline Outline { get; set; }
 		private Collider ExistingCollider { get; set; }
-		private MeshCollider PlacementCollider { get; set; }
+		//private MeshCollider PlacementCollider { get; set; }
 		private Rigidbody Rigidbody { get; set; }
 
 		//public Vector3 Offset { get; private set; }
@@ -35,21 +37,22 @@ namespace ProjectFound.Environment.Props
 		{
 			Outline = GetComponent<cakeslice.Outline>( );
 			ExistingCollider = GetComponent<Collider>( );
-			PlacementCollider = gameObject.AddComponent<MeshCollider>( );
+			//PlacementCollider = gameObject.AddComponent<MeshCollider>( );
 			Rigidbody = gameObject.AddComponent<Rigidbody>( );
 		}
 
 		void Start( )
 		{
-			ExistingCollider.enabled = false;
+			//ExistingCollider.enabled = false;
+			ExistingCollider.isTrigger = true;
 			Rigidbody.isKinematic = true;
 			Rigidbody.useGravity = false;
-			PlacementCollider.convex = true;
-			PlacementCollider.inflateMesh = false;
-			PlacementCollider.isTrigger = true;
+			//PlacementCollider.convex = true;
+			//PlacementCollider.inflateMesh = false;
+			//PlacementCollider.isTrigger = true;
 
-			StartingPosition = transform.position;
-			StartingRotation = transform.rotation;
+			//StartingPosition = transform.position;
+			//StartingRotation = transform.rotation;
 		}
 
 		void LateUpdate( )
@@ -61,13 +64,13 @@ namespace ProjectFound.Environment.Props
 				m_ratioTraversed += distanceRatio;
 
 				transform.position = Vector3.MoveTowards(
-					transform.position, StartingPosition, distanceToMove );
+					transform.position, m_startingPosition, distanceToMove );
 
 				transform.localRotation = Quaternion.RotateTowards(
-					transform.localRotation, StartingRotation, m_lerpRotateSpeed );
+					transform.localRotation, m_startingRotation, m_lerpRotateSpeed );
 
 				if ( Misc.Floater.Equal(
-					(transform.position - StartingPosition).magnitude, 0f ) )
+					(transform.position - m_startingPosition).magnitude, 0f ) )
 				{
 					IsLerpActive = false;
 					Cleanup( );
@@ -75,19 +78,26 @@ namespace ProjectFound.Environment.Props
 			}
 		}
 
-		public void Place( ref RaycastHit hit )
+		public void SetStartingTransform( ref Vector3 startingPosition, 
+			ref Quaternion startingRotation )
 		{
-			m_placementPosition = hit.point;
+			m_startingPosition = startingPosition;
+			m_startingRotation = startingRotation;
+		}
+
+		public void Place( ref Vector3 hitPoint, ref Vector3 hitNormal )
+		{
+			m_placementPosition = hitPoint;
 
 			transform.localPosition = new Vector3( m_placementPosition.x,
 				m_placementPosition.y + m_placementElevation, m_placementPosition.z );
 
-			CheckAngle( ref hit );
+			CheckAngle( ref hitNormal );
 		}
 
-		public void CheckAngle( ref RaycastHit hit )
+		public void CheckAngle( ref Vector3 hitNormal )
 		{
-			if ( !Misc.Floater.GreaterThan( hit.normal.y, m_minYNormal ) )
+			if ( !Misc.Floater.GreaterThan( hitNormal.y, m_minYNormal ) )
 			{
 				// Bad state: Angle too steep
 				DoRejectPlacement = true;
@@ -103,7 +113,7 @@ namespace ProjectFound.Environment.Props
 				//Outline.enabled = false;
 			}
 
-			var rotationAdjustment = Quaternion.FromToRotation( transform.up, hit.normal );
+			var rotationAdjustment = Quaternion.FromToRotation( transform.up, hitNormal );
 			var correctRotation = rotationAdjustment * transform.rotation;
 			transform.rotation = Quaternion.RotateTowards( transform.rotation, correctRotation, 180f );
 		}
@@ -116,7 +126,7 @@ namespace ProjectFound.Environment.Props
 
 		public void ValidatePlacement( )
 		{
-			m_dragDistance = (transform.position - StartingPosition).magnitude;
+			m_dragDistance = (transform.position - m_startingPosition).magnitude;
 
 			if ( DoRejectPlacement == true )
 			{
@@ -124,6 +134,8 @@ namespace ProjectFound.Environment.Props
 			}
 			else
 			{
+				IsLerpActive = false;
+
 				transform.localPosition -= new Vector3( 0f, m_placementElevation, 0f );
 
 				Cleanup( );
@@ -131,11 +143,9 @@ namespace ProjectFound.Environment.Props
 		}
 
 		void OnTriggerEnter( Collider other )
-		{
-			// Bad state: Clearance radius collision
+		{ 
 			DoRejectPlacement = true;
 
-			Outline.enabled = true;
 			Outline.color = 0;
 		}
 
@@ -143,18 +153,19 @@ namespace ProjectFound.Environment.Props
 		{
 			DoRejectPlacement = false;
 
-			Outline.enabled = false;
 			Outline.color = 1;
 		}
 
 		private void Cleanup( )
 		{
 			Misc.SmartDestroy.Destroy( this );
-			Misc.SmartDestroy.Destroy( PlacementCollider );
+			//Misc.SmartDestroy.Destroy( PlacementCollider );
 			Misc.SmartDestroy.Destroy( Rigidbody );
 
-			ExistingCollider.enabled = true;
-			Outline.enabled = false;
+			//ExistingCollider.enabled = true;
+			ExistingCollider.isTrigger = false;
+			//Outline.ToggleOutline( );
+			//Outline.enabled = false;
 			Outline.color = 1;
 		}
 	}

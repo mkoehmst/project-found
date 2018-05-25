@@ -157,13 +157,12 @@ namespace mattmc3.dotmore.Collections.Generic {
 
 		public void Duplicate( IOrderedDictionary<TKey,TValue> otherDictionary )
 		{
-			Clear( );
+			_keyedCollection.Clear( );
 
-			for ( int i = 0; i < otherDictionary.Count; ++i )
+			int count = otherDictionary.Count;
+			for ( int i = 0; i < count; ++i )
 			{
-				KeyValuePair<TKey,TValue> pair = otherDictionary.GetItem( i );
-
-				Add( pair );
+				_keyedCollection.Add( otherDictionary.GetItem( i ) );
 			}
 		}
 

@@ -83,8 +83,10 @@ namespace ProjectFound.CameraUI
 		}
 
 
-		protected void LateUpdate()
+		protected new void LateUpdate()
 		{
+			base.LateUpdate( );
+
 			AdjustTilt( );
 
 			/*
@@ -118,7 +120,6 @@ namespace ProjectFound.CameraUI
 		public void HandleMovement( float forwardMovementAmt, float sideMovementAmt )
 		{
 			IsAttached = false;
-
 			m_Target = null;
 
 			transform.Translate( Vector3.forward * forwardMovementAmt * .1f );
@@ -163,7 +164,7 @@ namespace ProjectFound.CameraUI
 			{
 				if ( !m_isAtMinTilt )
 				{
-					Debug.Log( "Arrived at the closest zoom level" );
+					//Debug.Log( "Arrived at the closest zoom level" );
 					m_TiltAngle = m_TiltMin;
 					m_isAtMinTilt = true;
 				}
@@ -173,7 +174,7 @@ namespace ProjectFound.CameraUI
 			{
 				if ( !m_isAtMaxTilt )
 				{
-					Debug.Log( "Arrived at the furthest zoom level" );
+					//Debug.Log( "Arrived at the furthest zoom level" );
 					m_TiltAngle = m_TiltMax;
 					m_isAtMaxTilt = true;
 				}
