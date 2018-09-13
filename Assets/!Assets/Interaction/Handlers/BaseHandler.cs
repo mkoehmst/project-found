@@ -1,4 +1,4 @@
-namespace ProjectFound.Environment.Handlers
+namespace ProjectFound.Interaction
 {
 
 	using System.Collections;
@@ -7,11 +7,12 @@ namespace ProjectFound.Environment.Handlers
 	using UnityEngine.AI;
 
 	using ProjectFound.Environment.Characters;
-	using ProjectFound.Environment.Props;
+	//using ProjectFound.Environment.Props;
 	using ProjectFound.Core;
 
 	public abstract class BaseHandler : ContextHandler
 	{
+		#if false
 		protected IEnumerator<float> MovePlayerTowards( Interactee i )
 		{
 			Approach approach = i.GetComponentInChildren<Approach>( );
@@ -42,7 +43,7 @@ namespace ProjectFound.Environment.Handlers
 		}
 
 		protected IEnumerator<float>
-			MoveCharacterTowards( MK_RPGCharacterControllerFREE characterController, 
+			MoveCharacterTowards( MK_RPGCharacterControllerFREE characterController,
 				Transform xform )
 		{
 			const float maxCheckRange = .6f;
@@ -89,12 +90,13 @@ namespace ProjectFound.Environment.Handlers
 			if ( prop.IsFocused == true )
 			{
 				GameObject gameObj = prop.gameObject;
-				prop.IsFocused = false;
+				//prop.IsFocused = false;
 
 				UIMaster.RemovePrompt( prop );
 				//ShaderMaster.ToggleFocusOutline( gameObj );
 			}
 		}
+		#endif
 	}
 
 

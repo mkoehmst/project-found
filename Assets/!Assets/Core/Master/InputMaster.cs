@@ -1,16 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+namespace ProjectFound.Core.Master
+{
 
-namespace ProjectFound.Master {
+
+	using System;
+	using System.Collections.Generic;
+	
+	using UnityEngine;
+	using Rewired; 
 
 	public class InputMaster
 	{
-		public delegate void KeyAction( KeyMap map );
+		#region DELEGATE TYPES
+		public delegate void ButtonAction( ButtonMap map );
 		public delegate void AxisAction( AxisMap map, float movement );
-		public delegate void AxiiAction( AxiiMap map, float[] movements );
+		public delegate void DualAxisAction( DualAxisMap map, float movementX, float movementY );
+		#endregion
 
+		#region ENUM TYPES
 		public enum KeyMode
 		{
 			Undefined,
@@ -18,246 +24,184 @@ namespace ProjectFound.Master {
 			OneShotRelease,
 			Holding,
 			HoldingRelease,
-			HoldingWindow
+			Window,
+			WindowRelease
 		}
-
+		
 		public enum InputDevice
 		{
 			Undefined,
 			MouseAndKeyboard,
 			Gamepad
 		}
+		#endregion
 
-		public class KeyMap
+		#region CLASS TYPES
+		public class ActionMap
 		{
-			public bool IsEnabled		{ get; set; }
-			public InputDevice Device	{ get; private set; }
-			public KeyMode Mode			{ get; private set; }
-			public KeyCode Key			{ get; private set; }
-			public KeyAction Action		{ get; private set; }
-			public float? HoldingWindow { get; private set; }
-			public int HoldingCount		{ get; set; }
+			public string ActionName { get; protected set; }
+			public int ActionID { get; protected set; }
 
-			public KeyMap( bool isEnabled, InputDevice device, KeyAction action, KeyCode key )
+			public ActionMap( string actionName )
 			{
-				IsEnabled = isEnabled;
-				Device = device;
-				Action = action;
-				Key = key;
-
-				ResetMode( );
-				ResetHoldingWindow( );
-			}
-
-			public void OpenHoldingWindow( float window )
-			{
-				if ( window != 0f && window < 0.2f )
-				{
-					window = 0.2f;
-				}
-
-				HoldingWindow = window;
-			}
-
-			public void WindowTick( float timeDelta )
-			{
-				HoldingWindow -= timeDelta;
-			}
-
-			public void ResetMode( )
-			{
-				Mode = KeyMode.Undefined;
-			}
-
-			public void ResetHoldingWindow( )
-			{
-				HoldingWindow = null;
-				HoldingCount = -1;
-			}
-
-			public void Enable( )
-			{
-				IsEnabled = true;
-			}
-
-			public void Disable( )
-			{
-				IsEnabled = false;
-
-				ResetMode( );
-				ResetHoldingWindow( );
-			}
-
-			public void Fire( KeyMode mode )
-			{
-				Mode = mode;
-
-				Action( this );
+				ActionName = actionName;
+				ActionID = ReInput.mapping.GetActionId( actionName );
 			}
 		}
 
-		public class AxisMap
+		public class ButtonMap : ActionMap
 		{
-			public bool IsEnabled { get; set; }
-			public InputDevice Device { get; private set; }
-			public string Axis { get; set; }
-			public AxisAction Action { get; set; }
+			public KeyMode Mode;
+			public ButtonAction DelegateOneShot { get; private set; }
+			public ButtonAction DelegateOneShotRelease { get; private set; }
+			public ButtonAction DelegateWindow { get; private set; }
+			public ButtonAction DelegateWindowRelease { get; private set; }
+			public ButtonAction DelegateHolding { get; private set; }
+			public ButtonAction DelegateHoldingRelease { get; private set; }
 
-			public AxisMap( bool isEnabled, InputDevice device, AxisAction action, string axis )
+			public Func<bool> OneShotCondition { get; private set; }
+			public Func<bool> OneShotReleaseCondition { get; private set; }
+			public Func<bool> WindowCondition { get; private set; }
+			public Func<bool> WindowReleaseCondition { get; private set; }
+			public Func<bool> HoldingCondition { get; private set; }
+			public Func<bool> HoldingReleaseCondition { get; private set; }
+
+			public ButtonMap( string actionName, 
+				ButtonAction delegateOneShot, ButtonAction delegateOneShotRelease,
+				ButtonAction delegateWindow,  ButtonAction delegateWindowRelease, 
+				ButtonAction delegateHolding, ButtonAction delegateHoldingRelease,
+				Func<bool> oneShotCondition, Func<bool> oneShotReleaseCondition,
+				Func<bool> windowCondition, Func<bool> windowReleaseCondition,
+				Func<bool> holdingCondition, Func<bool> holdingReleaseCondition )
+				: base( actionName )
 			{
-				IsEnabled = isEnabled;
-				Device = device;
-				Action = action;
-				Axis = axis;
+				DelegateOneShot = delegateOneShot; 
+				DelegateOneShotRelease = delegateOneShotRelease;
+				DelegateWindow = delegateWindow;
+				DelegateWindowRelease = delegateWindowRelease;
+				DelegateHolding = delegateHolding;
+				DelegateHoldingRelease = delegateHoldingRelease;
+
+				OneShotCondition = oneShotCondition;
+				OneShotReleaseCondition = oneShotReleaseCondition;
+				WindowCondition = windowCondition;
+				WindowReleaseCondition = windowReleaseCondition;
+				HoldingCondition = holdingCondition;
+				HoldingReleaseCondition = holdingReleaseCondition;
 			}
 
-			public void Enable( )
+			public bool TestOneShotCondition( )
 			{
-				IsEnabled = true;
+				return OneShotCondition == null || OneShotCondition( );
+			}
+			
+			public bool TestOneShotReleaseCondition( )
+			{
+				return OneShotReleaseCondition == null || OneShotReleaseCondition( );
 			}
 
-			public void Disable( )
+			public bool TestWindowCondition( )
 			{
-				IsEnabled = false;
+				return WindowCondition == null || WindowCondition( );
 			}
 
-			public void Fire( float movement )
+			public bool TestWindowReleaseCondition( )
 			{
-				Action( this, movement );
+				return WindowReleaseCondition == null || WindowReleaseCondition( );
+			}
+
+			public bool TestHoldingCondition( )
+			{
+				return HoldingCondition == null || HoldingCondition( );
+			}
+
+			public bool TestHoldingReleaseCondition( )
+			{
+				return HoldingReleaseCondition == null || HoldingReleaseCondition( );
 			}
 		}
 
-		public class AxiiMap
+		public class AxisMap : ActionMap
 		{
-			public class AxiiEqualityComparer : IEqualityComparer<string[]>
-			{
-				public bool Equals( string[] x, string[] y )
-				{
-					if ( x.Length != y.Length )
-						return false;
+			public bool IsVerbose { get; private set; }
+			public AxisAction DelegateAxis { get; private set; }
+			public Func<bool> AxisCondition { get; private set; }
 
-					for ( int i = 0; i < x.Length; i++ )
-					{
-						if ( x[i] != y[i] )
-							return false;
-					}
-
-					return true;
-				}
-
-				public int GetHashCode( string[] str )
-				{
-					int hashCode = 1;
-
-					for ( int i = 0; i < str.Length; ++i )
-					{
-					
-						unchecked
-						{
-							hashCode *= str[i].GetHashCode( );
-						}
-					}
-
-					return hashCode;
-				}
-			}
-
-			public bool IsEnabled { get; set; }
-			public InputDevice Device { get; private set; }
-			public string[] Axii { get; set; }
-			public AxiiAction Action { get; set; }
-
-			public AxiiMap( bool isEnabled, InputDevice device, AxiiAction action, string[] axii  )
-			{
-				IsEnabled = isEnabled;
-				Device = device;
-				Action = action;
-				Axii = axii;
-			}
-
-			public void Enable( )
-			{
-				IsEnabled = true;
-			}
-
-			public void Disable( )
-			{
-				IsEnabled = false;
-			}
-
-			public void Fire( float[] movements )
-			{
-				Action( this, movements );
+			public AxisMap( string actionName,
+				AxisAction delegateAxis,
+				bool isVerbose,
+				Func<bool> axisCondition )
+				: base( actionName )
+			{ 
+				DelegateAxis = delegateAxis;
+				IsVerbose = isVerbose;
+				AxisCondition = axisCondition;
 			}
 		}
 
-		public class DeviceMapping
+		public class DualAxisMap
 		{
-			public InputDevice Device { get; private set; }
+			public bool IsVerbose { get; private set; }
+			public ActionMap ActionMapX { get; private set; }
+			public ActionMap ActionMapY { get; private set; }
 
-			public Dictionary<KeyAction,KeyCode> ActionToKey { get; private set; }
-			public Dictionary<AxisAction,string> ActionToAxis { get; private set; }
-			public Dictionary<AxiiAction,string[]> ActionToAxii { get; private set; }
+			public DualAxisAction DelegateDualAxis { get; private set; }
+			public Func<bool> DualAxisCondition { get; private set; }
 
-			public DeviceMapping( InputDevice device )
+			public DualAxisMap( string actionX, string actionY, 
+				DualAxisAction delegateDualAxis, bool isVerbose, Func<bool> dualAxisCondition )
 			{
-				Device = device;
-
-				ActionToKey = new Dictionary<KeyAction,KeyCode>( );
-				ActionToAxis = new Dictionary<AxisAction,string>( );
-				ActionToAxii = new Dictionary<AxiiAction,string[]>( );
-			}
+				ActionMapX = new ActionMap( actionX );
+				ActionMapY = new ActionMap( actionY );
+				DelegateDualAxis = delegateDualAxis;
+				IsVerbose = isVerbose;
+				DualAxisCondition = dualAxisCondition;
 		}
 
-		private Rect m_screenRect;
+		}
+		#endregion
+
+		#region FIELDS
+		private Rect m_screenRect = new Rect( );
 		private bool m_isCursorInWindow;
 
-		private InputDevice m_currentDeviceUsed;
-		public InputDevice CurrentDeviceUsed
-		{
-			get { return m_currentDeviceUsed; }
-			private set
-			{
-				if ( m_currentDeviceUsed != value )
-				{
-					m_currentDeviceUsed = value;
-					DelegateInputTracker( value );
-				}
-			}
-		}
+		[System.NonSerialized] private Rewired.Player _player = null;
+		private List<ButtonMap> _buttonMaps;
+		private List<AxisMap> _axisMaps;
+		private List<DualAxisMap> _dualAxisMaps;
+		#endregion
 
+		#region AUTO-PROPERTIES
 		public System.Action<InputDevice> DelegateInputTracker { get; set; }
 		public System.Action DelegateCursorLost { get; set; }
 		public System.Action DelegateCursorGained { get; set; }
 
-		public Dictionary<KeyCode,KeyMap> KeyMaps { get; private set; }
-		public Dictionary<string,AxisMap> AxisMaps { get; private set; }
-		public Dictionary<string[],AxiiMap> AxiiMaps { get; private set; }
-
-		public Dictionary<InputDevice,DeviceMapping> DeviceMappings { get; private set; }
 		public InputDevice CurrentDeviceMapped { get; set; }
+		public InputDevice CurrentDeviceUsed { get; set; }
 
 		public Vector3 MousePosition { get; private set; }
 		public Vector3 PreviousMousePosition { get; private set; }
 		public Vector3 MouseMovementVector { get; private set; }
+		#endregion
 
-		public InputMaster( )
+		#region INITIALIZE
+		public void Initialize( )
 		{
-			m_screenRect = new Rect( );
-			UpdateScreenRect();
+			UpdateScreenRect( );
+
 			MousePosition = Input.mousePosition;
 			// Set it to the opposite of what it actually is so it always triggers on first loop
-			m_isCursorInWindow = !m_screenRect.Contains(MousePosition);
-
-			DeviceMappings = new Dictionary<InputDevice,DeviceMapping>( );
-
-			KeyMaps = new Dictionary<KeyCode,KeyMap>( );
-			AxisMaps = new Dictionary<string,AxisMap>( );
-			AxiiMaps = new Dictionary<string[],AxiiMap>( new AxiiMap.AxiiEqualityComparer( ) );
+			m_isCursorInWindow = !m_screenRect.Contains( MousePosition );
 
 			CurrentDeviceMapped = CurrentDeviceUsed = InputDevice.Undefined;
-		}
 
+			_buttonMaps = new List<ButtonMap>( );
+			_axisMaps = new List<AxisMap>( );
+			_dualAxisMaps = new List<DualAxisMap>( );
+		}
+		#endregion
+
+		#region TRACKING LOOP
 		public void TrackingLoop( )
 		{
 			UpdateScreenRect( );
@@ -265,19 +209,11 @@ namespace ProjectFound.Master {
 			PreviousMousePosition = MousePosition;
 			MousePosition = Input.mousePosition;
 			MouseMovementVector = MousePosition - PreviousMousePosition;
-
-			if (!Misc.Floater.Equal(MouseMovementVector.magnitude, 0f))
-			{
-				CurrentDeviceUsed = InputDevice.MouseAndKeyboard;
-			}
-
-			// Temporarily assign to MouseAndKeyboard and then back for safety
-			InputDevice loopDevice = CurrentDeviceUsed;
-			CurrentDeviceUsed = InputDevice.MouseAndKeyboard;
 			CheckMouseCursorLocation( );
-			CurrentDeviceUsed = loopDevice;
 		}
+		#endregion
 
+		#region MAPPING LOOP
 		public void MappingLoop( )
 		{
 			/* For Troubleshooting without joystick present
@@ -286,273 +222,216 @@ namespace ProjectFound.Master {
 				KeyIsDown( KeyCode.Joystick1Button11 );
 			}
 			*/
-
-			foreach ( KeyCode keyToCheck in KeyMaps.Keys )
+			
+			if ( _player == null )
 			{
-				if ( CheckKeyDown( keyToCheck ) )
-				{
-					KeyIsDown( keyToCheck );
-
-					if ( CheckKeyUp( keyToCheck ) )
-					{
-						KeyIsUp( keyToCheck );
-					}
-				}
-				else
-				{
-					if ( CheckKeyUp( keyToCheck ) )
-					{
-						KeyIsUp( keyToCheck );
-					}
-					else if ( CheckKeyHolding( keyToCheck ) )
-					{
-						KeyIsHolding( keyToCheck );
-					}
-				}
-				// Use an else-if because holding check should start the frame after
+				_player = ReInput.players.GetPlayer( 0 );
+				_player.controllers.AddLastActiveControllerChangedDelegate( 
+					OnActiveControllerChange );
 			}
 
-			foreach ( string axisToCheck in AxisMaps.Keys )
+			int buttonMapCount = _buttonMaps.Count;
+			for ( int i = 0; i < buttonMapCount; ++i )
 			{
-				float axisMovement = CheckAxis( axisToCheck );
+				ButtonMap map = _buttonMaps[i];
 
-				if ( !Misc.Floater.Equal( axisMovement, 0f ) )
+				int actionID = map.ActionID;
+
+				if ( map.Mode == KeyMode.Holding || map.Mode == KeyMode.Window )
 				{
-					AxisHasMoved( axisToCheck, axisMovement );
+					if ( _player.GetButton( actionID ) == false 
+						&& _player.GetButtonUp( actionID ) == false )
+					{
+						// Special case scenario when loading saves that had
+						// an active Holding or Window Chain running.
+						if ( map.Mode == KeyMode.Holding )
+						{
+							if ( map.DelegateOneShotRelease != null 
+								&& map.TestOneShotReleaseCondition( ) )
+							{
+								map.Mode = KeyMode.OneShotRelease;
+								map.DelegateOneShotRelease?.Invoke( map );
+							}
+
+							if ( map.DelegateHoldingRelease != null
+								&& map.TestHoldingReleaseCondition( ) )
+							{ 
+								map.Mode = KeyMode.HoldingRelease;
+								map.DelegateHoldingRelease?.Invoke( map );
+							}
+						}
+						else
+						{
+							if ( map.DelegateOneShotRelease != null
+								&& map.TestOneShotReleaseCondition( ) )
+							{ 
+								map.Mode = KeyMode.OneShotRelease;
+								map.DelegateOneShotRelease?.Invoke( map );
+							}
+
+							if ( map.DelegateWindowRelease != null
+								&& map.TestWindowReleaseCondition( ) )
+							{ 
+								map.Mode = KeyMode.WindowRelease;
+								map.DelegateWindowRelease?.Invoke( map );
+							}
+						}
+
+						continue;
+					}
+				}
+
+				// Down, Short-Press Down, and Long-Press down could all potentially happen
+				// on the same frame
+				if ( _player.GetButtonDown( actionID ) && map.TestOneShotCondition( ) )
+				{
+					//Debug.Log("GetButtonDown");
+					map.Mode = KeyMode.OneShot;
+					map.DelegateOneShot?.Invoke( map );
+				}
+
+				if ( _player.GetButtonShortPressDown( actionID ) && map.TestWindowCondition( ) )
+				{
+					//Debug.Log( "GetShortButtonDown" );
+					map.Mode = KeyMode.Window;
+					map.DelegateWindow?.Invoke( map );
+				}
+
+				if ( _player.GetButtonLongPressDown( actionID ) && map.TestHoldingCondition( ) )
+				{
+					//Debug.Log( "GetLongButtonDown" );
+					map.Mode = KeyMode.Holding;
+					map.DelegateHolding?.Invoke( map );
+				}
+				// However, we only want to execute the most specific Button Up state per frame
+				if ( map.DelegateHolding != null && _player.GetButtonLongPressUp( actionID )
+					&& map.TestHoldingReleaseCondition( ) )
+				{
+					//Debug.Log( "GetLongButtonUp" );
+					map.Mode = KeyMode.HoldingRelease;
+					map.DelegateHoldingRelease?.Invoke( map );
+				}
+				else 
+				{
+					if ( map.DelegateWindow != null && _player.GetButtonShortPressUp( actionID )
+					&& map.TestWindowReleaseCondition( ) )
+					{
+						//Debug.Log( "GetShortButtonUp" );
+						map.Mode = KeyMode.WindowRelease;
+						map.DelegateWindowRelease?.Invoke( map );
+					}
+					
+					if ( _player.GetButtonUp( actionID ) && map.TestOneShotReleaseCondition( ) )
+					{
+						//Debug.Log( "GetButtonUp" );
+						map.Mode = KeyMode.OneShotRelease;
+						map.DelegateOneShotRelease?.Invoke( map );
+					}
+				} 
+			}
+
+			int axisMapCount = _axisMaps.Count;
+			for ( int i = 0; i < axisMapCount; ++i )
+			{
+				AxisMap map = _axisMaps[i];
+
+				if ( map.AxisCondition != null && map.AxisCondition( ) == false )
+					continue;
+
+				float movement = _player.GetAxis( map.ActionID );
+				bool isVerbose = map.IsVerbose;
+				if ( isVerbose || 
+					(!Misc.Floater.Equal( movement, 0f )) )
+				{ 
+					map.DelegateAxis( map, movement );
 				}
 			}
 
-			foreach ( string[] axiiToCheck in AxiiMaps.Keys )
+			int dualAxisMapCount = _dualAxisMaps.Count;
+			for ( int i = 0; i < dualAxisMapCount; ++i )
 			{
-				float[] axiiMovements = CheckAxii( axiiToCheck );
+				DualAxisMap map = _dualAxisMaps[i];
 
-				foreach ( float axisMovement in axiiMovements )
+				if ( map.DualAxisCondition != null && map.DualAxisCondition( ) == false )
+					continue;
+
+				float movementX = _player.GetAxis( map.ActionMapX.ActionID );
+				float movementY = _player.GetAxis( map.ActionMapY.ActionID );
+				bool isVerbose = map.IsVerbose;
+				if ( isVerbose || 
+					(!Misc.Floater.Equal( movementX, 0f ) || 
+					!Misc.Floater.Equal( movementY, 0f )) )
 				{
-					if ( !Misc.Floater.Equal( axisMovement, 0f ) )
-					{
-						AxiiHaveMoved( axiiToCheck, axiiMovements );
-						break;
-					}
+					map.DelegateDualAxis( map, movementX, movementY );
 				}
 			}
 		}
+		#endregion
 
+		#region MAPPING
 		public void AddNewDevice( InputDevice device )
 		{
 			CurrentDeviceMapped = device;
-
-			DeviceMappings[device] = new DeviceMapping( device );
 		}
 
-		/*public void ResetKeyMap( KeyAction action )
+		public bool IsUsingGamepad( )
 		{
-			KeyCode key = DeviceMappings[CurrentDeviceUsed].ActionToKey[action];
-			KeyMap map = KeyMaps[key];
-
-			map.Initialize( );
-		}*/
-
-		public KeyMap GetKeyMap( KeyAction action )
-		{
-			//if ( CurrentDeviceUsed == InputDevice.Undefined )
-			//{
-			//	return null;
-			//}
-
-			var deviceMapping = DeviceMappings[CurrentDeviceUsed];
-
-			KeyCode key = deviceMapping.ActionToKey[action];
-			KeyMap map = KeyMaps[key];
-
-			return map;
+			return CurrentDeviceUsed == InputDevice.Gamepad;
 		}
 
-		public void MapKey( bool isEnabled, KeyAction action, KeyCode key )
+		public bool IsUsingMouseAndKeyboard( )
 		{
-			DeviceMapping mapping = DeviceMappings[CurrentDeviceMapped];
-			mapping.ActionToKey[action] = key;
-			KeyMaps[key] = new KeyMap( isEnabled, CurrentDeviceMapped, action, key );
+			return CurrentDeviceUsed == InputDevice.MouseAndKeyboard;
 		}
 
-		public void MapAxis( bool isEnabled, AxisAction action, string axis )
+		public void MapButton( string actionName, 
+			ButtonAction delegateOneShot = null, ButtonAction delegateOneShotRelease = null,
+			ButtonAction delegateWindow = null, ButtonAction delegateWindowRelease = null,
+			ButtonAction delegateHolding = null, ButtonAction delegateHoldingRelease = null,
+			Func<bool> oneShotCondition = null, Func<bool> oneShotReleaseCondition = null,
+			Func<bool> windowCondition = null, Func<bool> windowReleaseCondition = null,
+			Func<bool> holdingCondition = null, Func<bool> holdingReleaseCondition = null )
 		{
-			DeviceMapping mapping = DeviceMappings[CurrentDeviceMapped];
-			mapping.ActionToAxis[action] = axis;
-			AxisMaps[axis] = new AxisMap( isEnabled, CurrentDeviceMapped, action, axis );
+			_buttonMaps.Add( new ButtonMap( actionName, 
+				delegateOneShot, delegateOneShotRelease, 
+				delegateWindow, delegateWindowRelease, 
+				delegateHolding, delegateHoldingRelease,
+				oneShotCondition, oneShotReleaseCondition,
+				windowCondition, windowReleaseCondition,
+				holdingCondition, holdingReleaseCondition ) );
 		}
 
-		public void MapAxii( bool isEnabled, AxiiAction action, params string[] axii )
+		public void MapAxis( string actionName, AxisAction delegateAxis,
+			bool isVerbose = false,
+			Func<bool> axisCondition = null )
 		{
-			DeviceMapping mapping = DeviceMappings[CurrentDeviceMapped];
-			mapping.ActionToAxii[action] = axii;
-			// TODO: String concatenation and parsing instead of string arrays?
-			AxiiMaps[axii] = new AxiiMap( isEnabled, CurrentDeviceMapped, action, axii );
+			_axisMaps.Add( 
+				new AxisMap( actionName, delegateAxis, isVerbose, axisCondition) );
 		}
 
-		public void EnableMap( KeyCode key )
-		{ KeyMaps[key].IsEnabled = true; }
-
-		public void EnableMap( string axis )
-		{ AxisMaps[axis].IsEnabled = true; }
-
-		public void EnableMap( string[] axii )
-		{ AxiiMaps[axii].IsEnabled = true; }
-
-		public void DisableMap( KeyCode key )
-		{ KeyMaps[key].IsEnabled = false; }
-
-		public void DisableMap( string axis )
-		{ AxisMaps[axis].IsEnabled = false; }
-
-		public void DisableMap( string[] axii )
-		{ AxiiMaps[axii].IsEnabled = false; }
-
-		public KeyCode GetKeyFromAction( KeyAction action )
-		{ return DeviceMappings[CurrentDeviceUsed].ActionToKey[action]; }
-
-		public string GetAxisFromAction( AxisAction action )
-		{ return DeviceMappings[CurrentDeviceUsed].ActionToAxis[action]; }
-
-		public string[] GetAxiiFromAction( AxiiAction action )
-		{ return DeviceMappings[CurrentDeviceUsed].ActionToAxii[action]; }
-
-		public bool CheckKeyDown( KeyCode keyToCheck )
-		{ return Input.GetKeyDown( keyToCheck ); }
-
-		public bool CheckKeyUp( KeyCode keyToCheck )
-		{ return Input.GetKeyUp( keyToCheck ); }
-
-		public bool CheckKeyHolding( KeyCode keyToCheck )
-		{ return Input.GetKey( keyToCheck ); }
-
-		public float CheckAxis( string axisToCheck )
-		{ return Input.GetAxis( axisToCheck ); }
-
-		// TODO: Eliminate garbage generation
-		public float[] CheckAxii( string[] axiiToCheck )
+		public void MapDualAxis( string actionX, string actionY,  DualAxisAction delegateDualAxis, 
+			bool isVerbose = false, 
+			Func<bool> dualAxisCondition = null )
 		{
-			float[] movements = new float[axiiToCheck.Length];
+			_dualAxisMaps.Add( 
+				new DualAxisMap( actionX, actionY, delegateDualAxis, isVerbose, dualAxisCondition ) );
+		}
+		#endregion
 
-			for ( int i = 0; i < movements.Length; ++i )
+		public void OnActiveControllerChange( Player player, Controller controller )
+		{
+			if ( controller.ImplementsTemplate<IGamepadTemplate>( ) )
 			{
-				movements[i] = CheckAxis( axiiToCheck[i] );
-			}
-
-			return movements;
-		}
-
-		private void KeyIsDown( KeyCode key )
-		{
-			KeyMap map = KeyMaps[key];
-
-			CurrentDeviceUsed = map.Device;
-
-			if ( !map.IsEnabled )
-				return ;
-
-			//Debug.Log("Key is OneShot");
-
-			map.Fire( KeyMode.OneShot );
-		}
-
-		private void KeyIsUp( KeyCode key )
-		{
-			KeyMap map = KeyMaps[key];
-
-			CurrentDeviceUsed = map.Device;
-
-			if ( !map.IsEnabled )
-			{ 
-				return ;
-			}
-
-			// Can't have a key up without a key down first, so check previous Mode
-			if ( !(map.Mode == KeyMode.OneShot 
-				|| map.Mode == KeyMode.Holding 
-				|| map.Mode == KeyMode.HoldingWindow) )
-			{ 
-				return ;
-			}
-
-			if ( map.HoldingWindow.HasValue )
-			{
-				if ( map.HoldingWindow.Value <= 0f )
-				{
-					//Debug.Log("Key is HoldingRelease");
-					map.Fire( KeyMode.HoldingRelease );
-				}
-				else
-				{
-					//Debug.Log("Key is OneShotRelease (1)");
-					map.Fire( KeyMode.OneShotRelease );
-				}
-
-				map.ResetHoldingWindow( );
+				CurrentDeviceUsed = InputDevice.Gamepad;
 			}
 			else
 			{
-				//Debug.Log("Key is OneShotRelease (2)");
-				map.Fire( KeyMode.OneShotRelease );
+				CurrentDeviceUsed = InputDevice.MouseAndKeyboard;
 			}
-		}
-
-		private void KeyIsHolding( KeyCode key )
-		{
-			KeyMap map = KeyMaps[key];
-
-			CurrentDeviceUsed = map.Device;
-
-			if ( !map.IsEnabled )
-				return ;
-
-			if ( map.HoldingWindow.HasValue )
-			{
-				map.WindowTick( Time.deltaTime );
-
-				if ( map.HoldingWindow.Value <= 0f )
-				{
-					if ( ++map.HoldingCount == 1 )
-					{
-						//Debug.Log( "Key is Holding" );
-						map.Fire( KeyMode.Holding );
-					}
-				}
-				else if ( map.HoldingCount == -1 )
-				{
-					map.HoldingCount = 0;
-					//Debug.Log( "Key is HoldingWindow" );
-					map.Fire( KeyMode.HoldingWindow );
-				}
-			}
-			// Else fire OneShot?
-		}
-
-		public void AxisHasMoved( string axis, float movement )
-		{
-			AxisMap map = AxisMaps[axis];
-
-			CurrentDeviceUsed = map.Device;
-
-			if ( !map.IsEnabled )
-				return ;
-
-			map.Fire( movement );
-		}
-
-		private void AxiiHaveMoved( string[] axii, float[] movements )
-		{
-			AxiiMap map = AxiiMaps[axii];
-
-			CurrentDeviceUsed = map.Device;
-
-			if ( !map.IsEnabled )
-				return ;
-
-			map.Fire( movements );
 		}
 
 		private bool CheckMouseCursorLocation( )
-		{ 
+		{
 			if (!m_screenRect.Contains(MousePosition))
 			{
 				if (m_isCursorInWindow == true)

@@ -1,75 +1,79 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿namespace ProjectFound.Environment.Characters
+{ 
 
-namespace ProjectFound.Environment.Characters {
 
-public abstract class Combatant : Character
-{
-	[SerializeField] int m_startingActionPoints;
+	using System.Collections.Generic;
 
-	protected System.Random m_rng = new System.Random( );
+	using UnityEngine;
+	using UnityEngine.Assertions;
+	using Autelia.Serialization;
 
-	public bool IsInCombat { get; set; } = false;
-	//public bool IsActiveCombatant { get; set; } = false;
+	using ProjectFound.Interaction;
 
-	protected Combatant m_combatTarget = null;
-	public Combatant CombatTarget
+	public abstract class Combatant : Character 
 	{
-		get { return m_combatTarget; }
-	}
+		public delegate void BeginCombatEncounterDelegate( Combatant combatant );
+		public delegate void EndCombatTurnDelegate( );
 
-	protected int m_initiative = 1;
-	public int initiative
-	{
-		get { return m_initiative; }
-		set { m_initiative = value; }
-	}
+		static public BeginCombatEncounterDelegate DelegateBeginCombatEncounter { get; set; }
+		static public EndCombatTurnDelegate DelegateEndCombatTurn { get; set; }
 
-	public int ActionPoints { get; private set; }
-	public float MovementScore { get; private set; } = 2.0f;
+		public float DistanceSinceLastAP { get; set; }
 
-	public System.Func<Combatant,IEnumerator> DelegateCombatHandler { get; set; }
+		[Header("Combatant Details")]
 
-	new protected void Start( )
-	{
-		base.Start( );
+		[SerializeField] HandlerChain _combatTurnChain;
+		public HandlerChain CombatTurnChain { get { return _combatTurnChain; } }
 
-		ActionPoints = m_startingActionPoints;
-	}
+		[SerializeField] GameObject _projectileChoice;
+		public GameObject ProjectileChoice { get { return _projectileChoice; } }
+		
+		public Combatant CombatTarget { get; set; }
+		public HandlerChain CombatActionChain { get; set; }
+		public bool IsEngaged { get; protected set; }
+		public bool IsDecisionReady { get; set; }
 
-	// Player and Enemy have very different implementations so mark abstract
-	public abstract IEnumerator ExecuteRoundActions( );
+		[SerializeField] List<HandlerChain> _actionBar = new List<HandlerChain>( );
+		public List<HandlerChain> ActionBar { get { return _actionBar; } }
 
-	//public void WieldSkill( Skill skill )
-	//{
-	//	StartCoroutine( skill.Handler.Handle( skill.Specification, this ) );
-	//}
+		public int ActionPoints { get; set; } = 10;
 
-	// ********************************************************************************************
-	// ** IDamageable
-	// ********************************************************************************************
-	public void TakeDamage( Combatant attacker, float damage )
-	{
-		Debug.Log( attacker + " does " + damage + " damage to " + this );
-
-		float computedHealthPoints = m_curHealthPoints - damage;
-
-		if ( Misc.Floater.LessThanOrEqual( computedHealthPoints, 0f ) )
+		new protected void Awake( )
 		{
-			if ( gameObject.tag != "Player" )
-				Destroy( gameObject );
+			base.Awake( );
 
-			CombatEncounter.Instance.RemoveCombatant( this );
+			if ( Serializer.IsLoading ) return;
 
-			// TODO figure out what to do on Player death
+			Assert.IsNotNull( _combatTurnChain );
+			Assert.IsTrue( _actionBar.Count > 0 );
 		}
-		else
+
+		new protected void Start( ) 
 		{
-			m_curHealthPoints = computedHealthPoints;
+			base.Start( );
+
+			if ( Serializer.IsLoading ) return;
 		}
+
+		public void SetCombatActionChain( int actionBarHotKey )
+		{
+			int index = (actionBarHotKey == 0 ? 9 : actionBarHotKey - 1);
+
+			CombatActionChain = ActionBar[index];
+		}
+
+		public virtual void OnBeginCombatEncounter( )
+		{ }
+
+		public virtual void OnBeginCombatRound( )
+		{ }
+
+		public virtual void OnBeginCombatTurn( )
+		{ }
+
+		public virtual IEnumerator<float> ExecuteCombatTurn( )
+		{ yield break; }
 	}
-	// ********************************************************************************************
-}
+
 
 }

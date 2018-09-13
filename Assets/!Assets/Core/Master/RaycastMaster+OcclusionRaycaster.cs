@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.EventSystems;
-
-using mattmc3.dotmore.Collections.Generic;
-
-namespace ProjectFound.Master
+namespace ProjectFound.Core.Master
 {
 
 
+	using UnityEngine;
+	using UnityEngine.Assertions;
+
+	using ProjectFound.Environment;
+
 	public partial class RaycastMaster
 	{
-		public OcclusionRaycaster<_T> AddOcclusionRaycaster<_T>(
+		/*public OcclusionRaycaster<_T> AddOcclusionRaycaster<_T>(
 			RaycastMode mode, float maxDistance, Transform target, bool isEnabled = true )
 			where _T : MonoBehaviour
 		{
@@ -24,63 +21,92 @@ namespace ProjectFound.Master
 			raycaster.Target = target;
 
 			return raycaster;
-		}
+		}*/
 
-		public class OcclusionRaycaster<_T> : PointRaycaster<_T>
+		//public class OcclusionRaycaster<_T> : Raycaster<_T>
+		public class OcclusionRaycaster<_T> : Raycaster<_T>
 			where _T : MonoBehaviour
 		{
+			public delegate void RayAssignmentsDelegate( ref Ray ray, int i );
 			public delegate void OcclusionToggle( _T component );
 
-			private bool m_isOccluded;
+			private const int _rayCount = 9;
+			private const int _occlusionCountThreshold = 5;
+
+			private Ray[] _rays = new Ray[_rayCount];
+			private bool _isOccluded;
 
 			public OcclusionToggle DelegateOcclusionEnable { get; set; }
 			public OcclusionToggle DelegateOcclusionDisable { get; set; }
-			public Transform Target { get; set; }
+			public RayAssignmentsDelegate DelegateRayAssignments { get; set; }
 
 			public OcclusionRaycaster( RaycastMode mode, float maxDistance, bool isEnabled = true )
 				: base( mode, maxDistance, isEnabled )
 			{
-				m_isOccluded = false;
+				_isOccluded = false;
 			}
 
 			public override void Cast( )
 			{
-				DelegateCasterAssignment( ref m_caster );
+				RaycastHit hit = new RaycastHit( );
+				
+				int noOcclusionCount = 0;
+				int yesOcclusionCount = 0;
 
-				RaycastHit hit;
-				bool success = Physics.Raycast( m_caster, out hit, MaxDistance, LayerMask );
-				if ( success == true )
+				int count = _rays.Length;
+				for ( int i = 0; i < count; ++i )
 				{
-					if ( m_isOccluded == false )
+					DelegateRayAssignments( ref _rays[i], i );
+
+					bool success = Physics.Raycast( _rays[i], out hit, MaxDistance, LayerMask );
+
+					if ( success == true )
 					{
-						m_isOccluded = true;
+						if ( Blockers.Contains( (LayerID)hit.collider.gameObject.layer ) )
+						{
+							success = false;
+						}
+						else
+						{
+							if ( ++yesOcclusionCount == _occlusionCountThreshold )
+							{
+								if ( _isOccluded == false )
+								{ 
+									_isOccluded = true;
 
-						//for ( int i = 0; i < hits.Length; ++i )
-						//{
-						GameObject obj = hit.collider.gameObject;
-						_T component = obj.GetComponentInParent<_T>( );
+									GameObject hitObject = hit.collider.gameObject;
+									
+									_T hitComponent = hitObject.GetComponentInParent<_T>( );
+									Assert.IsNotNull( hitComponent );
+									
+									if ( hitComponent == null )
+										return;
 
-						Assert.IsNotNull( component,
-							"Raycast found an object (" + obj + ") but it did not have a " + typeof( _T ) + " Component" );
+									PriorityHitCheck.Add( hitComponent, hit );
 
-						if ( component == null )
-							return;
+									DelegateOcclusionEnable( hitComponent );
+								}
 
-						PriorityHitCheck.Add( component, hit );
-						//}
-
-						DelegateOcclusionEnable( component );
+								return;
+							}
+						}
 					}
-				}
-				else
-				{
-					if ( m_isOccluded == true )
-					{
-						m_isOccluded = false;
 
-						DelegateOcclusionDisable( PriorityHitCheck.GetItem( 0 ).Key );
+					if ( success == false )
+					{ 
+						if ( ++noOcclusionCount == _occlusionCountThreshold )
+						{
+							if ( _isOccluded == true )
+							{ 
+								_isOccluded = false;
 
-						PriorityHitCheck.Clear( );
+								DelegateOcclusionDisable( PriorityHitCheck.GetItem( 0 ).Key );
+
+								PriorityHitCheck.Clear( );
+							}
+
+							return;
+						}
 					}
 				}
 			}

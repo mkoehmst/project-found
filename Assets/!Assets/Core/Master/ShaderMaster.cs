@@ -1,5 +1,6 @@
-namespace ProjectFound.Master
+namespace ProjectFound.Core.Master
 {
+
 
 	using UnityEngine;
 
@@ -16,5 +17,6 @@ namespace ProjectFound.Master
 			}
 		}
 	}
+
 
 }

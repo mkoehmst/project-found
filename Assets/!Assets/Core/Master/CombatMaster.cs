@@ -1,49 +1,118 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-using ProjectFound.Environment.Characters;
-
-namespace ProjectFound.Master
-{
+﻿namespace ProjectFound.Core.Master
+{ 
 
 
-	public class CombatMaster
+	using System.Collections.Generic;
+	using UnityEngine;
+	using UnityEngine.Assertions;
+	using Autelia.Serialization;
+
+	using ProjectFound.Environment.Characters;
+	using ProjectFound.Interaction;
+
+	public class CombatMaster  
 	{
-		public CombatEncounter CombatEncounter { get; private set; }
+		private MEC.CoroutineHandle _encounterHandle;
+		private MEC.CoroutineHandle _roundHandle;
+		private MEC.CoroutineHandle _turnHandle;
+		private Protagonist _protagonist;
+		
+		public List<Combatant> Combatants { get; private set; }
+		public Combatant ActiveCombatant { get; private set; }
 
 		public CombatMaster( )
 		{
-			CombatEncounter = GameObject.FindObjectOfType<CombatEncounter>( );
+			if ( Serializer.IsLoading ) return;
+
+			_protagonist = GameObject.FindObjectOfType<Protagonist>( );
+			Assert.IsNotNull( _protagonist );
+
+			Combatants = new List<Combatant>( ) 
+				{ _protagonist as Combatant };
+
+			Combatant.DelegateBeginCombatEncounter = BeginCombatEncounter;
+			Combatant.DelegateEndCombatTurn = EndCombatTurn;
 		}
 
-		public void Loop( )
+		public void BeginCombatEncounter( Combatant combatant )
 		{
+			Combatants.Add( combatant );
 
-		}
-
-		public void SetCombatBeginDelegate( CombatEncounter.CombatBegin combatBeginDelegate )
-		{
-			CombatEncounter.DelegateEncounterBegin += combatBeginDelegate;
-		}
-
-		public int CalculateMovementCost( Combatant combatant, float distance )
-		{
-			// Can move less than 5 cm at a time without cost (for turning around)
-			if ( distance < .05f )
+			int count = Combatants.Count;
+			for ( int i = 0; i < count; ++i )
 			{
-				return 0;
+				Combatants[i].OnBeginCombatEncounter( );
 			}
 
-			float costScore = distance / combatant.MovementScore * 2.0f;
-
-			// Round up to always have at least 1 action point cost
-			return Mathf.CeilToInt( costScore );
+			MEC.Timing.RunThisCoroutine( ExecuteCombatEncounter( ), out _encounterHandle );
 		}
 
-		public bool HasEnoughActionPoints( Combatant combatant, int actionPointCount )
+		public void EndCombatTurn( )
 		{
-			return combatant.ActionPoints >= actionPointCount;
+			ActiveCombatant = null;
+		}
+
+		public IEnumerator<float> ExecuteCombatEncounter( )
+		{
+			Debug.Log( "ExecuteCombatEncounter Frame " + Time.frameCount );
+
+			yield return MEC.Timing.WaitForSeconds( 1.25f );
+
+			for ( int i = 0; i < 2; ++i )
+			{
+				Debug.Log( 
+					"Round " + (i+1) + " ExecuteCombatEncounter Frame " + Time.frameCount );
+
+				yield return MEC.Timing.RunThisCoroutine( ExecuteCombatRound( ), 
+					out _roundHandle, ref _encounterHandle, MEC.NestingType.ChildBlock );
+			}
+
+			Debug.Log( "EndCombatEncounter Frame " + Time.frameCount );
+			_encounterHandle = MEC.CoroutineHandle.RawHandle;
+			_roundHandle = MEC.CoroutineHandle.RawHandle;
+			_turnHandle = MEC.CoroutineHandle.RawHandle;
+			ActiveCombatant = null;
+			Combatants.RemoveRange( 1, Combatants.Count - 1 );
+
+			yield break;
+		}
+
+		public IEnumerator<float> ExecuteCombatRound( )
+		{
+			Debug.Log( "ExecuteCombatRound Frame " + Time.frameCount );
+
+			int count = Combatants.Count;
+			for ( int i = 0; i < count; ++i )
+			{
+				ActiveCombatant = Combatants[i];
+				SetCombatTarget( ActiveCombatant );
+
+				Debug.Log( "Combatant " + (i+1) + " ExecuteCombatRound Frame " + Time.frameCount );
+
+				yield return MEC.Timing.RunThisCoroutine( 
+					ActiveCombatant.CombatTurnChain.RunHandlerChain( 
+						ActiveCombatant.CombatTarget, ActiveCombatant ), 
+					out _turnHandle, ref _roundHandle, 
+					MEC.NestingType.ChildBlock );
+
+				yield return MEC.Timing.WaitForSeconds( 1f );
+			}
+
+			Debug.Log( "EndCombatRound Frame " + Time.frameCount );
+
+			yield break;
+		}
+
+		public void SetCombatTarget( Combatant combatant )
+		{
+			if ( combatant == Combatants[0] )
+			{
+				combatant.CombatTarget = Combatants[1];
+			}
+			else
+			{
+				combatant.CombatTarget = Combatants[0];
+			}
 		}
 	}
 

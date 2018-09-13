@@ -1,24 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-using ProjectFound.CameraUI;
-
-namespace ProjectFound.Master {
-
-public class CameraMaster
+namespace ProjectFound.Core.Master 
 {
-	public FixedTiltZoomableCamera FixedTiltZoomableCamera { get; private set; }
 
-	public CameraMaster( )
+
+	using UnityEngine;
+	using UnityEngine.Assertions;
+
+	using ProjectFound.CameraUI;
+
+	public class CameraMaster
 	{
-		FixedTiltZoomableCamera = GameObject.FindObjectOfType<FixedTiltZoomableCamera>( );
+		public FixedTiltZoomableCamera Camera { get; private set; }
+		public Camera UnityCamera { get; private set; }
+
+		public CameraMaster( )
+		{
+			Camera = GameObject.FindObjectOfType<FixedTiltZoomableCamera>( );
+			UnityCamera = Camera.GetComponentInChildren<Camera>( );
+
+			Assert.IsNotNull( Camera );
+			Assert.IsNotNull( UnityCamera );
+		}
+
+		public void Loop( )
+		{
+		}
 	}
 
-	public void Loop( )
-	{
-
-	}
-}
 
 }

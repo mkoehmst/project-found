@@ -1,47 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+namespace ProjectFound.Core.Master 
+{
 
-using ProjectFound.CameraUI;
-using ProjectFound.Environment;
-using ProjectFound.Environment.Props;
-using ProjectFound.Environment.Characters;
-using System;
 
-namespace ProjectFound.Master {
+	using UnityEngine;
+	using UnityEngine.Assertions;
+	using UnityEngine.EventSystems;
 
+	using ProjectFound.CameraUI;
+	using ProjectFound.Environment.Items;
 
 	public class UIMaster
 	{
 		public EventSystem EventSystem { get; private set; }
-		public InventoryUI InventoryUI { get; set; }
-		public OnScreenUI OnScreenUI { get; set; }
-		public PropCollectionUI PropCollectionUI { get; set; }
-		public DetectionRadius DetectionRadius { get; set; }
-		public ConductBarUI ConductBarUI { get; set; }
+		public InventoryUI InventoryUI { get; private set; }
+		//public OnScreenUI OnScreenUI { get; set; }
+		//public PropCollectionUI PropCollectionUI { get; set; }
+		public DetectionRadius DetectionRadius { get; private set; }
+		public DetectionUI DetectionUI { get; private set; } 
+		//public ConductBarUI ConductBarUI { get; set; }
 		//public PauseMenuUI PauseMenuUI { get; set; }
 
 		public Rect ScreenRect { get; private set; }
 
-		public UIMaster( )
+		public void Initialize( )
 		{
-			EventSystem = EventSystem.current;
-
 			InventoryUI = GameObject.FindObjectOfType<InventoryUI>( );
-			InventoryUI.gameObject.SetActive( false );
+			Assert.IsNotNull( InventoryUI );
 
-			OnScreenUI = GameObject.FindObjectOfType<OnScreenUI>( );
+			EventSystem = EventSystem.current;
+			Assert.IsNotNull( EventSystem );
 
-			PropCollectionUI = GameObject.FindObjectOfType<PropCollectionUI>( );
-			PropCollectionUI.gameObject.SetActive( false );
-
-			DetectionRadius = GameObject.FindObjectOfType<DetectionRadius>( );
-			DetectionRadius.gameObject.SetActive( false );
-
-			ConductBarUI = GameObject.FindObjectOfType<ConductBarUI>( );
+			InventoryUI.Hide( );
 
 			ScreenRect = new Rect( 0, 0, Screen.width, Screen.height );
+
+			//OnScreenUI = GameObject.FindObjectOfType<OnScreenUI>( );
+
+			//PropCollectionUI = GameObject.FindObjectOfType<PropCollectionUI>( );
+			//PropCollectionUI.gameObject.SetActive( false );
+
+			DetectionRadius = GameObject.FindObjectOfType<DetectionRadius>( );
+			Assert.IsNotNull( DetectionRadius );
+
+			DetectionUI = GameObject.FindObjectOfType<DetectionUI>( );
+			Assert.IsNotNull( DetectionUI );
+
+			//ConductBarUI = GameObject.FindObjectOfType<ConductBarUI>( );
 		}
 
 		public void Loop( )
@@ -52,37 +56,38 @@ namespace ProjectFound.Master {
 			}
 		}
 
-		public void DisplayComment( Interactee i, string comment )
+		public bool IsCursorOverUI( )
 		{
-			InGameCommentUI igcUI = i.GetComponentInChildren<InGameCommentUI>( );
-
-			igcUI.DisplayComment( comment );
+			return EventSystem.IsPointerOverGameObject( );
 		}
 
-		public void DisplayPrompt( Prop prop, KeyCode key, Vector3 worldPos )
-		{
-			prop.Prompt = OnScreenUI.CreatePrompt( key, prop.PromptText, prop.IngameName );
+		//public void DisplayComment( Interactee i, string comment )
+		//{
+		//	InGameCommentUI igcUI = i.GetComponentInChildren<InGameCommentUI>( );
 
-			float offsX = Screen.width / 12f;
-			float offsY = Screen.width / -12f;
+		//	igcUI.DisplayComment( comment );
+		//}
 
-			Vector3 screenPos =
-				Camera.main.WorldToScreenPoint( worldPos ) + new Vector3( offsX, offsY, 0f );
+		//public void DisplayPrompt( Prop prop, KeyCode key, Vector3 worldPos )
+		//{
+		//	prop.Prompt = OnScreenUI.CreatePrompt( key, prop.PromptText, prop.IngameName );
+		//
+		//	float offsX = Screen.width / 12f;
+		//	float offsY = Screen.width / -12f;
+		//
+		//	Vector3 screenPos =
+		//	Camera.main.WorldToScreenPoint( worldPos ) + new Vector3( offsX, offsY, 0f );
+		//	
+		//	prop.Prompt.transform.position = screenPos;
+		//}
 
-			prop.Prompt.transform.position = screenPos;
-		}
+		//public void RemovePrompt( Prop prop )
+		//{
+		//	GameObject.Destroy( prop.Prompt );
+		//
+		//	prop.Prompt = null;
+		//}
 
-		public void RemovePrompt( Prop prop )
-		{
-			GameObject.Destroy( prop.Prompt );
-
-			prop.Prompt = null;
-		}
-
-		public void ToggleInventoryWindow( )
-		{
-			InventoryUI.gameObject.SetActive( !InventoryUI.gameObject.activeInHierarchy );
-		}
 
 		public UnityEngine.UI.Button AddInventoryButton( Item item )
 		{
@@ -94,64 +99,20 @@ namespace ProjectFound.Master {
 			InventoryUI.RemoveItem( item );
 		}
 
-		public void TogglePropCollectionWindow( )
+		public void CloseAllWindows( )
 		{
-			bool isEnabled = PropCollectionUI.gameObject.activeInHierarchy;
-
-			if ( isEnabled )
-			{
-				PropCollectionUI.ClearCollection( );
-				PropCollectionUI.gameObject.SetActive( false );
-			}
-			else
-			{
-				PropCollectionUI.gameObject.SetActive( true );
-			}
+			// TODO: Generic, automated solution. Keep track of open windows?
+			if ( !InventoryUI.IsHidden ) InventoryUI.Hide( );
+			if ( !DetectionUI.IsHidden ) DetectionUI.Hide( );
 		}
 
-		public UnityEngine.UI.Button AddPropCollectionButton( Prop prop )
-		{
-			return PropCollectionUI.AddProp( prop );
-		}
-
-		public void DisplayDetectionRadius( )
-		{
-			if ( DetectionRadius.gameObject.activeInHierarchy == false )
-			{
-				DetectionRadius.gameObject.SetActive( true );
-			}
-		}
-
-		public void ClearDetectionRadius( )
-		{
-			if ( DetectionRadius.gameObject.activeInHierarchy == true )
-			{
-				DetectionRadius.gameObject.SetActive( false );
-			}
-		}
-
-		//public void CombatMovementInRange( Vector3 loc )
+		//public UnityEngine.UI.Button AddSkillToConductBar( SkillSpec skill )
 		//{
-
-		//}
-
-		public void RemovePropCollectionProp( Prop prop )
-		{
-			PropCollectionUI.RemoveProp( prop );
-		}
-
-		public UnityEngine.UI.Button AddSkillToConductBar( SkillSpec skill )
-		{
 			//for ( int i = 0; i < skills.Length; ++i )
 			//{
-				return ConductBarUI.AddConduct( skill.Icon );
+				//return ConductBarUI.AddConduct( skill.Icon );
 			//}
-		}
-
-		public bool IsCursorOverUI( )
-		{
-			return EventSystem.IsPointerOverGameObject( );
-		}
+		//}
 	}
 
 

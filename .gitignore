@@ -38,7 +38,10 @@
 /Assets/RPG Character Animation Pack
 /Assets/UltimateJson
 /Assets/System.Data.dll
+/Assets/Serialization
+/Assets/Autelia
 /RewiredBackup
+/UnityPackageManager/
 
 
 # Visual Studio cache directory
@@ -69,3 +72,5 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+# Game State Data
+*.json
