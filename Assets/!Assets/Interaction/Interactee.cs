@@ -1,59 +1,100 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-using ProjectFound.Environment.Handlers;
-using ProjectFound.Environment.Characters;
-
-namespace ProjectFound.Environment {
+namespace ProjectFound.Interaction
+{
 
 
-	public class Interactee : MonoBehaviour
+	using UnityEngine;
+
+	//using ProjectFound.Environment.Handlers;
+	using ProjectFound.Environment;
+	//using ProjectFound.Interaction;
+	//using Autelia.Serialization;
+
+	public abstract class Interactee : MonoBehaviour
 	{
 		// TODO Decide if non-interactable inanimate objects might also have health
 
 		// Bring health all the way down to the Interactee level because inanimate objects
 		// can have health too, the amount of damage before they are destroyed
-	//	[UnityEditor.]
-		[SerializeField] protected string m_ingameName = "Unknown";
+
+		public string m_ingameName = "Unknown";
+
+
 		[SerializeField] protected float m_maxHealthPoints = 100f;
 		[SerializeField] protected float m_curHealthPoints = 1f;
 		[SerializeField] protected string m_activateText = "Pickup";
 		[SerializeField] protected string m_deactivateText = "Drop";
 		[SerializeField] protected bool m_isActivated = false;
-		[SerializeField] protected NodeCanvas.DialogueTrees.DialogueTree m_dialogueTree;
-		[SerializeField] protected CommentSpec m_commentSpec;
+		//[SerializeField] protected CommentSpec m_commentSpec;
 
+		[Header("Handler Chains")]
+		[SerializeField] protected HandlerChain _oneShotChain;
+		public HandlerChain OneShotChain 
+		{ 
+			get { return _oneShotChain; } 
+			set { _oneShotChain = value; }
+		}
 
+		[SerializeField] protected HandlerChain _oneShotReleaseChain;
+		public HandlerChain OneShotReleaseChain 
+		{  
+			get { return _oneShotReleaseChain; }
+			set { _oneShotReleaseChain = value; }
+		}
 
-		[SerializeField] protected HandlerChain m_oneShotChain;
-		public HandlerChain OneShotChain { get { return m_oneShotChain; } }
+		[SerializeField] protected HandlerChain _windowChain;
+		public HandlerChain WindowChain 
+		{ 
+			get { return _windowChain; } 
+			set { _windowChain = value; }
+		}
 
-		[SerializeField] protected HandlerChain m_oneShotReleaseChain;
-		public HandlerChain OneShotReleaseChain {  get { return m_oneShotReleaseChain; } }
+		[SerializeField] protected HandlerChain _windowReleaseChain;
+		public HandlerChain WindowReleaseChain 
+		{ 
+			get { return _windowReleaseChain; } 
+			set { _windowReleaseChain = value; }
+		}
 
-		[SerializeField] protected HandlerChain m_windowChain;
-		public HandlerChain WindowChain { get { return m_windowChain; } }
+		[SerializeField] protected HandlerChain _holdingChain;
+		public HandlerChain HoldingChain 
+		{ 
+			get { return _holdingChain; } 
+			set { _holdingChain = value; }
+		}
 
-		[SerializeField] protected HandlerChain m_windowReleaseChain;
-		public HandlerChain WindowReleaseChain { get { return m_windowReleaseChain; } }
+		[SerializeField] protected HandlerChain _holdingReleaseChain;
+		public HandlerChain HoldingReleaseChain 
+		{ 
+			get { return _holdingReleaseChain; } 
+			set { _holdingReleaseChain = value; }
+		}
 
-		[SerializeField] protected HandlerChain m_holdingChain;
-		public HandlerChain HoldingChain { get { return m_holdingChain; } }
+		[SerializeField] protected HandlerChain _focusChain;
+		public HandlerChain FocusChain 
+		{ 
+			get { return _focusChain; } 
+			set { _focusChain = value; }
+		}
 
-		[SerializeField] protected HandlerChain m_holdingReleaseChain;
-		public HandlerChain HoldingReleaseChain { get { return m_holdingReleaseChain; } }
+		[SerializeField] protected HandlerChain _focusReleaseChain;
+		public HandlerChain FocusReleaseChain 
+		{ 
+			get { return _focusReleaseChain; }
+			set { _focusReleaseChain = value; }
+		}
 
-		[SerializeField] protected HandlerChain m_focusChain;
-		public HandlerChain FocusChain { get { return m_focusChain; } }
+		[SerializeField] protected HandlerChain _usageChain;
+		public HandlerChain UsageChain 
+		{ 
+			get { return _usageChain; } 
+			set { _usageChain = value; }
+		}
 
-		[SerializeField] protected HandlerChain m_focusReleaseChain;
-		public HandlerChain FocusReleaseChain { get { return m_focusReleaseChain; } }
+		//public State.UnityID UnityID { get; private set; }
+		//public State.Saveable Saveable { get; private set; }
 
-		[SerializeField] protected HandlerChain m_usageChain;
-		public HandlerChain UsageChain { get { return m_usageChain; } }
-
-		public bool IsFocused { get; set; }
+		public bool IsFocused { get; private set; }
+		public LayerID LayerID { get; protected set; }
 
 		public string ActivateText
 		{
@@ -81,15 +122,10 @@ namespace ProjectFound.Environment {
 			set { m_isActivated = value; }
 		}
 
-		public NodeCanvas.DialogueTrees.DialogueTree DialogueTree
-		{
-			get { return m_dialogueTree; }
-		}
-
-		public CommentSpec CommentSpec
-		{
-			get { return m_commentSpec; }
-		}
+		//public CommentSpec CommentSpec
+		//{
+		//	get { return m_commentSpec; }
+		//}
 
 		public float HealthAsPercentage
 		{
@@ -101,20 +137,49 @@ namespace ProjectFound.Environment {
 			get { return m_curHealthPoints; }
 		}
 
-		public LayerID LayerID
+		public Interactee ApproachTarget { get; set; }
+
+		[System.NonSerialized] private bool _areLayersSet = false;
+
+		protected void Awake( )
 		{
-			get { return (LayerID)gameObject.layer; }
+			LayerID = LayerID.Undefined;
 		}
 
 		protected void Start( )
 		{
+			if ( LayerID != LayerID.Undefined && !_areLayersSet )
+			{
+				SetLayers( transform );
+				_areLayersSet = true;
+			}
+
+			if (Autelia.Serialization.Serializer.IsLoading) return;
+
 			Debug.Assert( m_curHealthPoints > 0f, "Must start with positive health" );
 
 			m_curHealthPoints = m_maxHealthPoints;
 			IsFocused = false;
 		}
 
+		private void SetLayers( Transform parent )
+		{
+			Collider[] colliders = parent.GetComponentsInChildren<Collider>( );
+			for ( int i = 0; i < colliders.Length; ++i )
+			{
+				colliders[i].gameObject.layer = (int)LayerID;
+			}
+		}
 
+		public float DistanceTo( Vector3 point )
+		{
+			return (transform.position - point).magnitude;
+		}
+
+		public float DistanceTo( ref Vector3 point )
+		{
+			return (transform.position - point).magnitude;
+		}
 	}
 
 

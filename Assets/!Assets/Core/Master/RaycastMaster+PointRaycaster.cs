@@ -1,14 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.EventSystems;
-
-using mattmc3.dotmore.Collections.Generic;
-
-namespace ProjectFound.Master
+namespace ProjectFound.Core.Master
 {
 
+
+	using UnityEngine;
 
 	public partial class RaycastMaster
 	{
@@ -43,12 +37,14 @@ namespace ProjectFound.Master
 			{
 				DelegateCasterAssignment( ref m_caster );
 
-				PerformRaycast( );
-				ProcessRaycastResults( );
-				CycleHitCheck( );
+				if ( PerformRaycast( ) == true )
+				{
+					ProcessRaycastResults( );
+					CycleHitCheck( );
+				}
 			}
 
-			private void PerformRaycast( )
+			private bool PerformRaycast( )
 			{
 				RaycastHit firstHit;
 				bool success;
@@ -62,6 +58,7 @@ namespace ProjectFound.Master
 						// Select first hit that matches any Priority layer
 						success =
 							Physics.Raycast( m_caster, out firstHit, MaxDistance, LayerMask );
+
 						if ( success == true )
 						{
 							GameObject obj = firstHit.collider.gameObject;
@@ -71,7 +68,7 @@ namespace ProjectFound.Master
 								"Raycast found an object (" + obj + ") but it did not have a " + typeof( _T ) + " Component" );*/
 
 							if ( component == null )
-								return;
+								return false;
 
 							DelegateHitFound?.Invoke( ref firstHit );
 							PriorityHitCheck.Add( component, firstHit );
@@ -82,10 +79,12 @@ namespace ProjectFound.Master
 								string z = firstHit.normal.z.ToString( "0.000" );
 								Debug.Log( "(" + x + ", " + y + ", " + z + ")" );
 							}*/
-							return;
 						}
-						return;
+
+						return success;
 				}
+
+				return false;
 			}
 
 			private void ProcessRaycastResults( )
@@ -96,7 +95,7 @@ namespace ProjectFound.Master
 
 					if ( PreviousPriorityHitCheck.ContainsKey( pair.Key ) == false )
 					{
-						ObjectFocusGained( pair );
+						//ObjectFocusGained( pair );
 					}
 				}
 
@@ -107,7 +106,7 @@ namespace ProjectFound.Master
 
 					if ( PriorityHitCheck.ContainsKey( component ) == false )
 					{
-						ObjectFocusLost( component );
+						//ObjectFocusLost( component );
 					}
 				}
 			}

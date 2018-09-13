@@ -1,10 +1,11 @@
-namespace ProjectFound.Master
+namespace ProjectFound.Core.Master
 {
+
 
 	using mattmc3.dotmore.Collections.Generic;
 
-	using ProjectFound.Environment;
-	using ProjectFound.Environment.Occlusion;
+	using ProjectFound.Interaction;
+	using ProjectFound.Environment.Surfaces;
 
 	public partial class RaycastMaster
 	{
@@ -18,6 +19,7 @@ namespace ProjectFound.Master
 			CombatCursorSelection,
 			HoldToMove,
 			PropPlacement,
+			PropProximity,
 			CameraOcclusion
 		}
 		//******************************************************************************************
@@ -33,8 +35,8 @@ namespace ProjectFound.Master
 		public LineRaycaster<Interactee> CursorSelectionRaycaster { get; private set; }
 			= new LineRaycaster<Interactee>( RaycastMode.CursorSelection, 30f, 6 );
 
-		public PointRaycaster<Interactee> CombatCursorSelectionRaycaster { get; private set; }
-			= new PointRaycaster<Interactee>( RaycastMode.CombatCursorSelection, 30f, false );
+		//public PointRaycaster<Interactee> CombatCursorSelectionRaycaster { get; private set; }
+			//= new PointRaycaster<Interactee>( RaycastMode.CombatCursorSelection, 30f, false );
 
 		public PointRaycaster<Interactee> HoldToMoveRaycaster { get; private set; }
 			= new PointRaycaster<Interactee>( RaycastMode.HoldToMove, 30f, false );
@@ -42,34 +44,58 @@ namespace ProjectFound.Master
 		public PointRaycaster<Interactee> PropPlacementRaycaster { get; private set; }
 			= new PointRaycaster<Interactee>( RaycastMode.PropPlacement, 30f, false );
 
-		public OcclusionRaycaster<Occludable> CameraOcclusionRaycaster { get; private set; }
-			= new OcclusionRaycaster<Occludable>( RaycastMode.CameraOcclusion, 70f );
+		public SphereRaycaster<Interactee> PropProximityRaycaster { get; private set; }
+			= new SphereRaycaster<Interactee>( RaycastMode.PropProximity, 2.8f, true );
+
+		public OcclusionRaycaster<OccludableSurface> CameraOcclusionRaycaster { get; private set; }
+			= new OcclusionRaycaster<OccludableSurface>( RaycastMode.CameraOcclusion, 200f );
 
 		public OrderedDictionary<RaycastMode, Raycaster> Raycasters { get; private set; }
 			= new OrderedDictionary<RaycastMode, Raycaster>( );
 
-		public Raycaster<Interactee> CurrentInteracteeRaycaster { get; set; }
-		public Raycaster<Interactee> PreviousInteracteeRaycaster { get; set; }
+		public Raycaster<Interactee> CurrentInteracteeRaycaster { get; private set; }
+		public Raycaster<Interactee> PreviousInteracteeRaycaster { get; private set; }
 
 		public Raycaster<Interactee>.RaycastReport Report
 		{
 			get { return CurrentInteracteeRaycaster.Report; }
+			set { CurrentInteracteeRaycaster.Report = value; }
 		}
 		//******************************************************************************************
 		//******************************************************************************************
 		// RaycastMaster Methods
-		//******************************************************************************************
+		//******************************************************************************************			
 		public void Loop( )
 		{
-			var raycasters = Raycasters;
-			int count = raycasters.Count;
+			int count = Raycasters.Count;
 			for ( int i = 0; i < count; ++i )
 			{
-				Raycaster raycaster = raycasters[i];
+				Raycaster raycaster = Raycasters[i];
 
-				if ( raycaster.IsEnabled == true )
+				if ( raycaster.IsEnabled )
+				{
+					if ( raycaster.TestRaycastCondition != null 
+						&& !raycaster.TestRaycastCondition( ) )
+					{
+						raycaster.IsEnabled = false;
+					}
+				}
+				else
+				{
+					if ( raycaster.TestRaycastCondition != null 
+						&& raycaster.TestRaycastCondition( ) )
+					{
+						raycaster.IsEnabled = true;
+					}
+				}
+
+				if ( raycaster.IsEnabled )
 				{
 					raycaster.Cast( );
+				}
+				else
+				{
+					raycaster.Clear( );
 				}
 			}
 		}
@@ -77,28 +103,39 @@ namespace ProjectFound.Master
 		public void Setup( )
 		{
 			Raycasters.Add( RaycastMode.CursorSelection, CursorSelectionRaycaster );
-			Raycasters.Add( RaycastMode.CombatCursorSelection, CombatCursorSelectionRaycaster );
+			//Raycasters.Add( RaycastMode.CombatCursorSelection, CombatCursorSelectionRaycaster );
 			Raycasters.Add( RaycastMode.HoldToMove, HoldToMoveRaycaster );
 			Raycasters.Add( RaycastMode.PropPlacement, PropPlacementRaycaster );
+			Raycasters.Add( RaycastMode.PropProximity, PropProximityRaycaster );
 			Raycasters.Add( RaycastMode.CameraOcclusion, CameraOcclusionRaycaster );
+		}
+
+		public void Clear( )
+		{
+			CurrentInteracteeRaycaster.ClearHitChecks( );
+			CurrentInteracteeRaycaster.ClearBlacklist( );
 		}
 
 		public void Reset( )
 		{
-			CurrentInteracteeRaycaster.ClearHitChecks( );
-			CurrentInteracteeRaycaster.ClearBlacklist( );
 			CurrentInteracteeRaycaster.SetEnabled( false );
 
 			PreviousInteracteeRaycaster = null;
 			CurrentInteracteeRaycaster = null;
 		}
 
-		public Raycaster<Interactee> SwitchTo( Raycaster<Interactee> raycaster )
+		public Raycaster<Interactee> SwitchTo( 
+			Raycaster<Interactee> raycaster, bool doCopyReport = true )
 		{
 			if ( CurrentInteracteeRaycaster != null )
 			{
 				PreviousInteracteeRaycaster = CurrentInteracteeRaycaster;
 				PreviousInteracteeRaycaster.SetEnabled( false );
+
+				if ( doCopyReport == true )
+				{ 
+					raycaster.Report.Duplicate( CurrentInteracteeRaycaster.Report );
+				}
 			}
 
 			CurrentInteracteeRaycaster = raycaster;
@@ -107,13 +144,21 @@ namespace ProjectFound.Master
 			return CurrentInteracteeRaycaster;
 		}
 
-		public Raycaster<Interactee> SwitchToPrevious( )
+		public Raycaster<Interactee> SwitchToPrevious( bool doCopyReport = true )
 		{
 			if ( PreviousInteracteeRaycaster != null )
 			{
+				if ( doCopyReport == true )
+				{ 
+					PreviousInteracteeRaycaster.Report.Duplicate( 
+						CurrentInteracteeRaycaster.Report );
+				}
+		
 				CurrentInteracteeRaycaster.SetEnabled( false );
 				CurrentInteracteeRaycaster = PreviousInteracteeRaycaster;
 				CurrentInteracteeRaycaster.SetEnabled( true );
+
+				PreviousInteracteeRaycaster = null;
 			}
 
 			return CurrentInteracteeRaycaster;

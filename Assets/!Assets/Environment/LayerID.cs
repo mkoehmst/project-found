@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace ProjectFound.Environment
 {
 
 
 	public enum LayerID
 	{
+		Undefined = -1,
 		Default = 0,
 		TransparentFX = 1,
 		IgnoreRaycast = 2,
@@ -19,11 +16,10 @@ namespace ProjectFound.Environment
 		Item = 11,
 		Character = 12,
 		Enemy = 13,
-		PostProcess = 27,
-		Roof = 28,
-		RoofHidden = 29,
-		GIOnly = 30,
-		Light = 31
+		Protagonist = 15,
+		Occludable = 25,
+		OccludableHidden = 26,
+		PostProcess = 27
 	}
 
 

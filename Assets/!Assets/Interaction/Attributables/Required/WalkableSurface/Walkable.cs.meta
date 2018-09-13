@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dc6873fff842ed24ab8a4463445fd74f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _oneShotMovementChain: {fileID: 11400000, guid: e097916ee8bc1a845b6abb9525e194f5,
+      type: 2}
+  - _holdingMovementChain: {fileID: 11400000, guid: 7d7bcef5c74723849aa6de042ab24179,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,16 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.EventSystems;
-
-using mattmc3.dotmore.Collections.Generic;
-
-using ProjectFound.Environment;
-
-namespace ProjectFound.Master
+namespace ProjectFound.Core.Master
 {
 
+
+	using System.Collections.Generic;
+	using mattmc3.dotmore.Collections.Generic;
+
+	using UnityEngine;
+
+	using ProjectFound.Environment;
 
 	public partial class RaycastMaster
 	{
@@ -18,12 +15,22 @@ namespace ProjectFound.Master
 		{
 			public class RaycastReport
 			{
-				public RaycastMode		mode;
-				public Vector3			hitPoint;
-				public Vector3			hitNormal;
-				public MonoBehaviour	component;
-				public GameObject		gameObj;
-				public LayerID			layerID;
+				public RaycastMode		Mode;
+				public Vector3			HitPoint;
+				public Vector3			HitNormal;
+				public MonoBehaviour	Component;
+				public GameObject		HitObject;
+				public LayerID			HitLayerID;
+
+				public void Duplicate( RaycastReport other )
+				{
+					Mode = other.Mode;
+					HitPoint = other.HitPoint;
+					HitNormal = other.HitNormal;
+					Component = other.Component;
+					HitObject = other.HitObject;
+					HitLayerID = other.HitLayerID;
+				}
 			}
 
 			public struct Blacklistee
@@ -38,24 +45,25 @@ namespace ProjectFound.Master
 				}
 			}
 
+			public System.Func<bool> TestRaycastCondition;
+
 			protected bool m_isEnabled = false;
 			public bool IsEnabled
 			{
 				get { return m_isEnabled; }
+				set { m_isEnabled = value; }
 			}
 
-			public RaycastMode Mode { get; private set; } = RaycastMode.Undefined;
+			public RaycastMode Mode { get; set; } = RaycastMode.Undefined;
 			public float MaxDistance { get; set; }
-			public int LayerMask { get; protected set; }
-			public List<LayerID> Blockers { get; private set; }
-			
-			public RaycastReport Report { get; private set; } = new RaycastReport( );
+			public int LayerMask { get; set; }
+			public List<LayerID> Blockers { get; set; } = new List<LayerID>( );
+			public RaycastReport Report { get; set; } = new RaycastReport( );
 
 			public Raycaster( RaycastMode mode, float maxDistance, bool isEnabled )
 			{
 				Mode = mode;
 				MaxDistance = maxDistance;
-				Blockers = new List<LayerID>( );
 				m_isEnabled = isEnabled;
 			}
 
@@ -66,14 +74,22 @@ namespace ProjectFound.Master
 			}
 
 			public abstract void Cast( );
+			public virtual void Clear( ) { }
 			public abstract void AddPriority( LayerID layer );
 			public abstract void RemovePriority( LayerID layer );
+
+			protected bool WasBlockerHit( GameObject hitObject )
+			{
+				LayerID layer = (LayerID)hitObject.layer;
+
+				return Blockers.Contains( layer );
+			}
 		}
 
 		public abstract class Raycaster<_T> : Raycaster
 			where _T : MonoBehaviour
 		{
-			public delegate void FocusGainedDelegate( KeyValuePair<_T,RaycastHit> pair );
+			public delegate void FocusGainedDelegate( _T component );
 			public delegate void FocusLostDelegate( _T component );
 
 			public class LayerDetails
@@ -113,7 +129,7 @@ namespace ProjectFound.Master
 			public void SetLayerDelegates( LayerID layer, FocusGainedDelegate gained,
 				FocusLostDelegate lost )
 			{
-				LayerDetails layerDetails = Priority.GetValue( layer );
+				LayerDetails layerDetails = Priority[layer];
 
 				if ( layerDetails != null )
 				{
@@ -205,11 +221,6 @@ namespace ProjectFound.Master
 				Blacklist.Clear( );
 			}
 
-			public ICollection<_T> GetPreviousHitComponents( )
-			{
-				return PreviousPriorityHitCheck.Keys;
-			}
-
 			public KeyValuePair<_T, RaycastHit> GetLastHit( )
 			{
 				int i = PreviousPriorityHitCheck.Count - 1;
@@ -217,49 +228,44 @@ namespace ProjectFound.Master
 				return PreviousPriorityHitCheck.GetItem( i );
 			}
 
-			public _T GetFirstHitComponent( )
-			{
-				return PriorityHitCheck.GetItem( 0 ).Key;
-			}
-
 			protected void ObjectFocusGained( KeyValuePair<_T, RaycastHit> pair )
 			{
-				GameObject obj = pair.Key.gameObject;
+				GameObject obj = pair.Value.collider.gameObject;
 
 				LayerDetails layerDetails = Priority.GetValue( (LayerID)obj.layer );
 
-				layerDetails.DelegateFocusGained?.Invoke( pair );
+				layerDetails.DelegateFocusGained?.Invoke( pair.Key );
 			}
 
-			protected void ObjectFocusLost( _T component )
+			protected void ObjectFocusLost( KeyValuePair<_T, RaycastHit> pair )
 			{
-				GameObject obj = component.gameObject;
+				GameObject obj = pair.Value.collider.gameObject;
 
 				LayerDetails layerDetails = Priority.GetValue( (LayerID)obj.layer );
 
-				layerDetails.DelegateFocusLost?.Invoke( component );
+				layerDetails.DelegateFocusLost?.Invoke( pair.Key );
 			}
 
 			protected void CycleHitCheck( )
 			{
 				int count = PriorityHitCheck.Count;
 				if ( count > 0 )
-				{ 
+				{
 					KeyValuePair<_T,RaycastHit> pair = PriorityHitCheck.GetItem( count - 1 );
 
-					Report.mode			= Mode;
-					Report.component	= pair.Key;
-					Report.hitPoint		= pair.Value.point;
-					Report.hitNormal	= pair.Value.normal;
-					Report.gameObj		= pair.Value.collider.gameObject;
-					Report.layerID		= (LayerID)Report.gameObj.layer;
+					Report.Mode			= Mode;
+					Report.Component	= pair.Key;
+					Report.HitPoint		= pair.Value.point;
+					Report.HitNormal	= pair.Value.normal;
+					Report.HitObject	= pair.Value.collider.gameObject;
+					Report.HitLayerID	= (LayerID)Report.HitObject.layer;
 
 					PreviousPriorityHitCheck.Duplicate( PriorityHitCheck );
 					PriorityHitCheck.Clear( );
 				}
 				else
 				{
-					Report.mode = RaycastMode.Undefined;
+					Report.Mode = RaycastMode.Undefined;
 
 					PreviousPriorityHitCheck.Clear( );
 				}

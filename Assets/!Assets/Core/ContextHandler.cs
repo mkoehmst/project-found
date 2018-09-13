@@ -1,11 +1,12 @@
 namespace ProjectFound.Core
 {
 
+
 	using UnityEngine;
 
-	using ProjectFound.Master;
+	using ProjectFound.Core.Master;
 
-	public abstract class ContextHandler : ScriptableObject
+	public class ContextHandler : ScriptableObject
 	{
 		static protected GameContext GameContext { get; private set; }
 
@@ -16,7 +17,7 @@ namespace ProjectFound.Core
 		static protected UIMaster			UIMaster			{ get; private set; }
 		static protected ShaderMaster		ShaderMaster		{ get; private set; }
 		static protected CombatMaster		CombatMaster		{ get; private set; }
-		static protected InteractionMaster	InteractionMaster	{ get; private set; }
+		//static protected InteractionMaster	InteractionMaster	{ get; private set; }
 
 		static public void AssignContext( GameContext context )
 		{
@@ -29,8 +30,9 @@ namespace ProjectFound.Core
 			UIMaster			= context.UIMaster;
 			ShaderMaster		= context.ShaderMaster;
 			CombatMaster		= context.CombatMaster;
-			InteractionMaster	= context.InteractionMaster;
+			//InteractionMaster	= context.InteractionMaster;
 		}
 	}
+
 
 }

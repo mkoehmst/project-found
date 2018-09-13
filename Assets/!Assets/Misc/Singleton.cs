@@ -16,7 +16,7 @@ namespace ProjectFound.Misc
 				{
 					m_instance = FindObjectOfType<_T>( );
 
-					// If still null, create the instance
+					// If still null, create the instance?
 				}
 
 				return m_instance;

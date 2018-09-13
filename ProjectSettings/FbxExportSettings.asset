@@ -2,33 +2,34 @@
     "MonoBehaviour": {
         "m_Enabled": true,
         "m_EditorHideFlags": 0,
-        "m_Name": "Fbx Export Settings",
+        "m_Name": "",
         "m_EditorClassIdentifier": "",
         "Verbose": false,
         "autoUpdaterEnabled": true,
         "launchAfterInstallation": true,
-        "HideSendToUnityMenu": false,
+        "HideSendToUnityMenu": true,
         "BakeAnimation": true,
-        "IntegrationSavePath": "P:/Found/UnityMayaBridge",
+        "IntegrationSavePath": "P:\\FoundCleanWithRewired\\Found_Game",
         "selectedDCCApp": 0,
-        "prefabSavePaths": [],
-        "fbxSavePaths": [],
+        "prefabSavePaths": [
+            "."
+        ],
+        "fbxSavePaths": [
+            "!Exports",
+            "."
+        ],
         "selectedFbxPath": 0,
         "selectedPrefabPath": 0,
-        "dccOptionNames": [
-            "Maya LT2018"
-        ],
-        "dccOptionPaths": [
-            "C:/Program Files/Autodesk/MayaLT2018/bin/maya.exe"
-        ],
+        "dccOptionNames": [],
+        "dccOptionPaths": [],
         "exportModelSettingsSerialize": {
-            "exportFormat": 0,
+            "exportFormat": 1,
             "rootMotionTransfer": "",
             "animatedSkinnedMesh": false,
             "mayaCompatibleNaming": true,
-            "include": 2,
+            "include": 0,
             "lodLevel": 0,
-            "objectPosition": 0,
+            "objectPosition": 1,
             "exportUnrendered": true
         },
         "convertToPrefabSettingsSerialize": {

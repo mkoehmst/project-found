@@ -3,9 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - State
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -22,6 +20,7 @@ TagManager:
   - Character
   - Enemy
   - 
+  - Protagonist
   - 
   - 
   - 
@@ -31,18 +30,14 @@ TagManager:
   - 
   - 
   - 
+  - Occludable
+  - OccludableHiden
   - 
   - 
   - 
-  - PostProcess
-  - Roof
-  - RoofHidden
-  - GIOnly
-  - Light
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: hello
-    uniqueID: 3444619095
     locked: 0
